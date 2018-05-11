@@ -3,8 +3,10 @@ import java.awt.Graphics;
 public class AITank extends Tank
 {
 	int turretAngle;
+	int xLoc;
+	int yLoc;
 	
-	public AITank(TankType inType)
+	public AITank(TankType inType, int x, int y)
 	{
 		type = inType;
 
@@ -12,7 +14,7 @@ public class AITank extends Tank
 
 	
 	
-	void move()
+	void move(int incx, int incy)
 	{
 		
 	}
