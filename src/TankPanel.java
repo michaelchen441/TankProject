@@ -2,8 +2,12 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,9 +18,31 @@ import javax.swing.UIManager;
 public class TankPanel extends JPanel {
 
 	PlayerTank t = new PlayerTank(20,20);
-	boolean showMenu = true;
+	boolean inMenu = true;
+	int level = 1; //TODO change to initialize at 0, menu ending changes to 1
+	boolean level1FirstTime = true;
 	
-	Timer timer = new Timer(500,null);
+	public static int panelWidth = 1400;
+	public static int panelHeight = 800;
+	
+	public static int numWallsAcross = 28;
+	public static int numWallsDown = 16;
+	
+	public static int wallWidth =  panelWidth/numWallsAcross;
+	public static int wallHeight = panelHeight/numWallsDown;
+
+	boolean rightPressed;
+	boolean leftPressed;
+	boolean upPressed;
+	boolean downPressed;
+	
+	Arena level1Arena;
+	Arena level2Arena;
+	
+//	private BufferedImage indestructableWall;
+	
+	
+	Timer timer = new Timer(1,null);
 	public static void main(String[] args) {
 		try {
 			// Set System L&F
@@ -31,11 +57,12 @@ public class TankPanel extends JPanel {
 
 		TankPanel tp = new TankPanel();
 		frame.add(tp);
-		tp.setPreferredSize(new Dimension(800,800));
+		tp.setPreferredSize(new Dimension(panelWidth,panelHeight));
 		frame.pack();
 		frame.setVisible(true);
 		tp.setUpKeyMappings();
 		tp.startGame();
+		frame.setResizable(false);
 	}
 	private void setUpKeyMappings() {
 
@@ -46,8 +73,8 @@ public class TankPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
 				System.out.println("Hit left arrow!!");
-				t.move(-7,0);
-				repaint();
+				
+		
 			}
 		});
 		
@@ -59,8 +86,8 @@ public class TankPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
 				System.out.println("Hit right arrow!!");
-				t.move(7,0);
-				repaint();
+				
+		
 			}
 		});
 		
@@ -71,8 +98,8 @@ public class TankPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
 				System.out.println("Hit up arrow!!");
-				t.move(0,7);
-				repaint();
+				
+				
 			}
 		});
 		
@@ -83,8 +110,7 @@ public class TankPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
 				System.out.println("Hit down arrow!!");
-				t.move(0,-7);
-				repaint();
+				downPressed = true;
 			}
 		});
 		this.requestFocusInWindow();
@@ -101,6 +127,23 @@ public class TankPanel extends JPanel {
 			
 		});
 		timer.start();
+		
+		
+
+	
+
+//		try
+//		{
+//			indestructableWall = ImageIO.read(new File("images/indestructable2small.png"));	
+//			
+//
+//		} catch (IOException e)                      
+//		{
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+		
 	}
 	protected void tick() {
 		System.out.println("Timer went off!");
@@ -108,35 +151,49 @@ public class TankPanel extends JPanel {
 	}
 	public void paintComponent(Graphics g) {
 		t.draw(g);
-	//Level One	
-		ArrayList<Wall> levelOne = new ArrayList<Wall>();
-		Arena a = new Arena(levelOne);
-		Wall w1 = new Wall(90,80,10,200);
-		Wall w2 = new Wall(90,80,200,10);
 		
-		Wall w3 = new Wall(90,480,10,200);
-		Wall w4 = new Wall(90,680,200,10);
+		inMenu = false;
+		if (inMenu){
+			//drawmenu
+		}
+		else if(level == 1)
+		{
+			if(level1FirstTime){
+				
+				//Level One	
+				level1Arena = new Arena(1, numWallsAcross, numWallsDown);
+
+				
+				level1FirstTime = false;
+			}
+			level1Arena.draw(g);
+			
+			
+		}
+
+
 		
-		Wall w5 = new Wall(520,80,200,10);
-		Wall w6 = new Wall(720,80,10,200);
-		
-		Wall w7 = new Wall(520,680,200,10);
-		Wall w8 = new Wall(720,480,10,210);
-		
-		
-		levelOne.add(w1);
-		levelOne.add(w2);
-		levelOne.add(w3);
-		levelOne.add(w4);
-		levelOne.add(w5);
-		levelOne.add(w6);
-		levelOne.add(w7);
-		levelOne.add(w8);
-		a.draw(g);
+
+	
 		
 	//Level
 		
 		
 	}
+	
+	
+	
+	
+	public Direction getDirection(){
+		if(rightPressed && upPressed){
+			return Direction.NORTHEAST;
+		}
+		
+		return null;
+	}
+	
 
+
+	
+	
 }

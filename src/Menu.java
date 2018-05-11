@@ -6,7 +6,7 @@ public class Menu
 	private int highScore;
 	
 	
-	
+	//at some point make panels inMenu false
 	void draw(Graphics g)
 	{
 		
