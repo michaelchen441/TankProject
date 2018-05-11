@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class PlayerTank extends Tank
@@ -15,17 +16,16 @@ public class PlayerTank extends Tank
 	}
 	
 	
-	void move()
-	{
+	public void move(int incx, int incy){
+		xLoc += incx;
+		yLoc -= incy;
+	}
+	
+	public void aim(){
 		
 	}
 	
-	void aim()
-	{
-		
-	}
-	
-	void fire()
+	public void fire()
 	{
 		
 		//create projectile with input: type
@@ -33,6 +33,12 @@ public class PlayerTank extends Tank
 	
 	void draw(Graphics g)
 	{
+		g.setColor(Color.BLACK);
 		g.drawRect(xLoc, yLoc, width, height);
+		g.setColor(Color.GREEN);
+		g.fillRect(xLoc, yLoc, width, height);
+		
 	}
 }
+
+
