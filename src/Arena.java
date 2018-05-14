@@ -1,11 +1,17 @@
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 public class Arena
 {
 	int level;
 	private Wall[][] wallsLevel1;
 	private Wall[][] wallsLevel2;
+	private BufferedImage background;
 	
 	int numWallsAcross;
 	int numWallsDown;
@@ -43,6 +49,16 @@ public class Arena
 			//read form arena1tanks txt file
 		}
 
+		try
+		{
+			background = ImageIO.read(new File("images/Background.jpg"));	
+				
+
+		} catch (IOException e)                      
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	
 	}
 	
@@ -59,7 +75,7 @@ public class Arena
 			
 	}
 	public void draw(Graphics g) {
-		
+		g.drawImage(background,0,0,null);
 		if(level == 1){
 			for(int r = 0; r < wallsLevel1.length; r++){
 				for(int c = 0; c < wallsLevel1[r].length; c++){
