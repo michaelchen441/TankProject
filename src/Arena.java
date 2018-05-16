@@ -48,22 +48,39 @@ public class Arena
 			for(int i = 8; i<18; i++) {
 				wallsLevel1[2][i] = new Wall(2, i, false);
 			}
-			wallsLevel1[3][18] = new Wall(3, 18, false);
-			wallsLevel1[3][19] = new Wall(3, 19, false);
-			wallsLevel1[4][20] = new Wall(4, 20, false);
-			wallsLevel1[5][21] = new Wall(5, 21, false);
-			wallsLevel1[6][21] = new Wall(6, 21, false);
-			wallsLevel1[7][21] = new Wall(7, 21, false);
-			wallsLevel1[8][20] = new Wall(8, 20, false);
-			wallsLevel1[9][20] = new Wall(9, 20, false);
-			wallsLevel1[10][19] = new Wall(10, 19, false);
-			wallsLevel1[11][18] = new Wall(11, 18, false);
-			wallsLevel1[12][18] = new Wall(12, 18, false);
-			wallsLevel1[13][17] = new Wall(13, 17, false);
-			wallsLevel1[13][16] = new Wall(13, 16, false);
-			wallsLevel1[13][15] = new Wall(13, 15, false);
-			wallsLevel1[13][14] = new Wall(13, 14, false);
-			wallsLevel1[13][13] = new Wall(13, 13, false);
+			
+			wallsLevel1[4][5] = new Wall(4,5, false);
+			wallsLevel1[5][5] = new Wall(5,5, false);
+			wallsLevel1[6][5] = new Wall(6,5, false);
+			wallsLevel1[4][6] = new Wall(4,6, false);
+			wallsLevel1[5][6] = new Wall(5,6, false);
+			wallsLevel1[6][6] = new Wall(6,6, false);
+			
+			wallsLevel1[9][5] = new Wall(9,5, false);
+			wallsLevel1[10][5] = new Wall(10,5, false);
+			wallsLevel1[11][5] = new Wall(11,5, false);
+			wallsLevel1[9][6] = new Wall(9,6, false);
+			wallsLevel1[10][6] = new Wall(10,6, false);
+			wallsLevel1[11][6] = new Wall(11,6, false);
+
+			wallsLevel1[4][14] = new Wall(4,14, false);
+			wallsLevel1[5][14] = new Wall(5,14, false);
+			wallsLevel1[6][14] = new Wall(6,14, false);
+			wallsLevel1[7][14] = new Wall(7,14, true);
+			wallsLevel1[8][14] = new Wall(8,14, true);
+			wallsLevel1[9][14] = new Wall(9,14, false);
+			wallsLevel1[10][14] = new Wall(10,14, false);
+			wallsLevel1[11][14] = new Wall(11,14, false);
+
+			wallsLevel1[4][15] = new Wall(4,15, false);
+			wallsLevel1[5][15] = new Wall(5,15, false);
+			wallsLevel1[6][15] = new Wall(6,15, false);
+			wallsLevel1[7][15] = new Wall(7,15, true);
+			wallsLevel1[8][15] = new Wall(8,15, true);
+			wallsLevel1[9][15] = new Wall(9,15, false);
+			wallsLevel1[10][15] = new Wall(10,15, false);
+			wallsLevel1[11][15] = new Wall(11,15, false);
+			
 
 
 		}
