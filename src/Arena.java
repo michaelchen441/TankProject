@@ -3,7 +3,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-// yo wassup
+
 import javax.imageio.ImageIO;
 
 public class Arena
@@ -12,7 +12,7 @@ public class Arena
 	private Wall[][] wallsLevel1;
 	private Wall[][] wallsLevel2;
 	private BufferedImage background;
-	
+
 	int numWallsAcross;
 	int numWallsDown;
 	
