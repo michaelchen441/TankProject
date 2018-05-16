@@ -9,8 +9,7 @@ public class Projectile
 	
 	
 	
-	void draw()
-	{
+	void draw(){
 		
 	}
 	

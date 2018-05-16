@@ -28,7 +28,7 @@ public class PlayerTank extends Tank
 	public void fire()
 	{
 		
-		//create projectile with input: type
+		
 	}
 	
 	void draw(Graphics g)

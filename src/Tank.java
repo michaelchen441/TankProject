@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 public abstract class Tank
 {
@@ -8,6 +9,7 @@ public abstract class Tank
 	int speed;
 	int xLoc;
 	int yLoc;
+	ArrayList<Projectile> stockPile = new ArrayList<Projectile>();
 	
 	public Tank() {
 		height = 28;
