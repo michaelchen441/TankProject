@@ -45,8 +45,27 @@ public class Arena
 		
 		
 		if(level == 1){
-			//read form arena1walls txt file	
-			//read form arena1tanks txt file
+			for(int i = 8; i<18; i++) {
+				wallsLevel1[2][i] = new Wall(2, i, false);
+			}
+			wallsLevel1[3][18] = new Wall(3, 18, false);
+			wallsLevel1[3][19] = new Wall(3, 19, false);
+			wallsLevel1[4][20] = new Wall(4, 20, false);
+			wallsLevel1[5][21] = new Wall(5, 21, false);
+			wallsLevel1[6][21] = new Wall(6, 21, false);
+			wallsLevel1[7][21] = new Wall(7, 21, false);
+			wallsLevel1[8][20] = new Wall(8, 20, false);
+			wallsLevel1[9][20] = new Wall(9, 20, false);
+			wallsLevel1[10][19] = new Wall(10, 19, false);
+			wallsLevel1[11][18] = new Wall(11, 18, false);
+			wallsLevel1[12][18] = new Wall(12, 18, false);
+			wallsLevel1[13][17] = new Wall(13, 17, false);
+			wallsLevel1[13][16] = new Wall(13, 16, false);
+			wallsLevel1[13][15] = new Wall(13, 15, false);
+			wallsLevel1[13][14] = new Wall(13, 14, false);
+			wallsLevel1[13][13] = new Wall(13, 13, false);
+
+
 		}
 
 		try
