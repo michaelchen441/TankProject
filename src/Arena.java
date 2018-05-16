@@ -51,7 +51,7 @@ public class Arena
 
 		try
 		{
-			background = ImageIO.read(new File("images/Background.jpg"));	
+			background = ImageIO.read(new File("images/Background2.png"));	
 				
 
 		} catch (IOException e)                      
