@@ -12,7 +12,7 @@ public class PlayerTank extends Tank
 	{
 		super();
 		type = TankType.GREEN;
-		xLoc = inX * 50; //miltiples so they can be set up with the same grid as walls
+		xLoc = inX * 50; //multiples so they can be set up with the same grid as walls
 		yLoc = inY * 50;
 		
 	}
