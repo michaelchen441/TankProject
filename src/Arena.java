@@ -45,6 +45,7 @@ public class Arena
 		
 		
 		if(level == 1){
+
 			wallsLevel1[4][5] = new Wall(4,5, false);
 			wallsLevel1[5][5] = new Wall(5,5, false);
 			wallsLevel1[6][5] = new Wall(6,5, false);
@@ -77,6 +78,11 @@ public class Arena
 			wallsLevel1[10][15] = new Wall(10,15, false);
 			wallsLevel1[11][15] = new Wall(11,15, false);
 			
+
+		
+
+
+
 		}
 		
 
