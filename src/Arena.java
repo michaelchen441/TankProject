@@ -46,9 +46,7 @@ public class Arena
 		
 		if(level == 1){
 
-			//level1();
-			//level2();
-			level3();
+			level4();
 		}
 		
 
@@ -157,5 +155,116 @@ public class Arena
 	
 	public void level3() {
 		
+		for(int i = 3; i<5; i++) {
+			for(int j = 4; j<6; j++) {
+				wallsLevel1[i][j] = new Wall(i,j, false);
+			}
+			for(int j = 6; j<13; j++) {
+				wallsLevel1[i][j] = new Wall(i,j, true);
+			}
+			for(int j = 13; j<15; j++) {
+				wallsLevel1[i][j] = new Wall(i,j, false);
+			}
+		}
+		
+		for(int i = 11; i<13; i++) {
+			for(int j = 13; j<24; j++) {
+				wallsLevel1[i][j] = new Wall(i,j, false);
+			}
+		}
+		
+		for(int i = 11; i<13; i++) {
+			for(int j = 13; j<15; j++) {
+				wallsLevel1[i][j] = new Wall(i,j, false);
+			}
+			for(int j = 15; j<22; j++) {
+				wallsLevel1[i][j] = new Wall(i,j, true);
+			}
+			for(int j = 22; j<24; j++) {
+				wallsLevel1[i][j] = new Wall(i,j, false);
+			}
+		}
+		
+		for(int i = 5; i<8; i++) {
+				wallsLevel1[i][14] = new Wall(i,14, false);
+		}
+		for(int i = 8; i<11; i++) {
+			wallsLevel1[i][13] = new Wall(i,13, false);
+		}
+			
+	}
+	
+	public void level4() {
+		
+			for(int i = 1; i<9; i++) {
+				if(i%2 == 0) {
+					wallsLevel1[i][9] = new Wall(i,9, false);
+				}		
+				else {
+					wallsLevel1[i][9] = new Wall(i,9, true);
+				}
+			}
+			for(int i = 12; i<15; i++) {
+				if(i%2 == 1) {
+					wallsLevel1[i][9] = new Wall(i,9, false);
+				}
+				else {
+					wallsLevel1[i][9] = new Wall(i,9, true);
+				}
+			}
+			
+			for(int i = 1; i<4; i++) {
+				if(i%2 == 0) {
+					wallsLevel1[i][18] = new Wall(i,18, false);
+				}
+				else {
+					wallsLevel1[i][18] = new Wall(i,18, true);
+				}
+			}
+			for(int i = 7; i<16; i++) {
+				if(i%2 == 1) {
+				wallsLevel1[i][18] = new Wall(i,18, false);
+				}
+				else {
+					wallsLevel1[i][18] = new Wall(i,18, true);
+				}
+			}
+			
+			for(int i = 1; i<8; i++) {
+				if(i%2 == 0) {
+				wallsLevel1[5][i] = new Wall(5,i, false);
+				}
+				else {
+					wallsLevel1[5][i] = new Wall(5,i, true);
+				}
+			}
+			for(int i = 11; i<28; i++) {
+				if(i%2 == 1) {
+				wallsLevel1[5][i] = new Wall(5,i, false);
+				}
+				else {
+					wallsLevel1[5][i] = new Wall(5,i, true);
+				}
+			}
+			
+			for(int i = 1; i<17; i++) {
+				if(i%2 == 0) {
+				wallsLevel1[10][i] = new Wall(10,i, false);
+				}
+				else {
+					wallsLevel1[10][i] = new Wall(10,i, true);
+				}
+			}
+			for(int i = 20; i<28; i++) {
+				if(i%2 == 1) {
+				wallsLevel1[10][i] = new Wall(10,i, false);
+				}
+				else {
+					wallsLevel1[10][i] = new Wall(10,i, true);
+
+				}
+			}
+				
+				
 	}
 }
