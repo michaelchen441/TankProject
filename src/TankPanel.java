@@ -55,15 +55,10 @@ public class TankPanel extends JPanel {
 	static BufferedImage projectile;
 	static BufferedImage indestructableWall;
 	static BufferedImage destructableWall;
-<<<<<<< HEAD
-=======
-	
 	static BufferedImage greenTank;
->>>>>>> branch 'master' of https://github.com/michaelchen441/TankProject.git
 	static BufferedImage redTank;
 	static BufferedImage blueTank;
 	static BufferedImage blackTank;
-	
 	static BufferedImage greenTurret;
 	static BufferedImage redTurret;
 	static BufferedImage blueTurret;
