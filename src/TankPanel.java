@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -43,21 +44,18 @@ public class TankPanel extends JPanel {
 	ArrayList<Arena> arenaList = new ArrayList<Arena>();
 	Menu theMenu;
 	Arena level1Arena;
-	Arena level2Arena;
-	Arena level3Arena;
+	//Arena level2Arena;
+	//Arena level3Arena;
 	
 	
 	static ImageLibrary imageLibrary;
-	
 	static BufferedImage background;
 	static BufferedImage crosshair;
 	static BufferedImage playerTank;
 	static BufferedImage turret;
 	static BufferedImage projectile;
-	
 	static BufferedImage indestructableWall;
 	static BufferedImage destructableWall;
-	
 	static BufferedImage redTank;
 	static BufferedImage blueTank;
 	static BufferedImage blackTank;
@@ -375,25 +373,24 @@ public class TankPanel extends JPanel {
 		else 
 		{
 			if(level1FirstTime){
-
-				
-				
-				
 				//Level One	
 				
 				level1Arena = new Arena(1, numWallsAcross, numWallsDown);
 				arenaList.add(level1Arena);
 				arenaList.add(level1Arena);
 				level1FirstTime = false;
+				
 			}
 			arenaList.get(level).draw(g, imageLibrary);
+			g.setColor(Color.WHITE);
+			g.drawLine(level1Arena.playerTankLocX(), level1Arena.playerTankLocY(), crosshairX, crosshairY);	
+			
+			//g.drawLine(level1Arena.playerTankLocX(), level1Arena.playerTankLocY(), crosshairX, crosshairY);
 		}
 
 		g.drawImage(crosshair, crosshairX-10, crosshairY-10, null);
 		
-		long end = System.currentTimeMillis();
-	//	System.out.println(end - start);
-	//	System.out.println(end);
+
 	}
 
 

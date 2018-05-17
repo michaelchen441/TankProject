@@ -13,6 +13,7 @@ public class PlayerTank extends Tank
 	double turretAngle;
 	Direction direction;
 	public int[] inputMoveArr;
+	
 
 	public PlayerTank(int inX, int inY)
 	{
@@ -66,9 +67,8 @@ public class PlayerTank extends Tank
 	}
 
 
-	private boolean detect()
-	{
-		// TODO Auto-generated method stub
+	private boolean detect(Direction dir, Wall[][] myWalls){
+		
 		return false;
 	}
 
@@ -79,6 +79,12 @@ public class PlayerTank extends Tank
 		inputMoveArr[1] = inInputMoveArr[1];
 
 	}
+
+
+	public int getY() {return yLoc;}
+
+
+	public int getX() {return xLoc;}
 }
 
 
