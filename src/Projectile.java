@@ -1,4 +1,6 @@
 import java.awt.Graphics;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +28,6 @@ public class Projectile
 
 		} catch (IOException e)                      
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -35,7 +36,11 @@ public class Projectile
 	
 	
 	void draw(Graphics g){
-		g.drawImage(bullet, 0, 0, null);
-	}
+		double rotationRequired = Math.toRadians (angle);
+		double locationX = bullet.getWidth() / 2;
+		double locationY = bullet.getHeight() / 2;
+		AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
+		AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+		g.drawImage(op.filter(bullet, null), xLoc, yLoc, null);	}
 	
 }

@@ -11,11 +11,8 @@ public class Wall
 	private boolean destructable;
 	private int xLoc;
 	private int yLoc;
-
 	BufferedImage indestructableWall;
 	BufferedImage destructableWall;
-
-
 
 	public Wall(int y, int x, boolean inDestructable) {
 		xLoc = x*50;
