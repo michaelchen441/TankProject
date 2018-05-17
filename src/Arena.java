@@ -44,12 +44,18 @@ public class Arena
 		
 		
 		
-		if(level == 1){
-
-			//level1();
-			//level2();
+		if(level == 1)
+			level1();
+		if(level == 1)
+			level2();
+		if(level == 1)
 			level3();
-		}
+		if(level == 1)
+			level4();
+		if(level == 1)
+			level5();
+			
+		
 		
 
 		try
@@ -149,13 +155,22 @@ public class Arena
 			for(int j = 11; j<23; j++) {
 				wallsLevel1[i][j] = new Wall(i,j, false);
 			}
-		}
-
-		
-
+		}	
 	}
 	
 	public void level3() {
 		
 	}
+	
+	public void level4() {
+		
+	}
+	
+	public void level5() {
+		
+	}
+	
+	
+	
+	
 }
