@@ -11,7 +11,6 @@ public class PlayerTank extends Tank
 {
 	ArrayList<Projectile> stockPile = new ArrayList<Projectile>();
 	double turretAngle;
-	BufferedImage playerTank;
 	Direction direction;
 	public int[] inputMoveArr;
 
@@ -25,16 +24,7 @@ public class PlayerTank extends Tank
 
 		inputMoveArr = new int[2];
 
-		try
-		{
-			playerTank = ImageIO.read(new File("images/playerTank.png"));	
-
-
-		} catch (IOException e)                      
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
 	}
 
 
@@ -66,11 +56,12 @@ public class PlayerTank extends Tank
 
 	}
 
-	public void draw(Graphics g){
+	public void draw(Graphics g, ImageLibrary l){
+		
 		move();
 
-		g.drawImage(playerTank, xLoc, yLoc, null);
-		//draw turret
+		g.drawImage(l.playerTank, xLoc, yLoc, null);
+		//TODO draw turret
 
 	}
 

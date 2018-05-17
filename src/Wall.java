@@ -11,24 +11,13 @@ public class Wall
 	private boolean destructable;
 	private int xLoc;
 	private int yLoc;
-	BufferedImage indestructableWall;
-	BufferedImage destructableWall;
+
 
 	public Wall(int y, int x, boolean inDestructable) {
 		xLoc = x*50;
 		yLoc = y*50;
 		destructable = inDestructable;
-				
-		try
-		{
-			indestructableWall = ImageIO.read(new File("images/Metal_50x50.jpg"));	
-			destructableWall = ImageIO.read(new File("images/Wood_50x50.png"));	
-
-		} catch (IOException e)                      
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
 		
 }
 
@@ -40,12 +29,12 @@ public class Wall
 	}
 
 
-	void draw(Graphics g){
+	void draw(Graphics g, ImageLibrary l){
 		if(destructable){
-			g.drawImage(destructableWall, xLoc, yLoc, null);		
+			g.drawImage(l.destructableWall, xLoc, yLoc, null);		
 		}
 		else{
-			g.drawImage(indestructableWall, xLoc, yLoc, null);	
+			g.drawImage(l.indestructableWall, xLoc, yLoc, null);	
 		}
 		
 	}

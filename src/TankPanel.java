@@ -25,20 +25,43 @@ public class TankPanel extends JPanel {
 
 	
 	boolean inMenu = true;
+	
 	int level = 1; //TODO change to initialize at 0, menu ending changes to 1
 	boolean level1FirstTime = true;
+	
 	public static int panelWidth = 1400;
 	public static int panelHeight = 800;
+	
 	public static int numWallsAcross = 28;
 	public static int numWallsDown = 16;
+	
 	public static int wallWidth =  panelWidth/numWallsAcross;
 	public static int wallHeight = panelHeight/numWallsDown;
+	
 	boolean rightPressed, leftPressed, upPressed, downPressed;
+
 	ArrayList<Arena> arenaList = new ArrayList<Arena>();
 	Arena level1Arena;
 	Arena level2Arena;
 	Arena level3Arena;
+	
+	
+	static ImageLibrary imageLibrary;
+	
+	static BufferedImage background;
 	static BufferedImage crosshair;
+	static BufferedImage playerTank;
+	static BufferedImage turret;
+	static BufferedImage projectile;
+	
+	static BufferedImage indestructableWall;
+	static BufferedImage destructableWall;
+	
+	static BufferedImage redTank;
+	static BufferedImage blueTank;
+	static BufferedImage blackTank;
+	
+	
 	int crosshairX;
 	int crosshairY;
 
@@ -88,7 +111,18 @@ public class TankPanel extends JPanel {
 		
 		try
 		{
+			background = ImageIO.read(new File("images/Background2.png"));	
 			crosshair = ImageIO.read(new File("images/crosshair.png"));	
+			playerTank = ImageIO.read(new File("images/playerTank.png"));	
+			turret = ImageIO.read(new File("images/crosshair.png"));	 //TODO find image
+			projectile = ImageIO.read(new File("images/crosshair.png"));	//TODO find image
+			
+			indestructableWall = ImageIO.read(new File("images/Metal_50x50.jpg"));	
+			destructableWall = ImageIO.read(new File("images/Wood_50x50.png"));	
+			
+			redTank = ImageIO.read(new File("images/crosshair.png"));	 //TODO find image
+			blueTank = ImageIO.read(new File("images/crosshair.png"));	 //TODO find image
+			blackTank = ImageIO.read(new File("images/crosshair.png"));	 //TODO find image
 
 
 		} catch (IOException e)                      
@@ -96,6 +130,19 @@ public class TankPanel extends JPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		imageLibrary.background = background;
+		imageLibrary.crosshair = crosshair;
+		imageLibrary.playerTank = playerTank;
+		imageLibrary.turret = turret;
+		imageLibrary.projectile = projectile;
+		
+		imageLibrary.indestructableWall = indestructableWall;
+		imageLibrary.destructableWall = destructableWall;
+		
+		imageLibrary.redTank = redTank;
+		imageLibrary.blueTank = blueTank;
+		imageLibrary.blackTank = blackTank;
+		
 
 	}
 	private void setUpKeyMappings() {
@@ -319,7 +366,7 @@ public class TankPanel extends JPanel {
 				arenaList.add(level1Arena);
 				level1FirstTime = false;
 			}
-			arenaList.get(level).draw(g);
+			arenaList.get(level).draw(g, imageLibrary);
 			g.drawImage(crosshair, crosshairX-10, crosshairY-10, null);
 
 		}
@@ -333,16 +380,16 @@ public class TankPanel extends JPanel {
 		XandY[1] = 0;
 		
 		if(rightPressed){
-			XandY[0]+=1;
+			XandY[0]+=4;
 		}
 		if(leftPressed){
-			XandY[0]-=1;
+			XandY[0]-=4;
 		}
 		if(upPressed){
-			XandY[1]+=1;
+			XandY[1]+=4;
 		}
 		if(downPressed){
-			XandY[1]-=1;
+			XandY[1]-=4;
 		}
 		
 		return XandY;

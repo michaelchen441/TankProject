@@ -13,34 +13,25 @@ public class Projectile
 		int yLoc;
 		TankType color;
 		double angle;
-		BufferedImage bullet;
+		
 	public Projectile(int x, int y, TankType myType, double a)
 	{
 		xLoc = x;
 		yLoc = y;
 		color = myType;
 		angle = a;
-		
-		try
-		{
-			bullet = ImageIO.read(new File("images/bullet.jpeg"));	
-				
-
-		} catch (IOException e)                      
-		{
-			e.printStackTrace();
-		}
+	
 		
 	}
 	
 	
 	
-	void draw(Graphics g){
+	void draw(Graphics g, ImageLibrary l){
 		double rotationRequired = Math.toRadians (angle);
-		double locationX = bullet.getWidth() / 2;
-		double locationY = bullet.getHeight() / 2;
+		double locationX = l.projectile.getWidth() / 2;
+		double locationY = l.projectile.getHeight() / 2;
 		AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
 		AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-		g.drawImage(op.filter(bullet, null), xLoc, yLoc, null);	}
+		g.drawImage(op.filter(l.projectile, null), xLoc, yLoc, null);	}
 	
 }

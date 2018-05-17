@@ -20,7 +20,7 @@ public abstract class Tank
 	abstract void move();
 	abstract void aim();
 	abstract void fire();
-	abstract void draw(Graphics g);
+	abstract void draw(Graphics g, ImageLibrary l);
 	
 	
 }

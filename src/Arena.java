@@ -11,7 +11,6 @@ public class Arena
 	int level;
 	private Wall[][] wallsLevel1;
 	private Wall[][] wallsLevel2;
-	private BufferedImage background;
 
 	PlayerTank playerTank;
 	int[] inputMoveInfo;
@@ -65,16 +64,7 @@ public class Arena
 		
 		
 
-		try
-		{
-			background = ImageIO.read(new File("images/Background2.png"));	
-				
-
-		} catch (IOException e)                      
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
 	
 	}
 	
@@ -90,21 +80,21 @@ public class Arena
 		}
 			
 	}
-	public void draw(Graphics g) {
-		g.drawImage(background,0,0,null);
+	public void draw(Graphics g, ImageLibrary l) {
+		g.drawImage(l.background,0,0,null);
 		
 		if(level == 1){
 			for(int r = 0; r < wallsLevel1.length; r++){
 				for(int c = 0; c < wallsLevel1[r].length; c++){
 					if(wallsLevel1[r][c] != null){
-						wallsLevel1[r][c].draw(g);	
+						wallsLevel1[r][c].draw(g, l);	
 					}
 				}
 			}
 
 		}
 		//draw the tanks
-		playerTank.draw(g);
+		playerTank.draw(g, l);
 		
 	}
 	

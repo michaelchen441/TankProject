@@ -30,9 +30,17 @@ public class AITank extends Tank
 		
 	}
 	
-	void draw(Graphics g)
+	void draw(Graphics g, ImageLibrary l)
 	{
-		
+		if(type.equals(TankType.RED)){
+			g.drawImage(l.redTank, xLoc, yLoc, null);
+		}
+		if(type.equals(TankType.BLUE)){
+			g.drawImage(l.blueTank, xLoc, yLoc, null);
+		}
+		if(type.equals(TankType.BLACK)){
+			g.drawImage(l.blackTank, xLoc, yLoc, null);
+		}
 	}
 	
 	
