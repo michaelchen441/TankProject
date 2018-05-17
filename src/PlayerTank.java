@@ -39,7 +39,7 @@ public class PlayerTank extends Tank
 
 
 	public void move(){
-		if(touchingWallDirections().indexOf(Direction.NORTH)>-1)
+	//	if(touchingWallDirections().indexOf(Direction.NORTH)>-1)
 			xLoc += inputMoveArr[0];
 			yLoc -= inputMoveArr[1];
 	}
