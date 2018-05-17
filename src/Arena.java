@@ -43,11 +43,19 @@ public class Arena
 		}
 		
 		
-		
-		if(level == 1){
-
+		if(level == 1)
+			level1();
+		if(level == 2)
+			level2();
+		if(level == 3)
+			level3();
+		if(level == 4)
 			level4();
-		}
+		if(level == 5)
+			level5();
+			
+		
+
 		
 
 		try
@@ -266,5 +274,9 @@ public class Arena
 			}
 				
 				
+	}
+	
+	public void level5() {
+		
 	}
 }
