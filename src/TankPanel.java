@@ -11,6 +11,8 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.JFrame;
@@ -31,12 +33,11 @@ public class TankPanel extends JPanel {
 	public static int numWallsDown = 16;
 	public static int wallWidth =  panelWidth/numWallsAcross;
 	public static int wallHeight = panelHeight/numWallsDown;
-	boolean rightPressed;
-	boolean leftPressed;
-	boolean upPressed;
-	boolean downPressed;
+	boolean rightPressed, leftPressed, upPressed, downPressed;
+	ArrayList<Arena> arenaList = new ArrayList<Arena>();
 	Arena level1Arena;
 	Arena level2Arena;
+	Arena level3Arena;
 	static BufferedImage crosshair;
 	int crosshairX;
 	int crosshairY;
@@ -46,6 +47,11 @@ public class TankPanel extends JPanel {
 
 	Timer timer = new Timer(1,null);
 	public static void main(String[] args) {
+		
+		
+		
+		
+		
 		try {
 			// Set System L&F
 			UIManager.setLookAndFeel(
@@ -101,12 +107,24 @@ public class TankPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
 				System.out.println("Hit left arrow!!");
-
+				leftPressed = true;
 
 			}
 		});
 
+		this.getInputMap().put(KeyStroke.getKeyStroke("released LEFT"),"releasedLeft");
+		this.getActionMap().put("releasedLeft",new AbstractAction(){
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// what do you want to do when the left arrow is pressed?
+				System.out.println("released left arrow!!");
+				leftPressed = false;
+
+			}
+		});
+		
+	
 		this.getInputMap().put(KeyStroke.getKeyStroke("RIGHT"),"right");
 		this.getActionMap().put("right",new AbstractAction(){
 
@@ -114,8 +132,20 @@ public class TankPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
 				System.out.println("Hit right arrow!!");
+				rightPressed = true;
 
+			}
+		});
+		
+		this.getInputMap().put(KeyStroke.getKeyStroke("released RIGHT"),"releasedRight");
+		this.getActionMap().put("releasedRight",new AbstractAction(){
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// what do you want to do when the left arrow is pressed?
+				System.out.println("released right arrow!!");
+				rightPressed = false;
+				
 			}
 		});
 
@@ -126,6 +156,20 @@ public class TankPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
 				System.out.println("Hit up arrow!!");
+				upPressed = true;
+
+
+			}
+		});
+		
+		this.getInputMap().put(KeyStroke.getKeyStroke("released UP"),"releasedUp");
+		this.getActionMap().put("releasedUp",new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// what do you want to do when the left arrow is pressed?
+				System.out.println("released up arrow!!");
+				upPressed = false;
 
 
 			}
@@ -139,6 +183,17 @@ public class TankPanel extends JPanel {
 				// what do you want to do when the left arrow is pressed?
 				System.out.println("Hit down arrow!!");
 				downPressed = true;
+			}
+		});
+		
+		this.getInputMap().put(KeyStroke.getKeyStroke("released DOWN"),"releasedDown");
+		this.getActionMap().put("releasedDown",new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// what do you want to do when the left arrow is pressed?
+				System.out.println("released down arrow!!");
+				downPressed = false;
 			}
 		});
 
@@ -245,26 +300,26 @@ public class TankPanel extends JPanel {
 		repaint();
 	}
 	public void paintComponent(Graphics g) {
-		
-		
-		
-		System.out.println(crosshairX + crosshairY);
+		if(!level1FirstTime){
+			arenaList.get(level).setInputMoveArr(getInputMoveArr());
+		}
 		
 		inMenu = false;
 		if (inMenu){
 			//drawmenu
 		}
-		else if(level == 1)
+		else 
 		{
 			if(level1FirstTime){
 
 				//Level One	
+				
 				level1Arena = new Arena(1, numWallsAcross, numWallsDown);
-
-
+				arenaList.add(level1Arena);
+				arenaList.add(level1Arena);
 				level1FirstTime = false;
 			}
-			level1Arena.draw(g);
+			arenaList.get(level).draw(g);
 			g.drawImage(crosshair, crosshairX-10, crosshairY-10, null);
 
 		}
@@ -272,13 +327,27 @@ public class TankPanel extends JPanel {
 	}
 
 
-	public Direction getDirection(){
-		if(rightPressed && upPressed){
-			return Direction.NORTHEAST;
+	public int[] getInputMoveArr(){
+		int[] XandY = new int[2];
+		XandY[0] = 0;
+		XandY[1] = 0;
+		
+		if(rightPressed){
+			XandY[0]+=1;
 		}
-
-		return null;
+		if(leftPressed){
+			XandY[0]-=1;
+		}
+		if(upPressed){
+			XandY[1]+=1;
+		}
+		if(downPressed){
+			XandY[1]-=1;
+		}
+		
+		return XandY;
 	}
+	
 
 
 

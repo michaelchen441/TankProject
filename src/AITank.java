@@ -14,7 +14,7 @@ public class AITank extends Tank
 
 	
 	
-	void move(int incx, int incy)
+	void move()
 	{
 		
 	}
@@ -34,5 +34,6 @@ public class AITank extends Tank
 	{
 		
 	}
+	
 	
 }

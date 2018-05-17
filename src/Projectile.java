@@ -32,7 +32,7 @@ public class Projectile
 		}
 		
 	}
-
+	
 	
 	
 	void draw(Graphics g){

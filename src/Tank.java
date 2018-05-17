@@ -17,7 +17,7 @@ public abstract class Tank
 	}
 	
 	
-	abstract void move(int incx, int incy);
+	abstract void move();
 	abstract void aim();
 	abstract void fire();
 	abstract void draw(Graphics g);

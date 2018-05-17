@@ -1,45 +1,92 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 public class PlayerTank extends Tank
 {
 	ArrayList<Projectile> stockPile = new ArrayList<Projectile>();
 	double turretAngle;
-	
-	
+	BufferedImage playerTank;
+	Direction direction;
+	public int[] inputMoveArr;
+
 	public PlayerTank(int inX, int inY)
 	{
 		super();
 		type = TankType.GREEN;
 		xLoc = inX * 50; //multiples so they can be set up with the same grid as walls
 		yLoc = inY * 50;
-		
+		direction = Direction.EAST;
+
+		inputMoveArr = new int[2];
+
+		try
+		{
+			playerTank = ImageIO.read(new File("images/playerTank.png"));	
+
+
+		} catch (IOException e)                      
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-	
-	
-	public void move(int incx, int incy){
-		xLoc += incx;
-		yLoc -= incy;
+
+
+	public void move(){
+		if(touchingWallDirections().indexOf(Direction.NORTH)>-1)
+			xLoc += inputMoveArr[0];
+			yLoc -= inputMoveArr[1];
 	}
-	
+
+
+
+	private ArrayList<Direction> touchingWallDirections()
+	{
+		//if(xLoc )
+		return null;
+	}
+
+
 	public void aim(){
-		
+
 	}
-	
+
 	public void fire()
 	{
 		if(stockPile.size() > 0) {
 			new Projectile(xLoc,yLoc,TankType.GREEN, turretAngle);
 			stockPile.remove(stockPile.size());
 		}
-		
+
 	}
-	
-	void draw(Graphics g)
+
+	public void draw(Graphics g){
+		move();
+
+		g.drawImage(playerTank, xLoc, yLoc, null);
+		//draw turret
+
+	}
+
+
+	private boolean detect()
 	{
-		
-		
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	public void setInputMoveArr(int[] inInputMoveArr)
+	{
+		inputMoveArr[0] = inInputMoveArr[0];
+		inputMoveArr[1] = inInputMoveArr[1];
+
 	}
 }
 

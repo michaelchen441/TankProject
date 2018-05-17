@@ -13,11 +13,19 @@ public class Arena
 	private Wall[][] wallsLevel2;
 	private BufferedImage background;
 
+	PlayerTank playerTank;
+	int[] inputMoveInfo;
+	
 	int numWallsAcross;
 	int numWallsDown;
 	
+	
+	
 	public Arena(int inLevel, int inNumWallsAcross, int  inNumWallsDown) {
 		level = inLevel;
+		
+		playerTank = new PlayerTank(3,10);
+		
 	
 		numWallsAcross = inNumWallsAcross;
 		numWallsDown = inNumWallsDown;
@@ -84,6 +92,7 @@ public class Arena
 	}
 	public void draw(Graphics g) {
 		g.drawImage(background,0,0,null);
+		
 		if(level == 1){
 			for(int r = 0; r < wallsLevel1.length; r++){
 				for(int c = 0; c < wallsLevel1[r].length; c++){
@@ -95,8 +104,7 @@ public class Arena
 
 		}
 		//draw the tanks
-		
-		
+		playerTank.draw(g);
 		
 	}
 	
@@ -167,6 +175,10 @@ public class Arena
 	
 	public void level5() {
 		
+	}
+	
+	public void setInputMoveArr(int[] inInputMoveArr){
+		playerTank.setInputMoveArr(inInputMoveArr);
 	}
 	
 	
