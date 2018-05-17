@@ -61,7 +61,7 @@ public class PlayerTank extends Tank
 		
 		move();
 
-		g.drawImage(l.playerTank, xLoc, yLoc, null);
+		g.drawImage(l.greenTank, xLoc, yLoc, null);
 		//TODO draw turret
 
 	}
