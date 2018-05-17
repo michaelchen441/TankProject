@@ -11,8 +11,6 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.JFrame;
@@ -27,24 +25,18 @@ public class TankPanel extends JPanel {
 	boolean inMenu = true;
 	int level = 1; //TODO change to initialize at 0, menu ending changes to 1
 	boolean level1FirstTime = true;
-
 	public static int panelWidth = 1400;
 	public static int panelHeight = 800;
-
 	public static int numWallsAcross = 28;
 	public static int numWallsDown = 16;
-
 	public static int wallWidth =  panelWidth/numWallsAcross;
 	public static int wallHeight = panelHeight/numWallsDown;
-
 	boolean rightPressed;
 	boolean leftPressed;
 	boolean upPressed;
 	boolean downPressed;
-
 	Arena level1Arena;
 	Arena level2Arena;
-	
 	static BufferedImage crosshair;
 	int crosshairX;
 	int crosshairY;
@@ -277,17 +269,7 @@ public class TankPanel extends JPanel {
 
 		}
 
-
-
-
-
-
-		//Level
-
-
 	}
-
-
 
 
 	public Direction getDirection(){
