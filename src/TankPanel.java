@@ -326,7 +326,7 @@ public class TankPanel extends JPanel {
 	}
 
 	private void startGame() {
-		timer.setDelay(50);
+		timer.setDelay(1);
 		timer.addActionListener(new ActionListener() {
 
 			@Override
@@ -359,6 +359,9 @@ public class TankPanel extends JPanel {
 		repaint();
 	}
 	public void paintComponent(Graphics g) {
+	//	long start = System.currentTimeMillis();
+		
+		
 		if(!level1FirstTime){
 			arenaList.get(level).setInputMoveArr(getInputMoveArr());
 		}
@@ -387,6 +390,10 @@ public class TankPanel extends JPanel {
 		}
 
 		g.drawImage(crosshair, crosshairX-10, crosshairY-10, null);
+		
+		long end = System.currentTimeMillis();
+	//	System.out.println(end - start);
+	//	System.out.println(end);
 	}
 
 
@@ -396,16 +403,16 @@ public class TankPanel extends JPanel {
 		XandY[1] = 0;
 		
 		if(rightPressed){
-			XandY[0]+=4;
+			XandY[0]+=1;
 		}
 		if(leftPressed){
-			XandY[0]-=4;
+			XandY[0]-=1;
 		}
 		if(upPressed){
-			XandY[1]+=4;
+			XandY[1]+=1;
 		}
 		if(downPressed){
-			XandY[1]-=4;
+			XandY[1]-=1;
 		}
 		
 		return XandY;
