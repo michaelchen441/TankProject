@@ -51,16 +51,21 @@ public class TankPanel extends JPanel {
 	
 	static BufferedImage background;
 	static BufferedImage crosshair;
-	static BufferedImage playerTank;
 	static BufferedImage turret;
 	static BufferedImage projectile;
 	
 	static BufferedImage indestructableWall;
 	static BufferedImage destructableWall;
 	
+	static BufferedImage greenTank;
 	static BufferedImage redTank;
 	static BufferedImage blueTank;
 	static BufferedImage blackTank;
+	
+	static BufferedImage greenTurret;
+	static BufferedImage redTurret;
+	static BufferedImage blueTurret;
+	static BufferedImage blackTurret;
 	
 	
 	int crosshairX;
@@ -113,18 +118,22 @@ public class TankPanel extends JPanel {
 		try
 		{
 			background = ImageIO.read(new File("images/Background2.png"));	
-			crosshair = ImageIO.read(new File("images/crosshair.png"));	
-			playerTank = ImageIO.read(new File("images/playerTank.png"));	
+			crosshair = ImageIO.read(new File("images/crosshair.png"));		
 			turret = ImageIO.read(new File("images/crosshair.png"));	 //TODO find image
 			projectile = ImageIO.read(new File("images/crosshair.png"));	//TODO find image
 			
 			indestructableWall = ImageIO.read(new File("images/Metal_50x50.jpg"));	
 			destructableWall = ImageIO.read(new File("images/Wood_50x50.png"));	
 			
-			redTank = ImageIO.read(new File("images/crosshair.png"));	 //TODO find image
-			blueTank = ImageIO.read(new File("images/crosshair.png"));	 //TODO find image
-			blackTank = ImageIO.read(new File("images/crosshair.png"));	 //TODO find image
+			greenTank = ImageIO.read(new File("images/50x50 tanks/greenTank.png"));
+			redTank = ImageIO.read(new File("images/50x50 tanks/redTank.png"));	 
+			blueTank = ImageIO.read(new File("images/50x50 tanks/blueTank.png"));	
+			blackTank = ImageIO.read(new File("images/50x50 tanks/blackTank.png"));	
 
+			greenTurret = ImageIO.read(new File("images/20x50 tanks/greenTurret.png"));
+			redTurret = ImageIO.read(new File("images/20x50 tanks/greenTurret.png"));
+			blueTurret = ImageIO.read(new File("images/20x50 tanks/greenTurret.png"));
+			blackTurret = ImageIO.read(new File("images/20x50 tanks/greenTurret.png"));
 
 		} catch (IOException e)                      
 		{
@@ -133,16 +142,22 @@ public class TankPanel extends JPanel {
 		}
 		imageLibrary.background = background;
 		imageLibrary.crosshair = crosshair;
-		imageLibrary.playerTank = playerTank;
 		imageLibrary.turret = turret;
 		imageLibrary.projectile = projectile;
 		
 		imageLibrary.indestructableWall = indestructableWall;
 		imageLibrary.destructableWall = destructableWall;
 		
+		imageLibrary.greenTank = greenTank;
 		imageLibrary.redTank = redTank;
 		imageLibrary.blueTank = blueTank;
 		imageLibrary.blackTank = blackTank;
+		
+		imageLibrary.greenTurret = greenTurret;
+		imageLibrary.redTurret = redTurret;
+		imageLibrary.blueTurret = blueTurret;
+		imageLibrary.blackTurret = blackTurret;
+		
 		
 
 	}
