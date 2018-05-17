@@ -240,7 +240,7 @@ public class TankPanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		
 		
-		g.drawImage(crosshair, crosshairX, crosshairY, null);
+		
 		System.out.println(crosshairX + crosshairY);
 		
 		inMenu = false;
@@ -258,7 +258,7 @@ public class TankPanel extends JPanel {
 				level1FirstTime = false;
 			}
 			level1Arena.draw(g);
-
+g.drawImage(crosshair, crosshairX, crosshairY, null);
 
 		}
 
