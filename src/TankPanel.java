@@ -258,7 +258,7 @@ public class TankPanel extends JPanel {
 				level1FirstTime = false;
 			}
 			level1Arena.draw(g);
-g.drawImage(crosshair, crosshairX, crosshairY, null);
+g.drawImage(crosshair, crosshairX-10, crosshairY-10, null);
 
 		}
 
