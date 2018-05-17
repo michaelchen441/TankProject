@@ -261,6 +261,8 @@ public class TankPanel extends JPanel {
 g.drawImage(crosshair, crosshairX-10, crosshairY-10, null);
 
 		}
+		
+		
 
 
 

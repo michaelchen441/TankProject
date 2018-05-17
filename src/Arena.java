@@ -46,44 +46,9 @@ public class Arena
 		
 		if(level == 1){
 
-			wallsLevel1[4][5] = new Wall(4,5, false);
-			wallsLevel1[5][5] = new Wall(5,5, false);
-			wallsLevel1[6][5] = new Wall(6,5, false);
-			wallsLevel1[4][6] = new Wall(4,6, false);
-			wallsLevel1[5][6] = new Wall(5,6, false);
-			wallsLevel1[6][6] = new Wall(6,6, false);
-			
-			wallsLevel1[9][5] = new Wall(9,5, false);
-			wallsLevel1[10][5] = new Wall(10,5, false);
-			wallsLevel1[11][5] = new Wall(11,5, false);
-			wallsLevel1[9][6] = new Wall(9,6, false);
-			wallsLevel1[10][6] = new Wall(10,6, false);
-			wallsLevel1[11][6] = new Wall(11,6, false);
-
-			wallsLevel1[4][14] = new Wall(4,14, false);
-			wallsLevel1[5][14] = new Wall(5,14, false);
-			wallsLevel1[6][14] = new Wall(6,14, false);
-			wallsLevel1[7][14] = new Wall(7,14, true);
-			wallsLevel1[8][14] = new Wall(8,14, true);
-			wallsLevel1[9][14] = new Wall(9,14, false);
-			wallsLevel1[10][14] = new Wall(10,14, false);
-			wallsLevel1[11][14] = new Wall(11,14, false);
-
-			wallsLevel1[4][15] = new Wall(4,15, false);
-			wallsLevel1[5][15] = new Wall(5,15, false);
-			wallsLevel1[6][15] = new Wall(6,15, false);
-			wallsLevel1[7][15] = new Wall(7,15, true);
-			wallsLevel1[8][15] = new Wall(8,15, true);
-			wallsLevel1[9][15] = new Wall(9,15, false);
-			wallsLevel1[10][15] = new Wall(10,15, false);
-			wallsLevel1[11][15] = new Wall(11,15, false);
-			
-
-		
-
-
-
-
+			//level1();
+			//level2();
+			level3();
 		}
 		
 
@@ -130,5 +95,67 @@ public class Arena
 		
 	}
 	
+	public void level1() {
+		
+		wallsLevel1[4][5] = new Wall(4,5, false);
+		wallsLevel1[5][5] = new Wall(5,5, false);
+		wallsLevel1[6][5] = new Wall(6,5, false);
+		wallsLevel1[4][6] = new Wall(4,6, false);
+		wallsLevel1[5][6] = new Wall(5,6, false);
+		wallsLevel1[6][6] = new Wall(6,6, false);
+		
+		wallsLevel1[9][5] = new Wall(9,5, false);
+		wallsLevel1[10][5] = new Wall(10,5, false);
+		wallsLevel1[11][5] = new Wall(11,5, false);
+		wallsLevel1[9][6] = new Wall(9,6, false);
+		wallsLevel1[10][6] = new Wall(10,6, false);
+		wallsLevel1[11][6] = new Wall(11,6, false);
+
+		wallsLevel1[4][14] = new Wall(4,14, false);
+		wallsLevel1[5][14] = new Wall(5,14, false);
+		wallsLevel1[6][14] = new Wall(6,14, false);
+		wallsLevel1[7][14] = new Wall(7,14, true);
+		wallsLevel1[8][14] = new Wall(8,14, true);
+		wallsLevel1[9][14] = new Wall(9,14, false);
+		wallsLevel1[10][14] = new Wall(10,14, false);
+		wallsLevel1[11][14] = new Wall(11,14, false);
+
+		wallsLevel1[4][15] = new Wall(4,15, false);
+		wallsLevel1[5][15] = new Wall(5,15, false);
+		wallsLevel1[6][15] = new Wall(6,15, false);
+		wallsLevel1[7][15] = new Wall(7,15, true);
+		wallsLevel1[8][15] = new Wall(8,15, true);
+		wallsLevel1[9][15] = new Wall(9,15, false);
+		wallsLevel1[10][15] = new Wall(10,15, false);
+		wallsLevel1[11][15] = new Wall(11,15, false);
+		
+	}
 	
+	public void level2() {
+
+		for(int i = 4; i<6; i++) {
+			for(int j = 5; j<17; j++) {
+				wallsLevel1[i][j] = new Wall(i,j, false);
+			}
+			for(int j = 17; j<23; j++) {
+				wallsLevel1[i][j] = new Wall(i,j, true);
+			}
+		}
+		
+		for(int i = 10; i<12; i++) {
+			for(int j = 5; j<11; j++) {
+				wallsLevel1[i][j] = new Wall(i,j, true);
+			}
+			for(int j = 11; j<23; j++) {
+				wallsLevel1[i][j] = new Wall(i,j, false);
+			}
+		}
+
+		
+
+	}
+	
+	public void level3() {
+		
+	}
 }
