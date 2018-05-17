@@ -26,7 +26,7 @@ public class TankPanel extends JPanel {
 	
 	boolean inMenu = true;
 	
-	int level = 1; //TODO change to initialize at 0, menu ending changes to 1
+	int level = 0; //TODO change to initialize at 0, menu ending changes to 1
 	boolean level1FirstTime = true;
 	
 	public static int panelWidth = 1400;
@@ -41,6 +41,7 @@ public class TankPanel extends JPanel {
 	boolean rightPressed, leftPressed, upPressed, downPressed;
 
 	ArrayList<Arena> arenaList = new ArrayList<Arena>();
+	Menu theMenu;
 	Arena level1Arena;
 	Arena level2Arena;
 	Arena level3Arena;
@@ -69,11 +70,11 @@ public class TankPanel extends JPanel {
 
 
 	Timer timer = new Timer(1,null);
+	
+	
+	
 	public static void main(String[] args) {
-		
-		
-		
-		
+	
 		
 		try {
 			// Set System L&F
@@ -96,8 +97,7 @@ public class TankPanel extends JPanel {
 		tp.startGame();
 		frame.setResizable(false);
 
-
-		
+		//create cursor
 		// Transparent 16 x 16 pixel cursor image.
 		BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
 
@@ -107,6 +107,7 @@ public class TankPanel extends JPanel {
 
 		// Set the blank cursor to the JFrame.
 		frame.getContentPane().setCursor(blankCursor);
+
 
 		
 		try
@@ -259,6 +260,17 @@ public class TankPanel extends JPanel {
 				public void mouseClicked(MouseEvent arg0) {
 					// TODO Auto-generated method stub
 					System.out.println("You just clicked!! "+arg0);
+					if(inMenu)
+					{
+						if((arg0.getX() > 350 && arg0.getX() < 1050) 
+								&&
+							(arg0.getY() > 500 && arg0.getY() < 700)
+								)
+						{
+							inMenu = false;
+							level = 1;
+						}
+					}
 			
 				}
 
@@ -350,15 +362,20 @@ public class TankPanel extends JPanel {
 		if(!level1FirstTime){
 			arenaList.get(level).setInputMoveArr(getInputMoveArr());
 		}
+		if(level1FirstTime){
+			theMenu = new Menu();
+		}
 		
-		inMenu = false;
 		if (inMenu){
-			//drawmenu
+			theMenu.draw(g, imageLibrary);
 		}
 		else 
 		{
 			if(level1FirstTime){
 
+				
+				
+				
 				//Level One	
 				
 				level1Arena = new Arena(1, numWallsAcross, numWallsDown);
@@ -367,10 +384,9 @@ public class TankPanel extends JPanel {
 				level1FirstTime = false;
 			}
 			arenaList.get(level).draw(g, imageLibrary);
-			g.drawImage(crosshair, crosshairX-10, crosshairY-10, null);
-
 		}
 
+		g.drawImage(crosshair, crosshairX-10, crosshairY-10, null);
 	}
 
 
