@@ -1,5 +1,8 @@
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -73,6 +76,18 @@ public class TankPanel extends JPanel {
 		frame.setResizable(false);
 
 
+		
+		// Transparent 16 x 16 pixel cursor image.
+		BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
+
+		// Create a new blank cursor.
+		Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
+		    cursorImg, new Point(0, 0), "blank cursor");
+
+		// Set the blank cursor to the JFrame.
+		frame.getContentPane().setCursor(blankCursor);
+
+		
 		try
 		{
 			crosshair = ImageIO.read(new File("images/crosshair.png"));	
@@ -261,8 +276,6 @@ public class TankPanel extends JPanel {
 			g.drawImage(crosshair, crosshairX-10, crosshairY-10, null);
 
 		}
-		
-		
 
 
 
