@@ -324,6 +324,11 @@ public class TankPanel extends JPanel {
 					// TODO send to crosshair
 					crosshairX = e.getX();
 					crosshairY = e.getY();
+					
+					double Xd =(crosshairX-level1Arena.playerTankLocX()+25);
+					double Yd =(crosshairY-level1Arena.playerTankLocX()+25);
+					double radAngle = Math.atan(Yd/Xd);
+					
 				}
 					
 			});

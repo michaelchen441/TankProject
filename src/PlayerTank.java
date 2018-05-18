@@ -1,11 +1,19 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
+import java.awt.geom.AffineTransform;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
+import java.awt.Component;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import java.awt.Image;
 
 public class PlayerTank extends Tank
 {
@@ -14,8 +22,8 @@ public class PlayerTank extends Tank
 	Direction direction;
 	public int[] inputMoveArr;
 	Wall[][] wallArray;
-
-
+	
+	
 	public PlayerTank(int inX, int inY, Wall[][] walls)
 	{
 		super(walls);
@@ -87,6 +95,9 @@ public class PlayerTank extends Tank
 		move();
 		g.drawImage(l.greenTank, xLoc, yLoc, null);
 		g.drawImage(l.greenTurret, xLoc+15, yLoc-15, null);
+		
+		
+		
 		//TODO draw turret		
 
 	}
@@ -109,6 +120,8 @@ public class PlayerTank extends Tank
 
 
 	public int getX() {return xLoc;}
+	
+	
 }
 
 
