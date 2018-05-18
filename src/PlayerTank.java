@@ -23,6 +23,8 @@ public class PlayerTank extends Tank
 	public int[] inputMoveArr;
 	Wall[][] wallArray;
 	
+	int movesSinceTankMoved = 0;
+	
 	
 	public PlayerTank(int inX, int inY, Wall[][] walls)
 	{
@@ -39,11 +41,13 @@ public class PlayerTank extends Tank
 
 
 	public void move(){
+		movesSinceTankMoved++;
 		//	if(touchingWallDirections().indexOf(Direction.NORTH)>-1)
 		Direction dir = whichDir(inputMoveArr);	
-		if(canMove(dir,wallArray)) {
+		if(canMove(dir,wallArray) && movesSinceTankMoved == 2) {
 			xLoc += inputMoveArr[0];
 			yLoc -= inputMoveArr[1];
+			movesSinceTankMoved = 0;
 		}
 	}
 

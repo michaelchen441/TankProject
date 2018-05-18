@@ -29,7 +29,7 @@ public class TankPanel extends JPanel {
 	
 	int level = 0; //TODO change to initialize at 0, menu ending changes to 1
 	boolean level1FirstTime = true;
-	
+
 	public static int panelWidth = 1400;
 	public static int panelHeight = 800;
 	
