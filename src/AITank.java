@@ -9,6 +9,7 @@ public class AITank extends Tank
 	public AITank(TankType inType, int x, int y, Wall[][] walls)
 	{
 		super(walls);
+		alive = true;
 		type = inType;
 
 	}

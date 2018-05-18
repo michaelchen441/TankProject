@@ -9,6 +9,7 @@ public abstract class Tank
 	int speed;
 	int xLoc;
 	int yLoc;
+	boolean alive;
 	ArrayList<Projectile> stockPile = new ArrayList<Projectile>();
 	Wall[][] surroundingWalls;
 

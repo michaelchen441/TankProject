@@ -23,12 +23,14 @@ public class PlayerTank extends Tank
 	public int[] inputMoveArr;
 	Wall[][] wallArray;
 	
+	
 	int movesSinceTankMoved = 0;
 	
 	
 	public PlayerTank(int inX, int inY, Wall[][] walls)
 	{
 		super(walls);
+		alive = true;
 		type = TankType.GREEN;
 		xLoc = inX * 50; //multiples so they can be set up with the same grid as walls
 		yLoc = inY * 50;
