@@ -277,7 +277,7 @@ public class TankPanel extends JPanel {
 							level = 1;
 						}
 					}
-			
+					//TODO if() for levels to create projectile
 				}
 
 				@Override
@@ -320,13 +320,13 @@ public class TankPanel extends JPanel {
 				@Override
 				public void mouseMoved(MouseEvent e)
 				{
-					// TODO send to crosshair
+					// send to crosshair
 					crosshairX = e.getX();
 					crosshairY = e.getY();
 					
-					double Xd =(crosshairX-level1Arena.playerTankLocX()+25);
-					double Yd =(crosshairY-level1Arena.playerTankLocX()+25);
-					double radAngle = Math.atan(Yd/Xd);
+				//	double Xd =(crosshairX-level1Arena.playerTankLocX()+25);
+				//	double Yd =(crosshairY-level1Arena.playerTankLocX()+25);
+				//	double radAngle = Math.atan(Yd/Xd);
 					
 				}
 					
@@ -396,7 +396,7 @@ public class TankPanel extends JPanel {
 			}
 			arenaList.get(level).draw(g, imageLibrary);
 			g.setColor(Color.WHITE);
-			g.drawLine(level1Arena.playerTankLocX()+25, level1Arena.playerTankLocY()+25, crosshairX, crosshairY);	
+			g.drawLine(arenaList.get(level).playerTankLocX()+25, arenaList.get(level).playerTankLocY()+25, crosshairX, crosshairY);	
 			
 			//g.drawLine(level1Arena.playerTankLocX(), level1Arena.playerTankLocY(), crosshairX, crosshairY);
 		}
