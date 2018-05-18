@@ -22,7 +22,7 @@ public class Arena
 	public Arena(int inLevel, int inNumWallsAcross, int  inNumWallsDown) {
 		level = inLevel;
 		
-		playerTank = new PlayerTank(3,10);
+		
 		
 	
 		numWallsAcross = inNumWallsAcross;
@@ -44,9 +44,10 @@ public class Arena
 		for(int c = 0; c < numWallsAcross; c++){
 			walls[numWallsDown - 1][c] =  new Wall(numWallsDown - 1, c, false);
 		}
-			
+		
+		
 		if(level == 1)
-			level5();
+			level1();
 		if(level == 2)
 			level2();
 		if(level == 3)
@@ -56,6 +57,10 @@ public class Arena
 		if(level == 5)
 			level5();
 			
+		
+		playerTank = new PlayerTank(3,10, walls);
+
+	
 	
 	}
 	

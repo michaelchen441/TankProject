@@ -6,8 +6,9 @@ public class AITank extends Tank
 	int xLoc;
 	int yLoc;
 	
-	public AITank(TankType inType, int x, int y)
+	public AITank(TankType inType, int x, int y, Wall[][] walls)
 	{
+		super(walls);
 		type = inType;
 
 	}
