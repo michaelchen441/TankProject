@@ -324,9 +324,9 @@ public class TankPanel extends JPanel {
 					crosshairX = e.getX();
 					crosshairY = e.getY();
 					
-					double Xd =(crosshairX-level1Arena.playerTankLocX()+25);
-					double Yd =(crosshairY-level1Arena.playerTankLocX()+25);
-					double radAngle = Math.atan(Yd/Xd);
+					//double Xd =(crosshairX-level1Arena.playerTankLocX()+25);
+					//double Yd =(crosshairY-level1Arena.playerTankLocX()+25);
+					//double radAngle = Math.atan(Yd/Xd);
 					
 				}
 					
@@ -366,7 +366,7 @@ public class TankPanel extends JPanel {
 
 	}
 	protected void tick() {
-		
+		System.out.println("timer has gone off");
 		repaint();
 	}
 	public void paintComponent(Graphics g) {
