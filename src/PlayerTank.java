@@ -58,14 +58,11 @@ public class PlayerTank extends Tank
 	}
 
 	public void draw(Graphics g, ImageLibrary l){
-		
 		move();
-
 		g.drawImage(l.greenTank, xLoc, yLoc, null);
 		//TODO draw turret
 
 	}
-
 
 	private boolean detect(Direction dir, Wall[][] myWalls){
 		
