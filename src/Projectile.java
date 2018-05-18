@@ -27,11 +27,14 @@ public class Projectile
 	
 	
 	void draw(Graphics g, ImageLibrary l){
-		double rotationRequired = Math.toRadians (angle);
-		double locationX = l.projectile.getWidth() / 2;
-		double locationY = l.projectile.getHeight() / 2;
-		AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
-		AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-		g.drawImage(op.filter(l.projectile, null), xLoc, yLoc, null);	}
+//		double rotationRequired = Math.toRadians (angle);
+//		double locationX = l.projectile.getWidth() / 2;
+//		double locationY = l.projectile.getHeight() / 2;
+//		AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
+//		AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+//		g.drawImage(op.filter(l.projectile, null), xLoc, yLoc, null);	
+		
+
+		}
 	
 }

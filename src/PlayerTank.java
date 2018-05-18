@@ -60,7 +60,8 @@ public class PlayerTank extends Tank
 	public void draw(Graphics g, ImageLibrary l){
 		move();
 		g.drawImage(l.greenTank, xLoc, yLoc, null);
-		//TODO draw turret
+		g.drawImage(l.greenTurret, xLoc+15, yLoc-15, null);
+		//TODO draw turret		
 
 	}
 

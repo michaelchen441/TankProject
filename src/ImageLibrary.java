@@ -20,6 +20,8 @@ public class ImageLibrary
 	public static BufferedImage blueTurret;
 	public static BufferedImage blackTurret;
 	
+	public static BufferedImage bullet;
+
 	public ImageLibrary(BufferedImage inCrosshair, 
 						BufferedImage inTurret,
 						BufferedImage inProjectile,
@@ -35,7 +37,7 @@ public class ImageLibrary
 						BufferedImage inGreenTurret,    
 						BufferedImage inRedTurret,      
 						BufferedImage inBlueTurret,     
-						BufferedImage inBlackTurret    
+						BufferedImage inBlackTurret, BufferedImage inBullet   
 						
 						)
 	{
@@ -55,6 +57,7 @@ public class ImageLibrary
 		redTurret = inRedTurret;      
 	 	blueTurret = inBlueTurret;     
 		blackTurret = inBlackTurret;    
+		bullet = inBullet;
 		
 	}
 	

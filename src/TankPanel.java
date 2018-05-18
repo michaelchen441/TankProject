@@ -64,7 +64,7 @@ public class TankPanel extends JPanel {
 	static BufferedImage redTurret;
 	static BufferedImage blueTurret;
 	static BufferedImage blackTurret;
-	
+	static BufferedImage bullet;
 	
 	int crosshairX;
 	int crosshairY;
@@ -125,10 +125,10 @@ public class TankPanel extends JPanel {
 			redTank = ImageIO.read(new File("images/50x50 tanks/redTank.png"));	 
 			blueTank = ImageIO.read(new File("images/50x50 tanks/blueTank.png"));	
 			blackTank = ImageIO.read(new File("images/50x50 tanks/blackTank.png"));	
-			greenTurret = ImageIO.read(new File("images/20x50 tanks/greenTurret.png"));
-			redTurret = ImageIO.read(new File("images/20x50 tanks/greenTurret.png"));
-			blueTurret = ImageIO.read(new File("images/20x50 tanks/greenTurret.png"));
-			blackTurret = ImageIO.read(new File("images/20x50 tanks/greenTurret.png"));
+			greenTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
+			redTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
+			blueTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
+			blackTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
 
 		}
 		catch (IOException e){
@@ -152,7 +152,7 @@ public class TankPanel extends JPanel {
 		imageLibrary.redTurret = redTurret;
 		imageLibrary.blueTurret = blueTurret;
 		imageLibrary.blackTurret = blackTurret;
-		
+		imageLibrary.bullet = bullet;
 		
 
 	}
@@ -392,7 +392,7 @@ public class TankPanel extends JPanel {
 			}
 			arenaList.get(level).draw(g, imageLibrary);
 			g.setColor(Color.WHITE);
-			g.drawLine(level1Arena.playerTankLocX(), level1Arena.playerTankLocY(), crosshairX, crosshairY);	
+			g.drawLine(level1Arena.playerTankLocX()+25, level1Arena.playerTankLocY()+25, crosshairX, crosshairY);	
 			
 			//g.drawLine(level1Arena.playerTankLocX(), level1Arena.playerTankLocY(), crosshairX, crosshairY);
 		}
