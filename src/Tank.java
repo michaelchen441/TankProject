@@ -45,7 +45,7 @@ public abstract class Tank
 			for(int c = 0; c<walls[r].length; c++) 
 				if(walls[r][c] != null) 
 					if(xLoc == (c*50)+50) 
-						if(yLoc > r*50 && yLoc < (r*50)+50 || yLoc+50 >r*50 && yLoc+50 < (r*50)+50)
+						if(yLoc >= r*50 && yLoc <= (r*50)+50 || yLoc+50 >= r*50 && yLoc+50 <= (r*50)+50)
 							return false;
 		return true;
 	}
@@ -55,7 +55,7 @@ public abstract class Tank
 			for(int c = 0; c<walls[r].length; c++) 
 				if(walls[r][c] != null) 
 					if(yLoc+50 == r*50) 
-						if(xLoc > c*50 && xLoc < (c*50)+50 || xLoc+50 >c*50 && xLoc+50 < (c*50)+50)
+						if(xLoc >= c*50 && xLoc <= (c*50)+50 || xLoc+50 >= c*50 && xLoc+50 <= (c*50)+50)
 							return false;
 
 		return true;
@@ -66,7 +66,7 @@ public abstract class Tank
 			for(int c = 0; c<walls[r].length; c++) 
 				if(walls[r][c] != null) 
 					if(xLoc+50 == c*50) 
-						if(yLoc > r*50 && yLoc < (r*50)+50 || yLoc+50 > r*50 && yLoc+50 < (r*50)+50)
+						if(yLoc >= r*50 && yLoc <= (r*50)+50 || yLoc+50 >= r*50 && yLoc+50 <= (r*50)+50)
 							return false;
 		return true;
 	}
@@ -76,7 +76,7 @@ public abstract class Tank
 			for(int c = 0; c<walls[r].length; c++) 
 				if(walls[r][c] != null) 
 					if(yLoc == (r*50)+50) 
-						if(xLoc > c*50 && xLoc < (c*50)+50 || xLoc+50 > c*50 && xLoc+50 < (c*50)+50)
+						if(xLoc >= c*50 && xLoc <= (c*50)+50 || xLoc+50 >= c*50 && xLoc+50 <= (c*50)+50)
 							return false;
 		return true;
 

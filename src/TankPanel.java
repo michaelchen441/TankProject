@@ -328,6 +328,7 @@ public class TankPanel extends JPanel {
 				//	double Yd =(crosshairY-level1Arena.playerTankLocX()+25);
 				//	double radAngle = Math.atan(Yd/Xd);
 					
+					
 				}
 					
 			});
@@ -366,7 +367,7 @@ public class TankPanel extends JPanel {
 
 	}
 	protected void tick() {
-		
+		System.out.println("timer has gone off");
 		repaint();
 	}
 	public void paintComponent(Graphics g) {
