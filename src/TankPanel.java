@@ -48,6 +48,7 @@ public class TankPanel extends JPanel {
 	//Arena level3Arena;
 	
 	
+	
 	static ImageLibrary imageLibrary;
 	static BufferedImage background;
 	static BufferedImage crosshair;
@@ -157,7 +158,7 @@ public class TankPanel extends JPanel {
 	}
 	private void setUpKeyMappings() {
 
-		this.getInputMap().put(KeyStroke.getKeyStroke("LEFT"),"left");
+		this.getInputMap().put(KeyStroke.getKeyStroke("A"),"left");
 		this.getActionMap().put("left",new AbstractAction(){
 
 			@Override
@@ -169,7 +170,7 @@ public class TankPanel extends JPanel {
 			}
 		});
 
-		this.getInputMap().put(KeyStroke.getKeyStroke("released LEFT"),"releasedLeft");
+		this.getInputMap().put(KeyStroke.getKeyStroke("released A"),"releasedLeft");
 		this.getActionMap().put("releasedLeft",new AbstractAction(){
 
 			@Override
@@ -182,7 +183,7 @@ public class TankPanel extends JPanel {
 		});
 		
 	
-		this.getInputMap().put(KeyStroke.getKeyStroke("RIGHT"),"right");
+		this.getInputMap().put(KeyStroke.getKeyStroke("D"),"right");
 		this.getActionMap().put("right",new AbstractAction(){
 
 			@Override
@@ -194,7 +195,7 @@ public class TankPanel extends JPanel {
 			}
 		});
 		
-		this.getInputMap().put(KeyStroke.getKeyStroke("released RIGHT"),"releasedRight");
+		this.getInputMap().put(KeyStroke.getKeyStroke("released D"),"releasedRight");
 		this.getActionMap().put("releasedRight",new AbstractAction(){
 
 			@Override
@@ -206,7 +207,7 @@ public class TankPanel extends JPanel {
 			}
 		});
 
-		this.getInputMap().put(KeyStroke.getKeyStroke("UP"),"up");
+		this.getInputMap().put(KeyStroke.getKeyStroke("W"),"up");
 		this.getActionMap().put("up",new AbstractAction(){
 
 			@Override
@@ -219,7 +220,7 @@ public class TankPanel extends JPanel {
 			}
 		});
 		
-		this.getInputMap().put(KeyStroke.getKeyStroke("released UP"),"releasedUp");
+		this.getInputMap().put(KeyStroke.getKeyStroke("released W"),"releasedUp");
 		this.getActionMap().put("releasedUp",new AbstractAction(){
 
 			@Override
@@ -232,7 +233,7 @@ public class TankPanel extends JPanel {
 			}
 		});
 
-		this.getInputMap().put(KeyStroke.getKeyStroke("DOWN"),"down");
+		this.getInputMap().put(KeyStroke.getKeyStroke("S"),"down");
 		this.getActionMap().put("down",new AbstractAction(){
 
 			@Override
@@ -243,7 +244,7 @@ public class TankPanel extends JPanel {
 			}
 		});
 		
-		this.getInputMap().put(KeyStroke.getKeyStroke("released DOWN"),"releasedDown");
+		this.getInputMap().put(KeyStroke.getKeyStroke("released S"),"releasedDown");
 		this.getActionMap().put("releasedDown",new AbstractAction(){
 
 			@Override
@@ -253,9 +254,6 @@ public class TankPanel extends JPanel {
 				downPressed = false;
 			}
 		});
-
-
-
 
 		this.requestFocusInWindow();
 

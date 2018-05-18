@@ -261,6 +261,71 @@ public class Arena
 	
 	public void level5() {
 		
+		walls[9][3] = new Wall(9, 3, true);
+		walls[9][4] = new Wall(9, 4, true);
+		walls[9][5] = new Wall(9, 5, true);
+		walls[9][6] = new Wall(9, 6, false);
+		walls[10][4] = new Wall(10, 6, true);
+		walls[11][4] = new Wall(11, 6, true);
+		walls[12][4] = new Wall(12, 6, true);
+		
+		walls[3][3] = new Wall(3, 6, true);
+		walls[4][6] = new Wall(4, 6, true);
+		walls[5][6] = new Wall(5, 6, true);
+		walls[6][6] = new Wall(6, 6, false);
+		walls[6][5] = new Wall(6, 5, true);
+		walls[6][4] = new Wall(6, 4, true);
+		walls[6][3] = new Wall(6, 3, true);
+		
+		walls[3][22] = new Wall(3, 22, true);
+		walls[4][22] = new Wall(4, 22, true);
+		walls[5][22] = new Wall(5, 22, true);
+		walls[6][22] = new Wall(6, 22, false);
+		walls[6][23] = new Wall(6, 23, true);
+		walls[6][24] = new Wall(6, 24, true);
+		walls[6][25] = new Wall(6, 25, true);
+		
+		walls[9][22] = new Wall(9, 22, false);
+		walls[9][23] = new Wall(9, 23, true);
+		walls[9][24] = new Wall(9, 24, true);
+		walls[9][25] = new Wall(9, 25, true);
+		walls[10][22] = new Wall(10, 22, true);
+		walls[11][22] = new Wall(11, 22, true);
+		walls[12][22] = new Wall(12, 22, true);
+		
+		walls[5][9] = new Wall(5, 9, true);
+		walls[5][10] = new Wall(5, 10, true);
+		walls[5][11] = new Wall(5, 11, true);
+		walls[5][12] = new Wall(5, 12, true);
+		walls[5][13] = new Wall(5, 13, true);
+		walls[5][14] = new Wall(5, 14, true);
+		walls[5][15] = new Wall(5, 15, true);
+		walls[5][16] = new Wall(5, 16, true);
+		walls[5][17] = new Wall(5, 17, true);
+		walls[5][18] = new Wall(5, 18, true);
+		walls[5][19] = new Wall(5, 19, true);
+		walls[6][9] = new Wall(6, 9, false);
+		walls[7][9] = new Wall(7, 9, false);
+		walls[8][9] = new Wall(8, 9, false);
+		walls[9][9] = new Wall(9, 9, false);
+		walls[10][9] = new Wall(10, 9, true);
+		walls[10][10] = new Wall(10, 10, true);
+		walls[10][11] = new Wall(10, 11, true);
+		walls[10][12] = new Wall(10, 12, true);
+		walls[10][13] = new Wall(10, 13, true);
+		walls[10][14] = new Wall(10, 14, true);
+		walls[10][15] = new Wall(10, 15, true);
+		walls[10][16] = new Wall(10, 16, true);
+		walls[10][17] = new Wall(10, 17, true);
+		walls[10][18] = new Wall(10, 18, true);
+		walls[10][19] = new Wall(10, 19, true);
+		walls[9][19] = new Wall(9, 19, false);
+		walls[8][19] = new Wall(8, 19, false);
+		walls[7][19] = new Wall(7, 19, false);
+		walls[6][19] = new Wall(6, 19, false);
+
+		
+		
 	}
 	
 	public void setInputMoveArr(int[] inInputMoveArr){
