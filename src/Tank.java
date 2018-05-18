@@ -25,13 +25,22 @@ public abstract class Tank
 			for(int r = 0; r<walls.length; r++) {
 				for(int c = 0; c<walls[r].length; c++) {
 					if(walls[r][c] != null) {
+						
+						
 						if(yLoc == (r*50)+50) {
-							for(int i = 0;i<50; i++) {
-								for(int b = 0;b<50; b++) {
-									if(xLoc+i == (c*50)+b)
-										return false;
-								}
+							
+							if(xLoc > (c*50)-50 && xLoc < (c*50)+50){
+								return false;
 							}
+							
+							//c is x of the wall
+							
+//							for(int i = 0;i<50; i++) {
+//								for(int j = 0; j<50; j++) {
+//									if(xLoc+i == (c*50)+b)
+//										return false;
+//								}
+//							}
 						}
 					}
 				}
