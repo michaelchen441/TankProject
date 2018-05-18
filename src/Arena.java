@@ -22,7 +22,7 @@ public class Arena
 	public Arena(int inLevel, int inNumWallsAcross, int  inNumWallsDown) {
 		level = inLevel;
 		
-		playerTank = new PlayerTank(3,10);
+		
 		
 	
 		numWallsAcross = inNumWallsAcross;
@@ -58,7 +58,7 @@ public class Arena
 			level5();
 			
 		
-		
+		playerTank = new PlayerTank(3,10, walls);
 
 	
 	

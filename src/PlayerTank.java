@@ -13,28 +13,54 @@ public class PlayerTank extends Tank
 	double turretAngle;
 	Direction direction;
 	public int[] inputMoveArr;
-	
+	Wall[][] wallArray;
 
-	public PlayerTank(int inX, int inY)
+
+	public PlayerTank(int inX, int inY, Wall[][] walls)
 	{
-		super();
+		super(walls);
 		type = TankType.GREEN;
 		xLoc = inX * 50; //multiples so they can be set up with the same grid as walls
 		yLoc = inY * 50;
 		direction = Direction.EAST;
-
+		wallArray = walls;
 		inputMoveArr = new int[2];
 
-	
+
 	}
 
 
 	public void move(){
-	//	if(touchingWallDirections().indexOf(Direction.NORTH)>-1)
+		//	if(touchingWallDirections().indexOf(Direction.NORTH)>-1)
+		Direction dir = whichDir(inputMoveArr);	
+		if(canMove(dir,wallArray)) {
 			xLoc += inputMoveArr[0];
 			yLoc -= inputMoveArr[1];
+		}
 	}
 
+
+
+	private Direction whichDir(int[] temp) {
+		
+		if(temp[0] == 1 && temp[1] == 0)
+			return Direction.EAST;
+		if(temp[0] == 0 && temp[1] == 1)
+			return Direction.NORTH;
+		if(temp[0] == -1 && temp[1] == 0)
+			return Direction.WEST;
+		if(temp[0] == 0 && temp[1] == -1)
+			return Direction.SOUTH;
+		if(temp[0] == 1 && temp[1] == 1)
+			return Direction.NORTHEAST;
+		if(temp[0] == -1 && temp[1] == -1)
+			return Direction.SOUTHWEST;
+		if(temp[0] == 1 && temp[1] == -1)
+			return Direction.SOUTHEAST;
+		if(temp[0] == -1 && temp[1] == 1)
+			return Direction.NORTHWEST;
+		return null;
+	}
 
 
 	private ArrayList<Direction> touchingWallDirections()
@@ -65,7 +91,7 @@ public class PlayerTank extends Tank
 	}
 
 	private boolean detect(Direction dir, Wall[][] myWalls){
-		
+
 		return false;
 	}
 
