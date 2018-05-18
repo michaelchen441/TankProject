@@ -119,7 +119,7 @@ public class TankPanel extends JPanel {
 			turret = ImageIO.read(new File("images/crosshair.png"));	 //TODO find image
 			projectile = ImageIO.read(new File("images/crosshair.png"));	//TODO find image
 			indestructableWall = ImageIO.read(new File("images/Metal_50x50.jpg"));	
-			destructableWall = ImageIO.read(new File("images/Wood_50x50.png"));	
+			destructableWall = ImageIO.read(new File("images/Wood_50x50.png"));
 			greenTank = ImageIO.read(new File("images/50x50 tanks/greenTank.png"));
 			redTank = ImageIO.read(new File("images/50x50 tanks/redTank.png"));	 
 			blueTank = ImageIO.read(new File("images/50x50 tanks/blueTank.png"));	
