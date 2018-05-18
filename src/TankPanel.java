@@ -129,7 +129,6 @@ public class TankPanel extends JPanel {
 			redTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
 			blueTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
 			blackTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
-
 		}
 		catch (IOException e){
 			// TODO Auto-generated catch block

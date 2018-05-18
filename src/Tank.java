@@ -21,10 +21,11 @@ public abstract class Tank
 	public boolean canMove(Direction dir, Wall[][] walls) {
 		if(dir == null)
 			return true;
-		if(dir == Direction.NORTH) {
-			for(int r = 0; r<walls.length; r++) {
-				for(int c = 0; c<walls[r].length; c++) {
-					if(walls[r][c] != null) {
+
+		if(dir == Direction.NORTH) 
+			for(int r = 0; r<walls.length; r++) 
+				for(int c = 0; c<walls[r].length; c++) 
+					if(walls[r][c] != null) 
 						
 						
 						if(yLoc == (r*50)+50) {
@@ -32,46 +33,47 @@ public abstract class Tank
 							if(xLoc > (c*50)-50 && xLoc < (c*50)+50){
 								return false;
 							}
+						}
 							
-							//c is x of the wall
 							
-//							for(int i = 0;i<50; i++) {
-//								for(int j = 0; j<50; j++) {
+//						if(yLoc == (r*50)+50) 
+//							for(int i = 0;i<50; i++) 
+//								for(int b = 0;b<50; b++) 
 //									if(xLoc+i == (c*50)+b)
 //										return false;
-//								}
-//							}
-						}
-					}
-				}
 
-			}
+		if(dir == Direction.EAST) {
+			for(int r = 0; r<walls.length; r++) 
+				for(int c = 0; c<walls[r].length; c++) 
+					if(walls[r][c] != null) 
+						if(xLoc+50 == c*50) 
+							for(int i = 0;i<50; i++) 
+								for(int b = 0;b<50; b++) 
+									if(yLoc+i == (r*50)+b)
+										return false;
+
 		}
-		//		if(dir == Direction.EAST) {
-		//			for(int i = 0; i<50; i++) {
-		//				if()
-		//					return false;
-		//			}
-		//			
-		//		}
-		//		if(dir == Direction.SOUTH) {
-		//			return false;
-		//		}
-		//		if(dir == Direction.WEST) {
-		//			return false;
-		//		}
-		//		if(dir == Direction.NORTHEAST) {
-		//			return false;
-		//		}
-		//		if(dir == Direction.SOUTHEAST) {
-		//			return false;
-		//		}
-		//		if(dir == Direction.SOUTHWEST) {
-		//			return false;
-		//		}
-		//		if(dir == Direction.NORTHWEST) {
-		//			return false;
-		//		}
+		if(dir == Direction.SOUTH) {
+			for(int r = 0; r<walls.length; r++) 
+				for(int c = 0; c<walls[r].length; c++) 
+					if(walls[r][c] != null) 
+						if(yLoc+50 == r*50) 
+							for(int i = 0;i<50; i++) 
+								for(int b = 0;b<50; b++) 
+									if(xLoc+i == (c*50)+b)
+										return false;
+		}
+		if(dir == Direction.WEST) {
+			for(int r = 0; r<walls.length; r++) 
+				for(int c = 0; c<walls[r].length; c++) 
+					if(walls[r][c] != null) 
+						if(xLoc == (c*50)+50) 
+							for(int i = 0;i<50; i++) 
+								for(int b = 0;b<50; b++) 
+									if(yLoc+i == (r*50)+b)
+										return false;
+		}
+
 		return true;
 
 	}
