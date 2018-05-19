@@ -11,6 +11,8 @@ public class AITank extends Tank
 		super(walls);
 		alive = true;
 		type = inType;
+		xLoc = x*50;
+		yLoc = y*50;
 
 	}
 

@@ -48,7 +48,11 @@ public class Arena
 			walls[numWallsDown - 1][c] =  new Wall(numWallsDown - 1, c, false);
 		}
 
-
+		playerTank = new PlayerTank(3,10, walls);
+		tankList = new ArrayList<Tank>();
+		tankList.add(playerTank);
+		
+		
 		if(level == 1)
 			level1();
 		if(level == 2)
@@ -59,11 +63,6 @@ public class Arena
 			level4();
 		if(level == 5)
 			level5();
-
-
-		playerTank = new PlayerTank(3,10, walls);
-		ArrayList<Tank> tankList = new ArrayList<Tank>();
-		tankList.add(playerTank);
 
 
 
@@ -106,7 +105,8 @@ public class Arena
 
 	public void level1() {
 
-		blueTank1 = new AITank(TankType.BLUE, 5, 5, walls); //TODO choose coordinates
+		
+		blueTank1 = new AITank(TankType.BLUE, 20, 5, walls); //TODO choose coordinates
 		tankList.add(blueTank1);
 		
 		walls[4][5] = new Wall(4,5, false);
@@ -145,7 +145,7 @@ public class Arena
 
 	public void level2() {
 
-		blueTank1 =  new AITank(TankType.BLUE, 5, 5, walls); //TODO choose coordinates
+		blueTank1 =  new AITank(TankType.BLUE, 20, 10, walls); //TODO choose coordinates
 		tankList.add(blueTank1);
 		
 		
@@ -170,8 +170,8 @@ public class Arena
 
 	public void level3() {
 
-		blueTank1 =  new AITank(TankType.BLUE, 5, 5, walls); //TODO choose coordinates
-		redTank1 =  new AITank(TankType.RED, 5, 5, walls); //TODO choose coordinates
+		blueTank1 =  new AITank(TankType.BLUE, 20, 5, walls); //TODO choose coordinates
+		redTank1 =  new AITank(TankType.RED, 20, 13, walls); //TODO choose coordinates
 		redTank2 =  new AITank(TankType.RED, 5, 5, walls); //TODO choose coordinates
 		tankList.add(blueTank1);
 		tankList.add(redTank1);
