@@ -105,6 +105,7 @@ public class PlayerTank extends Tank
 	public void draw(Graphics g, ImageLibrary l){
 		move(); //Implements move everytime timer ticks because draw is called everytime it ticks
 		g.drawImage(l.greenTank, xLoc, yLoc, null); //Tank image is drawn based on its x and y location
+		
 		g.drawImage(l.greenTurret, xLoc+15, yLoc-15, null);
 		
 		
@@ -112,7 +113,6 @@ public class PlayerTank extends Tank
 		//TODO draw turret		
 
 	}
-
 
 
 	//Establishes the movements that need to be made into the inputMoveArr instance variable for the Playertank object

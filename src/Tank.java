@@ -23,55 +23,55 @@ public abstract class Tank
 	}
 
 	public boolean canMove(Direction dir, Wall[][] walls) {
-		System.out.println("begin wall detection");
+		//System.out.println("begin wall detection");
 		//If no direction is indicated, movement cannot be checked in any specific direction
 		if(dir == null){
-			System.out.println("end wall detection: no direction");
+			//System.out.println("end wall detection: no direction");
 			return true;
 		}
 		//If tank is facing North, it calls checkNorth method which checks if movement is possible North
 		if(dir == Direction.NORTH) {
-			System.out.println("end wall detection: north");
+			//System.out.println("end wall detection: north");
 			return checkNorth(walls);
 		}
 		//If tank is facing East, it calls checkEast method which checks if movement is possible East
 		if(dir == Direction.EAST) {
-			System.out.println("end wall detection: east");
+			//System.out.println("end wall detection: east");
 			return checkEast(walls);
 		}
 		//If tank is facing South, it calls checkSouth method which checks if movement is possible South
 		if(dir == Direction.SOUTH) {
-			System.out.println("end wall detection: south");
+			//System.out.println("end wall detection: south");
 			return checkSouth(walls);
 		}
 		//If tank is facing West, it calls checkWest method which checks if movement is possible West
 		if(dir == Direction.WEST) {
-			System.out.println("end wall detection: west");
+			//System.out.println("end wall detection: west");
 			return checkWest(walls);
 		}
 		//If tank is facing NorthWest, it calls checkNorth and checkWest methods which check if movement is possible NorthWest
 		if(dir == Direction.NORTHWEST){
-			System.out.println("end wall detection: northwest");
+			//System.out.println("end wall detection: northwest");
 			return checkNorth(walls) && checkWest(walls);
 		}
 		//If tank is facing NorthEast, it calls checkNorth and checkEast methods which check if movement is possible NorthEast
 		if(dir == Direction.NORTHEAST) {
-			System.out.println("end wall detection: northeast");
+			//System.out.println("end wall detection: northeast");
 			return checkNorth(walls) && checkEast(walls);
 		}
 		//If tank is facing SouthWest, it calls checkSouth and checkWest methods which check if movement is possible SouthWest
 		if(dir == Direction.SOUTHWEST) {
-			System.out.println("end wall detection: southwest");
+			//System.out.println("end wall detection: southwest");
 			return checkSouth(walls) && checkWest(walls);
 		}
 		//If tank is facing SouthEast, it calls checkSouth and checkEast methods which check if movement is possible SouthEast
 		if(dir == Direction.SOUTHEAST) {
-			System.out.println("end wall detection: southeast");
+			//System.out.println("end wall detection: southeast");
 			return checkSouth(walls) && checkEast(walls);
 		}
 
 
-		System.out.println("end wall detection");
+		//System.out.println("end wall detection");
 		return true;
 	}
 	/*All check direction methods
