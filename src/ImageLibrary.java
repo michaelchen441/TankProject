@@ -2,6 +2,8 @@ import java.awt.image.BufferedImage;
 
 public class ImageLibrary
 {
+	
+	//create all images
 	public static BufferedImage background;
 	public static BufferedImage crosshair;
 	public static BufferedImage turret;
@@ -20,8 +22,8 @@ public class ImageLibrary
 	public static BufferedImage blueTurret;
 	public static BufferedImage blackTurret;
 	
-	public static BufferedImage bullet;
 
+	// constructed once in tank panel and sent to other classes as an imput in draw methods
 	public ImageLibrary(BufferedImage inCrosshair, 
 						BufferedImage inTurret,
 						BufferedImage inProjectile,
@@ -37,7 +39,7 @@ public class ImageLibrary
 						BufferedImage inGreenTurret,    
 						BufferedImage inRedTurret,      
 						BufferedImage inBlueTurret,     
-						BufferedImage inBlackTurret, BufferedImage inBullet   
+						BufferedImage inBlackTurret 
 						
 						)
 	{
@@ -57,7 +59,7 @@ public class ImageLibrary
 		redTurret = inRedTurret;      
 	 	blueTurret = inBlueTurret;     
 		blackTurret = inBlackTurret;    
-		bullet = inBullet;
+		
 		
 	}
 	
