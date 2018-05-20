@@ -27,7 +27,7 @@ public class TankPanel extends JPanel {
 
 	boolean inMenu = true;
 
-	int level = 0; //TODO change to initialize at 0, menu ending changes to 1
+	int level = 0; // initialize at 0, menu ending changes to 1
 	boolean level1FirstTime = true;
 
 	public static int panelWidth = 1400;
@@ -64,7 +64,7 @@ public class TankPanel extends JPanel {
 	static BufferedImage redTurret;
 	static BufferedImage blueTurret;
 	static BufferedImage blackTurret;
-	static BufferedImage bullet;
+
 
 	int crosshairX;
 	int crosshairY;
@@ -117,8 +117,7 @@ public class TankPanel extends JPanel {
 		{
 			background = ImageIO.read(new File("images/Background2.png"));	
 			crosshair = ImageIO.read(new File("images/crosshair.png"));		
-			turret = ImageIO.read(new File("images/crosshair.png"));	 //TODO find image
-			projectile = ImageIO.read(new File("images/crosshair.png"));	//TODO find image
+			projectile = ImageIO.read(new File("images/projectile.png"));	
 			indestructableWall = ImageIO.read(new File("images/Metal_50x50.jpg"));	
 			destructableWall = ImageIO.read(new File("images/Wood_50x50.png"));
 			greenTank = ImageIO.read(new File("images/50x50 tanks/greenTank.png"));
@@ -151,7 +150,6 @@ public class TankPanel extends JPanel {
 		imageLibrary.redTurret = redTurret;
 		imageLibrary.blueTurret = blueTurret;
 		imageLibrary.blackTurret = blackTurret;
-		imageLibrary.bullet = bullet;
 
 
 	}
