@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /* Tank is an abstract class with variations between the 
  implementation of certain methods in 
 
-*/
+ */
 public abstract class Tank
 {
 	TankType type; // AI or PlayerTank
@@ -70,7 +70,7 @@ public abstract class Tank
 			return checkSouth(walls) && checkEast(walls);
 		}
 
-		
+
 		System.out.println("end wall detection");
 		return true;
 	}
@@ -83,10 +83,10 @@ public abstract class Tank
 		for(int r = 0; r<walls.length; r++) { 
 			for(int c = 0; c<walls[r].length; c++) {
 				if(walls[r][c] != null) {
-		//Checks if the certain wall is west of the tank by adding 50 in the x direction to a walls location
+					//Checks if the certain wall is west of the tank by adding 50 in the x direction to a walls location
 					if(xLoc == (c*50)+50) {
-		//Checks both edges of tank to see if they are within the borders of the west wall, including the endpoints of the wall				
-						if(yLoc >= r*50 && yLoc <= (r*50)+50 || yLoc+50 >= r*50 && yLoc+50 <= (r*50)+50) {
+						//Checks both edges of tank to see if they are within the borders of the west wall, including the endpoints of the wall				
+						if(yLoc > (r*50)-50 && yLoc < (r*50)+50){	
 							return false;
 						}
 					}
@@ -100,10 +100,10 @@ public abstract class Tank
 		for(int r = 0; r<walls.length; r++) {
 			for(int c = 0; c<walls[r].length; c++) {
 				if(walls[r][c] != null) {
-		//Checks if the certain wall is south of the tank by adding 50 in the y direction to tank's location			
+					//Checks if the certain wall is south of the tank by adding 50 in the y direction to tank's location			
 					if(yLoc+50 == r*50) {
-		//Checks both edges of tank to see if they are within the borders of the south wall, including the endpoints of the wall					
-						if(xLoc >= c*50 && xLoc <= (c*50)+50 || xLoc+50 >= c*50 && xLoc+50 <= (c*50)+50) {
+						//Checks both edges of tank to see if they are within the borders of the south wall, including the endpoints of the wall					
+						if(xLoc > (c*50)-50 && xLoc < (c*50)+50){	
 							return false;
 						}
 					}
@@ -118,10 +118,10 @@ public abstract class Tank
 		for(int r = 0; r<walls.length; r++) { 
 			for(int c = 0; c<walls[r].length; c++) {
 				if(walls[r][c] != null) {
-		//Checks if the certain wall is east of the tank by adding 50 in the x direction to tank's location			
+					//Checks if the certain wall is east of the tank by adding 50 in the x direction to tank's location			
 					if(xLoc+50 == c*50) {
-		//Checks both edges of tank to see if they are within the borders of the East wall, including the endpoints of the wall					
-						if(yLoc >= r*50 && yLoc <= (r*50)+50 || yLoc+50 >= r*50 && yLoc+50 <= (r*50)+50) {
+						//Checks both edges of tank to see if they are within the borders of the East wall, including the endpoints of the wall					
+						if(yLoc > (r*50)-50 && yLoc < (r*50)+50){	
 							return false;
 						}
 					}
@@ -135,10 +135,10 @@ public abstract class Tank
 		for(int r = 0; r<walls.length; r++) { 
 			for(int c = 0; c<walls[r].length; c++) {
 				if(walls[r][c] != null) {
-		//Checks if the certain wall is North of the tank by adding 50 in the x direction to tank's location	
+					//Checks if the certain wall is North of the tank by adding 50 in the x direction to tank's location	
 					if(yLoc == (r*50)+50) {
-		//Checks both edges of tank to see if they are within the borders of the North wall, including the endpoints of the wall	
-						if(xLoc >= c*50 && xLoc <= (c*50)+50 || xLoc+50 >= c*50 && xLoc+50 <= (c*50)+50) {
+						//Checks both edges of tank to see if they are within the borders of the North wall, including the endpoints of the wall	
+						if(xLoc > (c*50)-50 && xLoc < (c*50)+50){
 							return false;
 						}
 					}
