@@ -79,7 +79,7 @@ public abstract class Tank
 						if(xLoc >= c*50 && xLoc <= (c*50)+50 || xLoc+50 >= c*50 && xLoc+50 <= (c*50)+50)
 							return false;
 		return true;
-
+ 
 	}
 
 	abstract void move();
