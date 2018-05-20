@@ -95,9 +95,6 @@ public class Arena
 				}
 			}
 		}
-
-
-
 		
 		//Draws all the tanks in the tanklist
 		for(Tank tank: tankList){
