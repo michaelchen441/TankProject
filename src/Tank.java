@@ -1,87 +1,159 @@
 import java.awt.Graphics;
 import java.util.ArrayList;
+/* Tank is an abstract class with variations between the 
+ implementation of certain methods in 
 
+ */
 public abstract class Tank
 {
-	TankType type;
-	int height;
-	int width;
-	int speed;
-	int xLoc;
-	int yLoc;
-	ArrayList<Projectile> stockPile = new ArrayList<Projectile>();
-	Wall[][] surroundingWalls;
+	TankType type; // AI or PlayerTank
+	int height; //Dimension
+	int width; //Dimension
+	int speed; //Tank Speed
+	int xLoc; //X Location
+	int yLoc; //Y Location
+	boolean alive; // Status alive or dead
+	ArrayList<Projectile> stockPile = new ArrayList<Projectile>(); //Number of bullets available to fire
+	Wall[][] surroundingWalls; //Used to keep track of surrounding walls
 
 	public Tank(Wall[][] walls) {
-		surroundingWalls = walls;
-		height = 28;
-		width = 56;
+		surroundingWalls = walls; 
+		height = 28; //Fixed height for all tanks
+		width = 56; //Fixed width for all tanks
 	}
 
 	public boolean canMove(Direction dir, Wall[][] walls) {
-		if(dir == null)
+		System.out.println("begin wall detection");
+		//If no direction is indicated, movement cannot be checked in any specific direction
+		if(dir == null){
+			System.out.println("end wall detection: no direction");
 			return true;
-		if(dir == Direction.NORTH) 
+		}
+		//If tank is facing North, it calls checkNorth method which checks if movement is possible North
+		if(dir == Direction.NORTH) {
+			System.out.println("end wall detection: north");
 			return checkNorth(walls);
-		if(dir == Direction.EAST) 
+		}
+		//If tank is facing East, it calls checkEast method which checks if movement is possible East
+		if(dir == Direction.EAST) {
+			System.out.println("end wall detection: east");
 			return checkEast(walls);
-		if(dir == Direction.SOUTH) 
+		}
+		//If tank is facing South, it calls checkSouth method which checks if movement is possible South
+		if(dir == Direction.SOUTH) {
+			System.out.println("end wall detection: south");
 			return checkSouth(walls);
-		if(dir == Direction.WEST) 
+		}
+		//If tank is facing West, it calls checkWest method which checks if movement is possible West
+		if(dir == Direction.WEST) {
+			System.out.println("end wall detection: west");
 			return checkWest(walls);
-		if(dir == Direction.NORTHWEST) 
+		}
+		//If tank is facing NorthWest, it calls checkNorth and checkWest methods which check if movement is possible NorthWest
+		if(dir == Direction.NORTHWEST){
+			System.out.println("end wall detection: northwest");
 			return checkNorth(walls) && checkWest(walls);
-		if(dir == Direction.NORTHEAST) 
+		}
+		//If tank is facing NorthEast, it calls checkNorth and checkEast methods which check if movement is possible NorthEast
+		if(dir == Direction.NORTHEAST) {
+			System.out.println("end wall detection: northeast");
 			return checkNorth(walls) && checkEast(walls);
-		if(dir == Direction.SOUTHWEST) 
+		}
+		//If tank is facing SouthWest, it calls checkSouth and checkWest methods which check if movement is possible SouthWest
+		if(dir == Direction.SOUTHWEST) {
+			System.out.println("end wall detection: southwest");
 			return checkSouth(walls) && checkWest(walls);
-		if(dir == Direction.SOUTHEAST) 
+		}
+		//If tank is facing SouthEast, it calls checkSouth and checkEast methods which check if movement is possible SouthEast
+		if(dir == Direction.SOUTHEAST) {
+			System.out.println("end wall detection: southeast");
 			return checkSouth(walls) && checkEast(walls);
-		return true;
+		}
 
+
+		System.out.println("end wall detection");
+		return true;
 	}
-	private boolean checkWest(Wall[][] walls) {
-		for(int r = 0; r<walls.length; r++) 
-			for(int c = 0; c<walls[r].length; c++) 
-				if(walls[r][c] != null) 
-					if(xLoc == (c*50)+50) 
-						if(yLoc >= r*50 && yLoc <= (r*50)+50 || yLoc+50 >= r*50 && yLoc+50 <= (r*50)+50)
+	/*All check direction methods
+	 * Take in all walls in arena
+	 * Checks every wall in the 2d array by detecting if the cell in the 2D array is not null
+	 * Multiplies r and c by 50 because each cell is 50 pixels wide; 
+	 */
+	private boolean checkWest(Wall[][] walls) { 
+		for(int r = 0; r<walls.length; r++) { 
+			for(int c = 0; c<walls[r].length; c++) {
+				if(walls[r][c] != null) {
+					//Checks if the certain wall is west of the tank by adding 50 in the x direction to a walls location
+					if(xLoc == (c*50)+50) {
+						//Checks both edges of tank to see if they are within the borders of the west wall, including the endpoints of the wall				
+						if(yLoc > (r*50)-50 && yLoc < (r*50)+50){	
 							return false;
+						}
+					}
+				}
+			}
+		}
 		return true;
 	}
 
 	private boolean checkSouth(Wall[][] walls) {
-		for(int r = 0; r<walls.length; r++) 
-			for(int c = 0; c<walls[r].length; c++) 
-				if(walls[r][c] != null) 
-					if(yLoc+50 == r*50) 
-						if(xLoc >= c*50 && xLoc <= (c*50)+50 || xLoc+50 >= c*50 && xLoc+50 <= (c*50)+50)
+		for(int r = 0; r<walls.length; r++) {
+			for(int c = 0; c<walls[r].length; c++) {
+				if(walls[r][c] != null) {
+					//Checks if the certain wall is south of the tank by adding 50 in the y direction to tank's location			
+					if(yLoc+50 == r*50) {
+						//Checks both edges of tank to see if they are within the borders of the south wall, including the endpoints of the wall					
+						if(xLoc > (c*50)-50 && xLoc < (c*50)+50){	
 							return false;
-
+						}
+					}
+				}
+			}
+		}
 		return true;
+
 	}
 
 	private boolean checkEast(Wall[][] walls) {
-		for(int r = 0; r<walls.length; r++) 
-			for(int c = 0; c<walls[r].length; c++) 
-				if(walls[r][c] != null) 
-					if(xLoc+50 == c*50) 
-						if(yLoc >= r*50 && yLoc <= (r*50)+50 || yLoc+50 >= r*50 && yLoc+50 <= (r*50)+50)
+		for(int r = 0; r<walls.length; r++) { 
+			for(int c = 0; c<walls[r].length; c++) {
+				if(walls[r][c] != null) {
+					//Checks if the certain wall is east of the tank by adding 50 in the x direction to tank's location			
+					if(xLoc+50 == c*50) {
+						//Checks both edges of tank to see if they are within the borders of the East wall, including the endpoints of the wall					
+						if(yLoc > (r*50)-50 && yLoc < (r*50)+50){	
 							return false;
+						}
+					}
+				}
+			}
+		}				
 		return true;
 	}
 
 	private boolean checkNorth(Wall[][] walls) {
-		for(int r = 0; r<walls.length; r++) 
-			for(int c = 0; c<walls[r].length; c++) 
-				if(walls[r][c] != null) 
-					if(yLoc == (r*50)+50) 
-						if(xLoc >= c*50 && xLoc <= (c*50)+50 || xLoc+50 >= c*50 && xLoc+50 <= (c*50)+50)
+		for(int r = 0; r<walls.length; r++) { 
+			for(int c = 0; c<walls[r].length; c++) {
+				if(walls[r][c] != null) {
+					//Checks if the certain wall is North of the tank by adding 50 in the x direction to tank's location	
+					if(yLoc == (r*50)+50) {
+						//Checks both edges of tank to see if they are within the borders of the North wall, including the endpoints of the wall	
+						if(xLoc > (c*50)-50 && xLoc < (c*50)+50){
 							return false;
+						}
+					}
+				}
+			}
+		}
 		return true;
  
 	}
-
+	//Movement, aiming, firing, and draw are coded and implemented differently between Player and AI Tanks
+	//As a result, the abstract class has these as abstract methods and no implementation provided
+	/*Likely idea is that user sends inputs into the player tank
+	 *In contrast AI Tank prompts its own location, aiming, and firing
+	 *AI Tank will probably utilize the playerTank's location and wall locations to prompt its own movement
+	 */
 	abstract void move();
 	abstract void aim();
 	abstract void fire();

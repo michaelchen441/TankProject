@@ -24,48 +24,31 @@ import javax.swing.UIManager;
 
 public class TankPanel extends JPanel {
 
-	
+
 	boolean inMenu = true;
-	
-	int level = 0; //TODO change to initialize at 0, menu ending changes to 1
+
+	int level = 0; // initialize at 0, menu ending changes to 1
 	boolean level1FirstTime = true;
-	
+
 	public static int panelWidth = 1400;
 	public static int panelHeight = 800;
-	
+
 	public static int numWallsAcross = 28;
 	public static int numWallsDown = 16;
-	
+
 	public static int wallWidth =  panelWidth/numWallsAcross;
 	public static int wallHeight = panelHeight/numWallsDown;
-	
+
 	boolean rightPressed, leftPressed, upPressed, downPressed;
 
 	ArrayList<Arena> arenaList = new ArrayList<Arena>();
 	Menu theMenu;
 	Arena level1Arena;
-	//Arena level2Arena;
-	//Arena level3Arena;
-	
-	
-	
-	static ImageLibrary imageLibrary;
-	static BufferedImage background;
-	static BufferedImage crosshair;
-	static BufferedImage turret;
-	static BufferedImage projectile;
-	static BufferedImage indestructableWall;
-	static BufferedImage destructableWall;
-	static BufferedImage greenTank;
-	static BufferedImage redTank;
-	static BufferedImage blueTank;
-	static BufferedImage blackTank;
-	static BufferedImage greenTurret;
-	static BufferedImage redTurret;
-	static BufferedImage blueTurret;
-	static BufferedImage blackTurret;
-	static BufferedImage bullet;
-	
+	Arena level2Arena;
+	Arena level3Arena;
+
+	ImageLibrary imageLibrary = new ImageLibrary();
+
 	int crosshairX;
 	int crosshairY;
 
@@ -73,11 +56,12 @@ public class TankPanel extends JPanel {
 
 
 	Timer timer = new Timer(1,null);
-	
-	
-	
+
+
+
 	public static void main(String[] args) {
-	
+
+
 		
 		try {
 			// Set System L&F
@@ -106,59 +90,18 @@ public class TankPanel extends JPanel {
 
 		// Create a new blank cursor.
 		Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
-		    cursorImg, new Point(0, 0), "blank cursor");
+				cursorImg, new Point(0, 0), "blank cursor");
 
 		// Set the blank cursor to the JFrame.
 		frame.getContentPane().setCursor(blankCursor);
 
-
-		
-		try
-		{
-			background = ImageIO.read(new File("images/Background2.png"));	
-			crosshair = ImageIO.read(new File("images/crosshair.png"));		
-			turret = ImageIO.read(new File("images/crosshair.png"));	 //TODO find image
-			projectile = ImageIO.read(new File("images/crosshair.png"));	//TODO find image
-			indestructableWall = ImageIO.read(new File("images/Metal_50x50.jpg"));	
-			destructableWall = ImageIO.read(new File("images/Wood_50x50.png"));
-			greenTank = ImageIO.read(new File("images/50x50 tanks/greenTank.png"));
-			redTank = ImageIO.read(new File("images/50x50 tanks/redTank.png"));	 
-			blueTank = ImageIO.read(new File("images/50x50 tanks/blueTank.png"));	
-			blackTank = ImageIO.read(new File("images/50x50 tanks/blackTank.png"));	
-			greenTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
-			redTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
-			blueTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
-			blackTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
-		}
-		catch (IOException e){
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		imageLibrary.background = background;
-		imageLibrary.crosshair = crosshair;
-		imageLibrary.turret = turret;
-		imageLibrary.projectile = projectile;
-		
-		imageLibrary.indestructableWall = indestructableWall;
-		imageLibrary.destructableWall = destructableWall;
-		
-		imageLibrary.greenTank = greenTank;
-		imageLibrary.redTank = redTank;
-		imageLibrary.blueTank = blueTank;
-		imageLibrary.blackTank = blackTank;
-		
-		imageLibrary.greenTurret = greenTurret;
-		imageLibrary.redTurret = redTurret;
-		imageLibrary.blueTurret = blueTurret;
-		imageLibrary.blackTurret = blackTurret;
-		imageLibrary.bullet = bullet;
-		
 
 	}
 	private void setUpKeyMappings() {
 
 		this.getInputMap().put(KeyStroke.getKeyStroke("A"),"left");
 		this.getActionMap().put("left",new AbstractAction(){
+
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -169,6 +112,8 @@ public class TankPanel extends JPanel {
 			}
 		});
 
+		
+		
 		this.getInputMap().put(KeyStroke.getKeyStroke("released A"),"releasedLeft");
 		this.getActionMap().put("releasedLeft",new AbstractAction(){
 
@@ -180,8 +125,8 @@ public class TankPanel extends JPanel {
 
 			}
 		});
-		
-	
+
+
 		this.getInputMap().put(KeyStroke.getKeyStroke("D"),"right");
 		this.getActionMap().put("right",new AbstractAction(){
 
@@ -193,7 +138,7 @@ public class TankPanel extends JPanel {
 
 			}
 		});
-		
+
 		this.getInputMap().put(KeyStroke.getKeyStroke("released D"),"releasedRight");
 		this.getActionMap().put("releasedRight",new AbstractAction(){
 
@@ -202,7 +147,7 @@ public class TankPanel extends JPanel {
 				// what do you want to do when the left arrow is pressed?
 				System.out.println("released right arrow!!");
 				rightPressed = false;
-				
+
 			}
 		});
 
@@ -218,7 +163,7 @@ public class TankPanel extends JPanel {
 
 			}
 		});
-		
+
 		this.getInputMap().put(KeyStroke.getKeyStroke("released W"),"releasedUp");
 		this.getActionMap().put("releasedUp",new AbstractAction(){
 
@@ -242,7 +187,7 @@ public class TankPanel extends JPanel {
 				downPressed = true;
 			}
 		});
-		
+
 		this.getInputMap().put(KeyStroke.getKeyStroke("released S"),"releasedDown");
 		this.getActionMap().put("releasedDown",new AbstractAction(){
 
@@ -270,14 +215,14 @@ public class TankPanel extends JPanel {
 					{
 						if((arg0.getX() > 350 && arg0.getX() < 1050) 
 								&&
-							(arg0.getY() > 500 && arg0.getY() < 700)
+								(arg0.getY() > 500 && arg0.getY() < 700)
 								)
 						{
 							inMenu = false;
 							level = 1;
 						}
 					}
-			
+					//TODO if() for levels to create projectile
 				}
 
 				@Override
@@ -306,7 +251,7 @@ public class TankPanel extends JPanel {
 
 			});
 		}
-		
+
 		{
 			this.addMouseMotionListener(new MouseMotionListener() {
 
@@ -314,26 +259,27 @@ public class TankPanel extends JPanel {
 				public void mouseDragged(MouseEvent e)
 				{
 					// TODO Nothing
-					
+
 				}
 
 				@Override
 				public void mouseMoved(MouseEvent e)
 				{
-					// TODO send to crosshair
+					// send to crosshair
 					crosshairX = e.getX();
 					crosshairY = e.getY();
-					
-					//double Xd =(crosshairX-level1Arena.playerTankLocX()+25);
-					//double Yd =(crosshairY-level1Arena.playerTankLocX()+25);
-					//double radAngle = Math.atan(Yd/Xd);
-					
+
+					//	double Xd =(crosshairX-level1Arena.playerTankLocX()+25);
+					//	double Yd =(crosshairY-level1Arena.playerTankLocX()+25);
+					//	double radAngle = Math.atan(Yd/Xd);
+
+
 				}
-					
+
 			});
 		}
-		
-		
+
+
 	}
 
 	private void startGame() {
@@ -370,39 +316,45 @@ public class TankPanel extends JPanel {
 		repaint();
 	}
 	public void paintComponent(Graphics g) {
-	//	long start = System.currentTimeMillis();
-		
-		
+		//	long start = System.currentTimeMillis();
+
+
 		if(!level1FirstTime){
 			arenaList.get(level).setInputMoveArr(getInputMoveArr());
 		}
 		if(level1FirstTime){
 			theMenu = new Menu();
 		}
-		
+
 		if (inMenu){
 			theMenu.draw(g, imageLibrary);
 		}
 		else 
 		{
 			if(level1FirstTime){
-				//Level One	
 				
 				level1Arena = new Arena(1, numWallsAcross, numWallsDown);
-				arenaList.add(level1Arena);
-				arenaList.add(level1Arena);
-				level1FirstTime = false;
+				level2Arena = new Arena(1, numWallsAcross, numWallsDown);
+				level3Arena = new Arena(1, numWallsAcross, numWallsDown);
 				
+				arenaList.add(level1Arena);
+				arenaList.add(level2Arena);
+				arenaList.add(level3Arena);
+				
+				level1FirstTime = false;
+
 			}
+			level = arenaList.get(level).level;
+
 			arenaList.get(level).draw(g, imageLibrary);
 			g.setColor(Color.WHITE);
-			g.drawLine(level1Arena.playerTankLocX()+25, level1Arena.playerTankLocY()+25, crosshairX, crosshairY);	
-			
+			g.drawLine(arenaList.get(level).playerTankLocX()+25, arenaList.get(level).playerTankLocY()+25, crosshairX, crosshairY);		
+
 			//g.drawLine(level1Arena.playerTankLocX(), level1Arena.playerTankLocY(), crosshairX, crosshairY);
 		}
 
-		g.drawImage(crosshair, crosshairX-10, crosshairY-10, null);
-		
+		g.drawImage(imageLibrary.crosshair, crosshairX-10, crosshairY-10, null);
+
 
 	}
 
@@ -411,7 +363,7 @@ public class TankPanel extends JPanel {
 		int[] XandY = new int[2];
 		XandY[0] = 0;
 		XandY[1] = 0;
-		
+
 		if(rightPressed){
 			XandY[0]+=1;
 		}
@@ -424,10 +376,10 @@ public class TankPanel extends JPanel {
 		if(downPressed){
 			XandY[1]-=1;
 		}
-		
+
 		return XandY;
 	}
-	
+
 
 
 

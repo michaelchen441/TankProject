@@ -1,19 +1,15 @@
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 public class Wall
 {
-	private boolean destructable;
+	private boolean destructable; //Type of wall
+	//Wall x and y location
 	private int xLoc;
 	private int yLoc;
 
 
 	public Wall(int y, int x, boolean inDestructable) {
+		// Wall is 50 pixels wide and long
 		xLoc = x*50;
 		yLoc = y*50;
 		destructable = inDestructable;
@@ -22,17 +18,19 @@ public class Wall
 }
 
 	public int getXLoc() {
-		return xLoc;
+		return xLoc; //Returns x location
 	}
 	public int getYLoc() {
-		return yLoc;
+		return yLoc; //Returns y location
 	}
 
 
 	void draw(Graphics g, ImageLibrary l){
+		//Draws destructable wall
 		if(destructable){
 			g.drawImage(l.destructableWall, xLoc, yLoc, null);		
 		}
+		//Draws indestructable wall
 		else{
 			g.drawImage(l.indestructableWall, xLoc, yLoc, null);	
 		}
