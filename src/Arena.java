@@ -97,8 +97,7 @@ public class Arena
 		}
 
 
-		//Draw the tanks
-		playerTank.draw(g, l);
+
 		
 		//Draws all the tanks in the tanklist
 		for(Tank tank: tankList){
