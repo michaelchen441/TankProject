@@ -92,7 +92,7 @@ public class Arena
 			tank.draw(g, l);
 		}
 		boolean allDead = true;
-		for(int i = 0; i < tankList.size(); i++){
+		for(int i = 1; i < tankList.size(); i++){
 			if (tankList.get(i).alive == true){
 				allDead = false;
 			}
