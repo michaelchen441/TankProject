@@ -20,26 +20,48 @@ public abstract class Tank
 	}
 
 	public boolean canMove(Direction dir, Wall[][] walls) {
-		if(dir == null)
+		System.out.println("begin wall detection");
+		
+		if(dir == null){
+			System.out.println("end wall detection: no direction");
 			return true;
-		if(dir == Direction.NORTH) 
+		}
+		if(dir == Direction.NORTH) {
+			System.out.println("end wall detection: north");
 			return checkNorth(walls);
-		if(dir == Direction.EAST) 
+		}
+		if(dir == Direction.EAST) {
+			System.out.println("end wall detection: east");
 			return checkEast(walls);
-		if(dir == Direction.SOUTH) 
+		}
+		if(dir == Direction.SOUTH) {
+			System.out.println("end wall detection: south");
 			return checkSouth(walls);
-		if(dir == Direction.WEST) 
+		}
+		if(dir == Direction.WEST) {
+			System.out.println("end wall detection: west");
 			return checkWest(walls);
-		if(dir == Direction.NORTHWEST) 
+		}
+		if(dir == Direction.NORTHWEST){
+			System.out.println("end wall detection: northwest");
 			return checkNorth(walls) && checkWest(walls);
-		if(dir == Direction.NORTHEAST) 
+		}
+		if(dir == Direction.NORTHEAST) {
+			System.out.println("end wall detection: northeast");
 			return checkNorth(walls) && checkEast(walls);
-		if(dir == Direction.SOUTHWEST) 
+		}
+		if(dir == Direction.SOUTHWEST) {
+			System.out.println("end wall detection: southwest");
 			return checkSouth(walls) && checkWest(walls);
-		if(dir == Direction.SOUTHEAST) 
+		}
+		if(dir == Direction.SOUTHEAST) {
+			System.out.println("end wall detection: southeast");
 			return checkSouth(walls) && checkEast(walls);
-		return true;
+		}
 
+		
+		System.out.println("end wall detection");
+		return true;
 	}
 	private boolean checkWest(Wall[][] walls) {
 		for(int r = 0; r<walls.length; r++) 
