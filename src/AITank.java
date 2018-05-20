@@ -45,6 +45,7 @@ public class AITank extends Tank
 		if(type.equals(TankType.BLACK)){
 			g.drawImage(l.blackTank, xLoc, yLoc, null);
 		}
+	
 	}
 	
 	

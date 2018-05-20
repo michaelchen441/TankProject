@@ -8,29 +8,35 @@ import javax.imageio.ImageIO;
 
 public class Arena
 {
-	int level;
-	private Wall[][] walls;
+	int level; // Specifies which level and a specific arena 
+			   // is drawn based on which level is passed in
+	private Wall[][] walls; //List of all walls in the arena
+							//Every cell in the arena is can be made into a wall
+							// Remains null if no wall is created in the cell
+	PlayerTank playerTank; // Tank controlled by player
+	AITank blueTank1;  // An AI Tank
+	AITank redTank1; // An AI Tank
+	AITank redTank2; // An AI Tank
+	//Note about TankList
+	//New Tanklist is created with the creation of a new arena
+	//This prevents tanks from previous levels from being drawn in later levels
+	ArrayList<Tank> tankList; // List of all tanks to keep track of
 
-	PlayerTank playerTank;
-	AITank blueTank1; 
-	AITank redTank1; 
-	AITank redTank2; 
-	ArrayList<Tank> tankList;
-
-	int[] inputMoveInfo;
-
-	int numWallsAcross;
-	int numWallsDown;
+	int[] inputMoveInfo; // Information for how to change x and y locations
+						 // Dependent on keypressed
+	int numWallsAcross; // Dimensions across
+	int numWallsDown;	// Dimensions down
 
 
-
+// Arena Constructor
 	public Arena(int inLevel, int inNumWallsAcross, int  inNumWallsDown) {
-		level = inLevel;
+		level = inLevel; // Sets up which level
 
-
-		numWallsAcross = inNumWallsAcross;
+		// Sets up arena dimensions
+		numWallsAcross = inNumWallsAcross; 
 		numWallsDown = inNumWallsDown;
-
+		
+		//Construct 2D Area of walls
 		walls = new Wall[numWallsDown][numWallsAcross];
 
 
@@ -47,12 +53,15 @@ public class Arena
 		for(int c = 0; c < numWallsAcross; c++){
 			walls[numWallsDown - 1][c] =  new Wall(numWallsDown - 1, c, false);
 		}
-
+		// Constructs a player tank with location (3,10)
 		playerTank = new PlayerTank(3,10, walls);
+		// Constructs list of tanks
 		tankList = new ArrayList<Tank>();
+		// Adds player tank to arraylist of tanks to keep track of
 		tankList.add(playerTank);
 		
-		
+		// Determines which level to draw based on level number passed into constructor
+		// Each setup for a level is coded for in a separate method
 		if(level == 1)
 			level1();
 		if(level == 2)
@@ -67,15 +76,18 @@ public class Arena
 
 
 	}
-
+	// Enables access to all walls in a specific arena
 	public Wall[][] getWalls(){
 		return walls;
 	}
 
-
+	// Arena draw method
 	public void draw(Graphics g, ImageLibrary l) {
+		// draws wood panel background image
 		g.drawImage(l.background,0,0,null);
 
+		// If a cell in the arena is not null, it is considered to be a wall
+		// We call the wall's draw function here to make our wall
 		for(int r = 0; r < walls.length; r++){
 			for(int c = 0; c < walls[r].length; c++){
 				if(walls[r][c] != null){
@@ -85,14 +97,19 @@ public class Arena
 		}
 
 
-		//draw the tanks
+		//Draw the tanks
 		playerTank.draw(g, l);
 		
+		//Draws all the tanks in the tanklist
 		for(Tank tank: tankList){
 			tank.draw(g, l);
 		}
+		
+		//Determines if all enemy tanks are dead
+		//If condition is met, level is incremented
+		//Doesn't check index 0 because it is a playertank
 		boolean allDead = true;
-		for(int i = 0; i < tankList.size(); i++){
+		for(int i = 1; i < tankList.size(); i++){
 			if (tankList.get(i).alive == true){
 				allDead = false;
 			}
@@ -103,9 +120,10 @@ public class Arena
 
 	}
 
+//Method containing all the information of level 1
+//When level is equal to 1, an arena with these objects and conditions are drawn
 	public void level1() {
-
-		
+		//Makes one blue enemy tank and adds to tanklist
 		blueTank1 = new AITank(TankType.BLUE, 20, 5, walls); //TODO choose coordinates
 		tankList.add(blueTank1);
 		
@@ -142,9 +160,10 @@ public class Arena
 		walls[11][15] = new Wall(11,15, false);
 
 	}
-
+//Method containing all the information of level 2
+//When level is equal to 2, an arena with these objects and conditions are drawn
 	public void level2() {
-
+		//Makes one blue enemy tank and adds to tanklist
 		blueTank1 =  new AITank(TankType.BLUE, 20, 10, walls); //TODO choose coordinates
 		tankList.add(blueTank1);
 		
@@ -167,11 +186,14 @@ public class Arena
 			}
 		}	
 	}
-
+//Method containing all the information of level 3
+//When level is equal to 3, an arena with these objects and conditions are drawn
 	public void level3() {
-
+		//Makes one blue enemy tank and adds to tanklist
 		blueTank1 =  new AITank(TankType.BLUE, 20, 5, walls); //TODO choose coordinates
+		//Makes one red enemy tank and adds to tanklist
 		redTank1 =  new AITank(TankType.RED, 20, 13, walls); //TODO choose coordinates
+		//Makes one red enemy tank and adds to tanklist
 		redTank2 =  new AITank(TankType.RED, 5, 5, walls); //TODO choose coordinates
 		tankList.add(blueTank1);
 		tankList.add(redTank1);
@@ -216,7 +238,8 @@ public class Arena
 		}
 
 	}
-
+	//Method containing all the information of level 4
+	//When level is equal to 4, an arena with these objects and conditions are drawn
 	public void level4() {
 
 		for(int i = 1; i<9; i++) {
@@ -290,7 +313,8 @@ public class Arena
 
 
 	}
-
+	//Method containing all the information of level 5
+	//When level is equal to 5, an arena with these objects and conditions are drawn
 	public void level5() {
 
 		walls[9][3] = new Wall(9, 3, true);
@@ -359,13 +383,16 @@ public class Arena
 
 
 	}
-
+	//Sets amount a certain tank has to move based on keypress
+	//Calls the player tanks setInputMoveArr which takes the information of how to move
+	//Everytime tank is moved, actual x and y loc changes provided are executed
 	public void setInputMoveArr(int[] inInputMoveArr){
 		playerTank.setInputMoveArr(inInputMoveArr);
 	}
 
+	//Returns x location of playerTank
 	public int playerTankLocX() {return playerTank.getX();}
-
+	//Returns y location of playerTank
 	public int playerTankLocY() {return playerTank.getY();}
 
 
