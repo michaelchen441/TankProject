@@ -1,14 +1,14 @@
 import java.awt.Graphics;
 
-public class AITank extends Tank
+public class AITank extends Tank //AI Tank is a specific type of Tank
 {
-	int turretAngle;
-	int xLoc;
-	int yLoc;
+	double turretAngle; //Angle of turret in radians
+	int xLoc; //X Location of AITank
+	int yLoc; //Y Location of AITank
 	
 	public AITank(TankType inType, int x, int y, Wall[][] walls)
 	{
-		super(walls);
+		super(walls); // Calls superclass contructor
 		alive = true;
 		type = inType;
 		xLoc = x*50;
