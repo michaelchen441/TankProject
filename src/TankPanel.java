@@ -47,24 +47,7 @@ public class TankPanel extends JPanel {
 	Arena level2Arena;
 	Arena level3Arena;
 
-
-
-	static ImageLibrary imageLibrary;
-	static BufferedImage background;
-	static BufferedImage crosshair;
-	static BufferedImage turret;
-	static BufferedImage projectile;
-	static BufferedImage indestructableWall;
-	static BufferedImage destructableWall;
-	static BufferedImage greenTank;
-	static BufferedImage redTank;
-	static BufferedImage blueTank;
-	static BufferedImage blackTank;
-	static BufferedImage greenTurret;
-	static BufferedImage redTurret;
-	static BufferedImage blueTurret;
-	static BufferedImage blackTurret;
-
+	ImageLibrary imageLibrary = new ImageLibrary();
 
 	int crosshairX;
 	int crosshairY;
@@ -79,6 +62,7 @@ public class TankPanel extends JPanel {
 	public static void main(String[] args) {
 
 
+		
 		try {
 			// Set System L&F
 			UIManager.setLookAndFeel(
@@ -112,51 +96,12 @@ public class TankPanel extends JPanel {
 		frame.getContentPane().setCursor(blankCursor);
 
 
-
-		try
-		{
-			background = ImageIO.read(new File("images/Background2.png"));	
-			crosshair = ImageIO.read(new File("images/crosshair.png"));		
-			projectile = ImageIO.read(new File("images/projectile.png"));	
-			indestructableWall = ImageIO.read(new File("images/Metal_50x50.jpg"));	
-			destructableWall = ImageIO.read(new File("images/Wood_50x50.png"));
-			greenTank = ImageIO.read(new File("images/50x50 tanks/greenTank.png"));
-			redTank = ImageIO.read(new File("images/50x50 tanks/redTank.png"));	 
-			blueTank = ImageIO.read(new File("images/50x50 tanks/blueTank.png"));	
-			blackTank = ImageIO.read(new File("images/50x50 tanks/blackTank.png"));	
-			greenTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
-			redTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
-			blueTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
-			blackTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
-		}
-		catch (IOException e){
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		imageLibrary.background = background;
-		imageLibrary.crosshair = crosshair;
-		imageLibrary.turret = turret;
-		imageLibrary.projectile = projectile;
-
-		imageLibrary.indestructableWall = indestructableWall;
-		imageLibrary.destructableWall = destructableWall;
-
-		imageLibrary.greenTank = greenTank;
-		imageLibrary.redTank = redTank;
-		imageLibrary.blueTank = blueTank;
-		imageLibrary.blackTank = blackTank;
-
-		imageLibrary.greenTurret = greenTurret;
-		imageLibrary.redTurret = redTurret;
-		imageLibrary.blueTurret = blueTurret;
-		imageLibrary.blackTurret = blackTurret;
-
-
 	}
 	private void setUpKeyMappings() {
 
 		this.getInputMap().put(KeyStroke.getKeyStroke("A"),"left");
 		this.getActionMap().put("left",new AbstractAction(){
+
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -167,6 +112,8 @@ public class TankPanel extends JPanel {
 			}
 		});
 
+		
+		
 		this.getInputMap().put(KeyStroke.getKeyStroke("released A"),"releasedLeft");
 		this.getActionMap().put("releasedLeft",new AbstractAction(){
 
@@ -406,7 +353,7 @@ public class TankPanel extends JPanel {
 			//g.drawLine(level1Arena.playerTankLocX(), level1Arena.playerTankLocY(), crosshairX, crosshairY);
 		}
 
-		g.drawImage(crosshair, crosshairX-10, crosshairY-10, null);
+		g.drawImage(imageLibrary.crosshair, crosshairX-10, crosshairY-10, null);
 
 
 	}

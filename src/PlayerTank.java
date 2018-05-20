@@ -1,19 +1,5 @@
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
-import java.awt.geom.AffineTransform;
-import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.awt.Component;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import java.awt.Image;
 
 public class PlayerTank extends Tank
 {
@@ -107,10 +93,6 @@ public class PlayerTank extends Tank
 
 	}
 
-	private boolean detect(Direction dir, Wall[][] myWalls){
-
-		return false;
-	}
 
 
 	public void setInputMoveArr(int[] inInputMoveArr)

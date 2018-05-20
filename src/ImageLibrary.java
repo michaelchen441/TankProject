@@ -1,64 +1,57 @@
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class ImageLibrary
 {
 	
 	//create all images
-	public static BufferedImage background;
-	public static BufferedImage crosshair;
-	public static BufferedImage turret;
-	public static BufferedImage projectile;
+	public BufferedImage background;
+	public BufferedImage crosshair;
+	public BufferedImage projectile;
 	
-	public static BufferedImage indestructableWall;
-	public static BufferedImage destructableWall;
+	public BufferedImage indestructableWall;
+	public BufferedImage destructableWall;
 	
-	public static BufferedImage greenTank;
-	public static BufferedImage redTank;
-	public static BufferedImage blueTank;
-	public static BufferedImage blackTank;
+	public BufferedImage greenTank;
+	public BufferedImage redTank;
+	public BufferedImage blueTank;
+	public BufferedImage blackTank;
 	
-	public static BufferedImage greenTurret;
-	public static BufferedImage redTurret;
-	public static BufferedImage blueTurret;
-	public static BufferedImage blackTurret;
+	public BufferedImage greenTurret;
+	public BufferedImage redTurret;
+	public BufferedImage blueTurret;
+	public BufferedImage blackTurret;
 	
 
 	// constructed once in tank panel and sent to other classes as an imput in draw methods
-	public ImageLibrary(BufferedImage inCrosshair, 
-						BufferedImage inTurret,
-						BufferedImage inProjectile,
-						
-						BufferedImage inIndestructableWall,
-						BufferedImage inDestructableWall,
-						
-						BufferedImage inGreenTank,
-						BufferedImage inRedTank,
-						BufferedImage inBlueTank,
-						BufferedImage inBlackTank,
-						
-						BufferedImage inGreenTurret,    
-						BufferedImage inRedTurret,      
-						BufferedImage inBlueTurret,     
-						BufferedImage inBlackTurret 
-						
-						)
+	public ImageLibrary()
 	{
-		crosshair = inCrosshair;
-		turret = inTurret;
-		projectile = inProjectile;
+		try
+		{
+			background = ImageIO.read(new File("images/Background2.png"));	
+			crosshair = ImageIO.read(new File("images/crosshair.png"));		
+			projectile = ImageIO.read(new File("images/projectile.png"));	
 		
-		indestructableWall = inIndestructableWall;
-		destructableWall = inDestructableWall;
-		
-		greenTank = inGreenTank;
-		redTank = inRedTank;
-		blueTank = inBlueTank;
-		blackTank = inBlackTank;
-		
-		greenTurret = inGreenTurret;    
-		redTurret = inRedTurret;      
-	 	blueTurret = inBlueTurret;     
-		blackTurret = inBlackTurret;    
+			indestructableWall = ImageIO.read(new File("images/Metal_50x50.jpg"));	
+			destructableWall = ImageIO.read(new File("images/Wood_50x50.png"));
+			
+			greenTank = ImageIO.read(new File("images/50x50 tanks/greenTank.png"));	
+			redTank = ImageIO.read(new File("images/50x50 tanks/redTank.png"));	 
+			blueTank = ImageIO.read(new File("images/50x50 tanks/blueTank.png"));	
+			blackTank = ImageIO.read(new File("images/50x50 tanks/blackTank.png"));	
+			
+			greenTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
+			redTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
+			blueTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
+			blackTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
+		}
+		catch (IOException e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}
