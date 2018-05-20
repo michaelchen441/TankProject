@@ -120,7 +120,6 @@ public class PlayerTank extends Tank
 	}
 
 
-
 	//Establishes the movements that need to be made into the inputMoveArr instance variable for the Playertank object
 	public void setInputMoveArr(int[] inInputMoveArr)
 	{
