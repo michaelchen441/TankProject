@@ -366,7 +366,7 @@ public class TankPanel extends JPanel {
 
 	}
 	protected void tick() {
-		System.out.println("timer has gone off");
+		//System.out.println("timer has gone off");
 		repaint();
 	}
 	public void paintComponent(Graphics g) {
