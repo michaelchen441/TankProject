@@ -227,8 +227,10 @@ public class TankPanel extends JPanel {
 
 				@Override
 				public void mousePressed(MouseEvent e){
-					// TODO Auto-generated method stub
-
+					int Tx = arenaList.get(level).playerTankLocX()+25;
+					int Ty = arenaList.get(level).playerTankLocY()+25;
+					Projectile p = new Projectile(Tx , Ty, Math.atan2(crosshairY - Ty, crosshairX - Tx),7);
+					arenaList.get(level).addProjectile(p);
 				}
 
 				@Override
@@ -268,6 +270,9 @@ public class TankPanel extends JPanel {
 					// send to crosshair
 					crosshairX = e.getX();
 					crosshairY = e.getY();
+					int Tx = arenaList.get(level).playerTankLocX()+25;
+					int Ty = arenaList.get(level).playerTankLocY()+25;
+					arenaList.get(level).playerTank.setTurretAngle(Math.atan2(crosshairY-Ty, crosshairX-Tx));
 
 					//	double Xd =(crosshairX-level1Arena.playerTankLocX()+25);
 					//	double Yd =(crosshairY-level1Arena.playerTankLocX()+25);
@@ -354,7 +359,7 @@ public class TankPanel extends JPanel {
 		}
 
 		g.drawImage(imageLibrary.crosshair, crosshairX-10, crosshairY-10, null);
-
+		
 
 	}
 

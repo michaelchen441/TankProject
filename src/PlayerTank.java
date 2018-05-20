@@ -1,7 +1,8 @@
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.util.ArrayList;
 // Player tank is a type of tank with more specific implementation
 // Player tank characteristics and actions prompted by user input (Keypresses, mouse, etc)
@@ -51,6 +52,9 @@ public class PlayerTank extends Tank
 			yLoc -= inputMoveArr[1]; //Minus equals is used because the way a panel is numbered is top down, not bottom up like a standard set of coordinte axes
 		}
 	}
+	public void setTurretAngle(double angle) {
+		turretAngle = angle;
+	}
 
 
 // Checks which direction to move in based upon what the inputMoveArr contains
@@ -95,7 +99,7 @@ public class PlayerTank extends Tank
 		//Checks to see if the tank has any ammo left in the stockpile to fire
 		if(stockPile.size() > 0) {
 			//if it has space, it will make a new projectile
-			new Projectile(xLoc,yLoc,TankType.GREEN, turretAngle);
+			//new Projectile(xLoc,yLoc,TankType.GREEN, turretAngle);
 			stockPile.remove(stockPile.size()-1); //Removes missile from stockpile
 			//Use this to control reload time
 		}
@@ -105,9 +109,11 @@ public class PlayerTank extends Tank
 	public void draw(Graphics g, ImageLibrary l){
 		move(); //Implements move everytime timer ticks because draw is called everytime it ticks
 		g.drawImage(l.greenTank, xLoc, yLoc, null); //Tank image is drawn based on its x and y location
-		g.drawImage(l.greenTurret, xLoc+15, yLoc-15, null);
-		
-		
+		double locationX = l.greenTurret.getWidth() / 2;
+		double locationY = l.greenTurret.getHeight() / 2;
+		AffineTransform tx = AffineTransform.getRotateInstance(turretAngle+Math.toRadians(90), locationX, locationY);
+		AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+		g.drawImage(op.filter(l.greenTurret, null), xLoc+15, yLoc-15, null);
 		
 		//TODO draw turret		
 

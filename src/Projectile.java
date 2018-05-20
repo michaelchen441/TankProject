@@ -1,19 +1,20 @@
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Projectile
 {
-		int xLoc;
-		int yLoc;
+		double xLoc;
+		double yLoc;
+		double speed;
 		TankType color;
 		double angle;
 		
-	public Projectile(int x, int y, TankType myType, double a)
+	public Projectile(int x, int y, double a, double s)
 	{
 		xLoc = x;
 		yLoc = y;
-		color = myType;
 		angle = a;
-	
+		speed = s;
 		
 	}
 	
@@ -26,8 +27,14 @@ public class Projectile
 //		AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
 //		AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
 //		g.drawImage(op.filter(l.projectile, null), xLoc, yLoc, null);	
-		
-
+		g.setColor(Color.BLACK);
+		g.fillRect((int)(xLoc), (int)(yLoc), 15, 15);
 		}
 	
+	void move() {
+		xLoc+=speed*Math.cos(angle);
+		System.out.println(angle);
+		yLoc+=speed*Math.sin(angle);
+		System.out.println(angle);
+	}
 }
