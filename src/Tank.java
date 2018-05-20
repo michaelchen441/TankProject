@@ -80,51 +80,71 @@ public abstract class Tank
 	 * Multiplies r and c by 50 because each cell is 50 pixels wide; 
 	 */
 	private boolean checkWest(Wall[][] walls) { 
-		for(int r = 0; r<walls.length; r++) 
-			for(int c = 0; c<walls[r].length; c++) 
-				if(walls[r][c] != null) 
+		for(int r = 0; r<walls.length; r++) { 
+			for(int c = 0; c<walls[r].length; c++) {
+				if(walls[r][c] != null) {
 		//Checks if the certain wall is west of the tank by adding 50 in the x direction to a walls location
-					if(xLoc == (c*50)+50) 
+					if(xLoc == (c*50)+50) {
 		//Checks both edges of tank to see if they are within the borders of the west wall, including the endpoints of the wall				
-						if(yLoc >= r*50 && yLoc <= (r*50)+50 || yLoc+50 >= r*50 && yLoc+50 <= (r*50)+50)
+						if(yLoc >= r*50 && yLoc <= (r*50)+50 || yLoc+50 >= r*50 && yLoc+50 <= (r*50)+50) {
 							return false;
+						}
+					}
+				}
+			}
+		}
 		return true;
 	}
 
 	private boolean checkSouth(Wall[][] walls) {
-		for(int r = 0; r<walls.length; r++) 
-			for(int c = 0; c<walls[r].length; c++) 
-				if(walls[r][c] != null) 
+		for(int r = 0; r<walls.length; r++) {
+			for(int c = 0; c<walls[r].length; c++) {
+				if(walls[r][c] != null) {
 		//Checks if the certain wall is south of the tank by adding 50 in the y direction to tank's location			
-					if(yLoc+50 == r*50) 
+					if(yLoc+50 == r*50) {
 		//Checks both edges of tank to see if they are within the borders of the south wall, including the endpoints of the wall					
-						if(xLoc >= c*50 && xLoc <= (c*50)+50 || xLoc+50 >= c*50 && xLoc+50 <= (c*50)+50)
+						if(xLoc >= c*50 && xLoc <= (c*50)+50 || xLoc+50 >= c*50 && xLoc+50 <= (c*50)+50) {
 							return false;
-
+						}
+					}
+				}
+			}
+		}
 		return true;
+
 	}
 
 	private boolean checkEast(Wall[][] walls) {
-		for(int r = 0; r<walls.length; r++) 
-			for(int c = 0; c<walls[r].length; c++) 
-				if(walls[r][c] != null) 
+		for(int r = 0; r<walls.length; r++) { 
+			for(int c = 0; c<walls[r].length; c++) {
+				if(walls[r][c] != null) {
 		//Checks if the certain wall is east of the tank by adding 50 in the x direction to tank's location			
-					if(xLoc+50 == c*50) 
+					if(xLoc+50 == c*50) {
 		//Checks both edges of tank to see if they are within the borders of the East wall, including the endpoints of the wall					
-						if(yLoc >= r*50 && yLoc <= (r*50)+50 || yLoc+50 >= r*50 && yLoc+50 <= (r*50)+50)
+						if(yLoc >= r*50 && yLoc <= (r*50)+50 || yLoc+50 >= r*50 && yLoc+50 <= (r*50)+50) {
 							return false;
+						}
+					}
+				}
+			}
+		}				
 		return true;
 	}
 
 	private boolean checkNorth(Wall[][] walls) {
-		for(int r = 0; r<walls.length; r++) 
-			for(int c = 0; c<walls[r].length; c++) 
-				if(walls[r][c] != null) 
+		for(int r = 0; r<walls.length; r++) { 
+			for(int c = 0; c<walls[r].length; c++) {
+				if(walls[r][c] != null) {
 		//Checks if the certain wall is North of the tank by adding 50 in the x direction to tank's location	
-					if(yLoc == (r*50)+50) 
+					if(yLoc == (r*50)+50) {
 		//Checks both edges of tank to see if they are within the borders of the North wall, including the endpoints of the wall	
-						if(xLoc >= c*50 && xLoc <= (c*50)+50 || xLoc+50 >= c*50 && xLoc+50 <= (c*50)+50)
+						if(xLoc >= c*50 && xLoc <= (c*50)+50 || xLoc+50 >= c*50 && xLoc+50 <= (c*50)+50) {
 							return false;
+						}
+					}
+				}
+			}
+		}
 		return true;
 
 	}
