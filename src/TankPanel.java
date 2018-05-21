@@ -274,8 +274,7 @@ public class TankPanel extends JPanel {
 				}
 
 				@Override
-				public void mouseMoved(MouseEvent e)
-				{
+				public void mouseMoved(MouseEvent e){
 					// send to crosshair
 					crosshairX = e.getX();
 					crosshairY = e.getY();
