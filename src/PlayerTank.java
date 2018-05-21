@@ -8,11 +8,18 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.awt.Component;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
 import java.awt.Image;
 
 
@@ -115,10 +122,10 @@ public class PlayerTank extends Tank
 	}
 
 	//Firing method
-	public void fire()
+	public void fire() throws Exception
 	{
 		//Checks to see if the tank has any ammo left in the stockpile to fire
-		if(stockPile.size() < 6) {
+		if(stockPile.size() < 5) {
 			
 			for(Projectile projectile: stockPile){
 				if (! projectile.active){
@@ -132,8 +139,15 @@ public class PlayerTank extends Tank
 			Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2((targetY - turretCenterY), targetX - turretCenterX),7);
 			stockPile.add(p);
 			
+			String wav_file = "images\\Audio\\glocksound.wav";
+			
+			InputStream in = new FileInputStream(wav_file);
+			
+			AudioStream audio = new AudioStream(in);
+			AudioPlayer.player.start(audio);
 			
 		}
+		
 
 	}
 
