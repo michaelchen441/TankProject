@@ -32,15 +32,9 @@ public class PlayerTank extends Tank
 
 	//Number of times the tank has tried to move
 	int numMoveTries = 0;
-<<<<<<< HEAD
-
 	int turretCenterX;
 	int turretCenterY;
-	int targetX;
-	int targetY;
-=======
 	
->>>>>>> branch 'master' of https://github.com/michaelchen441/TankProject.git
 
 	public PlayerTank(int inX, int inY, Wall[][] walls)
 	{
@@ -132,11 +126,12 @@ public class PlayerTank extends Tank
 
 
 			//if it has space, it will make a new projectile
-<<<<<<< HEAD
-			Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2((targetY - turretCenterY), targetX - turretCenterX),7, wallArray);
-=======
-			Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2((targetY - turretCenterY), targetX - turretCenterX), type);
->>>>>>> branch 'master' of https://github.com/michaelchen441/TankProject.git
+			System.out.println("target x is " + targetX);
+			System.out.println(" target y is " + targetY);
+			System.out.println("turretCenterY is " + turretCenterY);
+			System.out.println("turretCenterX is " + turretCenterX);
+			Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2((targetY - turretCenterY), targetX - turretCenterX),type, wallArray);
+
 			stockPile.add(p);
 
 
@@ -151,10 +146,7 @@ public class PlayerTank extends Tank
 		for(Projectile p : stockPile) {
 			p.move();
 			p.draw(g, l);
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/michaelchen441/TankProject.git
 		}
 			
 		
