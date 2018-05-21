@@ -238,7 +238,12 @@ public class TankPanel extends JPanel {
 				@Override
 				public void mousePressed(MouseEvent e){
 					
-					arenaList.get(level).playerTank.fire();
+					try {
+						arenaList.get(level).playerTank.fire();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 
 					
 				}
@@ -366,8 +371,8 @@ public class TankPanel extends JPanel {
 
 			arenaList.get(level).draw(g, imageLibrary);
 			g.setColor(Color.WHITE);
-			g.drawLine(arenaList.get(level).playerTankLocX()+25, arenaList.get(level).playerTankLocY()+25, crosshairX, crosshairY);		
-
+					
+			//g.drawLine(arenaList.get(level).playerTankLocX()+25, arenaList.get(level).playerTankLocY()+25, crosshairX, crosshairY);
 			arenaList.get(level).playerTank.setTurretAngleByTarget(crosshairX, crosshairY);
 			
 			//g.drawLine(level1Arena.playerTankLocX(), level1Arena.playerTankLocY(), crosshairX, crosshairY);

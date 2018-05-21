@@ -137,9 +137,9 @@ public class PlayerTank extends Tank
 			Projectile p = new Projectile(projectileX, projectileY, Math.atan2((targetY - turretCenterY), targetX - turretCenterX), type);
 			stockPile.add(p);
 			
-			String wav_file = "images\\Audio\\glocksound.wav";
+			String wav_file = "images/Audio/glocksound.wav";
 			
-			InputStream in = new FileInputStream(wav_file);
+			InputStream in = getClass().getResourceAsStream(wav_file);
 			
 			AudioStream audio = new AudioStream(in);
 			AudioPlayer.player.start(audio);
