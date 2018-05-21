@@ -22,6 +22,7 @@ public class Arena
 	int numWallsAcross; // Dimensions across
 	int numWallsDown;	// Dimensions down
 	ArrayList<Projectile> projectiles;
+	public boolean advanceLevel;
 
 // Arena Constructor
 	public Arena(int inLevel, int inNumWallsAcross, int  inNumWallsDown) {
@@ -33,6 +34,8 @@ public class Arena
 		
 		//Construct 2D Area of walls
 		walls = new Wall[numWallsDown][numWallsAcross];
+		
+		advanceLevel = false;
 
 
 		//sets up border walls
@@ -106,7 +109,7 @@ public class Arena
 			}
 		}
 		if(allDead){
-			level++;
+			advanceLevel = true;
 		}
 		for(Projectile p : projectiles) {
 			p.move();

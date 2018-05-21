@@ -100,6 +100,7 @@ public class TankPanel extends JPanel {
 	private void setUpKeyMappings() {
 
 		this.getInputMap().put(KeyStroke.getKeyStroke("A"),"left");
+		this.getInputMap().put(KeyStroke.getKeyStroke("LEFT"),"left");
 		this.getActionMap().put("left",new AbstractAction(){
 
 
@@ -115,6 +116,7 @@ public class TankPanel extends JPanel {
 		
 		
 		this.getInputMap().put(KeyStroke.getKeyStroke("released A"),"releasedLeft");
+		this.getInputMap().put(KeyStroke.getKeyStroke("released LEFT"),"releasedLeft");
 		this.getActionMap().put("releasedLeft",new AbstractAction(){
 
 			@Override
@@ -128,6 +130,7 @@ public class TankPanel extends JPanel {
 
 
 		this.getInputMap().put(KeyStroke.getKeyStroke("D"),"right");
+		this.getInputMap().put(KeyStroke.getKeyStroke("RIGHT"),"right");
 		this.getActionMap().put("right",new AbstractAction(){
 
 			@Override
@@ -140,6 +143,7 @@ public class TankPanel extends JPanel {
 		});
 
 		this.getInputMap().put(KeyStroke.getKeyStroke("released D"),"releasedRight");
+		this.getInputMap().put(KeyStroke.getKeyStroke("released RIGHT"),"releasedRight");
 		this.getActionMap().put("releasedRight",new AbstractAction(){
 
 			@Override
@@ -152,6 +156,7 @@ public class TankPanel extends JPanel {
 		});
 
 		this.getInputMap().put(KeyStroke.getKeyStroke("W"),"up");
+		this.getInputMap().put(KeyStroke.getKeyStroke("UP"),"up");
 		this.getActionMap().put("up",new AbstractAction(){
 
 			@Override
@@ -165,6 +170,7 @@ public class TankPanel extends JPanel {
 		});
 
 		this.getInputMap().put(KeyStroke.getKeyStroke("released W"),"releasedUp");
+		this.getInputMap().put(KeyStroke.getKeyStroke("released UP"),"releasedUp");
 		this.getActionMap().put("releasedUp",new AbstractAction(){
 
 			@Override
@@ -178,6 +184,7 @@ public class TankPanel extends JPanel {
 		});
 
 		this.getInputMap().put(KeyStroke.getKeyStroke("S"),"down");
+		this.getInputMap().put(KeyStroke.getKeyStroke("DOWN"),"down");
 		this.getActionMap().put("down",new AbstractAction(){
 
 			@Override
@@ -189,6 +196,7 @@ public class TankPanel extends JPanel {
 		});
 
 		this.getInputMap().put(KeyStroke.getKeyStroke("released S"),"releasedDown");
+		this.getInputMap().put(KeyStroke.getKeyStroke("released DOWN"),"releasedDown");
 		this.getActionMap().put("releasedDown",new AbstractAction(){
 
 			@Override
@@ -223,14 +231,16 @@ public class TankPanel extends JPanel {
 						}
 					}
 					//TODO if() for levels to create projectile
+				
+				
 				}
 
 				@Override
 				public void mousePressed(MouseEvent e){
-					int Tx = arenaList.get(level).playerTankLocX()+25;
-					int Ty = arenaList.get(level).playerTankLocY()+25;
-					Projectile p = new Projectile(Tx , Ty, Math.atan2(crosshairY - Ty, crosshairX - Tx),7);
-					arenaList.get(level).addProjectile(p);
+//					int Tx = arenaList.get(level).playerTankLocX()+25;
+//					int Ty = arenaList.get(level).playerTankLocY()+25;
+//					Projectile p = new Projectile(Tx , Ty, Math.atan2(crosshairY - Ty, crosshairX - Tx),7);
+//					arenaList.get(level).addProjectile(p);
 				}
 
 				@Override
@@ -270,9 +280,9 @@ public class TankPanel extends JPanel {
 					// send to crosshair
 					crosshairX = e.getX();
 					crosshairY = e.getY();
-					int Tx = arenaList.get(level).playerTankLocX()+25;
-					int Ty = arenaList.get(level).playerTankLocY()+25;
-					arenaList.get(level).playerTank.setTurretAngle(Math.atan2(crosshairY-Ty, crosshairX-Tx));
+//					int Tx = arenaList.get(level).playerTankLocX()+25;
+//					int Ty = arenaList.get(level).playerTankLocY()+25;
+//					arenaList.get(level).playerTank.setTurretAngle(Math.atan2(crosshairY-Ty, crosshairX-Tx));
 
 					//	double Xd =(crosshairX-level1Arena.playerTankLocX()+25);
 					//	double Yd =(crosshairY-level1Arena.playerTankLocX()+25);
@@ -349,12 +359,17 @@ public class TankPanel extends JPanel {
 				level1FirstTime = false;
 
 			}
-			level = arenaList.get(level).level;
+			if(arenaList.get(level).advanceLevel){
+				level++;
+			}
+			
 
 			arenaList.get(level).draw(g, imageLibrary);
 			g.setColor(Color.WHITE);
 			g.drawLine(arenaList.get(level).playerTankLocX()+25, arenaList.get(level).playerTankLocY()+25, crosshairX, crosshairY);		
 
+			arenaList.get(level).playerTank.setTurretAngleByTarget(crosshairX, crosshairY);
+			
 			//g.drawLine(level1Arena.playerTankLocX(), level1Arena.playerTankLocY(), crosshairX, crosshairY);
 		}
 
