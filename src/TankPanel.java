@@ -27,7 +27,7 @@ public class TankPanel extends JPanel {
 
 	boolean inMenu = true;
 
-	int level = 0; // initialize at 0, menu ending changes to 1
+	int level = -1; // initialize at 1, menu ending changes to 0
 	boolean level1FirstTime = true;
 
 	public static int panelWidth = 1400;
@@ -227,7 +227,7 @@ public class TankPanel extends JPanel {
 								)
 						{
 							inMenu = false;
-							level = 1;
+							level = 0;
 						}
 					}
 					//TODO if() for levels to create projectile
@@ -237,6 +237,7 @@ public class TankPanel extends JPanel {
 
 				@Override
 				public void mousePressed(MouseEvent e){
+					
 					arenaList.get(level).playerTank.fire();
 
 					
@@ -347,8 +348,8 @@ public class TankPanel extends JPanel {
 			if(level1FirstTime){
 				
 				level1Arena = new Arena(1, numWallsAcross, numWallsDown);
-				level2Arena = new Arena(1, numWallsAcross, numWallsDown);
-				level3Arena = new Arena(1, numWallsAcross, numWallsDown);
+				level2Arena = new Arena(2, numWallsAcross, numWallsDown);
+				level3Arena = new Arena(3, numWallsAcross, numWallsDown);
 				
 				arenaList.add(level1Arena);
 				arenaList.add(level2Arena);
@@ -361,11 +362,11 @@ public class TankPanel extends JPanel {
 				level++;
 			}
 			
-
+			
 			arenaList.get(level).draw(g, imageLibrary);
 			g.setColor(Color.WHITE);
-			g.drawLine(arenaList.get(level).playerTankLocX()+25, arenaList.get(level).playerTankLocY()+25, crosshairX, crosshairY);		
-
+					
+			//g.drawLine(arenaList.get(level).playerTankLocX()+25, arenaList.get(level).playerTankLocY()+25, crosshairX, crosshairY);
 			arenaList.get(level).playerTank.setTurretAngleByTarget(crosshairX, crosshairY);
 			
 			//g.drawLine(level1Arena.playerTankLocX(), level1Arena.playerTankLocY(), crosshairX, crosshairY);

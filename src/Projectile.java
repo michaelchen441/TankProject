@@ -35,8 +35,8 @@ public class Projectile
 	
 	void move() {
 		xLoc+=speed*Math.cos(angle);
-		System.out.println(angle);
+		//System.out.println(angle);
 		yLoc+=speed*Math.sin(angle);
-		System.out.println(angle);
+		//System.out.println(angle);
 	}
 }
