@@ -1,9 +1,22 @@
-
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
+import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.awt.Component;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import java.awt.Image;
+
+
+
 // Player tank is a type of tank with more specific implementation
 // Player tank characteristics and actions prompted by user input (Keypresses, mouse, etc)
 public class PlayerTank extends Tank
@@ -16,11 +29,15 @@ public class PlayerTank extends Tank
 	public int[] inputMoveArr;
 	//All the walls the tank needs to account for in the arena
 	Wall[][] wallArray;
-	
+
 	//Number of times the tank has tried to move
 	int numMoveTries = 0;
 	
-	
+	int turretCenterX;
+	int turretCenterY;
+	int targetX;
+	int targetY;
+
 	public PlayerTank(int inX, int inY, Wall[][] walls)
 	{
 		super(walls); //Superclass constructor to receive all the walls
@@ -29,6 +46,10 @@ public class PlayerTank extends Tank
 		//multiples so they can be set up with the same grid as walls
 		xLoc = inX * 50; 
 		yLoc = inY * 50;
+		turretCenterX = xLoc+25;
+		turretCenterY = yLoc+25;
+		targetX = 0;
+		targetY = 0;
 		direction = Direction.EAST;//Initial direction set to EAST
 		wallArray = walls;
 		inputMoveArr = new int[2];//Initializes array containing necessary information about moves in x and y locations
@@ -36,7 +57,7 @@ public class PlayerTank extends Tank
 
 	}
 
-// Move function for tank; dependent on direction and inputMoveArr which depend on keys pressed
+	// Move function for tank; dependent on direction and inputMoveArr which depend on keys pressed
 	public void move(){
 		//Everytime a tank moves, the number of times it has tried increments 
 		numMoveTries++;
@@ -52,16 +73,16 @@ public class PlayerTank extends Tank
 			yLoc -= inputMoveArr[1]; //Minus equals is used because the way a panel is numbered is top down, not bottom up like a standard set of coordinte axes
 		}
 	}
-	public void setTurretAngle(double angle) {
-		turretAngle = angle;
-	}
+	//	public void setTurretAngle(double angle) {
+	//		turretAngle = angle;
+	//	}
 
 
-// Checks which direction to move in based upon what the inputMoveArr contains
-// The input move array is filled with certain x and y loc changes based on user input
-// Based off of these movements, one can detect which direction the movement will occur in
+	// Checks which direction to move in based upon what the inputMoveArr contains
+	// The input move array is filled with certain x and y loc changes based on user input
+	// Based off of these movements, one can detect which direction the movement will occur in
 	private Direction whichDir(int[] temp) {
-		
+
 		if(temp[0] == 1 && temp[1] == 0) //Moving 1 to the right is moving east
 			return Direction.EAST;
 		if(temp[0] == 0 && temp[1] == 1) //Moving 1 up is moving north
@@ -88,34 +109,64 @@ public class PlayerTank extends Tank
 		return null;
 	}
 
-//Aim method not implemented yet, but based on mouse movement
+	//Aim method not implemented yet, but based on mouse movement
 	public void aim(){
 
 	}
 
-//Firing method
+	//Firing method
 	public void fire()
 	{
 		//Checks to see if the tank has any ammo left in the stockpile to fire
-		if(stockPile.size() > 0) {
+		if(stockPile.size() < 6) {
+			
+			for(Projectile projectile: stockPile){
+				if (! projectile.active){
+					stockPile.remove(projectile); //Removes missile from stockpile
+					//Use this to control reload time
+				}
+			}
+			
+			
 			//if it has space, it will make a new projectile
-			//new Projectile(xLoc,yLoc,TankType.GREEN, turretAngle);
-			stockPile.remove(stockPile.size()-1); //Removes missile from stockpile
-			//Use this to control reload time
+			Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2((targetY - turretCenterY), targetX - turretCenterX),7);
+			stockPile.add(p);
+			
+			
 		}
 
 	}
 
 	public void draw(Graphics g, ImageLibrary l){
 		move(); //Implements move everytime timer ticks because draw is called everytime it ticks
-		g.drawImage(l.greenTank, xLoc, yLoc, null); //Tank image is drawn based on its x and y location
-		double locationX = l.greenTurret.getWidth() / 2;
-		double locationY = l.greenTurret.getHeight() / 2;
-		AffineTransform tx = AffineTransform.getRotateInstance(turretAngle+Math.toRadians(90), locationX, locationY);
-		AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-		g.drawImage(op.filter(l.greenTurret, null), xLoc+15, yLoc-15, null);
-		
-		//TODO draw turret		
+		g.drawImage(l.greenTank, xLoc, yLoc, null);
+
+		{	// draw turret
+			Graphics2D	g2D = (Graphics2D)g;
+			AffineTransform	backupAT = g2D.getTransform();
+			AffineTransform	theAT = new AffineTransform();
+
+			int xTurretImageLoc = xLoc + 15;
+			int yTurretImageLoc = yLoc - 15;
+			int	xTurretRotateOffset = 10;
+			int yTurretRotateOffset = 40;
+
+			theAT.rotate((Math.PI * 0.5) - turretAngle,	xTurretImageLoc + xTurretRotateOffset,
+					yTurretImageLoc + yTurretRotateOffset);
+
+			g2D.transform(theAT);
+			g.drawImage(l.greenTurret, xTurretImageLoc, yTurretImageLoc, null);
+
+			g2D.setTransform(backupAT);
+		}
+
+
+		// draw projectiles	
+		for(Projectile p : stockPile) {
+			p.move();
+			p.draw(g, l);
+			
+		}
 
 	}
 
@@ -128,13 +179,24 @@ public class PlayerTank extends Tank
 
 	}
 
-//Returns x and y locations (getters)
+	//Returns x and y locations (getters)
 	public int getY() {return yLoc;}
 
 
 	public int getX() {return xLoc;}
-	
-	
+
+	public void setTurretAngleByTarget(int inTargetX, int inTargetY)
+	{
+		targetX = inTargetX;
+		targetY = inTargetY;
+		turretCenterX = xLoc + 25;	// should be width / 2
+		turretCenterY = yLoc + 25;	// should be height / 2
+		turretAngle = Math.atan2(-(inTargetY - turretCenterY), inTargetX - turretCenterX);
+
+
+	}
+
+
 }
 
 
