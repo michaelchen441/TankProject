@@ -123,13 +123,10 @@ public class PlayerTank extends Tank
 					//Use this to control reload time
 				}
 			}
-
-
+			
+			
 			//if it has space, it will make a new projectile
-			System.out.println("target x is " + targetX);
-			System.out.println(" target y is " + targetY);
-			System.out.println("turretCenterY is " + turretCenterY);
-			System.out.println("turretCenterX is " + turretCenterX);
+			
 			Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2((targetY - turretCenterY), targetX - turretCenterX),type, wallArray);
 
 			stockPile.add(p);

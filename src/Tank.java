@@ -182,7 +182,7 @@ public abstract class Tank
 	 */
 	abstract void move();
 	abstract void aim();
-	abstract void fire();
+	abstract void fire() throws Exception;
 	abstract void draw(Graphics g, ImageLibrary l);
 
 

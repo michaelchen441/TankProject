@@ -36,20 +36,21 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 	
 	void draw(Graphics g, ImageLibrary l)
 	{
-		//Draws a red tank if prompted
-		if(type.equals(TankType.RED)){
-			g.drawImage(l.redTank, xLoc, yLoc, null);
-		}
-		//Draws a blue tank if prompted
-		if(type.equals(TankType.BLUE)){
-			g.drawImage(l.blueTank, xLoc, yLoc, null);
-		}
-		//Draws a black tank if prompted
-		if(type.equals(TankType.BLACK)){
-			g.drawImage(l.blackTank, xLoc, yLoc, null);
-		}
+//		//Draws a red tank if prompted
+//		if(type.equals(TankType.RED)){
+//			g.drawImage(l.redTank, xLoc, yLoc, null);
+//		}
+//		//Draws a blue tank if prompted
+//		if(type.equals(TankType.BLUE)){
+//			g.drawImage(l.blueTank, xLoc, yLoc, null);
+//		}
+//		//Draws a black tank if prompted
+//		if(type.equals(TankType.BLACK)){
+//			g.drawImage(l.blackTank, xLoc, yLoc, null);
+//		}
 	
 	}
+	
 	
 	
 }
