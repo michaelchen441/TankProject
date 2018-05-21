@@ -128,7 +128,7 @@ public class PlayerTank extends Tank
 
 
 			//if it has space, it will make a new projectile
-			Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2((targetY - turretCenterY), targetX - turretCenterX),7);
+			Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2((targetY - turretCenterY), targetX - turretCenterX),7, wallArray);
 			stockPile.add(p);
 
 
