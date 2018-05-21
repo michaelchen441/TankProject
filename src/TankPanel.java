@@ -237,10 +237,9 @@ public class TankPanel extends JPanel {
 
 				@Override
 				public void mousePressed(MouseEvent e){
-//					int Tx = arenaList.get(level).playerTankLocX()+25;
-//					int Ty = arenaList.get(level).playerTankLocY()+25;
-//					Projectile p = new Projectile(Tx , Ty, Math.atan2(crosshairY - Ty, crosshairX - Tx),7);
-//					arenaList.get(level).addProjectile(p);
+					arenaList.get(level).playerTank.fire();
+
+					
 				}
 
 				@Override

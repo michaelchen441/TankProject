@@ -32,7 +32,11 @@ public class PlayerTank extends Tank
 
 	//Number of times the tank has tried to move
 	int numMoveTries = 0;
-
+	
+	int turretCenterX;
+	int turretCenterY;
+	int targetX;
+	int targetY;
 
 	public PlayerTank(int inX, int inY, Wall[][] walls)
 	{
@@ -42,6 +46,10 @@ public class PlayerTank extends Tank
 		//multiples so they can be set up with the same grid as walls
 		xLoc = inX * 50; 
 		yLoc = inY * 50;
+		turretCenterX = xLoc+25;
+		turretCenterY = yLoc+25;
+		targetX = 0;
+		targetY = 0;
 		direction = Direction.EAST;//Initial direction set to EAST
 		wallArray = walls;
 		inputMoveArr = new int[2];//Initializes array containing necessary information about moves in x and y locations
@@ -110,11 +118,21 @@ public class PlayerTank extends Tank
 	public void fire()
 	{
 		//Checks to see if the tank has any ammo left in the stockpile to fire
-		if(stockPile.size() > 0) {
+		if(stockPile.size() < 6) {
+			
+			for(Projectile projectile: stockPile){
+				if (! projectile.active){
+					stockPile.remove(projectile); //Removes missile from stockpile
+					//Use this to control reload time
+				}
+			}
+			
+			
 			//if it has space, it will make a new projectile
-			//new Projectile(xLoc,yLoc,TankType.GREEN, turretAngle);
-			stockPile.remove(stockPile.size()-1); //Removes missile from stockpile
-			//Use this to control reload time
+			Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2((targetY - turretCenterY), targetX - turretCenterX),7);
+			stockPile.add(p);
+			
+			
 		}
 
 	}
@@ -143,7 +161,12 @@ public class PlayerTank extends Tank
 		}
 
 
-		//TODO draw turret		
+		// draw projectiles	
+		for(Projectile p : stockPile) {
+			p.move();
+			p.draw(g, l);
+			
+		}
 
 	}
 
@@ -164,8 +187,10 @@ public class PlayerTank extends Tank
 
 	public void setTurretAngleByTarget(int inTargetX, int inTargetY)
 	{
-		int	turretCenterX = xLoc + 25;	// should be width / 2
-		int	turretCenterY = yLoc + 25;	// should be height / 2
+		targetX = inTargetX;
+		targetY = inTargetY;
+		turretCenterX = xLoc + 25;	// should be width / 2
+		turretCenterY = yLoc + 25;	// should be height / 2
 		turretAngle = Math.atan2(-(inTargetY - turretCenterY), inTargetX - turretCenterX);
 
 

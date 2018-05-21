@@ -8,9 +8,11 @@ public class Projectile
 		double speed;
 		TankType color;
 		double angle;
+		boolean active;
 		
 	public Projectile(int x, int y, double a, double s)
 	{
+		active = true;
 		xLoc = x;
 		yLoc = y;
 		angle = a;

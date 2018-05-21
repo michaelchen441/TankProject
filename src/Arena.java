@@ -21,7 +21,6 @@ public class Arena
 						 // Dependent on keypressed
 	int numWallsAcross; // Dimensions across
 	int numWallsDown;	// Dimensions down
-	ArrayList<Projectile> projectiles;
 	public boolean advanceLevel;
 
 // Arena Constructor
@@ -71,7 +70,7 @@ public class Arena
 		if(level == 5)
 			level5();
 
-		projectiles = new ArrayList<Projectile>();
+		
 
 	}
 	// Enables access to all walls in a specific arena
@@ -111,11 +110,7 @@ public class Arena
 		if(allDead){
 			advanceLevel = true;
 		}
-		for(Projectile p : projectiles) {
-			p.move();
-			p.draw(g, l);
-			
-		}
+
 
 	}
 
@@ -394,9 +389,7 @@ public class Arena
 	//Returns y location of playerTank
 	public int playerTankLocY() {return playerTank.getY();}
 	
-	public void addProjectile(Projectile p) {
-		projectiles.add(p);
-	}
+
 
 
 
