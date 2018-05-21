@@ -31,22 +31,22 @@ public class ImageLibrary
 	{
 		try
 		{
-			background = ImageIO.read(new File("images/Background2.png"));	
-			crosshair = ImageIO.read(new File("images/crosshair.png"));		
-			projectile = ImageIO.read(new File("images/projectile.png"));	
+			background = ImageIO.read(getClass().getResource("images/Background2.png"));	
+			crosshair = ImageIO.read(getClass().getResource("images/crosshair.png"));		
+			projectile = ImageIO.read(getClass().getResource("images/projectile.png"));	
 		
-			indestructableWall = ImageIO.read(new File("images/Metal_50x50.jpg"));	
-			destructableWall = ImageIO.read(new File("images/Wood_50x50.png"));
+			indestructableWall = ImageIO.read(getClass().getResource("images/Metal_50x50.jpg"));	
+			destructableWall = ImageIO.read(getClass().getResource("images/Wood_50x50.png"));
 			
-			greenTank = ImageIO.read(new File("images/50x50 tanks/greenTank.png"));	
-			redTank = ImageIO.read(new File("images/50x50 tanks/redTank.png"));	 
-			blueTank = ImageIO.read(new File("images/50x50 tanks/blueTank.png"));	
-			blackTank = ImageIO.read(new File("images/50x50 tanks/blackTank.png"));	
+			greenTank = ImageIO.read(getClass().getResource("images/50x50 tanks/greenTank.png"));	
+			redTank = ImageIO.read(getClass().getResource("images/50x50 tanks/redTank.png"));	 
+			blueTank = ImageIO.read(getClass().getResource("images/50x50 tanks/blueTank.png"));	
+			blackTank = ImageIO.read(getClass().getResource("images/50x50 tanks/blackTank.png"));	
 			
-			greenTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
-			redTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
-			blueTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
-			blackTurret = ImageIO.read(new File("images/20x50 turrets/greenTurret.png"));
+			greenTurret = ImageIO.read(getClass().getResource("images/20x50 turrets/greenTurret.png"));
+			redTurret = ImageIO.read(getClass().getResource("images/20x50 turrets/greenTurret.png"));
+			blueTurret = ImageIO.read(getClass().getResource("images/20x50 turrets/greenTurret.png"));
+			blackTurret = ImageIO.read(getClass().getResource("images/20x50 turrets/greenTurret.png"));
 		}
 		catch (IOException e){
 			// TODO Auto-generated catch block
