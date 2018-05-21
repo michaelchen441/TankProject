@@ -22,7 +22,7 @@ import java.awt.Image;
 public class PlayerTank extends Tank
 {
 	ArrayList<Projectile> stockPile = new ArrayList<Projectile>();//List of number of bullets available to fire
-	double turretAngle;//Angle of turret in radians
+	
 	Direction direction;//Direction tank is facing; will use to determine where to move
 	//List of specific movements in x and y directions that need to be added to the tanks location 
 	//Depends on which key is pressed indicating which direction a tank needs to move in
@@ -33,10 +33,6 @@ public class PlayerTank extends Tank
 	//Number of times the tank has tried to move
 	int numMoveTries = 0;
 	
-	int turretCenterX;
-	int turretCenterY;
-	int targetX;
-	int targetY;
 
 	public PlayerTank(int inX, int inY, Wall[][] walls)
 	{
@@ -129,7 +125,7 @@ public class PlayerTank extends Tank
 			
 			
 			//if it has space, it will make a new projectile
-			Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2((targetY - turretCenterY), targetX - turretCenterX),7);
+			Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2((targetY - turretCenterY), targetX - turretCenterX), type);
 			stockPile.add(p);
 			
 			
@@ -139,37 +135,22 @@ public class PlayerTank extends Tank
 
 	public void draw(Graphics g, ImageLibrary l){
 		move(); //Implements move everytime timer ticks because draw is called everytime it ticks
-		g.drawImage(l.greenTank, xLoc, yLoc, null);
-
-		{	// draw turret
-			Graphics2D	g2D = (Graphics2D)g;
-			AffineTransform	backupAT = g2D.getTransform();
-			AffineTransform	theAT = new AffineTransform();
-
-			int xTurretImageLoc = xLoc + 15;
-			int yTurretImageLoc = yLoc - 15;
-			int	xTurretRotateOffset = 10;
-			int yTurretRotateOffset = 40;
-
-			theAT.rotate((Math.PI * 0.5) - turretAngle,	xTurretImageLoc + xTurretRotateOffset,
-					yTurretImageLoc + yTurretRotateOffset);
-
-			g2D.transform(theAT);
-			g.drawImage(l.greenTurret, xTurretImageLoc, yTurretImageLoc, null);
-
-			g2D.setTransform(backupAT);
-		}
-
-
+		
 		// draw projectiles	
 		for(Projectile p : stockPile) {
 			p.move();
 			p.draw(g, l);
-			
 		}
+			
+		
+		g.drawImage(l.greenTank, xLoc, yLoc, null);
+
+		drawTurret(g, l);
+		
+
+
 
 	}
-
 
 	//Establishes the movements that need to be made into the inputMoveArr instance variable for the Playertank object
 	public void setInputMoveArr(int[] inInputMoveArr)
@@ -185,16 +166,7 @@ public class PlayerTank extends Tank
 
 	public int getX() {return xLoc;}
 
-	public void setTurretAngleByTarget(int inTargetX, int inTargetY)
-	{
-		targetX = inTargetX;
-		targetY = inTargetY;
-		turretCenterX = xLoc + 25;	// should be width / 2
-		turretCenterY = yLoc + 25;	// should be height / 2
-		turretAngle = Math.atan2(-(inTargetY - turretCenterY), inTargetX - turretCenterX);
-
-
-	}
+	
 
 
 }

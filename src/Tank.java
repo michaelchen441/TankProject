@@ -1,4 +1,6 @@
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 /* Tank is an abstract class with variations between the 
  implementation of certain methods in 
@@ -16,12 +18,56 @@ public abstract class Tank
 	ArrayList<Projectile> stockPile = new ArrayList<Projectile>(); //Number of bullets available to fire
 	Wall[][] surroundingWalls; //Used to keep track of surrounding walls
 
+	double turretAngle;//Angle of turret in radians
+	int turretCenterX;
+	int turretCenterY;
+	int targetX;
+	int targetY;
+	
 	public Tank(Wall[][] walls) {
 		surroundingWalls = walls; 
 		height = 28; //Fixed height for all tanks
 		width = 56; //Fixed width for all tanks
+		
+		
+	}
+	
+	
+	public void setTurretAngleByTarget(int inTargetX, int inTargetY)
+	{
+		targetX = inTargetX;
+		targetY = inTargetY;
+		turretCenterX = xLoc + 25;	// should be width / 2
+		turretCenterY = yLoc + 25;	// should be height / 2
+		turretAngle = Math.atan2(-(inTargetY - turretCenterY), inTargetX - turretCenterX);
+
+
 	}
 
+	public void drawTurret(Graphics g, ImageLibrary l) //function is called by a tanks draw function
+	{
+		{	// draw turret
+			Graphics2D	g2D = (Graphics2D)g;
+			AffineTransform	backupAT = g2D.getTransform();
+			AffineTransform	theAT = new AffineTransform();
+
+			int xTurretImageLoc = xLoc + 15;
+			int yTurretImageLoc = yLoc - 15;
+			int	xTurretRotateOffset = 10;
+			int yTurretRotateOffset = 40;
+
+			theAT.rotate((Math.PI * 0.5) - turretAngle,	xTurretImageLoc + xTurretRotateOffset,
+					yTurretImageLoc + yTurretRotateOffset);
+
+			g2D.transform(theAT);
+			g.drawImage(l.greenTurret, xTurretImageLoc, yTurretImageLoc, null);
+
+			g2D.setTransform(backupAT);
+		}
+		
+	}
+	
+	
 	public boolean canMove(Direction dir, Wall[][] walls) {
 		//System.out.println("begin wall detection");
 		//If no direction is indicated, movement cannot be checked in any specific direction
