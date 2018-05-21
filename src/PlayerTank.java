@@ -123,7 +123,7 @@ public class PlayerTank extends Tank
 				}
 			}
 			
-			
+			System.out.println("You fired");
 			//if it has space, it will make a new projectile
 			int projectileX = xLoc + 10; //TODO add half of projectile image width to xLoc (change based on angle?)
 			int projectileY = yLoc + 10; //TODO add half of projectile image height to yLoc (change based on angle?)
