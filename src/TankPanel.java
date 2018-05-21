@@ -238,7 +238,12 @@ public class TankPanel extends JPanel {
 				@Override
 				public void mousePressed(MouseEvent e){
 					
-					arenaList.get(level).playerTank.fire();
+					try {
+						arenaList.get(level).playerTank.fire();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 
 					
 				}
@@ -275,8 +280,7 @@ public class TankPanel extends JPanel {
 				}
 
 				@Override
-				public void mouseMoved(MouseEvent e)
-				{
+				public void mouseMoved(MouseEvent e){
 					// send to crosshair
 					crosshairX = e.getX();
 					crosshairY = e.getY();

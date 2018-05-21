@@ -32,6 +32,8 @@ public class PlayerTank extends Tank
 
 	//Number of times the tank has tried to move
 	int numMoveTries = 0;
+	int turretCenterX;
+	int turretCenterY;
 	
 
 	public PlayerTank(int inX, int inY, Wall[][] walls)
@@ -64,11 +66,16 @@ public class PlayerTank extends Tank
 		 * Only moves every other or even tick to slow the movement of the tank
 		 * Tank moves everytime it ticks, but even if the move is called, it may not move anywhere because the inputmoveArr may be [0,0]
 		 */
-		if(canMove(dir,wallArray) && numMoveTries%2 == 0) {
+		if(canMoveX(dir,wallArray) && numMoveTries%2 == 0) {
 			xLoc += inputMoveArr[0];
-			yLoc -= inputMoveArr[1]; //Minus equals is used because the way a panel is numbered is top down, not bottom up like a standard set of coordinte axes
+		}
+		if(canMoveY(dir,wallArray) && numMoveTries%2 == 0) {
+			yLoc -= inputMoveArr[1];
+			 //Minus equals is used because the way a panel is numbered is top down, not bottom up like a standard set of coordinte axes
+
 		}
 	}
+
 	//	public void setTurretAngle(double angle) {
 	//		turretAngle = angle;
 	//	}
@@ -99,12 +106,6 @@ public class PlayerTank extends Tank
 	}
 
 
-	private ArrayList<Direction> touchingWallDirections()
-	{
-		//if(xLoc )
-		return null;
-	}
-
 	//Aim method not implemented yet, but based on mouse movement
 	public void aim(){
 
@@ -115,7 +116,7 @@ public class PlayerTank extends Tank
 	{
 		//Checks to see if the tank has any ammo left in the stockpile to fire
 		if(stockPile.size() < 6) {
-			
+
 			for(Projectile projectile: stockPile){
 				if (! projectile.active){
 					stockPile.remove(projectile); //Removes missile from stockpile
@@ -125,12 +126,12 @@ public class PlayerTank extends Tank
 			
 			System.out.println("You fired");
 			//if it has space, it will make a new projectile
-			int projectileX = xLoc + 10; //TODO add half of projectile image width to xLoc (change based on angle?)
-			int projectileY = yLoc + 10; //TODO add half of projectile image height to yLoc (change based on angle?)
-			Projectile p = new Projectile(projectileX, projectileY, Math.atan2((targetY - turretCenterY), targetX - turretCenterX), type);
+			
+			Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2((targetY - turretCenterY), targetX - turretCenterX),type, wallArray);
+
 			stockPile.add(p);
-			
-			
+
+
 		}
 
 	}
@@ -142,6 +143,7 @@ public class PlayerTank extends Tank
 		for(Projectile p : stockPile) {
 			p.move();
 			p.draw(g, l);
+
 		}
 			
 		

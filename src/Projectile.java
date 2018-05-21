@@ -5,21 +5,24 @@ public class Projectile
 {
 		double xLoc;
 		double yLoc;
-		TankType type;
-		
-		double angle;
+
 		double speed;
-		
+		TankType color;
+		double angle;
 		boolean active;
+		Wall[][] walls;
+		TankType type;
 		int numWallHits;
 		
 		
-	public Projectile(int x, int y, double a, TankType inType)
+	public Projectile(int x, int y, double a, TankType inType, Wall[][] inWalls)
+
 	{
 		xLoc = x;
 		yLoc = y;
+		angle = a;
+		walls = inWalls;
 		type = inType;
-		
 		angle = a;
 		if(type.equals(TankType.GREEN)){
 			speed = 7;
@@ -43,10 +46,22 @@ public class Projectile
 		g.fillRect((int)(xLoc), (int)(yLoc), 15, 15);
 		}
 	
+	
+	
 	void move() {
+		
+		if(!detectedWall()) {
 		xLoc+=speed*Math.cos(angle);
 		//System.out.println(angle);
 		yLoc+=speed*Math.sin(angle);
 		//System.out.println(angle);
+		}
+	}
+
+
+
+	private boolean detectedWall() {
+		
+		return false;
 	}
 }

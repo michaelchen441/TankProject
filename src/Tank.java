@@ -43,7 +43,6 @@ public abstract class Tank
 
 
 	}
-
 	public void drawTurret(Graphics g, ImageLibrary l) //function is called by a tanks draw function
 	{
 		{	// draw turret
@@ -68,63 +67,45 @@ public abstract class Tank
 	}
 	
 	
-	public boolean canMove(Direction dir, Wall[][] walls) {
+	public boolean canMoveX(Direction dir, Wall[][] walls) {
 		//System.out.println("begin wall detection");
 		//If no direction is indicated, movement cannot be checked in any specific direction
-		if(dir == null){
-			//System.out.println("end wall detection: no direction");
+		if(dir == null)
 			return true;
-		}
-		//If tank is facing North, it calls checkNorth method which checks if movement is possible North
-		if(dir == Direction.NORTH) {
-			//System.out.println("end wall detection: north");
-			return checkNorth(walls);
-		}
-		//If tank is facing East, it calls checkEast method which checks if movement is possible East
-		if(dir == Direction.EAST) {
-			//System.out.println("end wall detection: east");
-			return checkEast(walls);
-		}
-		//If tank is facing South, it calls checkSouth method which checks if movement is possible South
-		if(dir == Direction.SOUTH) {
-			//System.out.println("end wall detection: south");
-			return checkSouth(walls);
-		}
-		//If tank is facing West, it calls checkWest method which checks if movement is possible West
-		if(dir == Direction.WEST) {
-			//System.out.println("end wall detection: west");
+		if(dir == Direction.WEST)
 			return checkWest(walls);
-		}
-		//If tank is facing NorthWest, it calls checkNorth and checkWest methods which check if movement is possible NorthWest
-		if(dir == Direction.NORTHWEST){
-			//System.out.println("end wall detection: northwest");
-			return checkNorth(walls) && checkWest(walls);
-		}
-		//If tank is facing NorthEast, it calls checkNorth and checkEast methods which check if movement is possible NorthEast
-		if(dir == Direction.NORTHEAST) {
-			//System.out.println("end wall detection: northeast");
-			return checkNorth(walls) && checkEast(walls);
-		}
-		//If tank is facing SouthWest, it calls checkSouth and checkWest methods which check if movement is possible SouthWest
-		if(dir == Direction.SOUTHWEST) {
-			//System.out.println("end wall detection: southwest");
-			return checkSouth(walls) && checkWest(walls);
-		}
-		//If tank is facing SouthEast, it calls checkSouth and checkEast methods which check if movement is possible SouthEast
-		if(dir == Direction.SOUTHEAST) {
-			//System.out.println("end wall detection: southeast");
-			return checkSouth(walls) && checkEast(walls);
-		}
-
-
-		//System.out.println("end wall detection");
+		if(dir == Direction.EAST)
+			return checkEast(walls);
+		if(dir == Direction.SOUTHEAST)
+			return checkEast(walls);
+		if(dir == Direction.SOUTHWEST)
+			return checkWest(walls);
+		if(dir == Direction.NORTHWEST)
+			return checkWest(walls);
+		if(dir == Direction.NORTHEAST)
+			return checkEast(walls);
+		return true;
+		
+	}
+	
+	public boolean canMoveY(Direction dir, Wall[][] walls) {
+		if(dir == null)
+			return true;
+		if(dir == Direction.NORTH)
+			return checkNorth(walls);
+		if(dir == Direction.SOUTH)
+			return checkSouth(walls);
+		if(dir == Direction.SOUTHEAST)
+			return checkSouth(walls);
+		if(dir == Direction.SOUTHWEST)
+			return checkSouth(walls);
+		if(dir == Direction.NORTHWEST)
+			return checkNorth(walls);
+		if(dir == Direction.NORTHEAST)
+			return checkNorth(walls);
 		return true;
 	}
-	/*All check direction methods
-	 * Take in all walls in arena
-	 * Checks every wall in the 2d array by detecting if the cell in the 2D array is not null
-	 * Multiplies r and c by 50 because each cell is 50 pixels wide; 
-	 */
+	
 	private boolean checkWest(Wall[][] walls) { 
 		for(int r = 0; r<walls.length; r++) { 
 			for(int c = 0; c<walls[r].length; c++) {
@@ -141,7 +122,40 @@ public abstract class Tank
 		}
 		return true;
 	}
+	private boolean checkEast(Wall[][] walls) {
 
+		for(int r = 0; r<walls.length; r++) { 
+			for(int c = 0; c<walls[r].length; c++) {
+				if(walls[r][c] != null) {
+					//Checks if the certain wall is east of the tank by adding 50 in the x direction to tank's location			
+					if(xLoc+50 == c*50) {
+						//Checks both edges of tank to see if they are within the borders of the East wall, including the endpoints of the wall					
+						if(yLoc > (r*50)-50 && yLoc < (r*50)+50){	
+							return false;
+						}
+					}
+				}
+			}
+		}				
+		return true;
+	}
+	private boolean checkNorth(Wall[][] walls) {
+		for(int r = 0; r<walls.length; r++) { 
+			for(int c = 0; c<walls[r].length; c++) {
+				if(walls[r][c] != null) {
+					//Checks if the certain wall is North of the tank by adding 50 in the x direction to tank's location	
+					if(yLoc == (r*50)+50) {
+						//Checks both edges of tank to see if they are within the borders of the North wall, including the endpoints of the wall	
+						if(xLoc > (c*50)-50 && xLoc < (c*50)+50){
+							return false;
+						}
+					}
+				}
+			}
+		}
+		return true;
+ 
+	}
 	private boolean checkSouth(Wall[][] walls) {
 		for(int r = 0; r<walls.length; r++) {
 			for(int c = 0; c<walls[r].length; c++) {
@@ -160,40 +174,6 @@ public abstract class Tank
 
 	}
 
-	private boolean checkEast(Wall[][] walls) {
-		for(int r = 0; r<walls.length; r++) { 
-			for(int c = 0; c<walls[r].length; c++) {
-				if(walls[r][c] != null) {
-					//Checks if the certain wall is east of the tank by adding 50 in the x direction to tank's location			
-					if(xLoc+50 == c*50) {
-						//Checks both edges of tank to see if they are within the borders of the East wall, including the endpoints of the wall					
-						if(yLoc > (r*50)-50 && yLoc < (r*50)+50){	
-							return false;
-						}
-					}
-				}
-			}
-		}				
-		return true;
-	}
-
-	private boolean checkNorth(Wall[][] walls) {
-		for(int r = 0; r<walls.length; r++) { 
-			for(int c = 0; c<walls[r].length; c++) {
-				if(walls[r][c] != null) {
-					//Checks if the certain wall is North of the tank by adding 50 in the x direction to tank's location	
-					if(yLoc == (r*50)+50) {
-						//Checks both edges of tank to see if they are within the borders of the North wall, including the endpoints of the wall	
-						if(xLoc > (c*50)-50 && xLoc < (c*50)+50){
-							return false;
-						}
-					}
-				}
-			}
-		}
-		return true;
- 
-	}
 	//Movement, aiming, firing, and draw are coded and implemented differently between Player and AI Tanks
 	//As a result, the abstract class has these as abstract methods and no implementation provided
 	/*Likely idea is that user sends inputs into the player tank
@@ -202,7 +182,7 @@ public abstract class Tank
 	 */
 	abstract void move();
 	abstract void aim();
-	abstract void fire();
+	abstract void fire() throws Exception;
 	abstract void draw(Graphics g, ImageLibrary l);
 
 
