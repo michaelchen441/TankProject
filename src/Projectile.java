@@ -5,21 +5,47 @@ public class Projectile
 {
 		double xLoc;
 		double yLoc;
+<<<<<<< HEAD
 		double speed;
 		TankType color;
 		double angle;
 		boolean active;
 		Wall[][] walls;
+=======
+		TankType type;
+>>>>>>> branch 'master' of https://github.com/michaelchen441/TankProject.git
 		
+<<<<<<< HEAD
 	public Projectile(int x, int y, double a, double s, Wall[][] inWalls)
+=======
+		double angle;
+		double speed;
+		
+		boolean active;
+		int numWallHits;
+		
+		
+	public Projectile(int x, int y, double a, TankType inType)
+>>>>>>> branch 'master' of https://github.com/michaelchen441/TankProject.git
 	{
-		active = true;
 		xLoc = x;
 		yLoc = y;
+<<<<<<< HEAD
 		angle = a;
 		speed = s;
 		walls = inWalls;
+=======
+		type = inType;
+>>>>>>> branch 'master' of https://github.com/michaelchen441/TankProject.git
 		
+		angle = a;
+		if(type.equals(TankType.GREEN)){
+			speed = 7;
+		}
+		
+		active = true;
+		numWallHits = 0;
+	
 	}
 	
 	
