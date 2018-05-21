@@ -5,19 +5,29 @@ public class Projectile
 {
 		double xLoc;
 		double yLoc;
-		double speed;
-		TankType color;
-		double angle;
-		boolean active;
+		TankType type;
 		
-	public Projectile(int x, int y, double a, double s)
+		double angle;
+		double speed;
+		
+		boolean active;
+		int numWallHits;
+		
+		
+	public Projectile(int x, int y, double a, TankType inType)
 	{
-		active = true;
 		xLoc = x;
 		yLoc = y;
-		angle = a;
-		speed = s;
+		type = inType;
 		
+		angle = a;
+		if(type.equals(TankType.GREEN)){
+			speed = 7;
+		}
+		
+		active = true;
+		numWallHits = 0;
+	
 	}
 	
 	
@@ -35,8 +45,8 @@ public class Projectile
 	
 	void move() {
 		xLoc+=speed*Math.cos(angle);
-		System.out.println(angle);
+		//System.out.println(angle);
 		yLoc+=speed*Math.sin(angle);
-		System.out.println(angle);
+		//System.out.println(angle);
 	}
 }

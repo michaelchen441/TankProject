@@ -27,7 +27,7 @@ public class TankPanel extends JPanel {
 
 	boolean inMenu = true;
 
-	int level = 0; // initialize at 0, menu ending changes to 1
+	int level = -1; // initialize at 1, menu ending changes to 0
 	boolean level1FirstTime = true;
 
 	public static int panelWidth = 1400;
@@ -237,12 +237,8 @@ public class TankPanel extends JPanel {
 
 				@Override
 				public void mousePressed(MouseEvent e){
-					try {
-						arenaList.get(level).playerTank.fire();
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					
+					arenaList.get(level).playerTank.fire();
 
 					
 				}
