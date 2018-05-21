@@ -50,18 +50,39 @@ public class Projectile
 	
 	void move() {
 		
-		if(!detectedWall()) {
+		//if(wallDetected() == false) {
 		xLoc+=speed*Math.cos(angle);
 		//System.out.println(angle);
 		yLoc+=speed*Math.sin(angle);
 		//System.out.println(angle);
-		}
+//		}
+//		else{
+//			rebound();
+//		}
 	}
 
 
 
-	private boolean detectedWall() {
+//	private boolean wallDetected() {
+//		//the wall detection will use the angle to find what direction. it can be any of the following: north, east, south, west, northeast, northwest, southeast, southwest
+//		//based on the direction, it will check a certain side of the wall. in the case of a duel direction, it will check two sides
+//		
+//		for(int r = 0; r<walls.length; r++) {
+//			for(int c = 0; c<walls[r].length; c++) {
+//				if(angle<)
+//					if()
+//			}
+//		}
+//		return false;
+//	}
+
+
+
+	private void rebound() {
 		
-		return false;
 	}
+
+
+
+	
 }
