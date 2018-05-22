@@ -386,7 +386,7 @@ public class TankPanel extends JPanel {
 			int playerTankY = currentArena.playerTank.getY();
 			for(Tank t: currentArena.tankList){
 				if (t.getClass() == AITank.class) {
-					t.setTurretAngleByTarget(playerTankX, playerTankY);
+					t.setTurretAngleByTarget(playerTankX+25, playerTankY+25);
 				}
 			}
 			currentArena.playerTank.setTurretAngleByTarget(crosshairX, crosshairY);
