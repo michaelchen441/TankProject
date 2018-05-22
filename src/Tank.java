@@ -19,7 +19,7 @@ public abstract class Tank
 	ArrayList<Projectile> stockPile = new ArrayList<Projectile>(); //Number of bullets available to fire
 	Wall[][] surroundingWalls; //Used to keep track of surrounding walls
 
-	double turretAngle;//Angle of turret in radians
+	double turretAngle;//Angle of turret in radians, counterclockwise (0 is positive X axis, PI/2 is point up)
 	int turretCenterX;
 	int turretCenterY;
 	int targetX;
@@ -94,7 +94,7 @@ public abstract class Tank
 			int yTurretRotateOffset = 40;
 
 			theAT.rotate((Math.PI * 0.5) - turretAngle,	xTurretImageLoc + xTurretRotateOffset,
-					yTurretImageLoc + yTurretRotateOffset);
+					yTurretImageLoc + yTurretRotateOffset); //add PI/2 because turret image is upwards so that starts it horizontal
 
 			g2D.transform(theAT);
 			g.drawImage(turretImage, xTurretImageLoc, yTurretImageLoc, null);

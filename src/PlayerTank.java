@@ -110,20 +110,22 @@ public class PlayerTank extends Tank
 	//Firing method
 	public void fire()
 	{
-		//Checks to see if the tank has any ammo left in the stockpile to fire
-		if(stockPile.size() < 6) {
-
-			for(Projectile projectile: stockPile){
-				if (! projectile.active){
-					stockPile.remove(projectile); //Removes missile from stockpile
-					//Use this to control reload time
-				}
+		//remove any projectiles if they are nonactive to make room for new projectiles
+		for(Projectile projectile: stockPile){
+			if (! projectile.active){
+				stockPile.remove(projectile); //Removes missile from stockpile
+				//Use this to control reload time
 			}
+		}
+		
+		//Checks to see if the tank has any ammo left in the stockpile to fire
+		if(stockPile.size() < 5) {
+
 			
 			System.out.println("You fired");
 			//if it has space, it will make a new projectile
 			
-			Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2((targetY - turretCenterY), targetX - turretCenterX),type, surroundingWalls);
+			Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2(-(targetY - turretCenterY), targetX - turretCenterX),type, surroundingWalls);
 
 			stockPile.add(p);
 

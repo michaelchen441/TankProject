@@ -207,6 +207,21 @@ public class TankPanel extends JPanel {
 			}
 		});
 
+
+		this.getInputMap().put(KeyStroke.getKeyStroke("SPACE"),"spaceBar");
+		this.getActionMap().put("spaceBar",new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("pressed spacebar!!");
+				
+				if(!inMenu){
+					arenaList.get(level).playerTank.fire();
+				}
+			}
+		});
+		
+		
 		this.requestFocusInWindow();
 
 	}

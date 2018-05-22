@@ -30,6 +30,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 	void fire()
 	{
 		//create projectile with input: type, 
+		Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2(-(targetY - turretCenterY), targetX - turretCenterX),type, surroundingWalls);
 		
 	}
 

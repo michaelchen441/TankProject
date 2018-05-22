@@ -1,19 +1,22 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 
 public class Projectile
 {
-		double xLoc;
-		double yLoc;
+		double xLoc; //location of tip; translate to draw but not for hit detection
+		double yLoc; //
 
 		double speed;
-		TankType color;
-		double angle;
-		boolean active;
+		double angle; //Angle of projectile in radians, counterclockwise (0 is positive X axis, PI/2 is point up)
+		boolean active; //for playertank to remove from stockpile once not active
 		Wall[][] walls;
 		TankType type;
 		int numWallHits;
-		
+	
+		//use to stop projectile early for visualizing
+		//int numDraws; 
 		
 	public Projectile(int x, int y, double a, TankType inType, Wall[][] inWalls)
 
@@ -25,35 +28,59 @@ public class Projectile
 		type = inType;
 		angle = a;
 		if(type.equals(TankType.GREEN)){
-			speed = 7;
+			speed = 3;
 		}
 		
 		active = true;
 		numWallHits = 0;
+		
+	//	numDraws = 0;
 	
 	}
 	
 	
 	
 	void draw(Graphics g, ImageLibrary l){
-//		double rotationRequired = Math.toRadians (angle);
-//		double locationX = l.projectile.getWidth() / 2;
-//		double locationY = l.projectile.getHeight() / 2;
-//		AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
-//		AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-//		g.drawImage(op.filter(l.projectile, null), xLoc, yLoc, null);	
-		g.setColor(Color.BLACK);
-		g.fillRect((int)(xLoc), (int)(yLoc), 15, 15);
+
+		//draws black box projectile - use to test where image should be 
+		//g.setColor(Color.BLACK);
+		//g.fillRect((int)(xLoc), (int)(yLoc), 15, 15);
+		
+		
+		{	
+			Graphics2D	g2D = (Graphics2D)g;
+			AffineTransform	backupAT = g2D.getTransform();
+			AffineTransform	theAT = new AffineTransform();
+			
+			//projectile image is 20x10
+			int projectileDrawX = (int)xLoc-20;
+			int projectileDrawY = (int)yLoc-5;
+			int	projectileRotateOffsetX = 20;
+			int projectileRotateOffsetY = 5;
+
+			theAT.rotate( -angle,	projectileDrawX + projectileRotateOffsetX,
+					projectileDrawY + projectileRotateOffsetY);//-angle to adjust to y axis pointing down
+
+			g2D.transform(theAT);
+			g.drawImage(l.projectile, projectileDrawX, projectileDrawY, null);
+
+			g2D.setTransform(backupAT);
+			
+		//	numDraws++;
 		}
+	
+	}
 	
 	
 	
 	void move() {
-		
+//		if(numDraws > 15){
+//			return;
+//		}
 		//if(wallDetected() == false) {
-		xLoc+=speed*Math.cos(angle);
+		xLoc+=speed*Math.cos(-angle);//used negative angle to convert from normal math axis to screen axis
 		//System.out.println(angle);
-		yLoc+=speed*Math.sin(angle);
+		yLoc+=speed*Math.sin(-angle);
 		//System.out.println(angle);
 //		}
 //		else{
