@@ -145,10 +145,11 @@ public class PlayerTank extends Tank
 
 	//Returns x and y locations (getters)
 	public int getY() {return yLoc;}
-
-
 	public int getX() {return xLoc;}
-
+	
+	//sets x and y locations (setters)
+	public void setY(int y) {yLoc = y*50;}
+	public void setX(int x) {xLoc = x*50;}
 	
 
 

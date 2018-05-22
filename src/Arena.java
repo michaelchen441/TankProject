@@ -125,8 +125,11 @@ public class Arena
 //When level is equal to 1, an arena with these objects and conditions are drawn
 	public void level1() {
 		//Makes one blue enemy tank and adds to tanklist
-		blueTank1 = new AITank(TankType.BLUE, 20, 5, walls); //TODO choose coordinates
+		blueTank1 = new AITank(TankType.BLUE, 20, 8, walls); //TODO choose coordinates
 		tankList.add(blueTank1);
+		
+		playerTank.setX(3);
+		playerTank.setY(10);
 		
 		walls[4][5] = new Wall(4,5, false);
 		walls[5][5] = new Wall(5,5, false);
@@ -165,24 +168,26 @@ public class Arena
 //When level is equal to 2, an arena with these objects and conditions are drawn
 	public void level2() {
 		//Makes one blue enemy tank and adds to tanklist
-		blueTank1 =  new AITank(TankType.BLUE, 20, 10, walls); //TODO choose coordinates
+		blueTank1 =  new AITank(TankType.BLUE, 24, 3, walls); //TODO choose coordinates
 		tankList.add(blueTank1);
 		
+		playerTank.setX(3);
+		playerTank.setY(13);
 		
 		for(int i = 4; i<6; i++) {
-			for(int j = 5; j<17; j++) {
+			for(int j = 5; j<15; j++) {
 				walls[i][j] = new Wall(i,j, false);
 			}
-			for(int j = 17; j<23; j++) {
+			for(int j = 15; j<21; j++) {
 				walls[i][j] = new Wall(i,j, true);
 			}
 		}
 
 		for(int i = 10; i<12; i++) {
-			for(int j = 5; j<11; j++) {
+			for(int j = 7; j<13; j++) {
 				walls[i][j] = new Wall(i,j, true);
 			}
-			for(int j = 11; j<23; j++) {
+			for(int j = 13; j<23; j++) {
 				walls[i][j] = new Wall(i,j, false);
 			}
 		}	
@@ -191,14 +196,17 @@ public class Arena
 //When level is equal to 3, an arena with these objects and conditions are drawn
 	public void level3() {
 		//Makes one blue enemy tank and adds to tanklist
-		blueTank1 =  new AITank(TankType.BLUE, 20, 5, walls); //TODO choose coordinates
+		blueTank1 =  new AITank(TankType.BLUE, 23, 8, walls); //TODO choose coordinates
 		//Makes one red enemy tank and adds to tanklist
-		redTank1 =  new AITank(TankType.RED, 20, 13, walls); //TODO choose coordinates
+		redTank1 =  new AITank(TankType.RED, 23, 14, walls); //TODO choose coordinates
 		//Makes one red enemy tank and adds to tanklist
-		redTank2 =  new AITank(TankType.RED, 5, 5, walls); //TODO choose coordinates
+		redTank2 =  new AITank(TankType.RED, 6, 2, walls); //TODO choose coordinates
 		tankList.add(blueTank1);
 		tankList.add(redTank1);
 		tankList.add(redTank2);
+		
+		playerTank.setX(3);
+		playerTank.setY(8);
 		
 		
 		for(int i = 3; i<5; i++) {
@@ -231,10 +239,10 @@ public class Arena
 			}
 		}
 
-		for(int i = 5; i<8; i++) {
+		for(int i = 5; i<9; i++) {
 			walls[i][14] = new Wall(i,14, false);
 		}
-		for(int i = 8; i<11; i++) {
+		for(int i = 7; i<11; i++) {
 			walls[i][13] = new Wall(i,13, false);
 		}
 
