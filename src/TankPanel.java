@@ -245,7 +245,7 @@ public class TankPanel extends JPanel {
 							level = 0;
 						}
 					}
-					//TODO if() for levels to create projectile
+					
 				
 				
 				}
@@ -253,6 +253,7 @@ public class TankPanel extends JPanel {
 				@Override
 				public void mousePressed(MouseEvent e){
 
+					//create projectile if its in any level
 					if(!inMenu){
 						arenaList.get(level).playerTank.fire();
 					}
