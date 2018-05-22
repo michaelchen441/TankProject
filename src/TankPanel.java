@@ -242,7 +242,7 @@ public class TankPanel extends JPanel {
 								)
 						{
 							inMenu = false;
-							level = 2;
+							level = 0;
 						}
 					}
 					//TODO if() for levels to create projectile
