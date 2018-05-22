@@ -21,14 +21,9 @@ import java.awt.Image;
 // Player tank characteristics and actions prompted by user input (Keypresses, mouse, etc)
 public class PlayerTank extends Tank
 {
-	ArrayList<Projectile> stockPile = new ArrayList<Projectile>();//List of number of bullets available to fire
 	
-	Direction direction;//Direction tank is facing; will use to determine where to move
-	//List of specific movements in x and y directions that need to be added to the tanks location 
-	//Depends on which key is pressed indicating which direction a tank needs to move in
 	public int[] inputMoveArr;
 	//All the walls the tank needs to account for in the arena
-	Wall[][] wallArray;
 
 	//Number of times the tank has tried to move
 	int numMoveTries = 0;
@@ -47,7 +42,7 @@ public class PlayerTank extends Tank
 		targetX = 0;
 		targetY = 0;
 		direction = Direction.EAST;//Initial direction set to EAST
-		wallArray = walls;
+		surroundingWalls = walls;
 		inputMoveArr = new int[2];//Initializes array containing necessary information about moves in x and y locations
 
 
@@ -64,13 +59,16 @@ public class PlayerTank extends Tank
 		 * Only moves every other or even tick to slow the movement of the tank
 		 * Tank moves everytime it ticks, but even if the move is called, it may not move anywhere because the inputmoveArr may be [0,0]
 		 */
-		if(canMoveX(dir,wallArray) && numMoveTries%2 == 0) {
+		if(canMoveX(dir,surroundingWalls) && numMoveTries%2 == 0) {
 			xLoc += inputMoveArr[0];
 		}
-		if(canMoveY(dir,wallArray) && numMoveTries%2 == 0) {
+		if(canMoveY(dir,surroundingWalls) && numMoveTries%2 == 0) {
 			yLoc -= inputMoveArr[1];
 			 //Minus equals is used because the way a panel is numbered is top down, not bottom up like a standard set of coordinte axes
-
+		}
+		
+		for(Projectile p : stockPile) {
+			p.move();
 		}
 	}
 
@@ -125,7 +123,7 @@ public class PlayerTank extends Tank
 			System.out.println("You fired");
 			//if it has space, it will make a new projectile
 			
-			Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2((targetY - turretCenterY), targetX - turretCenterX),type, wallArray);
+			Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2((targetY - turretCenterY), targetX - turretCenterX),type, surroundingWalls);
 
 			stockPile.add(p);
 
@@ -134,25 +132,6 @@ public class PlayerTank extends Tank
 
 	}
 
-	public void draw(Graphics g, ImageLibrary l){
-		move(); //Implements move everytime timer ticks because draw is called everytime it ticks
-		
-		// draw projectiles	
-		for(Projectile p : stockPile) {
-			p.move();
-			p.draw(g, l);
-
-		}
-			
-		
-		g.drawImage(l.greenTank, xLoc, yLoc, null);
-
-		drawTurret(g, l);
-		
-
-
-
-	}
 
 	//Establishes the movements that need to be made into the inputMoveArr instance variable for the Playertank object
 	public void setInputMoveArr(int[] inInputMoveArr)

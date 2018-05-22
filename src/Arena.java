@@ -77,7 +77,14 @@ public class Arena
 	public Wall[][] getWalls(){
 		return walls;
 	}
-
+	
+	
+	public void moveTanks(){
+		for(Tank tank: tankList){
+			tank.move();
+		}
+	}
+	
 	// Arena draw method
 	public void draw(Graphics g, ImageLibrary l) {
 		// draws wood panel background image

@@ -237,15 +237,11 @@ public class TankPanel extends JPanel {
 
 				@Override
 				public void mousePressed(MouseEvent e){
-					
-					try {
+
+					if(!inMenu){
 						arenaList.get(level).playerTank.fire();
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
 					}
 
-					
 				}
 
 				@Override
@@ -361,20 +357,31 @@ public class TankPanel extends JPanel {
 				arenaList.add(level3Arena);
 				
 				level1FirstTime = false;
-
 			}
-			if(arenaList.get(level).advanceLevel){
+			
+			Arena currentArena = arenaList.get(level);
+			
+			if(currentArena.advanceLevel){
 				level++;
 			}
 			
+			currentArena.moveTanks();
 			
-			arenaList.get(level).draw(g, imageLibrary);
-			g.setColor(Color.WHITE);
-					
+			int playerTankX = currentArena.playerTank.getX();
+			int playerTankY = currentArena.playerTank.getY();
+			for(Tank t: currentArena.tankList){
+				if (t.getClass() == AITank.class) {
+					t.setTurretAngleByTarget(playerTankX, playerTankY);
+				}
+			}
+			currentArena.playerTank.setTurretAngleByTarget(crosshairX, crosshairY);
+			
+			currentArena.draw(g, imageLibrary);
+		
+			//	g.setColor(Color.WHITE);		
 			//g.drawLine(arenaList.get(level).playerTankLocX()+25, arenaList.get(level).playerTankLocY()+25, crosshairX, crosshairY);
-			arenaList.get(level).playerTank.setTurretAngleByTarget(crosshairX, crosshairY);
-			
 			//g.drawLine(level1Arena.playerTankLocX(), level1Arena.playerTankLocY(), crosshairX, crosshairY);
+			
 		}
 
 		g.drawImage(imageLibrary.crosshair, crosshairX-10, crosshairY-10, null);

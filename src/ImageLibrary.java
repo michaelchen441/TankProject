@@ -44,9 +44,9 @@ public class ImageLibrary
 			blackTank = ImageIO.read(getClass().getResource("images/50x50 tanks/blackTank.png"));	
 			
 			greenTurret = ImageIO.read(getClass().getResource("images/20x50 turrets/greenTurret.png"));
-			redTurret = ImageIO.read(getClass().getResource("images/20x50 turrets/greenTurret.png"));
-			blueTurret = ImageIO.read(getClass().getResource("images/20x50 turrets/greenTurret.png"));
-			blackTurret = ImageIO.read(getClass().getResource("images/20x50 turrets/greenTurret.png"));
+			redTurret = ImageIO.read(getClass().getResource("images/20x50 turrets/redTurret.png"));
+			blueTurret = ImageIO.read(getClass().getResource("images/20x50 turrets/blueTurret.png"));
+			blackTurret = ImageIO.read(getClass().getResource("images/20x50 turrets/blackTurret.png"));
 		}
 		catch (IOException e){
 			// TODO Auto-generated catch block

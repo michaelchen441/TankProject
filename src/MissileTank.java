@@ -23,9 +23,4 @@ public class MissileTank extends AITank{
 		
 	}
 	
-	void draw(Graphics g, ImageLibrary l)
-	{
-		
-	
-	}
 }

@@ -22,11 +22,5 @@ public class AwayTank extends AITank{
 		//create projectile with input: type, 
 		
 	}
-	
-	void draw(Graphics g, ImageLibrary l)
-	{
-		
-	
-	}
 
 }

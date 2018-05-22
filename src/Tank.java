@@ -1,6 +1,7 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 /* Tank is an abstract class with variations between the 
  implementation of certain methods in 
@@ -24,15 +25,21 @@ public abstract class Tank
 	int targetX;
 	int targetY;
 	
+	Direction direction;//Direction tank is facing; will use to determine where to move
+	//List of specific movements in x and y directions that need to be added to the tanks location 
+	//Depends on which key is pressed indicating which direction a tank needs to move in
+	
+	
+
 	public Tank(Wall[][] walls) {
 		surroundingWalls = walls; 
 		height = 28; //Fixed height for all tanks
 		width = 56; //Fixed width for all tanks
-		
-		
+
+
 	}
-	
-	
+
+
 	public void setTurretAngleByTarget(int inTargetX, int inTargetY)
 	{
 		targetX = inTargetX;
@@ -43,9 +50,40 @@ public abstract class Tank
 
 
 	}
-	public void drawTurret(Graphics g, ImageLibrary l) //function is called by a tanks draw function
-	{
-		{	// draw turret
+	
+	public void draw(Graphics g, ImageLibrary l){
+		// draw projectiles	
+		for(Projectile p : stockPile) {
+			p.draw(g, l);
+		}
+
+		//set up image based on tank type
+		BufferedImage tankImage = null;
+		BufferedImage turretImage = null;
+		switch(type){
+		case GREEN: 
+			tankImage = l.greenTank;
+			turretImage = l.greenTurret;
+			break;
+		case RED: 
+			tankImage = l.redTank;
+			turretImage = l.redTurret;
+			break;
+		case BLUE: 
+			tankImage = l.blueTank;
+			turretImage = l.blueTurret;
+			break;
+		case BLACK: 
+			tankImage = l.blackTank;
+			turretImage = l.blackTurret;
+			break;
+		}
+		
+		//draw tank
+		g.drawImage(tankImage, xLoc, yLoc, null);
+		
+		{	
+			// draw turret
 			Graphics2D	g2D = (Graphics2D)g;
 			AffineTransform	backupAT = g2D.getTransform();
 			AffineTransform	theAT = new AffineTransform();
@@ -59,14 +97,18 @@ public abstract class Tank
 					yTurretImageLoc + yTurretRotateOffset);
 
 			g2D.transform(theAT);
-			g.drawImage(l.greenTurret, xTurretImageLoc, yTurretImageLoc, null);
+			g.drawImage(turretImage, xTurretImageLoc, yTurretImageLoc, null);
 
 			g2D.setTransform(backupAT);
 		}
-		
+	
 	}
+
 	
 	
+	
+
+
 	public boolean canMoveX(Direction dir, Wall[][] walls) {
 		//System.out.println("begin wall detection");
 		//If no direction is indicated, movement cannot be checked in any specific direction
@@ -85,9 +127,9 @@ public abstract class Tank
 		if(dir == Direction.NORTHEAST)
 			return checkEast(walls);
 		return true;
-		
+
 	}
-	
+
 	public boolean canMoveY(Direction dir, Wall[][] walls) {
 		if(dir == null)
 			return true;
@@ -105,7 +147,7 @@ public abstract class Tank
 			return checkNorth(walls);
 		return true;
 	}
-	
+
 	private boolean checkWest(Wall[][] walls) { 
 		for(int r = 0; r<walls.length; r++) { 
 			for(int c = 0; c<walls[r].length; c++) {
@@ -154,7 +196,7 @@ public abstract class Tank
 			}
 		}
 		return true;
- 
+
 	}
 	private boolean checkSouth(Wall[][] walls) {
 		for(int r = 0; r<walls.length; r++) {
@@ -183,7 +225,6 @@ public abstract class Tank
 	abstract void move();
 	abstract void aim();
 	abstract void fire() throws Exception;
-	abstract void draw(Graphics g, ImageLibrary l);
 
 
 }
