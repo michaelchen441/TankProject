@@ -33,7 +33,6 @@ public class PlayerTank extends Tank
 	//Number of times the tank has tried to move
 	int numMoveTries = 0;
 
-	
 
 	public PlayerTank(int inX, int inY, Wall[][] walls)
 	{
