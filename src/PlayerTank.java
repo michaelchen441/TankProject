@@ -25,8 +25,9 @@ public class PlayerTank extends Tank
 	public int[] inputMoveArr;
 	//All the walls the tank needs to account for in the arena
 
-	//Number of times the tank has tried to move
-	int numMoveTries = 0;
+	
+	int numMoveTries = 0;//Number of times the tank has tried to move
+	int tankSlowMultiplier = 3;//ex. 1 is fastest, 3 is 1/3 speed
 
 
 	public PlayerTank(int inX, int inY, Wall[][] walls)
@@ -59,10 +60,10 @@ public class PlayerTank extends Tank
 		 * Only moves every other or even tick to slow the movement of the tank
 		 * Tank moves everytime it ticks, but even if the move is called, it may not move anywhere because the inputmoveArr may be [0,0]
 		 */
-		if(canMoveX(dir,surroundingWalls) && numMoveTries%2 == 0) {
+		if(canMoveX(dir,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0) {
 			xLoc += inputMoveArr[0];
 		}
-		if(canMoveY(dir,surroundingWalls) && numMoveTries%2 == 0) {
+		if(canMoveY(dir,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0) {
 			yLoc -= inputMoveArr[1];
 			 //Minus equals is used because the way a panel is numbered is top down, not bottom up like a standard set of coordinte axes
 		}
