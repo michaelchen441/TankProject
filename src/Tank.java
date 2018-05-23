@@ -29,6 +29,9 @@ public abstract class Tank
 	//List of specific movements in x and y directions that need to be added to the tanks location 
 	//Depends on which key is pressed indicating which direction a tank needs to move in
 	
+	int numMoveTries = 0;//Number of times the tank has tried to move
+	int tankSlowMultiplier = 3;//ex. 1 is fastest, 3 is 1/3 speed
+	
 	
 
 	public Tank(Wall[][] walls) {

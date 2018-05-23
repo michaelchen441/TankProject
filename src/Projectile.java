@@ -14,6 +14,8 @@ public class Projectile
 	Wall[][] walls;
 	TankType type;
 	int numWallHits;
+	int numMoveTries;
+	int projectileSlowMultiplier;
 
 	//use to stop projectile early for visualizing
 	//int numDraws; 
@@ -34,7 +36,8 @@ public class Projectile
 
 		active = true;
 		numWallHits = 0;
-
+		numMoveTries = 0;
+		projectileSlowMultiplier = 2;
 		//	numDraws = 0;
 
 	}
@@ -46,9 +49,11 @@ public class Projectile
 		//draws black box projectile - use to test where image should be 
 		//g.setColor(Color.BLACK);
 		//g.fillRect((int)(xLoc), (int)(yLoc), 15, 15);
+		if(numWallHits > 1) { //once its hit a second wall, it dies
+			active = false;
+		}
 
-
-		{	
+		if(active){	
 			Graphics2D	g2D = (Graphics2D)g;
 			AffineTransform	backupAT = g2D.getTransform();
 			AffineTransform	theAT = new AffineTransform();
@@ -79,12 +84,15 @@ public class Projectile
 		//			return;
 		//		}
 
-
-		if(wallDetected() == false) {
+		numMoveTries++;
+		detectWalls();
+		if(numMoveTries%projectileSlowMultiplier == 0) 
 			xLoc+=speed*Math.cos(-angle);//used negative angle to convert from normal math axis to screen axis
 			//System.out.println(angle);
+		if(numMoveTries%projectileSlowMultiplier == 0) {
 			yLoc+=speed*Math.sin(-angle);
-			//System.out.println(angle);	
+			//System.out.println(angle);
+		
 		}
 		//else{
 		//rebound();
@@ -93,7 +101,7 @@ public class Projectile
 
 
 
-	private boolean wallDetected() {
+	private void detectWalls() {
 		//the wall detection will use the angle to find what direction. it can be any of the following: north, east, south, west, northeast, northwest, southeast, southwest
 		//based on the direction, it will check a certain side of the wall. in the case of a duel direction, it will check two sides
 		Direction dir = getDirection();
@@ -103,25 +111,39 @@ public class Projectile
 					if(dir != null) {
 						if(dir == Direction.EAST || dir == Direction.NORTHEAST || dir == Direction.SOUTHEAST)
 							if( (int)xLoc > ((c*50)-speed) && (int)xLoc < (c*50)+speed) //adds speed because parametric movement can skip pixels 
-								if( (int)yLoc > (r*50) && (int)yLoc < (r*50)+50)
-									return true;
+								if( (int)yLoc > (r*50) && (int)yLoc < (r*50)+50) {
+									numWallHits++;
+									angle = Math.PI-angle;
+									return;
+								}
 						if(dir == Direction.NORTH || dir == Direction.NORTHWEST || dir == Direction.NORTHEAST)
 							if( (int)yLoc > ((r*50)+50-speed) && (int)yLoc < (r*50)+50+speed) //adds speed because parametric movement can skip pixels 
-								if( (int)xLoc > (c*50) && (int)xLoc < (c*50)+50)
-									return true;
+								if( (int)xLoc > (c*50) && (int)xLoc < (c*50)+50) {
+									numWallHits++;
+									angle = angle * -1;
+									return;
+								}
+									
 						if(dir == Direction.WEST || dir == Direction.NORTHWEST || dir == Direction.SOUTHWEST)
 							if( (int)xLoc > ((c*50)+50-speed) && (int)xLoc < (c*50)+50+speed) //adds speed because parametric movement can skip pixels 
-								if( (int)yLoc > (r*50) && (int)yLoc < (r*50)+50)
-									return true;
+								if( (int)yLoc > (r*50) && (int)yLoc < (r*50)+50) {
+									numWallHits++;
+									angle = Math.PI-angle;
+									return;
+								}
+									
 						if(dir == Direction.SOUTH || dir == Direction.SOUTHWEST || dir == Direction.SOUTHEAST)
 							if( (int)yLoc > ((r*50)-speed) && (int)yLoc < (r*50)+speed) //adds speed because parametric movement can skip pixels 
-								if( (int)xLoc > (c*50) && (int)xLoc < (c*50)+50)
-									return true;
+								if( (int)xLoc > (c*50) && (int)xLoc < (c*50)+50) {
+									numWallHits++;
+									angle = angle *-1;
+									return;
+								}
+									
 					}
 			}
 			}
 		}
-		return false;
 	}
 
 
