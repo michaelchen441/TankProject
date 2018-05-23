@@ -119,7 +119,7 @@ public class PlayerTank extends Tank
 		}
 		
 		//Checks to see if the tank has any ammo left in the stockpile to fire
-		if(stockPile.size() < 5) {
+		if(stockPile.size() < 200) {
 
 			
 			System.out.println("You fired");
