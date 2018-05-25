@@ -14,7 +14,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 	Point2D ai;//ai point
 	ArrayList<Wall> wallsInBetween;
 	boolean intersect;
-	
+	int count;
 
 	
 	public AITank(TankType inType, int inX, int inY, Wall[][] walls, PlayerTank pTank)
@@ -34,8 +34,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 		numMoveTries = 0;
 		tankSlowMultiplier = 3;
 		fireSlowMultiplier = 500;
-
-		
+		count = 0;
 		//gets all walls in between the player tank and the AI tank and puts them into a list
 		//there are four statements because, putting the ai tank at the origin of a hypothetical graph, the player tank has 4 possible quadrant locations
 			
@@ -59,6 +58,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 	//Need to figure out mechanism by which AI Tank Fires
 	void fire()
 	{
+		
 		if((targetY < yLoc) & (targetX < xLoc)) {
 			for(int r = (targetY/50) ; r<(yLoc/50) ; r++){
 				for(int c = (targetX/50) ; c<(xLoc/50) ; c++) {
@@ -95,48 +95,52 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 				}
 			}
 		}
-		
+		intersect = false;
+		if(count == 0 || count == 10000) {
+			System.out.println(wallsInBetween.size());
+			for(int i = 0; i<wallsInBetween.size(); i++) {
+				System.out.println(wallsInBetween.get(i).getXLoc()/50 + "," + wallsInBetween.get(i).getYLoc()/50);
+			}
+			count++;
+			System.out.println(count);
+		}
 		outerloop1:
 		for(int i = 0; i<wallsInBetween.size() ; i++) {
 			Wall temp = wallsInBetween.get(i);
 			for(int x = temp.getXLoc(); x < 50; x++) { //searches if any point along the north side of the wall intersects the path between player and ai
 				Point2D between = new Point(x, temp.getYLoc());
+				if((between.distance(player) + between.distance(ai)) == player.distance(ai)) {
+					intersect = true;
+					break outerloop1;
+				}
+			}
+			
+			for(int y = temp.getYLoc(); y < 50; y++) { //searches if any point along the west side of the wall intersects the path between player and ai
+				Point2D between = new Point(temp.getXLoc(), y);
+				if(between.distance(player) + between.distance(ai) == player.distance(ai)) {
+					intersect = true;
+					break outerloop1;
+				}
+			}
+			for(int y = temp.getYLoc(); y < 50; y++) { //searches if any point along the east side of the wall intersects the path between player and ai
+				Point2D between = new Point(temp.getXLoc() + 50, y);
+				if(between.distance(player) + between.distance(ai) == player.distance(ai)) {
+					intersect = true;
+					break outerloop1;
+				}
+			}
+			for(int x = temp.getXLoc(); x < 50; x++) { //searches if any point along the south side of the wall intersects the path between player and ai
+				Point2D between = new Point(x, temp.getYLoc()+50);
 				if(between.distance(player) + between.distance(ai) == player.distance(ai)) {
 					intersect = true;
 					break outerloop1;
 				}
 			}
 		}
-		if(intersect == false) {
-			outerloop2:
-			for(int i = 0; i<wallsInBetween.size() ; i++) {
-				Wall temp = wallsInBetween.get(i);
-				for(int y = temp.getYLoc(); y < 50; y++) { //searches if any point along the west side of the wall intersects the path between player and ai
-					Point2D between = new Point(temp.getXLoc(), y);
-					if(between.distance(player) + between.distance(ai) == player.distance(ai)) {
-						intersect = true;
-						break outerloop2;
-					}
-				}
-			}
-		}
-		if(intersect == false) {
-			outerloop3:
-				for(int i = 0; i<wallsInBetween.size() ; i++) {
-					Wall temp = wallsInBetween.get(i);
-					for(int y = temp.getYLoc(); y < 50; y++) { //searches if any point along the east side of the wall intersects the path between player and ai
-						Point2D between = new Point(temp.getXLoc() + 50, y);
-						if(between.distance(player) + between.distance(ai) == player.distance(ai)) {
-							intersect = true;
-							break outerloop3;
-						}
-					}
-				}
-		}
+
 		//create projectile with input: type, 
 		
-		
-		if(intersect == false){
+		if(intersect == true){
 			
 			for(Projectile projectile: stockPile){
 				if (!projectile.active){
