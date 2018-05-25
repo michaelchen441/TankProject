@@ -29,6 +29,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 		
 		wallsInBetween = new ArrayList<Wall>();
 		intersect = false;
+		player = new Point(arena.playerTankLocX(), arena.playerTankLocY());
 		
 		numMoveTries = 0;
 		tankSlowMultiplier = 3;
