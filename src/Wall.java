@@ -2,7 +2,7 @@ import java.awt.Graphics;
 
 public class Wall
 {
-	private boolean destructable; //Type of wall
+	public boolean destructable; //Type of wall
 	//Wall x and y location
 	private int xLoc;
 	private int yLoc;

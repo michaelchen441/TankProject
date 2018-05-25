@@ -26,8 +26,7 @@ public class PlayerTank extends Tank
 	//All the walls the tank needs to account for in the arena
 
 	
-	int numMoveTries = 0;//Number of times the tank has tried to move
-	int tankSlowMultiplier = 3;//ex. 1 is fastest, 3 is 1/3 speed
+
 
 
 	public PlayerTank(int inX, int inY, Wall[][] walls)
@@ -112,10 +111,11 @@ public class PlayerTank extends Tank
 	public void fire()
 	{
 		//remove any projectiles if they are nonactive to make room for new projectiles
-		for(Projectile projectile: stockPile){
-			if (! projectile.active){
-				stockPile.remove(projectile); //Removes missile from stockpile
+		for(int i = 0; i < stockPile.size(); i++){
+			if (!stockPile.get(i).active){
+				stockPile.remove(stockPile.get(i)); //Removes missile from stockpile
 				//Use this to control reload time
+				
 			}
 		}
 		
