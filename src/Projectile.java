@@ -118,6 +118,11 @@ public class Projectile
 									if(angle < 0) {
 										angle += 2*Math.PI;
 									}
+									if(walls[r][c].destructable)
+									{
+										walls[r][c] = null;
+										active = false;
+									}
 									return;
 								}
 						if(dir == Direction.NORTH || dir == Direction.NORTHWEST || dir == Direction.NORTHEAST)
@@ -127,6 +132,11 @@ public class Projectile
 									angle = angle * -1;
 									if(angle < 0) {
 										angle += 2*Math.PI;
+									}
+									if(walls[r][c].destructable)
+									{
+										walls[r][c] = null;
+										active = false;
 									}
 									return;
 								}
@@ -139,6 +149,11 @@ public class Projectile
 									if(angle < 0) {
 										angle += 2*Math.PI;
 									}
+									if(walls[r][c].destructable)
+									{
+										walls[r][c] = null;
+										active = false;
+									}
 									return;
 								}
 									
@@ -149,6 +164,11 @@ public class Projectile
 									angle = angle *-1;
 									if(angle < 0) {
 										angle += 2*Math.PI;
+									}
+									if(walls[r][c].destructable)
+									{
+										walls[r][c] = null;
+										active = false;
 									}
 									return;
 								}
