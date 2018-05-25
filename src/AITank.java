@@ -24,7 +24,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 		type = inType;
 		xLoc = inX*50; //Each cell is 50 pixels in wide
 		yLoc = inY*50; //Each cell is 50 pixels in length
-
+		
 		ai = new Point(xLoc, yLoc);
 		
 		wallsInBetween = new ArrayList<Wall>();
