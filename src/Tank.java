@@ -226,7 +226,7 @@ public abstract class Tank
 	 */
 	abstract void move();
 	abstract void aim();
-	abstract void fire() throws Exception;
+	abstract void fire();
 
 
 }

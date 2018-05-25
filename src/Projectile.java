@@ -29,7 +29,7 @@ public class Projectile
 		walls = inWalls;
 		type = inType;
 		angle = a;
-	
+
 		if(type.equals(TankType.GREEN)){
 			speed = 3;
 		}
@@ -83,20 +83,18 @@ public class Projectile
 		//		if(numDraws > 15){
 		//			return;
 		//		}
+		if(active) {
+			numMoveTries++;
+			detectWalls();
+			if(numMoveTries%projectileSlowMultiplier == 0) 
+				xLoc+=speed*Math.cos(-angle);//used negative angle to convert from normal math axis to screen axis
+			//System.out.println(angle);
+			if(numMoveTries%projectileSlowMultiplier == 0) {
+				yLoc+=speed*Math.sin(-angle);
+				//ddtem.out.println(angle);
 
-		numMoveTries++;
-		detectWalls();
-		if(numMoveTries%projectileSlowMultiplier == 0) 
-			xLoc+=speed*Math.cos(-angle);//used negative angle to convert from normal math axis to screen axis
-			//System.out.println(angle);
-		if(numMoveTries%projectileSlowMultiplier == 0) {
-			yLoc+=speed*Math.sin(-angle);
-			//System.out.println(angle);
-		
+			}
 		}
-		//else{
-		//rebound();
-		//}
 	}
 
 
@@ -105,7 +103,7 @@ public class Projectile
 		//the wall detection will use the angle to find what direction. it can be any of the following: north, east, south, west, northeast, northwest, southeast, southwest
 		//based on the direction, it will check a certain side of the wall. in the case of a duel direction, it will check two sides
 		Direction dir = getDirection();
-		System.out.println(dir);
+		
 		for(int r = 0; r<walls.length; r++) {
 			for(int c = 0; c<walls[r].length; c++) {
 				if(walls[r][c] != null) {
@@ -140,7 +138,7 @@ public class Projectile
 									}
 									return;
 								}
-									
+
 						if(dir == Direction.WEST || dir == Direction.NORTHWEST || dir == Direction.SOUTHWEST)
 							if( (int)xLoc > ((c*50)+50-speed) && (int)xLoc < (c*50)+50+speed) //adds speed because parametric movement can skip pixels 
 								if( (int)yLoc > (r*50) && (int)yLoc < (r*50)+50) {
@@ -156,7 +154,7 @@ public class Projectile
 									}
 									return;
 								}
-									
+
 						if(dir == Direction.SOUTH || dir == Direction.SOUTHWEST || dir == Direction.SOUTHEAST)
 							if( (int)yLoc > ((r*50)-speed) && (int)yLoc < (r*50)+speed) //adds speed because parametric movement can skip pixels 
 								if( (int)xLoc > (c*50) && (int)xLoc < (c*50)+50) {
@@ -172,9 +170,9 @@ public class Projectile
 									}
 									return;
 								}
-									
+
 					}
-			}
+				}
 			}
 		}
 	}
@@ -202,7 +200,7 @@ public class Projectile
 			return Direction.SOUTH;
 		if(degrees > 270 && degrees< 360)
 			return Direction.SOUTHEAST;
-		
+
 		return null;
 	}
 

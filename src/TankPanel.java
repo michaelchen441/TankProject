@@ -107,7 +107,6 @@ public class TankPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
-				System.out.println("Hit left arrow!!");
 				leftPressed = true;
 
 			}
@@ -122,7 +121,7 @@ public class TankPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
-				System.out.println("released left arrow!!");
+				
 				leftPressed = false;
 
 			}
@@ -136,7 +135,7 @@ public class TankPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
-				System.out.println("Hit right arrow!!");
+				
 				rightPressed = true;
 
 			}
@@ -149,7 +148,7 @@ public class TankPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
-				System.out.println("released right arrow!!");
+				
 				rightPressed = false;
 
 			}
@@ -162,7 +161,7 @@ public class TankPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
-				System.out.println("Hit up arrow!!");
+				
 				upPressed = true;
 
 
@@ -176,7 +175,7 @@ public class TankPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
-				System.out.println("released up arrow!!");
+				
 				upPressed = false;
 
 
@@ -190,7 +189,7 @@ public class TankPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
-				System.out.println("Hit down arrow!!");
+				
 				downPressed = true;
 			}
 		});
@@ -202,7 +201,7 @@ public class TankPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
-				System.out.println("released down arrow!!");
+				
 				downPressed = false;
 			}
 		});
@@ -213,7 +212,7 @@ public class TankPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("pressed spacebar!!");
+				
 				
 				if(!inMenu){
 					arenaList.get(level).playerTank.fire();
@@ -233,7 +232,7 @@ public class TankPanel extends JPanel {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					// TODO Auto-generated method stub
-					System.out.println("You just clicked!! "+arg0);
+					
 					if(inMenu)
 					{
 						if((arg0.getX() > 350 && arg0.getX() < 1050) 

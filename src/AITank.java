@@ -139,7 +139,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 		if(intersect == false){
 			
 			for(Projectile projectile: stockPile){
-				if (! projectile.active){
+				if (!projectile.active){
 					stockPile.remove(projectile); //Removes missile from stockpile
 				}
 			}
@@ -149,10 +149,9 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 
 				System.out.println("You fired1");
 				//if it has space, it will make a new projectile
-				
 				Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2(-(targetY - turretCenterY), targetX - turretCenterX),type, surroundingWalls);
 				stockPile.add(p);
-
+				
 
 			}			
 			
