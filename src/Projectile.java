@@ -20,13 +20,13 @@ public class Projectile
 	//use to stop projectile early for visualizing
 	//int numDraws; 
 
-	public Projectile(int x, int y, double a, TankType inType, Wall[][] inWalls)
+	public Projectile(int x, int y, double a, TankType inType, Arena inArena)
 
 	{
 		xLoc = x;
 		yLoc = y;
 		angle = a;
-		walls = inWalls;
+		walls = inArena.getWalls();
 		type = inType;
 		angle = a;
 
