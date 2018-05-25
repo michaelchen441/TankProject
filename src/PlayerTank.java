@@ -29,9 +29,9 @@ public class PlayerTank extends Tank
 
 
 
-	public PlayerTank(int inX, int inY, Wall[][] walls)
+	public PlayerTank(int inX, int inY, Arena inArena)
 	{
-		super(walls); //Superclass constructor to receive all the walls
+		super(inArena); //Superclass constructor to receive all the walls
 		alive = true; //Living condition: alive or dead
 		type = TankType.GREEN; //Tank color and appearance - prompts a certain image of tank to be read in draw method
 		//multiples so they can be set up with the same grid as walls
@@ -42,7 +42,6 @@ public class PlayerTank extends Tank
 		targetX = 0;
 		targetY = 0;
 		direction = Direction.EAST;//Initial direction set to EAST
-		surroundingWalls = walls;
 		inputMoveArr = new int[2];//Initializes array containing necessary information about moves in x and y locations
 
 
@@ -126,7 +125,7 @@ public class PlayerTank extends Tank
 //			System.out.println("You fired");
 			//if it has space, it will make a new projectile
 			
-			Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2(-(targetY - turretCenterY), targetX - turretCenterX),type, surroundingWalls);
+			Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2(-(targetY - turretCenterY), targetX - turretCenterX),type, arena);
 
 			stockPile.add(p);
 

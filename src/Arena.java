@@ -51,7 +51,7 @@ public class Arena
 			walls[numWallsDown - 1][c] =  new Wall(numWallsDown - 1, c, false);
 		}
 		// Constructs a player tank with location (3,10)
-		playerTank = new PlayerTank(3,10, walls);
+		playerTank = new PlayerTank(3,10, this);
 		// Constructs list of tanks
 		tankList = new ArrayList<Tank>();
 		// Adds player tank to arraylist of tanks to keep track of
@@ -169,14 +169,14 @@ public class Arena
 		walls[10][15] = new Wall(10,15, false);
 		walls[11][15] = new Wall(11,15, false);
 
-		blueTank1 = new AITank(TankType.BLUE, 20, 8, walls, playerTank); //TODO choose coordinates
+		blueTank1 = new AITank(TankType.BLUE, 20, 8, this); //TODO choose coordinates
 		tankList.add(blueTank1);
 	}
 //Method containing all the information of level 2
 //When level is equal to 2, an arena with these objects and conditions are drawn
 	public void level2() {
 		//Makes one blue enemy tank and adds to tanklist
-		blueTank1 =  new AITank(TankType.BLUE, 24, 3, walls, playerTank); //TODO choose coordinates
+		blueTank1 =  new AITank(TankType.BLUE, 24, 3, this); //TODO choose coordinates
 		tankList.add(blueTank1);
 		
 		playerTank.setX(3);
@@ -204,11 +204,11 @@ public class Arena
 //When level is equal to 3, an arena with these objects and conditions are drawn
 	public void level3() {
 		//Makes one blue enemy tank and adds to tanklist
-		blueTank1 =  new AITank(TankType.BLUE, 23, 8, walls,playerTank); //TODO choose coordinates
+		blueTank1 =  new AITank(TankType.BLUE, 23, 8, this); //TODO choose coordinates
 		//Makes one red enemy tank and adds to tanklist
-		redTank1 =  new AITank(TankType.RED, 23, 14, walls, playerTank); //TODO choose coordinates
+		redTank1 =  new AITank(TankType.RED, 23, 14, this); //TODO choose coordinates
 		//Makes one red enemy tank and adds to tanklist
-		redTank2 =  new AITank(TankType.RED, 6, 2, walls, playerTank); //TODO choose coordinates
+		redTank2 =  new AITank(TankType.RED, 6, 2, this); //TODO choose coordinates
 		tankList.add(blueTank1);
 		tankList.add(redTank1);
 		tankList.add(redTank2);

@@ -20,13 +20,13 @@ public class Projectile
 	//use to stop projectile early for visualizing
 	//int numDraws; 
 
-	public Projectile(int x, int y, double a, TankType inType, Wall[][] inWalls)
+	public Projectile(int x, int y, double a, TankType inType, Arena inArena)
 
 	{
 		xLoc = x;
 		yLoc = y;
 		angle = a;
-		walls = inWalls;
+		walls = inArena.getWalls();
 		type = inType;
 		angle = a;
 
@@ -49,7 +49,7 @@ public class Projectile
 		//draws black box projectile - use to test where image should be 
 		//g.setColor(Color.BLACK);
 		//g.fillRect((int)(xLoc), (int)(yLoc), 15, 15);
-		if(numWallHits > 1) { //once its hit a second wall, it dies
+		if(numWallHits > 1) { //once its hit a second wall, it dies //change back to 1
 			active = false;
 		}
 

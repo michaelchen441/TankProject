@@ -9,6 +9,7 @@ import java.util.ArrayList;
  */
 public abstract class Tank
 {
+	Arena arena;
 	TankType type; // AI or PlayerTank
 	int height; //Dimension
 	int width; //Dimension
@@ -34,8 +35,9 @@ public abstract class Tank
 	
 	
 
-	public Tank(Wall[][] walls) {
-		surroundingWalls = walls; 
+	public Tank(Arena inArena) {
+		arena = inArena;
+		surroundingWalls = inArena.getWalls(); 
 		height = 28; //Fixed height for all tanks
 		width = 56; //Fixed width for all tanks
 
