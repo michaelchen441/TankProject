@@ -105,6 +105,7 @@ public class Projectile
 		//the wall detection will use the angle to find what direction. it can be any of the following: north, east, south, west, northeast, northwest, southeast, southwest
 		//based on the direction, it will check a certain side of the wall. in the case of a duel direction, it will check two sides
 		Direction dir = getDirection();
+		System.out.println(dir);
 		for(int r = 0; r<walls.length; r++) {
 			for(int c = 0; c<walls[r].length; c++) {
 				if(walls[r][c] != null) {
@@ -114,6 +115,9 @@ public class Projectile
 								if( (int)yLoc > (r*50) && (int)yLoc < (r*50)+50) {
 									numWallHits++;
 									angle = Math.PI-angle;
+									if(angle < 0) {
+										angle += 2*Math.PI;
+									}
 									return;
 								}
 						if(dir == Direction.NORTH || dir == Direction.NORTHWEST || dir == Direction.NORTHEAST)
@@ -121,6 +125,9 @@ public class Projectile
 								if( (int)xLoc > (c*50) && (int)xLoc < (c*50)+50) {
 									numWallHits++;
 									angle = angle * -1;
+									if(angle < 0) {
+										angle += 2*Math.PI;
+									}
 									return;
 								}
 									
@@ -129,6 +136,9 @@ public class Projectile
 								if( (int)yLoc > (r*50) && (int)yLoc < (r*50)+50) {
 									numWallHits++;
 									angle = Math.PI-angle;
+									if(angle < 0) {
+										angle += 2*Math.PI;
+									}
 									return;
 								}
 									
@@ -137,6 +147,9 @@ public class Projectile
 								if( (int)xLoc > (c*50) && (int)xLoc < (c*50)+50) {
 									numWallHits++;
 									angle = angle *-1;
+									if(angle < 0) {
+										angle += 2*Math.PI;
+									}
 									return;
 								}
 									
@@ -149,23 +162,27 @@ public class Projectile
 
 
 	private Direction getDirection() {
-		if(angle == 0)
+		double degrees = (angle * 180)/Math.PI;
+		if(degrees<0) {
+			degrees+=360;
+		}
+		if(degrees == 0)
 			return Direction.EAST;
-		if(angle > 0 && angle< Math.PI/2)
+		if(degrees > 0 && degrees< 90)
 			return Direction.NORTHEAST;
-		if(angle == Math.PI/2)
+		if(degrees == 90)
 			return Direction.NORTH;
-		if(angle >Math.PI/2 && angle< Math.PI)
+		if(degrees > 90 && degrees< 180)
 			return Direction.NORTHWEST;
-		if(angle == Math.PI)
+		if(degrees == 180)
 			return Direction.WEST;
-		if(angle> -1*(Math.PI) && angle< (Math.PI/2)* -1)
+		if(degrees> 180 && degrees< 270)
 			return Direction.SOUTHWEST;	
-		if(angle == -1* Math.PI/2)
+		if(degrees == 180)
 			return Direction.SOUTH;
-		if(angle> (3*Math.PI)/-2 && angle< 0)
+		if(degrees > 270 && degrees< 360)
 			return Direction.SOUTHEAST;
-
+		
 		return null;
 	}
 
