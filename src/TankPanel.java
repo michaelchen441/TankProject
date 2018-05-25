@@ -380,7 +380,12 @@ public class TankPanel extends JPanel {
 				level++;
 			}
 			
-			currentArena.moveTanks();
+			try {
+				currentArena.moveTanks();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			int playerTankX = currentArena.playerTank.getX();
 			int playerTankY = currentArena.playerTank.getY();

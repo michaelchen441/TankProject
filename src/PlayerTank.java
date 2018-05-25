@@ -123,7 +123,7 @@ public class PlayerTank extends Tank
 		if(stockPile.size() < 5) {
 
 			
-			System.out.println("You fired");
+//			System.out.println("You fired");
 			//if it has space, it will make a new projectile
 			
 			Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2(-(targetY - turretCenterY), targetX - turretCenterX),type, surroundingWalls);

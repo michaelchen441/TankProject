@@ -40,7 +40,7 @@ public abstract class Tank
 	}
 
 
-	public void setTurretAngleByTarget(int inTargetX, int inTargetY)
+	public void setTurretAngleByTarget(int inTargetX, int inTargetY)//being called every millisecond
 	{
 		targetX = inTargetX;
 		targetY = inTargetY;
@@ -56,6 +56,7 @@ public abstract class Tank
 		for(Projectile p : stockPile) {
 			p.draw(g, l);
 		}
+		
 
 		//set up image based on tank type
 		BufferedImage tankImage = null;
@@ -100,14 +101,12 @@ public abstract class Tank
 			g.drawImage(turretImage, xTurretImageLoc, yTurretImageLoc, null);
 
 			g2D.setTransform(backupAT);
+			
+			//enemyFire
+			
 		}
 	
 	}
-
-	
-	
-	
-
 
 	public boolean canMoveX(Direction dir, Wall[][] walls) {
 		//System.out.println("begin wall detection");
