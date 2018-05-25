@@ -17,19 +17,18 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 	
 
 	
-	public AITank(TankType inType, int inX, int inY, Wall[][] walls, PlayerTank pTank)
+	public AITank(TankType inType, int inX, int inY, Arena inArena)
 	{
-		super(walls); // Calls superclass contructor which takes in all walls in arena
+		super(inArena); // Calls superclass contructor which takes in all walls in arena
 		alive = true;
 		type = inType;
 		xLoc = inX*50; //Each cell is 50 pixels in wide
 		yLoc = inY*50; //Each cell is 50 pixels in length
-		player = new Point(pTank.getX() + 25, pTank.getY() + 25);
+
 		ai = new Point(xLoc, yLoc);
 		
 		wallsInBetween = new ArrayList<Wall>();
 		intersect = false;
-		surroundingWalls = walls;
 		
 		numMoveTries = 0;
 		tankSlowMultiplier = 3;

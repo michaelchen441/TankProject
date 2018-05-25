@@ -49,7 +49,7 @@ public class Projectile
 		//draws black box projectile - use to test where image should be 
 		//g.setColor(Color.BLACK);
 		//g.fillRect((int)(xLoc), (int)(yLoc), 15, 15);
-		if(numWallHits > 1) { //once its hit a second wall, it dies
+		if(numWallHits > 1) { //once its hit a second wall, it dies //change back to 1
 			active = false;
 		}
 
