@@ -256,7 +256,7 @@ public class TankPanel extends JPanel {
 					if(!inMenu){
 						arenaList.get(level).playerTank.fire();
 					}
-
+					
 				}
 
 				@Override
