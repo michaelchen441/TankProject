@@ -23,6 +23,8 @@ public abstract class Tank
 	double turretAngle;//Angle of turret in radians, counterclockwise (0 is positive X axis, PI/2 is point up)
 	int turretCenterX;
 	int turretCenterY;
+	int turretTopX;
+	int turretTopY;
 	int targetX;
 	int targetY;
 	
@@ -52,66 +54,69 @@ public abstract class Tank
 		turretCenterX = xLoc + 25;	// should be width / 2
 		turretCenterY = yLoc + 25;	// should be height / 2
 		turretAngle = Math.atan2(-(inTargetY - turretCenterY), inTargetX - turretCenterX);
+		turretTopX = (int) (41*Math.cos(turretAngle))+turretCenterX;
+		turretTopY = (int)(-41*Math.sin(turretAngle))+ turretCenterY;
 
 
 	}
 	
-	public void draw(Graphics g, ImageLibrary l, Tank t){
+	public void draw(Graphics g, ImageLibrary l){
 		// draw projectiles	
 		for(Projectile p : stockPile) {
-			
-			p.draw(g, l, t);
+			p.draw(g, l);
 		}
 		
 
-		//set up image based on tank type
-		BufferedImage tankImage = null;
-		BufferedImage turretImage = null;
-		switch(type){
-		case GREEN: 
-			tankImage = l.greenTank;
-			turretImage = l.greenTurret;
-			break;
-		case RED: 
-			tankImage = l.redTank;
-			turretImage = l.redTurret;
-			break;
-		case BLUE: 
-			tankImage = l.blueTank;
-			turretImage = l.blueTurret;
-			break;
-		case BLACK: 
-			tankImage = l.blackTank;
-			turretImage = l.blackTurret;
-			break;
+		if(alive){
+			//set up image based on tank type
+			BufferedImage tankImage = null;
+			BufferedImage turretImage = null;
+			switch(type){
+			case GREEN: 
+				tankImage = l.greenTank;
+				turretImage = l.greenTurret;
+				break;
+			case RED: 
+				tankImage = l.redTank;
+				turretImage = l.redTurret;
+				break;
+			case BLUE: 
+				tankImage = l.blueTank;
+				turretImage = l.blueTurret;
+				break;
+			case BLACK: 
+				tankImage = l.blackTank;
+				turretImage = l.blackTurret;
+				break;
+			}
+
+			//draw tank
+			g.drawImage(tankImage, xLoc, yLoc, null);
+
+			{	
+				// draw turret
+				Graphics2D	g2D = (Graphics2D)g;
+				AffineTransform	backupAT = g2D.getTransform();
+				AffineTransform	theAT = new AffineTransform();
+
+				int xTurretImageLoc = xLoc + 15;
+				int yTurretImageLoc = yLoc - 15;
+				int	xTurretRotateOffset = 10;
+				int yTurretRotateOffset = 40;
+
+				theAT.rotate((Math.PI * 0.5) - turretAngle,	xTurretImageLoc + xTurretRotateOffset,
+						yTurretImageLoc + yTurretRotateOffset); //add PI/2 because turret image is upwards so that starts it horizontal
+
+				g2D.transform(theAT);
+				g.drawImage(turretImage, xTurretImageLoc, yTurretImageLoc, null);
+
+				g2D.setTransform(backupAT);
+
+				//enemyFire
+
+			}
 		}
-		
-		//draw tank
-		g.drawImage(tankImage, xLoc, yLoc, null);
-		
-		{	
-			// draw turret
-			Graphics2D	g2D = (Graphics2D)g;
-			AffineTransform	backupAT = g2D.getTransform();
-			AffineTransform	theAT = new AffineTransform();
 
-			int xTurretImageLoc = xLoc + 15;
-			int yTurretImageLoc = yLoc - 15;
-			int	xTurretRotateOffset = 10;
-			int yTurretRotateOffset = 40;
-
-			theAT.rotate((Math.PI * 0.5) - turretAngle,	xTurretImageLoc + xTurretRotateOffset,
-					yTurretImageLoc + yTurretRotateOffset); //add PI/2 because turret image is upwards so that starts it horizontal
-
-			g2D.transform(theAT);
-			g.drawImage(turretImage, xTurretImageLoc, yTurretImageLoc, null);
-
-			g2D.setTransform(backupAT);
-			
-			//enemyFire
-			
-		}
-	
 	}
 
 	public boolean canMoveX(Direction dir, Wall[][] walls) {
@@ -230,13 +235,8 @@ public abstract class Tank
 	abstract void move();
 	abstract void aim();
 	abstract void fire();
-	abstract String getType();
-	public int getX() {
-		return xLoc;
-	}
-	public int getY() {
-		return yLoc;
-	}
+	public int getX() {return xLoc;}
+	public int getY() {return yLoc;}
 	
 
 

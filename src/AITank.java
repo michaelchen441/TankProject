@@ -14,7 +14,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 	Point ai;//ai point
 	ArrayList<Wall> wallsInBetween;
 	boolean intersect;
-	int count;
+	
 
 	
 	public AITank(TankType inType, int inX, int inY, Arena inArena)
@@ -34,7 +34,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 		numMoveTries = 0;
 		tankSlowMultiplier = 3;
 		fireSlowMultiplier = 500;
-		count = 0;
+
 		
 		for(int r = 0; r<surroundingWalls.length; r++) {
 			for(int c = 0; c<surroundingWalls[r].length; c++) {
@@ -103,12 +103,12 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 		if(intersect == false){
 		
 			
-			if(numMoveTries%fireSlowMultiplier == 0 ) {
+			if(numMoveTries%fireSlowMultiplier == 0 && alive) {
 
 				System.out.println("You fired1");
 				//if it has space, it will make a new projectile
 				
-				Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2(-(targetY - turretCenterY), targetX - turretCenterX),type, arena);
+				Projectile p = new Projectile(turretTopX, turretTopY, Math.atan2(-(targetY - turretCenterY), targetX - turretCenterX),type, arena);
 				stockPile.add(p);
 				
 

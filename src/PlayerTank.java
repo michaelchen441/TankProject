@@ -125,7 +125,7 @@ public class PlayerTank extends Tank
 //			System.out.println("You fired");
 			//if it has space, it will make a new projectile
 			
-			Projectile p = new Projectile(xLoc+25 , yLoc+25, Math.atan2(-(targetY - turretCenterY), targetX - turretCenterX),type, arena);
+			Projectile p = new Projectile(turretTopX,turretTopY, Math.atan2(-(targetY - turretCenterY), targetX - turretCenterX),type, arena);
 
 			stockPile.add(p);
 
@@ -152,10 +152,6 @@ public class PlayerTank extends Tank
 	public void setX(int x) {xLoc = x*50;}
 
 	
-	public String getType() {
-		return "playerTank";
-		
-	}
 	
 
 

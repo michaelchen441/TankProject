@@ -132,12 +132,12 @@ public class Projectile
 		ArrayList<Tank> tankList = myArena.getTanks();
 		Direction dir = getDirection();
 		for(Tank t : tankList) {
-			if(!t.getType().equals("playerTank")) {
 				//works great
 				if(dir == Direction.EAST || dir == Direction.NORTHEAST || dir == Direction.SOUTHEAST ) {
 					if(xLoc <= t.getX()+speed && xLoc >= t.getX()-speed) {
 						if(yLoc >= t.getY() && yLoc <= t.getY()+50) {
 							active = false;
+							t.alive = false;
 							return true;
 
 						}
@@ -145,17 +145,19 @@ public class Projectile
 
 				}
 				if(dir == Direction.NORTH || dir == Direction.NORTHEAST || dir == Direction.NORTHWEST ) {
-					if(yLoc >= t.getY()-speed && yLoc <= t.getY()+speed) {
+					if(yLoc >= t.getY()-speed+50 && yLoc <= t.getY()+speed+50) {
 						if(xLoc >= t.getX()-speed && xLoc <= t.getX()+50+speed) {
 							active = false;
+							t.alive = false;
 							return true;
 						}
 					}
 				}
 				if(dir == Direction.SOUTH || dir == Direction.SOUTHWEST || dir == Direction.SOUTHEAST ) {
-					if(yLoc >= t.getY()-speed+50 && yLoc <= t.getY()+speed+50) {
+					if(yLoc >= t.getY()-speed && yLoc <= t.getY()+speed) {
 						if(xLoc >= t.xLoc-speed && xLoc <= t.xLoc+50+speed) {
 							active = false;
+							t.alive = false;
 							return true;
 						}
 					}
@@ -165,13 +167,14 @@ public class Projectile
 					if(xLoc <= t.getX()+speed+50 && xLoc >= t.getX()-speed+50) {
 						if(yLoc >= t.yLoc && yLoc <= t.yLoc+50) {
 							active = false;
+							t.alive = false;
 							return true;
 						}
 					}
 				}
 
 			}
-		}
+
 		return false;
 
 	}
