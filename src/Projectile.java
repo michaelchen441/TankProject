@@ -120,7 +120,7 @@ public class Projectile
 
 				}
 				if(dir == Direction.NORTH || dir == Direction.NORTHEAST || dir == Direction.NORTHWEST ) {
-					if(yLoc >= t.getY()-speed && yLoc <= t.getY()+speed) {
+					if(yLoc >= t.getY()-speed+50 && yLoc <= t.getY()+speed+50) {
 						if(xLoc >= t.getX()-speed && xLoc <= t.getX()+50+speed) {
 							active = false;
 							return true;
@@ -128,7 +128,7 @@ public class Projectile
 					}
 				}
 				if(dir == Direction.SOUTH || dir == Direction.SOUTHWEST || dir == Direction.SOUTHEAST ) {
-					if(yLoc >= t.getY()-speed+50 && yLoc <= t.getY()+speed+50) {
+					if(yLoc >= t.getY()-speed && yLoc <= t.getY()+speed) {
 						if(xLoc >= t.xLoc-speed && xLoc <= t.xLoc+50+speed) {
 							active = false;
 							return true;
