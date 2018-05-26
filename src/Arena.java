@@ -79,7 +79,7 @@ public class Arena
 	}
 	
 	
-	public void moveTanks() throws Exception{
+	public void moveTanks(){
 		for(Tank tank: tankList){
 			tank.move();
 			if(tank.type == TankType.BLUE) {
