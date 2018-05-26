@@ -145,7 +145,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 			}
 			
 		
-			if(numMoveTries%fireSlowMultiplier == 0 ) {
+			if(numMoveTries%fireSlowMultiplier == 0 && alive) {
 
 				System.out.println("You fired1");
 				//if it has space, it will make a new projectile
