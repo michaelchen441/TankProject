@@ -3,7 +3,20 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 public class GameOver {
-	void draw(Graphics g, ImageLibrary imageLibrary)
+	
+	private int numTankKills;
+	private int level;
+	
+	
+	public GameOver(int inNumTankKills, int inLevel){
+		
+		numTankKills = inNumTankKills;
+		level = inLevel;
+		
+	}
+	
+	
+	public void draw(Graphics g, ImageLibrary l)
 	{
 		g.setColor(Color.RED); //Red colored rectangle
 		g.fillRect(350, 500, 700, 200); //Makes rectangle containing start button

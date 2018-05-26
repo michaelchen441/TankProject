@@ -7,9 +7,8 @@ public class Menu
 	
 	private int highScore; //Displays your highscore
 	
-	
 	//at some point make panels inMenu false
-	void draw(Graphics g, ImageLibrary imageLibrary)
+	void draw(Graphics g, ImageLibrary l)
 	{
 		
 		g.setColor(Color.RED); //Red colored rectangle

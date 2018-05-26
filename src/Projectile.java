@@ -35,6 +35,15 @@ public class Projectile
 		if(type.equals(TankType.GREEN)){
 			speed = 3;
 		}
+		if(type.equals(TankType.BLUE)){
+			speed = 2;
+		}
+		if(type.equals(TankType.RED)){
+			speed = 2;
+		}
+		if(type.equals(TankType.BLACK)){
+			speed = 3;
+		}
 
 		active = true;
 		numWallHits = 0;
@@ -108,6 +117,7 @@ public class Projectile
 		ArrayList<Tank> tankList = myArena.getTanks();
 		Direction dir = getDirection();
 		for(Tank t : tankList) {
+			if (t.alive){
 				//works great
 				if(dir == Direction.EAST || dir == Direction.NORTHEAST || dir == Direction.SOUTHEAST ) {
 					if(xLoc <= t.getX()+speed && xLoc >= t.getX()-speed) {
@@ -148,8 +158,8 @@ public class Projectile
 						}
 					}
 				}
-
 			}
+		}
 
 		return false;
 

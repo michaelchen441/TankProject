@@ -46,6 +46,8 @@ public class TankPanel extends JPanel {
 	Arena level1Arena;
 	Arena level2Arena;
 	Arena level3Arena;
+	
+	int numTankKills = 0;
 
 	ImageLibrary imageLibrary = new ImageLibrary();
 
@@ -345,9 +347,20 @@ public class TankPanel extends JPanel {
 		//System.out.println("timer has gone off");
 		repaint();
 	}
+	
+	public void resetGame(){
+		level = -1;
+		inMenu = true;
+		numTankKills = 0;
+		
+	}
+	
 	public void paintComponent(Graphics g) {
 		//	long start = System.currentTimeMillis();
-
+//		if(){ //if game won or lost and user clicked go back to menu button
+//			resetGame();
+//			
+//		}
 
 		if(!level1FirstTime){
 			arenaList.get(level).setInputMoveArr(getInputMoveArr());
@@ -359,6 +372,7 @@ public class TankPanel extends JPanel {
 		if (inMenu){
 			theMenu.draw(g, imageLibrary);
 		}
+
 		else 
 		{
 			if(level1FirstTime){
@@ -375,6 +389,13 @@ public class TankPanel extends JPanel {
 			}
 			
 			Arena currentArena = arenaList.get(level);
+			
+			if(currentArena.playerTank.alive == false){
+				
+				GameOver gameOverScreen = new GameOver(numTankKills, level);
+				gameOverScreen.draw(g, imageLibrary);
+				return;
+			}
 			
 			if(currentArena.advanceLevel){
 				level++;

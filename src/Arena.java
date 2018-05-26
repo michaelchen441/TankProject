@@ -80,11 +80,6 @@ public class Arena
 	
 	
 	public void moveTanks(){
-		for(int i = 0; i < tankList.size(); i++){
-			if(!tankList.get(i).alive){
-				tankList.remove(i);
-			}
-		}
 		for(Tank tank: tankList){
 			tank.move();
 			if(tank.type == TankType.BLUE) {
@@ -114,14 +109,18 @@ public class Arena
 		//Draws all the tanks in the tanklist
 		for(Tank tank: tankList){
 			tank.draw(g, l);
-//			System.out.println(tank.getType());
 		}
 		
 		//Determines if all enemy tanks are dead
 		//If condition is met, level is incremented
 		//Doesn't check index 0 because it is a playertank
-		
-		if(tankList.size() < 2){
+		boolean allDead = true;
+		for(int i = 1; i < tankList.size(); i++){
+			if (tankList.get(i).alive == true){
+				allDead = false;
+			}
+		}
+		if(allDead){
 			advanceLevel = true;
 		}
 
