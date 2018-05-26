@@ -59,12 +59,13 @@ public abstract class Tank
 
 
 	}
-
+	
 	public void draw(Graphics g, ImageLibrary l){
 		// draw projectiles	
 		for(Projectile p : stockPile) {
 			p.draw(g, l);
 		}
+		
 
 		if(alive){
 			//set up image based on tank type

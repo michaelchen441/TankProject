@@ -109,6 +109,7 @@ public class Arena
 		//Draws all the tanks in the tanklist
 		for(Tank tank: tankList){
 			tank.draw(g, l);
+//			System.out.println(tank.getType());
 		}
 		
 		//Determines if all enemy tanks are dead
