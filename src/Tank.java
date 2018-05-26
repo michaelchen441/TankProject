@@ -229,6 +229,14 @@ public abstract class Tank
 	abstract void move();
 	abstract void aim();
 	abstract void fire();
+	abstract String getType();
+	public int getX() {
+		return xLoc;
+	}
+	public int getY() {
+		return yLoc;
+	}
+	
 
 
 }
