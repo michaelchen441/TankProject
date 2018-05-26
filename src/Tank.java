@@ -54,8 +54,8 @@ public abstract class Tank
 		turretCenterX = xLoc + 25;	// should be width / 2
 		turretCenterY = yLoc + 25;	// should be height / 2
 		turretAngle = Math.atan2(-(inTargetY - turretCenterY), inTargetX - turretCenterX);
-	//	turretTopX =
-	//	turretTopY = 
+		turretTopX = (int) (41*Math.cos(turretAngle))+turretCenterX;
+		turretTopY = (int)(-41*Math.sin(turretAngle))+ turretCenterY;
 
 
 	}
@@ -233,7 +233,6 @@ public abstract class Tank
 	abstract void move();
 	abstract void aim();
 	abstract void fire();
-	abstract String getType();
 	public int getX() {return xLoc;}
 	public int getY() {return yLoc;}
 	
