@@ -152,10 +152,6 @@ public class PlayerTank extends Tank
 	public void setX(int x) {xLoc = x*50;}
 
 	
-	public String getType() {
-		return "playerTank";
-		
-	}
 	
 
 

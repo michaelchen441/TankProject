@@ -107,7 +107,6 @@ public class Projectile
 		ArrayList<Tank> tankList = myArena.getTanks();
 		Direction dir = getDirection();
 		for(Tank t : tankList) {
-			if(!t.getType().equals("playerTank")) { //temp doesnt detect playertank, TODO delete
 				//works great
 				if(dir == Direction.EAST || dir == Direction.NORTHEAST || dir == Direction.SOUTHEAST ) {
 					if(xLoc <= t.getX()+speed && xLoc >= t.getX()-speed) {
@@ -150,7 +149,7 @@ public class Projectile
 				}
 
 			}
-		}
+
 		return false;
 
 	}

@@ -163,7 +163,6 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 	}
 
 
-	public String getType() {return "aiTank";}
 
 	
 	
