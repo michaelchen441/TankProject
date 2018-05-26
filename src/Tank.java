@@ -54,7 +54,8 @@ public abstract class Tank
 		turretCenterX = xLoc + 25;	// should be width / 2
 		turretCenterY = yLoc + 25;	// should be height / 2
 		turretAngle = Math.atan2(-(inTargetY - turretCenterY), inTargetX - turretCenterX);
-		
+	//	turretTopX =
+	//	turretTopY = 
 
 
 	}
