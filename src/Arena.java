@@ -411,6 +411,7 @@ public class Arena
 	public int playerTankLocX() {return playerTank.getX();}
 	//Returns y location of playerTank
 	public int playerTankLocY() {return playerTank.getY();}
+	public ArrayList<Tank> getTanks() { return tankList;}
 	
 
 
