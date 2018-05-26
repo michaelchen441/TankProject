@@ -46,37 +46,61 @@ public class Projectile
 
 
 
-	void draw(Graphics g, ImageLibrary l){
+		void draw(Graphics g, ImageLibrary l, Tank t){
 
 		//draws black box projectile - use to test where image should be 
 		//g.setColor(Color.BLACK);
 		//g.fillRect((int)(xLoc), (int)(yLoc), 15, 15);
-		if(numWallHits > 1) { //once its hit a second wall, it dies //change back to 1
-			active = false;
+		if(t.getType().equals("playerTank")) {
+			if(numWallHits > 1) { //once its hit a second wall, it dies //change back to 1
+				active = false;
+			}
+
+			if(active){	
+				Graphics2D	g2D = (Graphics2D)g;
+				AffineTransform	backupAT = g2D.getTransform();
+				AffineTransform	theAT = new AffineTransform();
+
+				//projectile image is 20x10
+				int projectileDrawX = (int)xLoc-20;
+				int projectileDrawY = (int)yLoc-5;
+				int	projectileRotateOffsetX = 20;
+				int projectileRotateOffsetY = 5;
+
+				theAT.rotate( -angle,	projectileDrawX + projectileRotateOffsetX,
+						projectileDrawY + projectileRotateOffsetY);//-angle to adjust to y axis pointing down
+
+				g2D.transform(theAT);
+				g.drawImage(l.projectile, projectileDrawX, projectileDrawY, null);
+
+				g2D.setTransform(backupAT);
+
+				//	numDraws++;
+			}
 		}
+		if(t.getType().equals("aiTank")) {
+			
+				Graphics2D	g2D = (Graphics2D)g;
+				AffineTransform	backupAT = g2D.getTransform();
+				AffineTransform	theAT = new AffineTransform();
 
-		if(active){	
-			Graphics2D	g2D = (Graphics2D)g;
-			AffineTransform	backupAT = g2D.getTransform();
-			AffineTransform	theAT = new AffineTransform();
+				//projectile image is 20x10
+				int projectileDrawX = (int)xLoc-20;
+				int projectileDrawY = (int)yLoc-5;
+				int	projectileRotateOffsetX = 20;
+				int projectileRotateOffsetY = 5;
 
-			//projectile image is 20x10
-			int projectileDrawX = (int)xLoc-20;
-			int projectileDrawY = (int)yLoc-5;
-			int	projectileRotateOffsetX = 20;
-			int projectileRotateOffsetY = 5;
+				theAT.rotate( -angle,	projectileDrawX + projectileRotateOffsetX,
+						projectileDrawY + projectileRotateOffsetY);//-angle to adjust to y axis pointing down
 
-			theAT.rotate( -angle,	projectileDrawX + projectileRotateOffsetX,
-					projectileDrawY + projectileRotateOffsetY);//-angle to adjust to y axis pointing down
+				g2D.transform(theAT);
+				g.drawImage(l.projectile, projectileDrawX, projectileDrawY, null);
 
-			g2D.transform(theAT);
-			g.drawImage(l.projectile, projectileDrawX, projectileDrawY, null);
-
-			g2D.setTransform(backupAT);
-
-			//	numDraws++;
+				g2D.setTransform(backupAT);
+			
+				//	numDraws++;
+			
 		}
-
 	}
 
 
@@ -98,6 +122,7 @@ public class Projectile
 
 				}
 			}
+			
 		}
 	}
 

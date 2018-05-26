@@ -56,10 +56,11 @@ public abstract class Tank
 
 	}
 	
-	public void draw(Graphics g, ImageLibrary l){
+	public void draw(Graphics g, ImageLibrary l, Tank t){
 		// draw projectiles	
 		for(Projectile p : stockPile) {
-			p.draw(g, l);
+			
+			p.draw(g, l, t);
 		}
 		
 
