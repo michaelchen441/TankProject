@@ -399,6 +399,7 @@ public class TankPanel extends JPanel {
 			}
 
 			if(currentArena.advanceLevel){
+				System.out.println("next level");
 				level++;
 			}
 

@@ -122,7 +122,8 @@ public class Arena
 		g.drawImage(l.background,0,0,null);
 
 		if (transition){
-			if(startingTransition = true){
+			
+			if(startingTransition == true){
 				timerStartTransition = timer;//start timer so transition only lasts so long
 				startingTransition = false;		
 			}
@@ -134,7 +135,9 @@ public class Arena
 				}
 			}
 			drawTransition(g, l);
-			if(timer - timerStartTransition > 2000){ //check if transition should end
+			System.out.println(timerStartTransition);
+			if(timer - timerStartTransition > 500){ //check if transition should end
+				System.out.println("timer ran out");
 				advanceLevel = true;//tells arena to start next level
 			}
 		}
