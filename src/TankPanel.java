@@ -46,8 +46,9 @@ public class TankPanel extends JPanel {
 	Arena level1Arena;
 	Arena level2Arena;
 	Arena level3Arena;
-	
+
 	int numTankKills = 0;
+
 
 	ImageLibrary imageLibrary = new ImageLibrary();
 
@@ -64,7 +65,7 @@ public class TankPanel extends JPanel {
 	public static void main(String[] args) {
 
 
-		
+
 		try {
 			// Set System L&F
 			UIManager.setLookAndFeel(
@@ -114,8 +115,8 @@ public class TankPanel extends JPanel {
 			}
 		});
 
-		
-		
+
+
 		this.getInputMap().put(KeyStroke.getKeyStroke("released A"),"releasedLeft");
 		this.getInputMap().put(KeyStroke.getKeyStroke("released LEFT"),"releasedLeft");
 		this.getActionMap().put("releasedLeft",new AbstractAction(){
@@ -123,7 +124,7 @@ public class TankPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
-				
+
 				leftPressed = false;
 
 			}
@@ -137,7 +138,7 @@ public class TankPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
-				
+
 				rightPressed = true;
 
 			}
@@ -150,7 +151,7 @@ public class TankPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
-				
+
 				rightPressed = false;
 
 			}
@@ -163,7 +164,7 @@ public class TankPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
-				
+
 				upPressed = true;
 
 
@@ -177,7 +178,7 @@ public class TankPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
-				
+
 				upPressed = false;
 
 
@@ -191,7 +192,7 @@ public class TankPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
-				
+
 				downPressed = true;
 			}
 		});
@@ -203,7 +204,7 @@ public class TankPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// what do you want to do when the left arrow is pressed?
-				
+
 				downPressed = false;
 			}
 		});
@@ -214,15 +215,15 @@ public class TankPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
+
+
 				if(!inMenu){
 					arenaList.get(level).playerTank.fire();
 				}
 			}
 		});
-		
-		
+
+
 		this.requestFocusInWindow();
 
 	}
@@ -234,7 +235,7 @@ public class TankPanel extends JPanel {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					// TODO Auto-generated method stub
-					
+
 					if(inMenu)
 					{
 						if((arg0.getX() > 350 && arg0.getX() < 1050) 
@@ -246,9 +247,9 @@ public class TankPanel extends JPanel {
 							level = 0;
 						}
 					}
-					
-				
-				
+
+
+
 				}
 
 				@Override
@@ -258,7 +259,7 @@ public class TankPanel extends JPanel {
 					if(!inMenu){
 						arenaList.get(level).playerTank.fire();
 					}
-					
+
 				}
 
 				@Override
@@ -297,9 +298,9 @@ public class TankPanel extends JPanel {
 					// send to crosshair
 					crosshairX = e.getX();
 					crosshairY = e.getY();
-//					int Tx = arenaList.get(level).playerTankLocX()+25;
-//					int Ty = arenaList.get(level).playerTankLocY()+25;
-//					arenaList.get(level).playerTank.setTurretAngle(Math.atan2(crosshairY-Ty, crosshairX-Tx));
+					//					int Tx = arenaList.get(level).playerTankLocX()+25;
+					//					int Ty = arenaList.get(level).playerTankLocY()+25;
+					//					arenaList.get(level).playerTank.setTurretAngle(Math.atan2(crosshairY-Ty, crosshairX-Tx));
 
 					//	double Xd =(crosshairX-level1Arena.playerTankLocX()+25);
 					//	double Yd =(crosshairY-level1Arena.playerTankLocX()+25);
@@ -347,20 +348,20 @@ public class TankPanel extends JPanel {
 		//System.out.println("timer has gone off");
 		repaint();
 	}
-	
+
 	public void resetGame(){
 		level = -1;
 		inMenu = true;
 		numTankKills = 0;
-		
+
 	}
-	
+
 	public void paintComponent(Graphics g) {
 		//	long start = System.currentTimeMillis();
-//		if(){ //if game won or lost and user clicked go back to menu button
-//			resetGame();
-//			
-//		}
+		//		if(){ //if game won or lost and user clicked go back to menu button
+		//			resetGame();
+		//			
+		//		}
 
 		if(!level1FirstTime){
 			arenaList.get(level).setInputMoveArr(getInputMoveArr());
@@ -376,35 +377,35 @@ public class TankPanel extends JPanel {
 		else 
 		{
 			if(level1FirstTime){
-				
+
 				level1Arena = new Arena(1, numWallsAcross, numWallsDown);
 				level2Arena = new Arena(2, numWallsAcross, numWallsDown);
 				level3Arena = new Arena(3, numWallsAcross, numWallsDown);
-				
+
 				arenaList.add(level1Arena);
 				arenaList.add(level2Arena);
 				arenaList.add(level3Arena);
-				
+
 				level1FirstTime = false;
 			}
-			
+
 			Arena currentArena = arenaList.get(level);
-			
+
 			if(currentArena.playerTank.alive == false){
-				
+
 				GameOver gameOverScreen = new GameOver(numTankKills, level);
 				gameOverScreen.draw(g, imageLibrary);
 				return;
 			}
-			
+
 			if(currentArena.advanceLevel){
 				level++;
 			}
-			
+
 
 			currentArena.moveTanks();
-		
-			
+
+
 			int playerTankX = currentArena.playerTank.getX();
 			int playerTankY = currentArena.playerTank.getY();
 			for(Tank t: currentArena.tankList){
@@ -413,17 +414,17 @@ public class TankPanel extends JPanel {
 				}
 			}
 			currentArena.playerTank.setTurretAngleByTarget(crosshairX, crosshairY);
-			
+
 			currentArena.draw(g, imageLibrary);
-		
+
 			//	g.setColor(Color.WHITE);		
 			//g.drawLine(arenaList.get(level).playerTankLocX()+25, arenaList.get(level).playerTankLocY()+25, crosshairX, crosshairY);
 			//g.drawLine(level1Arena.playerTankLocX(), level1Arena.playerTankLocY(), crosshairX, crosshairY);
-			
+
 		}
 
 		g.drawImage(imageLibrary.crosshair, crosshairX-10, crosshairY-10, null);
-		
+
 
 
 	}

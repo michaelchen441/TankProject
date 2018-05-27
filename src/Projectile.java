@@ -32,18 +32,34 @@ public class Projectile
 		type = inType;
 		angle = a;
 		myArena = inArena;
-		if(type.equals(TankType.GREEN)){
+		switch(type){
+		case GREEN: 
 			speed = 3;
-		}
-		if(type.equals(TankType.BLUE)){
-			speed = 2;
-		}
-		if(type.equals(TankType.RED)){
-			speed = 2;
-		}
-		if(type.equals(TankType.BLACK)){
+			break;
+		case BLUE:
 			speed = 3;
+			break;
+		case RED:
+			speed = 4;
+			break;
+		case BLACK:
+			speed = 3;
+			break;
+		case PINK:
+			speed = 3;
+			break;
+		case WHITE:
+			speed = 3;
+			break;
+		case YELLOW:
+			speed = 3;
+			break;
+		case INVISIBLE:
+			speed = 3;
+			break;
 		}
+		
+	
 
 		active = true;
 		numWallHits = 0;

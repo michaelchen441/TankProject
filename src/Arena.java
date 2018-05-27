@@ -1,13 +1,15 @@
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import javax.swing.Timer;
+
 public class Arena
 {
 	int level; // Specifies which level and a specific arena 
-			   // is drawn based on which level is passed in
+	// is drawn based on which level is passed in
 	private Wall[][] walls; //List of all walls in the arena
-							//Every cell in the arena is can be made into a wall
-							// Remains null if no wall is created in the cell
+	//Every cell in the arena is can be made into a wall
+	// Remains null if no wall is created in the cell
 	PlayerTank playerTank; // Tank controlled by player
 	AITank blueTank1;  // An AI Tank
 	AITank redTank1; // An AI Tank
@@ -18,23 +20,34 @@ public class Arena
 	ArrayList<Tank> tankList; // List of all tanks to keep track of
 
 	int[] inputMoveInfo; // Information for how to change x and y locations
-						 // Dependent on keypressed
+	// Dependent on keypressed
 	int numWallsAcross; // Dimensions across
 	int numWallsDown;	// Dimensions down
-	public boolean advanceLevel;
 
-// Arena Constructor
+	private int timer;
+	public boolean transition;
+	private int timerStartTransition;
+	private boolean startingTransition;
+	public boolean advanceLevel;
+	private Wall[][] transitionWalls;
+
+	// Arena Constructor
 	public Arena(int inLevel, int inNumWallsAcross, int  inNumWallsDown) {
 		level = inLevel; // Sets up which level
 
 		// Sets up arena dimensions
 		numWallsAcross = inNumWallsAcross; 
 		numWallsDown = inNumWallsDown;
-		
+
 		//Construct 2D Area of walls
 		walls = new Wall[numWallsDown][numWallsAcross];
-		
+
+		timer = 0;
+		transition = false;
+		timerStartTransition = 0;
 		advanceLevel = false;
+		startingTransition = false;
+		transitionWalls = new Wall[numWallsDown][numWallsAcross];
 
 
 		//sets up border walls
@@ -50,13 +63,23 @@ public class Arena
 		for(int c = 0; c < numWallsAcross; c++){
 			walls[numWallsDown - 1][c] =  new Wall(numWallsDown - 1, c, false);
 		}
+
+		//sets up transition walls
+		for(int r = 6; r < 10; r++){
+			for(int c = 0; c < walls[r].length; c++){
+				transitionWalls[r][c] = new Wall(r, c, false);
+
+			}
+		}	
+
+
 		// Constructs a player tank with location (3,10)
 		playerTank = new PlayerTank(3,10, this);
 		// Constructs list of tanks
 		tankList = new ArrayList<Tank>();
 		// Adds player tank to arraylist of tanks to keep track of
 		tankList.add(playerTank);
-		
+
 		// Determines which level to draw based on level number passed into constructor
 		// Each setup for a level is coded for in a separate method
 		if(level == 1)
@@ -70,73 +93,101 @@ public class Arena
 		if(level == 5)
 			level5();
 
-		
+
 
 	}
 	// Enables access to all walls in a specific arena
 	public Wall[][] getWalls(){
 		return walls;
 	}
-	
-	
-	public void moveTanks(){
-		for(Tank tank: tankList){
-			tank.move();
-			if(tank.type == TankType.BLUE) {
-				
-				tank.fire();
-			
-			}
-			
-		}
-	}
-	
-	// Arena draw method
-	public void draw(Graphics g, ImageLibrary l) {
-		// draws wood panel background image
-		g.drawImage(l.background,0,0,null);
 
-		// If a cell in the arena is not null, it is considered to be a wall
-		// We call the wall's draw function here to make our wall
-		for(int r = 0; r < walls.length; r++){
-			for(int c = 0; c < walls[r].length; c++){
-				if(walls[r][c] != null){
-					walls[r][c].draw(g, l);	
+
+	public void moveTanks(){
+		if(!transition){
+			for(Tank tank: tankList){
+				tank.move();
+				if(tank.type != TankType.GREEN) {
+
+					tank.fire();
+
 				}
 			}
 		}
-		
-		//Draws all the tanks in the tanklist
-		for(Tank tank: tankList){
-			tank.draw(g, l);
-		}
-		
-		//Determines if all enemy tanks are dead
-		//If condition is met, level is incremented
-		//Doesn't check index 0 because it is a playertank
-		boolean allDead = true;
-		for(int i = 1; i < tankList.size(); i++){
-			if (tankList.get(i).alive == true){
-				allDead = false;
+	}
+
+	// Arena draw method
+	public void draw(Graphics g, ImageLibrary l) {
+		timer++;
+		// draws wood panel background image
+		g.drawImage(l.background,0,0,null);
+
+		if (transition){
+			if(startingTransition = true){
+				timerStartTransition = timer;//start timer so transition only lasts so long
+				startingTransition = false;		
+			}
+			for(int r = 0; r < walls.length; r++){ //draws all of the walls in transition screen
+				for(int c = 0; c < walls[r].length; c++){
+					if(transitionWalls[r][c] != null){
+						transitionWalls[r][c].draw(g, l);	
+					}
+				}
+			}
+			drawTransition(g, l);
+			if(timer - timerStartTransition > 2000){ //check if transition should end
+				advanceLevel = true;//tells arena to start next level
 			}
 		}
-		if(allDead){
-			advanceLevel = true;
-		}
+		else{
+			// If a cell in the arena is not null, it is considered to be a wall
+			// We call the wall's draw function here to make our wall
+			for(int r = 0; r < walls.length; r++){
+				for(int c = 0; c < walls[r].length; c++){
+					if(walls[r][c] != null){
+						walls[r][c].draw(g, l);	
+					}
+				}
+			}
 
+			//Draws all the tanks in the tanklist
+			for(Tank tank: tankList){
+				tank.draw(g, l);
+			}
+
+			//Determines if all enemy tanks are dead
+			//If condition is met, level is incremented
+			//Doesn't check index 0 because it is a playertank
+			boolean allDead = true;
+			for(int i = 1; i < tankList.size(); i++){
+				if (tankList.get(i).alive == true){
+					allDead = false;
+				}
+			}
+			if(allDead){
+				transition = true;
+				startingTransition = true;
+			}
+		}
 
 	}
 
-//Method containing all the information of level 1
-//When level is equal to 1, an arena with these objects and conditions are drawn
+	private void drawTransition(Graphics g, ImageLibrary l)
+	{
+		//TODO display level completed in green
+		//TODO  display current number of tanks killed
+
+	}
+
+	//Method containing all the information of level 1
+	//When level is equal to 1, an arena with these objects and conditions are drawn
 	public void level1() {
 		//Makes one blue enemy tank and adds to tanklist
 		playerTank.setX(3);
 		playerTank.setY(10);
-//		blueTank1 = new AITank(TankType.BLUE, 20, 8, walls, playerTank); //TODO choose coordinates
-//		tankList.add(blueTank1);
-//		
-		
+		//		blueTank1 = new AITank(TankType.BLUE, 20, 8, walls, playerTank); //TODO choose coordinates
+		//		tankList.add(blueTank1);
+		//		
+
 		walls[4][5] = new Wall(4,5, false);
 		walls[5][5] = new Wall(5,5, false);
 		walls[6][5] = new Wall(6,5, false);
@@ -172,16 +223,16 @@ public class Arena
 		blueTank1 = new AITank(TankType.BLUE, 20, 8, this); //TODO choose coordinates
 		tankList.add(blueTank1);
 	}
-//Method containing all the information of level 2
-//When level is equal to 2, an arena with these objects and conditions are drawn
+	//Method containing all the information of level 2
+	//When level is equal to 2, an arena with these objects and conditions are drawn
 	public void level2() {
 		//Makes one blue enemy tank and adds to tanklist
 		blueTank1 =  new AITank(TankType.BLUE, 24, 3, this); //TODO choose coordinates
 		tankList.add(blueTank1);
-		
+
 		playerTank.setX(3);
 		playerTank.setY(13);
-		
+
 		for(int i = 4; i<6; i++) {
 			for(int j = 5; j<15; j++) {
 				walls[i][j] = new Wall(i,j, false);
@@ -200,8 +251,8 @@ public class Arena
 			}
 		}	
 	}
-//Method containing all the information of level 3
-//When level is equal to 3, an arena with these objects and conditions are drawn
+	//Method containing all the information of level 3
+	//When level is equal to 3, an arena with these objects and conditions are drawn
 	public void level3() {
 		//Makes one blue enemy tank and adds to tanklist
 		blueTank1 =  new AITank(TankType.BLUE, 23, 8, this); //TODO choose coordinates
@@ -212,11 +263,11 @@ public class Arena
 		tankList.add(blueTank1);
 		tankList.add(redTank1);
 		tankList.add(redTank2);
-		
+
 		playerTank.setX(3);
 		playerTank.setY(8);
-		
-		
+
+
 		for(int i = 3; i<5; i++) {
 			for(int j = 4; j<6; j++) {
 				walls[i][j] = new Wall(i,j, false);
@@ -412,7 +463,7 @@ public class Arena
 	//Returns y location of playerTank
 	public int playerTankLocY() {return playerTank.getY();}
 	public ArrayList<Tank> getTanks() { return tankList;}
-	
+
 
 
 

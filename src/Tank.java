@@ -33,7 +33,7 @@ public abstract class Tank
 	//Depends on which key is pressed indicating which direction a tank needs to move in
 	
 	int numMoveTries = 0;//Number of times the tank has tried to move
-	int tankSlowMultiplier = 3;//ex. 1 is fastest, 3 is 1/3 speed
+	int tankSlowMultiplier = 2;//ex. 1 is fastest, 3 is 1/3 speed
 	
 	
 
@@ -85,6 +85,22 @@ public abstract class Tank
 				turretImage = l.blueTurret;
 				break;
 			case BLACK: 
+				tankImage = l.blackTank;
+				turretImage = l.blackTurret;
+				break;
+			case PINK: 
+				tankImage = l.blackTank;
+				turretImage = l.blackTurret;
+				break;
+			case WHITE: 
+				tankImage = l.blackTank;
+				turretImage = l.blackTurret;
+				break;
+			case YELLOW: 
+				tankImage = l.blackTank;
+				turretImage = l.blackTurret;
+				break;
+			case INVISIBLE: 
 				tankImage = l.blackTank;
 				turretImage = l.blackTurret;
 				break;

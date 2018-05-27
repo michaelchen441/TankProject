@@ -2,6 +2,6 @@
 public enum TankType
 {
 
-	GREEN, RED, BLUE, BLACK
+	GREEN, RED, BLUE, BLACK, PINK, WHITE, YELLOW, INVISIBLE
 
 }
