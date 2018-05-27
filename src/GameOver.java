@@ -19,9 +19,9 @@ public class GameOver {
 	public void draw(Graphics g, ImageLibrary l)
 	{
 		g.setColor(Color.RED); //Red colored rectangle
-		g.fillRect(350, 500, 700, 200); //Makes rectangle containing start button
+		g.fillRect(200, 500, 1000, 200); //Makes rectangle containing start button
 		g.setFont(new Font("TimesRoman", Font.PLAIN, 200)); //Times New Roman font; size 200
 		g.setColor(Color.BLACK); //Black colored text
-		g.drawString("Game Over", 385, 660); //Constructs the text and draws it on panel
+		g.drawString("Game Over", 230, 660); //Constructs the text and draws it on panel
 	}
 }
