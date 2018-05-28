@@ -41,6 +41,8 @@ public class TankPanel extends JPanel {
 
 	boolean rightPressed, leftPressed, upPressed, downPressed;
 
+	boolean pause = false;
+	int pauseCounter = 0;
 	ArrayList<Arena> arenaList = new ArrayList<Arena>();
 	Menu theMenu;
 	Arena level1Arena;
@@ -108,9 +110,29 @@ public class TankPanel extends JPanel {
 		// Set the blank cursor to the JFrame.
 		frame.getContentPane().setCursor(blankCursor);
 
-
+	
+		
 	}
 	private void setUpKeyMappings() {
+		this.getInputMap().put(KeyStroke.getKeyStroke("P"),"p");
+		this.getInputMap().put(KeyStroke.getKeyStroke("PAUSE"),"p");
+		this.getActionMap().put("p",new AbstractAction(){
+
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// what do you want to do when the P is pressed?
+				pauseCounter++;
+				if(pauseCounter%2 == 1) {
+				pause = true;
+				}
+				else {
+					pause = false;
+				}
+				System.out.println("you pressed P");
+				
+			}
+		});
 
 		this.getInputMap().put(KeyStroke.getKeyStroke("A"),"left");
 		this.getInputMap().put(KeyStroke.getKeyStroke("LEFT"),"left");
@@ -356,7 +378,9 @@ public class TankPanel extends JPanel {
 	}
 	protected void tick() {
 		//System.out.println("timer has gone off");
+		if(pause == false) {
 		repaint();
+		}
 	}
 
 	public void resetGame(){
