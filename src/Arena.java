@@ -1,4 +1,8 @@
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 
 import javax.swing.Timer;
@@ -7,6 +11,7 @@ public class Arena
 {
 	int level; // Specifies which level and a specific arena 
 	// is drawn based on which level is passed in
+	int levelCount = 0;
 	private Wall[][] walls; //List of all walls in the arena
 	//Every cell in the arena is can be made into a wall
 	// Remains null if no wall is created in the cell
@@ -41,6 +46,7 @@ public class Arena
 	//New Tanklist is created with the creation of a new arena
 	//This prevents tanks from previous levels from being drawn in later levels
 	ArrayList<Tank> tankList; // List of all tanks to keep track of
+	Tank[] transitionTankArr; // tanks in transition screen
 
 	int[] inputMoveInfo; // Information for how to change x and y locations
 	// Dependent on keypressed
@@ -87,13 +93,22 @@ public class Arena
 			walls[numWallsDown - 1][c] =  new Wall(numWallsDown - 1, c, false);
 		}
 
-		//sets up transition walls
-		for(int r = 6; r < 10; r++){
-			for(int c = 0; c < walls[r].length; c++){
-				transitionWalls[r][c] = new Wall(r, c, false);
+		
+		transitionTankArr = new Tank[4];
+		for(int r = 0; r < numWallsDown; r++){
+			transitionWalls[r][0] = new Wall(r, 0, false);
+		}
+		for(int r = 0; r < numWallsDown; r++){
+			transitionWalls[r][numWallsAcross - 1] = new Wall(r, numWallsAcross - 1, false);
+		}
+		for(int c = 0; c < numWallsAcross; c++){
+			transitionWalls[0][c] =  new Wall(0, c, false);
+		}
+		for(int c = 0; c < numWallsAcross; c++){
+			transitionWalls[numWallsDown - 1][c] =  new Wall(numWallsDown - 1, c, false);
+		}
 
-			}
-		}	
+
 
 		// Constructs a player tank with location (3,10)
 		playerTank = new PlayerTank(3,10, this);
@@ -145,7 +160,6 @@ public class Arena
 
 
 
-
 	}
 	// Enables access to all walls in a specific arena
 	public Wall[][] getWalls(){
@@ -191,7 +205,9 @@ public class Arena
 				System.out.println("timer ran out");
 				advanceLevel = true;//tells arena to start next level
 			}
-		}
+			
+			drawTransition(g,l);
+			}
 		else{
 			// If a cell in the arena is not null, it is considered to be a wall
 			// We call the wall's draw function here to make our wall
@@ -229,7 +245,104 @@ public class Arena
 	{
 		//TODO display level completed in green
 		//TODO  display current number of tanks killed
+		g.drawImage(l.blueTank, 350, 250, null);	
+		Graphics2D	g2D = (Graphics2D)g;
+		AffineTransform	backupAT = g2D.getTransform();
+		AffineTransform	theAT = new AffineTransform();
+
+		int xTurretImageLoc = 350 + 15;
+		int yTurretImageLoc = 250 - 15;
+		int	xTurretRotateOffset = 10;
+		int yTurretRotateOffset = 40;
+
+		theAT.rotate((Math.PI * 0.5),	xTurretImageLoc + xTurretRotateOffset,
+				yTurretImageLoc + yTurretRotateOffset); //add PI/2 because turret image is upwards so that starts it horizontal
+
+		g2D.transform(theAT);
+		g.drawImage(l.blueTurret, xTurretImageLoc, yTurretImageLoc, null);
+
+		g2D.setTransform(backupAT);
 		
+		
+		g.drawImage(l.redTank, 350, 350, null);	
+		Graphics2D	g2D2 = (Graphics2D)g;
+		AffineTransform	backupAT2 = g2D2.getTransform();
+		AffineTransform	theAT2 = new AffineTransform();
+
+		int xTurretImageLoc2 = 350 + 15;
+		int yTurretImageLoc2 = 350 - 15;
+
+		theAT2.rotate((Math.PI * 0.5),	xTurretImageLoc2 + xTurretRotateOffset,
+				yTurretImageLoc2 + yTurretRotateOffset); //add PI/2 because turret image is upwards so that starts it horizontal
+
+		g2D2.transform(theAT2);
+		g.drawImage(l.redTurret, xTurretImageLoc2, yTurretImageLoc2, null);
+
+		g2D2.setTransform(backupAT2);
+		
+		g.drawImage(l.blackTank, 350, 450, null);	
+		Graphics2D	g2D3 = (Graphics2D)g;
+		AffineTransform	backupAT3 = g2D3.getTransform();
+		AffineTransform	theAT3 = new AffineTransform();
+
+		int xTurretImageLoc3 = 350 + 15;
+		int yTurretImageLoc3 = 450 - 15;
+
+		theAT3.rotate((Math.PI * 0.5),	xTurretImageLoc3 + xTurretRotateOffset,
+				yTurretImageLoc3 + yTurretRotateOffset); //add PI/2 because turret image is upwards so that starts it horizontal
+
+		g2D3.transform(theAT3);
+		g.drawImage(l.blackTurret, xTurretImageLoc3, yTurretImageLoc3, null);
+
+		g2D3.setTransform(backupAT3);
+		
+		g.setColor(Color.BLACK);
+		g.setFont(new Font("TimesRoman", Font.PLAIN, 65)); 
+		g.drawString("x", 500, 292);
+		g.drawString("x", 500, 392);
+		g.drawString("x", 500, 492);
+		
+		int blueDestroyed = 0;
+		int redDestroyed = 0;
+		int blackDestroyed = 0;
+		
+		if(levelCount == 1) {
+			blueDestroyed = 1;
+		}
+		else if(levelCount == 2) {
+			blueDestroyed = 1;
+			redDestroyed = 1;
+		}
+		else if(levelCount == 3) {
+			blueDestroyed = 2;
+			redDestroyed = 3;
+		}
+		else if(levelCount == 4) {
+			blueDestroyed = 4;
+			redDestroyed = 5;
+		}
+		
+		g.drawString(Integer.toString(blueDestroyed), 650, 292);
+		g.drawString(Integer.toString(redDestroyed), 650, 392);
+		g.drawString(Integer.toString(blackDestroyed), 650, 492);
+		
+		g.drawString("=", 800, 292);
+		g.drawString("=", 800, 392);
+		g.drawString("=", 800, 492);
+		
+		g.drawString(Integer.toString(blueDestroyed * 10), 950, 292);
+		g.drawString(Integer.toString(redDestroyed * 50), 950, 392);
+		g.drawString(Integer.toString(blackDestroyed * 100), 950, 492);
+		
+		g.fillRect(250, 550, 800, 3);
+		
+		int totalScore = (blueDestroyed * 10) + (redDestroyed * 50) + (blackDestroyed * 100);
+		g.drawString(Integer.toString(totalScore), 950, 620);
+		g.setFont(new Font("TimesRoman", Font.PLAIN, 150)); 
+		String levelCompletion = "Level " + levelCount + " Completed";
+		g.drawString(levelCompletion, 100, 200);
+		
+
 	}
 
 	//Method containing all the information of level 1
@@ -244,6 +357,8 @@ public class Arena
 
 		blueTank1 = new AITank(TankType.BLUE, 20, 8, this);
 		tankList.add(blueTank1);
+		
+		levelCount = 1;
 	}
 	//Method containing all the information of level 2
 	//When level is equal to 2, an arena with these objects and conditions are drawn
@@ -258,6 +373,7 @@ public class Arena
 		
 		wallSetup2();
 		
+		levelCount = 2;
 	}
 
 	//Method containing all the information of level 3
@@ -278,6 +394,7 @@ public class Arena
 
 		wallSetup3();
 		
+		levelCount = 3;
 
 	}
 	//Method containing all the information of level 4
@@ -303,6 +420,7 @@ public class Arena
 		
 		wallSetup4();
 		
+		levelCount = 4;
 	}
 	//Method containing all the information of level 5
 	//When level is equal to 5, an arena with these objects and conditions are drawn
@@ -787,7 +905,7 @@ public class Arena
 	public ArrayList<Tank> getTanks() { return tankList;}
 
 
-
+	
 
 
 }
