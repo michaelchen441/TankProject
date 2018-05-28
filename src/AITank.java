@@ -169,16 +169,16 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 					Point point2 = new Point(temp.getXLoc() + 50, -temp.getYLoc());
 					Point point3 = new Point(temp.getXLoc(), (-temp.getYLoc()-50));
 					Point point4 = new Point(temp.getXLoc() + 50, (-temp.getYLoc()-50));
-					if(intersect(player, ai, point1, point2) == true) {
+					if(intersect(player, ai, point1, point2) == true && surroundingWalls[r][c].destructable == false) {
 						intersect = true;
 					}
-					else if(intersect(player, ai, point3, point4) == true) {
+					else if(intersect(player, ai, point3, point4) == true && surroundingWalls[r][c].destructable == false) {
 						intersect = true;
 					}
-					else if(intersect(player, ai, point1, point3) == true) {
+					else if(intersect(player, ai, point1, point3) == true && surroundingWalls[r][c].destructable == false) {
 						intersect = true;
 					}
-					else if(intersect(player, ai, point2, point4) == true) {
+					else if(intersect(player, ai, point2, point4) == true && surroundingWalls[r][c].destructable == false) {
 						intersect = true;
 					}
 				}

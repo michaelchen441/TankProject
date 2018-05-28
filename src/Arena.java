@@ -95,7 +95,6 @@ public class Arena
 			}
 		}	
 
-
 		// Constructs a player tank with location (3,10)
 		playerTank = new PlayerTank(3,10, this);
 		// Constructs list of tanks
@@ -230,7 +229,7 @@ public class Arena
 	{
 		//TODO display level completed in green
 		//TODO  display current number of tanks killed
-
+		
 	}
 
 	//Method containing all the information of level 1
@@ -341,11 +340,17 @@ public class Arena
 	public void level6Setup() {
 
 		//Makes one blue enemy tank and adds to tanklist
-		blueTank1 =  new AITank(TankType.BLUE, 23, 8, this);
-		tankList.add(blueTank1);
+		redTank1 =  new AITank(TankType.RED, 22, 5, this);
+		redTank2 =  new AITank(TankType.RED, 22, 13, this);
+		blackTank1 =  new AITank(TankType.BLACK, 24, 8, this);
+		blackTank2 =  new AITank(TankType.BLACK, 25, 11, this);
+		tankList.add(redTank1);
+		tankList.add(redTank2);
+		tankList.add(blackTank1);
+		tankList.add(blackTank2);
+
 		//make more tanks
-
-
+		
 		playerTank.setX(3);
 		playerTank.setY(8);
 
@@ -716,7 +721,19 @@ public class Arena
 	private void wallSetup6(){
 		//use for levels 6 and ...
 
-		walls[9][3] = new Wall(9, 3, false);
+		for(int i = 5; i<23; i++) {
+			walls[4][i] = new Wall(4, i, false);
+		}
+		for(int i = 5; i<23; i++) {
+			walls[11][i] = new Wall(11, i, false);
+		}
+		walls[5][13] = new Wall(5, 13, true);
+		walls[6][13] = new Wall(6, 13, true);
+		walls[7][13] = new Wall(7, 13, true);
+		walls[8][14] = new Wall(8, 14, true);
+		walls[9][14] = new Wall(9, 14, true);
+		walls[10][14] = new Wall(10, 14, true);
+
 	}
 	
 	private void wallSetup7(){
