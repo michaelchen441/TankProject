@@ -18,6 +18,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 	boolean intersect;
 	boolean commit;
 
+	TankType type1;
 
 	public AITank(TankType inType, int inX, int inY, Arena inArena)
 	{
@@ -39,6 +40,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 		tankSlowMultiplier = 2;
 		fireSlowMultiplier = 500;
 		commit = false;
+		type1 = inType;
 		//		for(int r = 0; r<surroundingWalls.length; r++) {
 		//			for(int c = 0; c<surroundingWalls[r].length; c++) {
 		//				if(surroundingWalls[r][c] != null) {
@@ -56,49 +58,86 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 	void move()
 	{
 		numMoveTries++;
-		
 		player1 = new Point(arena.playerTankLocX(),  -arena.playerTankLocY());
 		ai1 = new Point(xLoc, -yLoc);
 		Direction dirX;
 		Direction dirY;
 
-		if(ai1.getX() - player1.getX() > 0) {
-			dirX = Direction.WEST;
+		switch(type) {
+		case RED: 
+			if(ai1.getX() - player1.getX() > 0) {
+				dirX = Direction.WEST;
+			}
+			else if(ai1.getX() - player1.getX() < 0) {
+				dirX = Direction.EAST;
+			}
+			else {
+				dirX = null;
+			}
+
+			if((ai1.getY() - player1.getY() > 0)  ) {
+				dirY = Direction.NORTH;
+			}
+			else if((ai1.getY() - player1.getY() < 0)){
+				dirY = Direction.SOUTH;
+			}
+			else {
+				dirY = null;
+			}
+
+
+			if(canMoveX(dirX,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirX == Direction.WEST && xLoc != player1.getX()) {
+				xLoc += -1;
+			}
+			else if(canMoveX(dirX,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirX == Direction.EAST && xLoc != player1.getX()) {
+				xLoc += 1;
+			}
+			else if(canMoveY(dirY,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirY == Direction.NORTH && yLoc != player1.getY()){
+
+				yLoc += 1;
+			}
+			else if(canMoveY(dirY,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirY == Direction.SOUTH && yLoc != player1.getY()){
+				yLoc += -1;
+			}
+			break;
+		case BLACK: 
+
+			if(ai1.getX() - player1.getX() > 0) {
+				dirX = Direction.WEST;
+			}
+			else if(ai1.getX() - player1.getX() < 0) {
+				dirX = Direction.EAST;
+			}
+			else {
+				dirX = null;
+			}
+
+			if((ai1.getY() - player1.getY() > 0)  ) {
+				dirY = Direction.NORTH;
+			}
+			else if((ai1.getY() - player1.getY() < 0)){
+				dirY = Direction.SOUTH;
+			}
+			else {
+				dirY = null;
+			}
+
+
+			if(canMoveX(dirX,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirX == Direction.WEST && xLoc != player1.getX()) {
+				xLoc += -1;
+			}
+			else if(canMoveX(dirX,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirX == Direction.EAST && xLoc != player1.getX()) {
+				xLoc += 1;
+			}
+			else if(canMoveY(dirY,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirY == Direction.NORTH && yLoc != player1.getY()){
+
+				yLoc += 1;
+			}
+			else if(canMoveY(dirY,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirY == Direction.SOUTH && yLoc != player1.getY()){
+				yLoc += -1;
+			}
+			break;
 		}
-		else if(ai1.getX() - player1.getX() < 0) {
-			dirX = Direction.EAST;
-		}
-		else {
-			dirX = null;
-		}
-		
-		if((ai1.getY() - player1.getY() > 0)  ) {
-			dirY = Direction.NORTH;
-		}
-		else if((ai1.getY() - player1.getY() < 0)){
-			dirY = Direction.SOUTH;
-		}
-		else {
-			dirY = null;
-		}
-		
-		
-		if(canMoveX(dirX,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirX == Direction.WEST && xLoc != player1.getX()) {
-			xLoc += -1;
-		}
-		else if(canMoveX(dirX,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirX == Direction.EAST && xLoc != player1.getX()) {
-			xLoc += 1;
-		}
-		else if(canMoveY(dirY,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirY == Direction.NORTH && yLoc != player1.getY()){
-			
-			yLoc += 1;
-		}
-		else if(canMoveY(dirY,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirY == Direction.SOUTH && yLoc != player1.getY()){
-			yLoc += -1;
-		}
-		
-		
-		
 		for(Projectile p : stockPile) {
 			p.move();
 

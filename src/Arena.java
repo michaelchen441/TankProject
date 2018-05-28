@@ -174,7 +174,7 @@ public class Arena
 		g.drawImage(l.background,0,0,null);
 
 		if (transition){
-
+			
 			if(startingTransition == true){
 				timerStartTransition = timer;//start timer so transition only lasts so long
 				startingTransition = false;		
@@ -250,8 +250,8 @@ public class Arena
 	//When level is equal to 2, an arena with these objects and conditions are drawn
 	public void level2Setup() {
 		//Makes one blue enemy tank and adds to tanklist
-		blueTank1 =  new AITank(TankType.BLUE, 24, 3, this);
-		tankList.add(blueTank1);
+		redTank1 =  new AITank(TankType.RED, 24, 3, this);
+		tankList.add(redTank1);
 
 		playerTank.setX(3);
 		playerTank.setY(13);
@@ -507,15 +507,7 @@ public class Arena
 		walls[10][15] = new Wall(10,15, false);
 		walls[11][15] = new Wall(11,15, false);
 	}
-<<<<<<< HEAD
-	//Method containing all the information of level 2
-	//When level is equal to 2, an arena with these objects and conditions are drawn
-	public void level2() {
-		//Makes one blue enemy tank and adds to tanklist
-		redTank1 =  new AITank(TankType.RED, 24, 3, this); //TODO choose coordinates
-		tankList.add(redTank1);
-=======
->>>>>>> refs/remotes/origin/master
+	
 
 	private void wallSetup2(){
 		//use for levels 2 and ...
@@ -652,7 +644,6 @@ public class Arena
 		}
 
 
-		
 	}
 	
 	private void wallSetup5(){
