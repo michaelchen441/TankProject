@@ -37,7 +37,7 @@ public class Projectile
 			speed = 3;
 			break;
 		case BLUE:
-			speed = 3;
+			speed = 4;
 			break;
 		case RED:
 			speed = 4;

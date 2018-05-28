@@ -230,8 +230,8 @@ public class Arena
 	//When level is equal to 2, an arena with these objects and conditions are drawn
 	public void level2() {
 		//Makes one blue enemy tank and adds to tanklist
-		blueTank1 =  new AITank(TankType.BLUE, 24, 3, this); //TODO choose coordinates
-		tankList.add(blueTank1);
+		redTank1 =  new AITank(TankType.RED, 24, 3, this); //TODO choose coordinates
+		tankList.add(redTank1);
 
 		playerTank.setX(3);
 		playerTank.setY(13);

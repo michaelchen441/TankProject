@@ -77,7 +77,7 @@ public class PlayerTank extends Tank
 	//	}
 
 
-	// Checks which direction to move in based upon what the inputMoveArr contains
+	// Checks which direction to move in based upon what the wArr contains
 	// The input move array is filled with certain x and y loc changes based on user input
 	// Based off of these movements, one can detect which direction the movement will occur in
 	private Direction whichDir(int[] temp) {
