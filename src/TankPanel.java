@@ -254,7 +254,7 @@ public class TankPanel extends JPanel {
 								)
 						{
 							inMenu = false;
-							level = 0;
+							level = 1;
 						}
 					}
 
@@ -401,6 +401,7 @@ public class TankPanel extends JPanel {
 				level11Arena = new Arena(11, numWallsAcross, numWallsDown);
 				level12Arena = new Arena(11, numWallsAcross, numWallsDown);
 				
+				arenaList.add(level1Arena);
 				arenaList.add(level1Arena);
 				arenaList.add(level2Arena);
 				arenaList.add(level3Arena);
