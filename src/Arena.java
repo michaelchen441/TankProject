@@ -11,9 +11,32 @@ public class Arena
 	//Every cell in the arena is can be made into a wall
 	// Remains null if no wall is created in the cell
 	PlayerTank playerTank; // Tank controlled by player
-	AITank blueTank1;  // An AI Tank
-	AITank redTank1; // An AI Tank
-	AITank redTank2; // An AI Tank
+
+	AITank blueTank1;  // possible blue AI Tanks, not all ai tanks are used for each level,
+	AITank blueTank2; //							but this is enough for any level
+
+	AITank redTank1; // possible red AI Tank
+	AITank redTank2; 
+
+	AITank blackTank1;// possible black AI Tanks
+	AITank blackTank2;
+	AITank blackTank3;
+	AITank blackTank4;
+
+	AITank whiteTank1;// possible white AI Tank
+	AITank whiteTank2;
+	AITank whiteTank3;
+
+	AITank invisibleTank1;// possible invisible AI Tank
+	AITank invisibleTank2;
+	AITank invisibleTank3;
+	AITank invisibleTank4;
+	AITank invisibleTank5;
+	AITank invisibleTank6;
+
+
+
+
 	//Note about TankList
 	//New Tanklist is created with the creation of a new arena
 	//This prevents tanks from previous levels from being drawn in later levels
@@ -82,16 +105,45 @@ public class Arena
 
 		// Determines which level to draw based on level number passed into constructor
 		// Each setup for a level is coded for in a separate method
-		if(level == 1)
-			level1();
-		if(level == 2)
-			level2();
-		if(level == 3)
-			level3();
-		if(level == 4)
-			level4();
-		if(level == 5)
-			level5();
+		switch(level){
+		case 1: 
+			level1Setup();
+			break;
+		case 2: 
+			level2Setup();
+			break;
+		case 3: 
+			level3Setup();
+			break;
+		case 4: 
+			level4Setup();
+			break;
+		case 5: 
+			level5Setup();
+			break;
+		case 6: 
+			level6Setup();
+			break;
+		case 7: 
+			level7Setup();
+			break;
+		case 8: 
+			level8Setup();
+			break;
+		case 9: 
+			level9Setup();
+			break;
+		case 10: 
+			level10Setup();
+			break;
+		case 11: 
+			level11Setup();
+			break;
+		case 12: 
+			level12Setup();
+			break;
+		}
+
 
 
 
@@ -122,7 +174,7 @@ public class Arena
 		g.drawImage(l.background,0,0,null);
 
 		if (transition){
-			
+
 			if(startingTransition == true){
 				timerStartTransition = timer;//start timer so transition only lasts so long
 				startingTransition = false;		
@@ -183,14 +235,246 @@ public class Arena
 
 	//Method containing all the information of level 1
 	//When level is equal to 1, an arena with these objects and conditions are drawn
-	public void level1() {
+	public void level1Setup() {
 		//Makes one blue enemy tank and adds to tanklist
 		playerTank.setX(3);
 		playerTank.setY(10);
-		//		blueTank1 = new AITank(TankType.BLUE, 20, 8, walls, playerTank); //TODO choose coordinates
-		//		tankList.add(blueTank1);
-		//		
 
+		wallSetup1();
+		
+
+		blueTank1 = new AITank(TankType.BLUE, 20, 8, this);
+		tankList.add(blueTank1);
+	}
+	//Method containing all the information of level 2
+	//When level is equal to 2, an arena with these objects and conditions are drawn
+	public void level2Setup() {
+		//Makes one blue enemy tank and adds to tanklist
+		blueTank1 =  new AITank(TankType.BLUE, 24, 3, this);
+		tankList.add(blueTank1);
+
+		playerTank.setX(3);
+		playerTank.setY(13);
+
+		
+		wallSetup2();
+		
+	}
+
+	//Method containing all the information of level 3
+	//When level is equal to 3, an arena with these objects and conditions are drawn
+	public void level3Setup() {
+		//Makes one blue enemy tank and adds to tanklist
+		blueTank1 =  new AITank(TankType.BLUE, 23, 8, this);
+		//Makes one red enemy tank and adds to tanklist
+		redTank1 =  new AITank(TankType.RED, 23, 14, this); 
+		//Makes one red enemy tank and adds to tanklist
+		redTank2 =  new AITank(TankType.RED, 6, 2, this);
+		tankList.add(blueTank1);
+		tankList.add(redTank1);
+		tankList.add(redTank2);
+
+		playerTank.setX(3);
+		playerTank.setY(8);
+
+		wallSetup3();
+		
+
+	}
+	//Method containing all the information of level 4
+	//When level is equal to 4, an arena with these objects and conditions are drawn
+	public void level4Setup() {
+
+		//Makes one blue enemy tank and adds to tanklist
+		blueTank1 =  new AITank(TankType.BLUE, 14, 2, this); //TODO choose coordinates
+		//Makes one blue enemy tank and adds to tanklist
+		blueTank2 =  new AITank(TankType.BLUE, 24, 8, this); //TODO choose coordinates
+		//Makes one red enemy tank and adds to tanklist
+		redTank1 =  new AITank(TankType.RED, 14, 8, this); //TODO choose coordinates
+		//Makes one red enemy tank and adds to tanklist
+		redTank2 =  new AITank(TankType.RED, 24, 2, this); //TODO choose coordinates
+		tankList.add(blueTank1);
+		tankList.add(blueTank2);
+		tankList.add(redTank1);
+		tankList.add(redTank2);
+
+		playerTank.setX(3);
+		playerTank.setY(13);
+
+		
+		wallSetup4();
+		
+	}
+	//Method containing all the information of level 5
+	//When level is equal to 5, an arena with these objects and conditions are drawn
+	public void level5Setup() {
+
+
+		//Makes one red enemy tank and adds to tanklist
+		blackTank1 =  new AITank(TankType.BLACK, 4, 4, this); 
+		//Makes one red enemy tank and adds to tanklist
+		blackTank2 =  new AITank(TankType.BLACK, 24, 4, this);
+		//Makes one red enemy tank and adds to tanklist
+		blackTank3 =  new AITank(TankType.BLACK, 24, 11, this);
+		
+		tankList.add(blackTank1);
+		tankList.add(blackTank2);
+		tankList.add(blackTank3);
+		
+		blueTank1 =  new AITank(TankType.BLUE, 12, 7, this);
+		//Makes one red enemy tank and adds to tanklist
+		blueTank2 =  new AITank(TankType.BLUE, 16, 8, this);
+		tankList.add(blueTank1);
+		tankList.add(blueTank2);
+		
+
+		playerTank.setX(2);
+		playerTank.setY(14);
+
+		wallSetup5();
+		
+
+	}
+
+	//Method containing all the information of level 6
+	//When level is equal to 6, an arena with these objects and conditions are drawn
+	public void level6Setup() {
+
+		//Makes one blue enemy tank and adds to tanklist
+		blueTank1 =  new AITank(TankType.BLUE, 23, 8, this);
+		tankList.add(blueTank1);
+		//make more tanks
+
+
+		playerTank.setX(3);
+		playerTank.setY(8);
+
+
+		wallSetup6();
+
+
+	}
+
+	//Method containing all the information of level 7
+	//When level is equal to 7, an arena with these objects and conditions are drawn
+	public void level7Setup() {
+
+		//Makes one blue enemy tank and adds to tanklist
+		blueTank1 =  new AITank(TankType.BLUE, 23, 8, this);
+		tankList.add(blueTank1);
+		//make more tanks
+
+
+		playerTank.setX(3);
+		playerTank.setY(8);
+
+		wallSetup7();
+
+
+	}
+
+	//Method containing all the information of level 8
+	//When level is equal to 8, an arena with these objects and conditions are drawn
+	public void level8Setup() {
+
+		//Makes one blue enemy tank and adds to tanklist
+		blueTank1 =  new AITank(TankType.BLUE, 23, 8, this);
+		tankList.add(blueTank1);
+		//make more tanks
+
+
+		playerTank.setX(3);
+		playerTank.setY(8);
+
+
+		wallSetup8();
+
+
+	}
+
+	//Method containing all the information of level 9
+	//When level is equal to 9, an arena with these objects and conditions are drawn
+	public void level9Setup() {
+
+		//Makes one blue enemy tank and adds to tanklist
+		blueTank1 =  new AITank(TankType.BLUE, 23, 8, this);
+		tankList.add(blueTank1);
+		//make more tanks
+
+
+		playerTank.setX(3);
+		playerTank.setY(8);
+
+
+		wallSetup9();
+
+
+	}
+
+	//Method containing all the information of level 10
+	//When level is equal to 10, an arena with these objects and conditions are drawn
+	public void level10Setup() {
+
+		//Makes one blue enemy tank and adds to tanklist
+		blueTank1 =  new AITank(TankType.BLUE, 23, 8, this);
+		tankList.add(blueTank1);
+		//make more tanks
+
+
+		playerTank.setX(3);
+		playerTank.setY(8);
+
+
+		wallSetup10();
+
+
+	}
+
+
+
+	//Method containing all the information of level 11
+	//When level is equal to 11, an arena with these objects and conditions are drawn
+	public void level11Setup() {
+
+		//Makes one blue enemy tank and adds to tanklist
+		blueTank1 =  new AITank(TankType.BLUE, 23, 8, this);
+		tankList.add(blueTank1);
+		//make more tanks
+
+
+		playerTank.setX(3);
+		playerTank.setY(8);
+
+
+		wallSetup11();
+
+
+	}
+	
+
+	//Method containing all the information of level 11
+	//When level is equal to 11, an arena with these objects and conditions are drawn
+	public void level12Setup() {
+
+		//Makes one blue enemy tank and adds to tanklist
+		blueTank1 =  new AITank(TankType.BLUE, 23, 8, this);
+		tankList.add(blueTank1);
+		//make more tanks
+
+
+		playerTank.setX(3);
+		playerTank.setY(8);
+
+		wallSetup12();
+	
+
+
+	}
+
+	//make multiple wallsetup functions and have level setupfunctions call them
+
+	private void wallSetup1(){
+		//use for levels 1 and ...
 		walls[4][5] = new Wall(4,5, false);
 		walls[5][5] = new Wall(5,5, false);
 		walls[6][5] = new Wall(6,5, false);
@@ -222,19 +506,19 @@ public class Arena
 		walls[9][15] = new Wall(9,15, false);
 		walls[10][15] = new Wall(10,15, false);
 		walls[11][15] = new Wall(11,15, false);
-
-		blueTank1 = new AITank(TankType.BLUE, 20, 8, this); //TODO choose coordinates
-		tankList.add(blueTank1);
 	}
+<<<<<<< HEAD
 	//Method containing all the information of level 2
 	//When level is equal to 2, an arena with these objects and conditions are drawn
 	public void level2() {
 		//Makes one blue enemy tank and adds to tanklist
 		redTank1 =  new AITank(TankType.RED, 24, 3, this); //TODO choose coordinates
 		tankList.add(redTank1);
+=======
+>>>>>>> refs/remotes/origin/master
 
-		playerTank.setX(3);
-		playerTank.setY(13);
+	private void wallSetup2(){
+		//use for levels 2 and ...
 
 		for(int i = 4; i<6; i++) {
 			for(int j = 5; j<15; j++) {
@@ -254,23 +538,9 @@ public class Arena
 			}
 		}	
 	}
-	//Method containing all the information of level 3
-	//When level is equal to 3, an arena with these objects and conditions are drawn
-	public void level3() {
-		//Makes one blue enemy tank and adds to tanklist
-		blueTank1 =  new AITank(TankType.BLUE, 23, 8, this); //TODO choose coordinates
-		//Makes one red enemy tank and adds to tanklist
-		redTank1 =  new AITank(TankType.RED, 23, 14, this); //TODO choose coordinates
-		//Makes one red enemy tank and adds to tanklist
-		redTank2 =  new AITank(TankType.RED, 6, 2, this); //TODO choose coordinates
-		tankList.add(blueTank1);
-		tankList.add(redTank1);
-		tankList.add(redTank2);
-
-		playerTank.setX(3);
-		playerTank.setY(8);
-
-
+	
+	private void wallSetup3(){
+		//use for levels 3 and ...
 		for(int i = 3; i<5; i++) {
 			for(int j = 4; j<6; j++) {
 				walls[i][j] = new Wall(i,j, false);
@@ -307,12 +577,11 @@ public class Arena
 		for(int i = 7; i<11; i++) {
 			walls[i][13] = new Wall(i,13, false);
 		}
-
+		
 	}
-	//Method containing all the information of level 4
-	//When level is equal to 4, an arena with these objects and conditions are drawn
-	public void level4() {
-
+	
+	private void wallSetup4(){
+		//use for levels 4 and ...
 		for(int i = 1; i<9; i++) {
 			if(i%2 == 0) {
 				walls[i][9] = new Wall(i,9, false);
@@ -383,11 +652,11 @@ public class Arena
 		}
 
 
+		
 	}
-	//Method containing all the information of level 5
-	//When level is equal to 5, an arena with these objects and conditions are drawn
-	public void level5() {
-
+	
+	private void wallSetup5(){
+		//use for levels 5 and ...
 		walls[9][3] = new Wall(9, 3, true);
 		walls[9][4] = new Wall(9, 4, true);
 		walls[9][5] = new Wall(9, 5, true);
@@ -450,10 +719,52 @@ public class Arena
 		walls[8][19] = new Wall(8, 19, false);
 		walls[7][19] = new Wall(7, 19, false);
 		walls[6][19] = new Wall(6, 19, false);
-
-
-
+		
 	}
+	
+	private void wallSetup6(){
+		//use for levels 6 and ...
+
+		walls[9][3] = new Wall(9, 3, false);
+	}
+	
+	private void wallSetup7(){
+		//use for levels 7 and ...
+
+		walls[9][3] = new Wall(9, 3, false);
+	}
+	
+	private void wallSetup8(){
+		//use for levels 8 and ...
+
+		walls[9][3] = new Wall(9, 3, false);
+	}
+	
+	private void wallSetup9(){
+		//use for levels 9 and ...
+
+		walls[9][3] = new Wall(9, 3, false);
+	}
+	
+	private void wallSetup10(){
+		//use for levels 10 and ...
+
+		walls[9][3] = new Wall(9, 3, false);
+	}
+	
+	private void wallSetup11(){
+		//use for levels 11 and ...
+
+		walls[9][3] = new Wall(9, 3, false);
+	}
+	
+	private void wallSetup12(){
+		//use for levels 12 and ...
+
+		walls[9][3] = new Wall(9, 3, false);
+	}
+
+
 	//Sets amount a certain tank has to move based on keypress
 	//Calls the player tanks setInputMoveArr which takes the information of how to move
 	//Everytime tank is moved, actual x and y loc changes provided are executed

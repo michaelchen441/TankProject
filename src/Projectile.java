@@ -40,19 +40,13 @@ public class Projectile
 			speed = 4;
 			break;
 		case RED:
-			speed = 4;
+			speed = 3;
 			break;
 		case BLACK:
-			speed = 3;
-			break;
-		case PINK:
-			speed = 3;
+			speed = 5;
 			break;
 		case WHITE:
-			speed = 3;
-			break;
-		case YELLOW:
-			speed = 3;
+			speed = 5;
 			break;
 		case INVISIBLE:
 			speed = 3;
@@ -76,9 +70,39 @@ public class Projectile
 		//draws black box projectile - use to test where image should be 
 		//g.setColor(Color.BLACK);
 		//g.fillRect((int)(xLoc), (int)(yLoc), 15, 15);
-			if(numWallHits > 1) { //once its hit a second wall, it dies //change back to 1
-				active = false;
+			switch(type){
+			case GREEN: 
+				if(numWallHits > 1) { //once its hit a second wall, it dies //change back to 1
+					active = false;
+				}
+				break;
+			case BLUE:
+				if(numWallHits > 0) { //once its hit a second wall, it dies //change back to 1
+					active = false;
+				}				
+				break;
+			case RED:
+				if(numWallHits > 1) { //once its hit a second wall, it dies //change back to 1
+					active = false;
+				}
+				break;
+			case BLACK:
+				if(numWallHits > 0) { //once its hit a second wall, it dies //change back to 1
+					active = false;
+				}
+				break;
+			case WHITE:
+				if(numWallHits > 2) { //once its hit a second wall, it dies //change back to 1
+					active = false;
+				}
+				break;
+			case INVISIBLE:
+				if(numWallHits > 1) { //once its hit a second wall, it dies //change back to 1
+					active = false;
+				}
+				break;
 			}
+			
 
 			if(active){	
 				Graphics2D	g2D = (Graphics2D)g;
