@@ -46,6 +46,16 @@ public class TankPanel extends JPanel {
 	Arena level1Arena;
 	Arena level2Arena;
 	Arena level3Arena;
+	Arena level4Arena;
+	Arena level5Arena;
+	Arena level6Arena;
+	Arena level7Arena;
+	Arena level8Arena;
+	Arena level9Arena;
+	Arena level10Arena;
+	Arena level11Arena;
+	Arena level12Arena;
+
 
 	int numTankKills = 0;
 
@@ -381,11 +391,29 @@ public class TankPanel extends JPanel {
 				level1Arena = new Arena(1, numWallsAcross, numWallsDown);
 				level2Arena = new Arena(2, numWallsAcross, numWallsDown);
 				level3Arena = new Arena(3, numWallsAcross, numWallsDown);
-
+				level4Arena = new Arena(4, numWallsAcross, numWallsDown);
+				level5Arena = new Arena(5, numWallsAcross, numWallsDown);
+				level6Arena = new Arena(6, numWallsAcross, numWallsDown);
+				level7Arena = new Arena(7, numWallsAcross, numWallsDown);
+				level8Arena = new Arena(8, numWallsAcross, numWallsDown);
+				level9Arena = new Arena(9, numWallsAcross, numWallsDown);
+				level10Arena = new Arena(10, numWallsAcross, numWallsDown);
+				level11Arena = new Arena(11, numWallsAcross, numWallsDown);
+				level12Arena = new Arena(11, numWallsAcross, numWallsDown);
+				
 				arenaList.add(level1Arena);
 				arenaList.add(level2Arena);
 				arenaList.add(level3Arena);
-
+				arenaList.add(level4Arena);
+				arenaList.add(level5Arena);
+				arenaList.add(level6Arena);
+				arenaList.add(level7Arena);
+				arenaList.add(level8Arena);
+				arenaList.add(level9Arena);
+				arenaList.add(level10Arena);
+				arenaList.add(level11Arena);
+				arenaList.add(level12Arena);
+				
 				level1FirstTime = false;
 			}
 

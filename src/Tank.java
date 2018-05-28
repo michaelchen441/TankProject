@@ -88,15 +88,7 @@ public abstract class Tank
 				tankImage = l.blackTank;
 				turretImage = l.blackTurret;
 				break;
-			case PINK: 
-				tankImage = l.blackTank;
-				turretImage = l.blackTurret;
-				break;
 			case WHITE: 
-				tankImage = l.blackTank;
-				turretImage = l.blackTurret;
-				break;
-			case YELLOW: 
 				tankImage = l.blackTank;
 				turretImage = l.blackTurret;
 				break;
