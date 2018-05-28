@@ -37,7 +37,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 		player1 = new Point(arena.playerTankLocX(), arena.playerTankLocY());
 
 		numMoveTries = 0;
-		tankSlowMultiplier = 2;
+		tankSlowMultiplier = 4;
 		fireSlowMultiplier = 500;
 		commit = false;
 		type1 = inType;

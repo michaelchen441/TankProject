@@ -46,7 +46,6 @@ public class Arena
 	//New Tanklist is created with the creation of a new arena
 	//This prevents tanks from previous levels from being drawn in later levels
 	ArrayList<Tank> tankList; // List of all tanks to keep track of
-	Tank[] transitionTankArr; // tanks in transition screen
 
 	int[] inputMoveInfo; // Information for how to change x and y locations
 	// Dependent on keypressed
@@ -94,7 +93,6 @@ public class Arena
 		}
 
 		
-		transitionTankArr = new Tank[4];
 		for(int r = 0; r < numWallsDown; r++){
 			transitionWalls[r][0] = new Wall(r, 0, false);
 		}
@@ -428,28 +426,21 @@ public class Arena
 
 
 		//Makes one red enemy tank and adds to tanklist
-		blackTank1 =  new AITank(TankType.BLACK, 4, 4, this); 
+		blackTank1 =  new AITank(TankType.BLACK, 24, 2, this); 
 		//Makes one red enemy tank and adds to tanklist
-		blackTank2 =  new AITank(TankType.BLACK, 24, 4, this);
-		//Makes one red enemy tank and adds to tanklist
-		blackTank3 =  new AITank(TankType.BLACK, 24, 11, this);
-		
+		blackTank2 =  new AITank(TankType.BLACK, 25, 3, this);
+
+
 		tankList.add(blackTank1);
 		tankList.add(blackTank2);
-		tankList.add(blackTank3);
-		
-		blueTank1 =  new AITank(TankType.BLUE, 12, 7, this);
-		//Makes one red enemy tank and adds to tanklist
-		blueTank2 =  new AITank(TankType.BLUE, 16, 8, this);
-		tankList.add(blueTank1);
-		tankList.add(blueTank2);
-		
 
-		playerTank.setX(2);
-		playerTank.setY(14);
+
+
+		playerTank.setX(3);
+		playerTank.setY(12);
 
 		wallSetup5();
-		
+
 
 	}
 
@@ -457,20 +448,27 @@ public class Arena
 	//When level is equal to 6, an arena with these objects and conditions are drawn
 	public void level6Setup() {
 
-		//Makes one blue enemy tank and adds to tanklist
-		redTank1 =  new AITank(TankType.RED, 22, 5, this);
-		redTank2 =  new AITank(TankType.RED, 22, 13, this);
-		blackTank1 =  new AITank(TankType.BLACK, 24, 8, this);
-		blackTank2 =  new AITank(TankType.BLACK, 25, 11, this);
-		tankList.add(redTank1);
-		tankList.add(redTank2);
+		//Makes one red enemy tank and adds to tanklist
+		blackTank1 =  new AITank(TankType.BLACK, 4, 4, this); 
+		//Makes one red enemy tank and adds to tanklist
+		blackTank2 =  new AITank(TankType.BLACK, 24, 4, this);
+		//Makes one red enemy tank and adds to tanklist
+		blackTank3 =  new AITank(TankType.BLACK, 24, 11, this);
+
 		tankList.add(blackTank1);
 		tankList.add(blackTank2);
+		tankList.add(blackTank3);
 
-		//make more tanks
-		
-		playerTank.setX(3);
-		playerTank.setY(8);
+		blueTank1 =  new AITank(TankType.BLUE, 12, 7, this);
+		//Makes one red enemy tank and adds to tanklist
+		blueTank2 =  new AITank(TankType.BLUE, 16, 8, this);
+		tankList.add(blueTank1);
+		tankList.add(blueTank2);
+
+
+		playerTank.setX(2);
+		playerTank.setY(14);
+
 
 
 		wallSetup6();
@@ -483,10 +481,16 @@ public class Arena
 	public void level7Setup() {
 
 		//Makes one blue enemy tank and adds to tanklist
-		blueTank1 =  new AITank(TankType.BLUE, 23, 8, this);
-		tankList.add(blueTank1);
-		//make more tanks
+		redTank1 =  new AITank(TankType.RED, 22, 5, this);
+		redTank2 =  new AITank(TankType.RED, 22, 13, this);
+		blackTank1 =  new AITank(TankType.BLACK, 24, 8, this);
+		blackTank2 =  new AITank(TankType.BLACK, 25, 11, this);
+		tankList.add(redTank1);
+		tankList.add(redTank2);
+		tankList.add(blackTank1);
+		tankList.add(blackTank2);
 
+		//make more tanks
 
 		playerTank.setX(3);
 		playerTank.setY(8);
@@ -573,7 +577,7 @@ public class Arena
 
 
 	}
-	
+
 
 	//Method containing all the information of level 11
 	//When level is equal to 11, an arena with these objects and conditions are drawn
@@ -589,7 +593,7 @@ public class Arena
 		playerTank.setY(8);
 
 		wallSetup12();
-	
+
 
 
 	}
@@ -630,7 +634,7 @@ public class Arena
 		walls[10][15] = new Wall(10,15, false);
 		walls[11][15] = new Wall(11,15, false);
 	}
-	
+
 
 	private void wallSetup2(){
 		//use for levels 2 and ...
@@ -653,7 +657,7 @@ public class Arena
 			}
 		}	
 	}
-	
+
 	private void wallSetup3(){
 		//use for levels 3 and ...
 		for(int i = 3; i<5; i++) {
@@ -692,9 +696,9 @@ public class Arena
 		for(int i = 7; i<11; i++) {
 			walls[i][13] = new Wall(i,13, false);
 		}
-		
+
 	}
-	
+
 	private void wallSetup4(){
 		//use for levels 4 and ...
 		for(int i = 1; i<9; i++) {
@@ -768,9 +772,22 @@ public class Arena
 
 
 	}
-	
+
 	private void wallSetup5(){
 		//use for levels 5 and ...
+
+		walls[11][3] = new Wall(11, 3, false);
+		walls[11][4] = new Wall(11, 4, false);
+		walls[12][4] = new Wall(12, 4, false);
+		walls[3][25] = new Wall(3, 23, false);
+		walls[4][25] = new Wall(4, 23, false);
+		walls[4][26] = new Wall(4, 24, false);
+
+
+	}
+
+	private void wallSetup6(){
+		//use for levels 6 and ...
 		walls[9][3] = new Wall(9, 3, true);
 		walls[9][4] = new Wall(9, 4, true);
 		walls[9][5] = new Wall(9, 5, true);
@@ -833,17 +850,28 @@ public class Arena
 		walls[8][19] = new Wall(8, 19, false);
 		walls[7][19] = new Wall(7, 19, false);
 		walls[6][19] = new Wall(6, 19, false);
-		
+
 	}
-	
-	private void wallSetup6(){
-		//use for levels 6 and ...
+
+	private void wallSetup7(){
+		//use for levels 7 and ...
 
 		for(int i = 5; i<23; i++) {
-			walls[4][i] = new Wall(4, i, false);
+			if(i == 6 || i == 9 || i ==12){
+				walls[4][i] = new Wall(4, i, true);
+			}
+			else{
+				walls[4][i] = new Wall(4, i, false);
+			}
 		}
 		for(int i = 5; i<23; i++) {
-			walls[11][i] = new Wall(11, i, false);
+			if(i == 15 || i == 18 || i ==21){
+				walls[11][i] = new Wall(11, i, true);
+			}
+			else{
+				walls[11][i] = new Wall(11, i, false);
+			}
+			
 		}
 		walls[5][13] = new Wall(5, 13, true);
 		walls[6][13] = new Wall(6, 13, true);
@@ -853,37 +881,31 @@ public class Arena
 		walls[10][14] = new Wall(10, 14, true);
 
 	}
-	
-	private void wallSetup7(){
-		//use for levels 7 and ...
 
-		walls[9][3] = new Wall(9, 3, false);
-	}
-	
 	private void wallSetup8(){
 		//use for levels 8 and ...
 
 		walls[9][3] = new Wall(9, 3, false);
 	}
-	
+
 	private void wallSetup9(){
 		//use for levels 9 and ...
 
 		walls[9][3] = new Wall(9, 3, false);
 	}
-	
+
 	private void wallSetup10(){
 		//use for levels 10 and ...
 
 		walls[9][3] = new Wall(9, 3, false);
 	}
-	
+
 	private void wallSetup11(){
 		//use for levels 11 and ...
 
 		walls[9][3] = new Wall(9, 3, false);
 	}
-	
+
 	private void wallSetup12(){
 		//use for levels 12 and ...
 
@@ -905,7 +927,7 @@ public class Arena
 	public ArrayList<Tank> getTanks() { return tankList;}
 
 
-	
+
 
 
 }
