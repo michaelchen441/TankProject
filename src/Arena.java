@@ -199,12 +199,12 @@ public class Arena
 			}
 			drawTransition(g, l);
 			System.out.println(timerStartTransition);
-			if(timer - timerStartTransition > 500){ //check if transition should end
+			if(timer - timerStartTransition > 1000){ //check if transition should end
 				System.out.println("timer ran out");
 				advanceLevel = true;//tells arena to start next level
 			}
 			
-			drawTransition(g,l);
+			
 			}
 		else{
 			// If a cell in the arena is not null, it is considered to be a wall
