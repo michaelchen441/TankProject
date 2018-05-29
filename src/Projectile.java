@@ -37,7 +37,7 @@ public class Projectile
 			speed = 3;
 			break;
 		case BLUE:
-			speed = 4;
+			speed = 3;
 			break;
 		case RED:
 			speed = 3;
@@ -47,6 +47,12 @@ public class Projectile
 			break;
 		case WHITE:
 			speed = 5;
+			break;
+		case PINK:
+			speed = 3;
+			break;
+		case YELLOW:
+			speed = 3;
 			break;
 		case INVISIBLE:
 			speed = 3;
@@ -77,7 +83,7 @@ public class Projectile
 				}
 				break;
 			case BLUE:
-				if(numWallHits > 0) { //once its hit a second wall, it dies //change back to 1
+				if(numWallHits > 0) { //once its hit a wall, it dies //change back to 1
 					active = false;
 				}				
 				break;
@@ -87,12 +93,22 @@ public class Projectile
 				}
 				break;
 			case BLACK:
-				if(numWallHits > 0) { //once its hit a second wall, it dies //change back to 1
+				if(numWallHits > 0) { //once its hit a wall, it dies //change back to 1
 					active = false;
 				}
 				break;
 			case WHITE:
-				if(numWallHits > 2) { //once its hit a second wall, it dies //change back to 1
+				if(numWallHits > 2) { //once its hit a third wall, it dies //change back to 1
+					active = false;
+				}
+				break;
+			case PINK:
+				if(numWallHits > 1) { //once its hit a second wall, it dies //change back to 1
+					active = false;
+				}
+				break;
+			case YELLOW:
+				if(numWallHits > 1) { //once its hit a second wall, it dies //change back to 1
 					active = false;
 				}
 				break;

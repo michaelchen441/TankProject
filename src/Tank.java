@@ -27,15 +27,15 @@ public abstract class Tank
 	int turretTopY;
 	int targetX;
 	int targetY;
-	
+
 	Direction direction;//Direction tank is facing; will use to determine where to move
 	//List of specific movements in x and y directions that need to be added to the tanks location 
 	//Depends on which key is pressed indicating which direction a tank needs to move in
-	
+
 	int numMoveTries = 0;//Number of times the tank has tried to move
 	int tankSlowMultiplier = 2;//ex. 1 is fastest, 3 is 1/3 speed
-	
-	
+
+
 
 	public Tank(Arena inArena) {
 		arena = inArena;
@@ -59,69 +59,78 @@ public abstract class Tank
 
 
 	}
-	
+
 	public void draw(Graphics g, ImageLibrary l){
 		// draw projectiles	
 		for(Projectile p : stockPile) {
 			p.draw(g, l);
 		}
-		
 
-		if(alive){
-			//set up image based on tank type
-			BufferedImage tankImage = null;
-			BufferedImage turretImage = null;
-			switch(type){
-			case GREEN: 
-				tankImage = l.greenTank;
-				turretImage = l.greenTurret;
-				break;
-			case RED: 
-				tankImage = l.redTank;
-				turretImage = l.redTurret;
-				break;
-			case BLUE: 
-				tankImage = l.blueTank;
-				turretImage = l.blueTurret;
-				break;
-			case BLACK: 
-				tankImage = l.blackTank;
-				turretImage = l.blackTurret;
-				break;
-			case WHITE: 
-				tankImage = l.blackTank;
-				turretImage = l.blackTurret;
-				break;
-			case INVISIBLE: 
-				tankImage = l.blackTank;
-				turretImage = l.blackTurret;
-				break;
-			}
+		if(type.equals(TankType.INVISIBLE) == false){
+			if(alive){
+				//set up image based on tank type
+				BufferedImage tankImage = null;
+				BufferedImage turretImage = null;
+				switch(type){
+				case GREEN: 
+					tankImage = l.greenTank;
+					turretImage = l.greenTurret;
+					break;
+				case RED: 
+					tankImage = l.redTank;
+					turretImage = l.redTurret;
+					break;
+				case BLUE: 
+					tankImage = l.blueTank;
+					turretImage = l.blueTurret;
+					break;
+				case BLACK: 
+					tankImage = l.blackTank;
+					turretImage = l.blackTurret;
+					break;
+				case WHITE: 
+					tankImage = l.whiteTank;
+					turretImage = l.whiteTurret;
+					break;
+				case PINK: 
+					tankImage = l.pinkTank;
+					turretImage = l.pinkTurret;
+					break;
+				case YELLOW: 
+					tankImage = l.yellowTank;
+					turretImage = l.yellowTurret;
+					break;
+				case INVISIBLE: 
+					tankImage = l.blackTank;
+					turretImage = l.pinkTurret;
+					break;
+				}
 
-			//draw tank
-			g.drawImage(tankImage, xLoc, yLoc, null);
+				//draw tank
+				g.drawImage(tankImage, xLoc, yLoc, null);
 
-			{	
-				// draw turret
-				Graphics2D	g2D = (Graphics2D)g;
-				AffineTransform	backupAT = g2D.getTransform();
-				AffineTransform	theAT = new AffineTransform();
+				{	
+					// draw turret
+					Graphics2D	g2D = (Graphics2D)g;
+					AffineTransform	backupAT = g2D.getTransform();
+					AffineTransform	theAT = new AffineTransform();
 
-				int xTurretImageLoc = xLoc + 15;
-				int yTurretImageLoc = yLoc - 15;
-				int	xTurretRotateOffset = 10;
-				int yTurretRotateOffset = 40;
+					int xTurretImageLoc = xLoc + 15;
+					int yTurretImageLoc = yLoc - 15;
+					int	xTurretRotateOffset = 10;
+					int yTurretRotateOffset = 40;
 
-				theAT.rotate((Math.PI * 0.5) - turretAngle,	xTurretImageLoc + xTurretRotateOffset,
-						yTurretImageLoc + yTurretRotateOffset); //add PI/2 because turret image is upwards so that starts it horizontal
+					theAT.rotate((Math.PI * 0.5) - turretAngle,	xTurretImageLoc + xTurretRotateOffset,
+							yTurretImageLoc + yTurretRotateOffset); //add PI/2 because turret image is upwards so that starts it horizontal
 
-				g2D.transform(theAT);
-				g.drawImage(turretImage, xTurretImageLoc, yTurretImageLoc, null);
+					g2D.transform(theAT);
+					g.drawImage(turretImage, xTurretImageLoc, yTurretImageLoc, null);
 
-				g2D.setTransform(backupAT);
+					g2D.setTransform(backupAT);
 
-				//enemyFire
+					//enemyFire
 
+				}
 			}
 		}
 
@@ -245,7 +254,7 @@ public abstract class Tank
 	abstract void fire();
 	public int getX() {return xLoc;}
 	public int getY() {return yLoc;}
-	
+
 
 
 }
