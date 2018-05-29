@@ -864,11 +864,11 @@ public class Arena
 		walls[9][4] = new Wall(9, 4, true);
 		walls[9][5] = new Wall(9, 5, true);
 		walls[9][6] = new Wall(9, 6, false);
-		walls[10][4] = new Wall(10, 6, true);
-		walls[11][4] = new Wall(11, 6, true);
-		walls[12][4] = new Wall(12, 6, true);
+		walls[10][6] = new Wall(10, 6, true);
+		walls[11][6] = new Wall(11, 6, true);
+		walls[12][6] = new Wall(12, 6, true);
 
-		walls[3][3] = new Wall(3, 6, true);
+		walls[3][6] = new Wall(3, 6, true);
 		walls[4][6] = new Wall(4, 6, true);
 		walls[5][6] = new Wall(5, 6, true);
 		walls[6][6] = new Wall(6, 6, false);
