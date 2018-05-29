@@ -92,7 +92,7 @@ public class Arena
 			walls[numWallsDown - 1][c] =  new Wall(numWallsDown - 1, c, false);
 		}
 
-		
+
 		for(int r = 0; r < numWallsDown; r++){
 			transitionWalls[r][0] = new Wall(r, 0, false);
 		}
@@ -185,7 +185,7 @@ public class Arena
 		g.drawImage(l.background,0,0,null);
 
 		if (transition){
-			
+
 			if(startingTransition == true){
 				timerStartTransition = timer;//start timer so transition only lasts so long
 				startingTransition = false;		
@@ -203,9 +203,9 @@ public class Arena
 				System.out.println("timer ran out");
 				advanceLevel = true;//tells arena to start next level
 			}
-			
-			
-			}
+
+
+		}
 		else{
 			// If a cell in the arena is not null, it is considered to be a wall
 			// We call the wall's draw function here to make our wall
@@ -260,8 +260,8 @@ public class Arena
 		g.drawImage(l.blueTurret, xTurretImageLoc, yTurretImageLoc, null);
 
 		g2D.setTransform(backupAT);
-		
-		
+
+
 		g.drawImage(l.redTank, 350, 350, null);	
 		Graphics2D	g2D2 = (Graphics2D)g;
 		AffineTransform	backupAT2 = g2D2.getTransform();
@@ -277,7 +277,7 @@ public class Arena
 		g.drawImage(l.redTurret, xTurretImageLoc2, yTurretImageLoc2, null);
 
 		g2D2.setTransform(backupAT2);
-		
+
 		g.drawImage(l.blackTank, 350, 450, null);	
 		Graphics2D	g2D3 = (Graphics2D)g;
 		AffineTransform	backupAT3 = g2D3.getTransform();
@@ -293,17 +293,17 @@ public class Arena
 		g.drawImage(l.blackTurret, xTurretImageLoc3, yTurretImageLoc3, null);
 
 		g2D3.setTransform(backupAT3);
-		
+
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("TimesRoman", Font.PLAIN, 65)); 
 		g.drawString("x", 500, 292);
 		g.drawString("x", 500, 392);
 		g.drawString("x", 500, 492);
-		
+
 		int blueDestroyed = 0;
 		int redDestroyed = 0;
 		int blackDestroyed = 0;
-		
+
 		if(levelCount == 1) {
 			blueDestroyed = 1;
 		}
@@ -319,27 +319,27 @@ public class Arena
 			blueDestroyed = 4;
 			redDestroyed = 5;
 		}
-		
+
 		g.drawString(Integer.toString(blueDestroyed), 650, 292);
 		g.drawString(Integer.toString(redDestroyed), 650, 392);
 		g.drawString(Integer.toString(blackDestroyed), 650, 492);
-		
+
 		g.drawString("=", 800, 292);
 		g.drawString("=", 800, 392);
 		g.drawString("=", 800, 492);
-		
+
 		g.drawString(Integer.toString(blueDestroyed * 10), 950, 292);
 		g.drawString(Integer.toString(redDestroyed * 50), 950, 392);
 		g.drawString(Integer.toString(blackDestroyed * 100), 950, 492);
-		
+
 		g.fillRect(250, 550, 800, 3);
-		
+
 		int totalScore = (blueDestroyed * 10) + (redDestroyed * 50) + (blackDestroyed * 100);
 		g.drawString(Integer.toString(totalScore), 950, 620);
 		g.setFont(new Font("TimesRoman", Font.PLAIN, 150)); 
 		String levelCompletion = "Level " + levelCount + " Completed";
 		g.drawString(levelCompletion, 100, 200);
-		
+
 
 	}
 
@@ -349,14 +349,14 @@ public class Arena
 		//Makes one blue enemy tank and adds to tanklist
 		playerTank.setX(3);
 		playerTank.setY(8);
-//
+		//
 		wallSetup1();
-//		
-//
+		//		
+		//
 		blueTank1 =  new AITank(TankType.BLUE, 23, 8, this);
 		tankList.add(blueTank1);
-		
-		
+
+
 		levelCount = 1;
 	}
 	//Method containing all the information of level 2
@@ -369,9 +369,9 @@ public class Arena
 		playerTank.setX(3);
 		playerTank.setY(13);
 
-		
+
 		wallSetup2();
-		
+
 		levelCount = 2;
 	}
 
@@ -392,7 +392,7 @@ public class Arena
 		playerTank.setY(8);
 
 		wallSetup3();
-		
+
 		levelCount = 3;
 
 	}
@@ -416,9 +416,9 @@ public class Arena
 		playerTank.setX(3);
 		playerTank.setY(13);
 
-		
+
 		wallSetup4();
-		
+
 		levelCount = 4;
 	}
 	//Method containing all the information of level 5
@@ -506,22 +506,22 @@ public class Arena
 	public void level8Setup() {
 
 		//Makes one blue enemy tank and adds to tanklist
-		
+
 		//make more tanks
-		blueTank1 =  new AITank(TankType.BLUE, 24, 8, this);
+		blueTank1 =  new AITank(TankType.BLUE, 13, 10, this);
 		tankList.add(blueTank1);
 		//make more tanks
-		blackTank1 =  new AITank(TankType.BLACK, 24, 15, this);
+		blackTank1 =  new AITank(TankType.BLACK, 24, 2, this);
 		tankList.add(blackTank1);
-		
-		blackTank2 =  new AITank(TankType.BLACK, 1, 4, this);
+
+		blackTank2 =  new AITank(TankType.BLACK, 24, 13, this);
 		tankList.add(blackTank2);
-		
-		redTank1 =  new AITank(TankType.RED, 11, 4, this);
+
+		redTank1 =  new AITank(TankType.RED, 13, 4, this);
 		tankList.add(redTank1);
 
 		playerTank.setX(3);
-		playerTank.setY(8);
+		playerTank.setY(10);
 
 
 		wallSetup8();
@@ -536,14 +536,14 @@ public class Arena
 		//Makes one blue enemy tank and adds to tanklist
 		redTank1 = new  AITank(TankType.RED, 2, 1, this);
 		tankList.add(redTank1);
-		
+
 		blackTank1 = new  AITank(TankType.BLACK, 2, 5, this);
 		tankList.add(blackTank1);
-		
-		blueTank1 = new  AITank(TankType.BLUE, 20, 12, this);
+
+		blueTank1 = new  AITank(TankType.BLUE, 22, 12, this);
 		tankList.add(blueTank1);
-		
-		redTank2 = new  AITank(TankType.RED, 20, 6, this);
+
+		redTank2 = new  AITank(TankType.RED, 22, 7, this);
 		tankList.add(redTank2);
 
 		playerTank.setX(3);
@@ -560,22 +560,30 @@ public class Arena
 	public void level10Setup() {
 
 		//Makes one blue enemy tank and adds to tanklist
-		
+
 		//make more tanks
+		//TODO make red tanks white
 
 		playerTank.setX(2);
-		playerTank.setY(10);
-		
-		redTank2 = new AITank(TankType.RED,5, 1, this);
-		tankList.add(redTank2);
+		playerTank.setY(6);
+
 		
 		redTank1 = new AITank(TankType.RED,20, 10, this);
 		tankList.add(redTank1);
 		
-		blackTank1 = new AITank(TankType.BLACK,20, 14, this);
-		tankList.add(blackTank1);
+		redTank2 = new AITank(TankType.RED,20, 5, this);
+		tankList.add(redTank2);
+		
+		blueTank1 = new AITank(TankType.RED,25, 7, this);
+		tankList.add(blueTank1);
+
 		
 
+		blackTank1 = new AITank(TankType.BLACK,26, 3, this);
+		tankList.add(blackTank1);
+
+		blackTank2 = new AITank(TankType.BLACK,26, 12, this);
+		tankList.add(blackTank2);
 
 		wallSetup10();
 
@@ -627,10 +635,10 @@ public class Arena
 
 	private void wallSetup1(){
 		//use for levels 1 and ...
-		
-		
-		
-		
+
+
+
+
 		walls[4][5] = new Wall(4,5, false);
 		walls[5][5] = new Wall(5,5, false);
 		walls[6][5] = new Wall(6,5, false);
@@ -900,7 +908,7 @@ public class Arena
 			else{
 				walls[11][i] = new Wall(11, i, false);
 			}
-			
+
 		}
 		walls[5][13] = new Wall(5, 13, true);
 		walls[6][13] = new Wall(6, 13, true);
@@ -918,7 +926,7 @@ public class Arena
 			walls[3][i] = new Wall(3,i,false);
 		}
 		for(int i = 4; i<24; i++) {
-			walls[12][i] = new Wall(12,i,false);
+			walls[11][i] = new Wall(12,i,false);
 		}
 		for(int i = 5; i<7; i++) {
 			walls[i][5] = new Wall(i,5,false);
@@ -963,21 +971,40 @@ public class Arena
 	private void wallSetup9(){
 		//use for levels 9 and ...
 
-		for(int i = 1; i<16; i++) {
-			walls[3][i] = new Wall(3,i,false);
+		for(int i = 1; i<12; i++) {
+			if(i != 4){
+				walls[3][i] = new Wall(3,i,false);
+			}
 		}
-		for(int i = 13; i<27; i++) {
-			walls[5][i] = new Wall(5,i,true);
+		walls[3][4] = new Wall(3,4,true);
+
+		for(int i = 17; i<27; i++) {
+			if(i != 20){
+				walls[5][i] = new Wall(5,i,false);
+			}
 		}
-		for(int i = 1; i<16; i++) {
-			walls[7][i] = new Wall(7,i,false);
+		walls[5][20] = new Wall(5,20,true);
+		
+		for(int i = 1; i<12; i++) {
+			if(i != 4){
+				walls[7][i] = new Wall(7,i,false);
+			}
 		}
-		for(int i = 13; i<27; i++) {
-			walls[9][i] = new Wall(9,i,true);
+		walls[7][4] = new Wall(7,4,true);
+
+		for(int i = 17; i<27; i++) {
+			if(i != 20){
+				walls[9][i] = new Wall(9,i,false);
+			}
 		}
-		for(int i = 1; i<16; i++) {
-			walls[11][i] = new Wall(11,i,false);
+		walls[9][20] = new Wall(9,20,true);
+		
+		for(int i = 1; i<12; i++) {
+			if(i != 4){
+				walls[11][i] = new Wall(11,i,false);
+			}
 		}
+		walls[11][4] = new Wall(11,4,true);
 	}
 
 	private void wallSetup10(){
@@ -997,8 +1024,8 @@ public class Arena
 		for(int i = 10; i<13; i++) {
 			walls[i][5] = new Wall(i,5,false);
 		}
-		
-		
+
+
 		for(int i = 3; i<6; i++) {
 			walls[i][22] = new Wall(i,22,false);
 		}
@@ -1013,17 +1040,17 @@ public class Arena
 		for(int i = 10; i<13; i++) {
 			walls[i][22] = new Wall(i,22,false);
 		}
-		
-		for(int i = 7; i<21; i++) {
+
+		for(int i = 11; i<17; i++) {
 			if(i%2==1) {
 				walls[3][i] = new Wall(3,i,true);
 			}
 			else {
 				walls[3][i] = new Wall(3,i,false);
 			}
-			
+
 		}
-		for(int i = 7; i<21; i++) {
+		for(int i = 11; i<17; i++) {
 			if(i%2==1) {
 				walls[12][i] = new Wall(12,i,true);
 			}
