@@ -656,6 +656,13 @@ public class Arena
 		tankList.add(blueTank1);
 		//make more tanks
 
+		
+
+		whiteTank1 =  new AITank(TankType.WHITE, 23, 1, this);
+		tankList.add(whiteTank1);
+		
+		whiteTank2 =  new AITank(TankType.WHITE, 23, 11, this);
+		tankList.add(whiteTank2);
 
 		playerTank.setX(3);
 		playerTank.setY(8);

@@ -43,8 +43,12 @@ public class TankPanel extends JPanel {
 
 	boolean pause = false;
 	int pauseCounter = 0;
+
+	boolean inGameOverScreen = false;
+
 	ArrayList<Arena> arenaList = new ArrayList<Arena>();
 	Menu theMenu;
+	GameOver gameOverScreen;
 	Arena level1Arena;
 	Arena level2Arena;
 	Arena level3Arena;
@@ -110,8 +114,8 @@ public class TankPanel extends JPanel {
 		// Set the blank cursor to the JFrame.
 		frame.getContentPane().setCursor(blankCursor);
 
-	
-		
+
+
 	}
 	private void setUpKeyMappings() {
 		this.getInputMap().put(KeyStroke.getKeyStroke("P"),"p");
@@ -124,13 +128,13 @@ public class TankPanel extends JPanel {
 				// what do you want to do when the P is pressed?
 				pauseCounter++;
 				if(pauseCounter%2 == 1) {
-				pause = true;
+					pause = true;
 				}
 				else {
 					pause = false;
 				}
 				System.out.println("you pressed P");
-				
+
 			}
 		});
 
@@ -266,19 +270,27 @@ public class TankPanel extends JPanel {
 
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					// TODO Auto-generated method stub
+					// TODO Auto-generated method stubaa
 
 					if(inMenu)
 					{
-						if((arg0.getX() > 350 && arg0.getX() < 1050) 
-								&&
-								(arg0.getY() > 500 && arg0.getY() < 700)
-								)
-						{
+						if(theMenu.clickedButton1(arg0.getX(), arg0.getY())){
 							inMenu = false;
-							level = 11;
+							level = 2;
+						}
+						if(theMenu.clickedButton2(arg0.getX(), arg0.getY())){
+
+						}
+						if(theMenu.clickedButton3(arg0.getX(), arg0.getY())){
+
 						}
 					}
+					if(inGameOverScreen){
+						if(gameOverScreen.clickedButton1(arg0.getX(), arg0.getY())){
+							resetGame();
+						}
+					}
+
 
 
 
@@ -379,14 +391,16 @@ public class TankPanel extends JPanel {
 	protected void tick() {
 		//System.out.println("timer has gone off");
 		if(pause == false) {
-		repaint();
+			repaint();
 		}
 	}
 
 	public void resetGame(){
 		level = -1;
 		inMenu = true;
+		inGameOverScreen = false;
 		numTankKills = 0;
+		level1FirstTime = true;
 
 	}
 
@@ -402,12 +416,12 @@ public class TankPanel extends JPanel {
 		}
 		if(level1FirstTime){
 			theMenu = new Menu();
+
 		}
 
 		if (inMenu){
 			theMenu.draw(g, imageLibrary);
 		}
-
 		else 
 		{
 			if(level1FirstTime){
@@ -424,7 +438,7 @@ public class TankPanel extends JPanel {
 				level10Arena = new Arena(10, numWallsAcross, numWallsDown);
 				level11Arena = new Arena(11, numWallsAcross, numWallsDown);
 				level12Arena = new Arena(11, numWallsAcross, numWallsDown);
-				
+
 				arenaList.add(level1Arena);
 				arenaList.add(level1Arena);
 				arenaList.add(level2Arena);
@@ -438,15 +452,15 @@ public class TankPanel extends JPanel {
 				arenaList.add(level10Arena);
 				arenaList.add(level11Arena);
 				arenaList.add(level12Arena);
-				
+
 				level1FirstTime = false;
 			}
 
 			Arena currentArena = arenaList.get(level);
 
 			if(currentArena.playerTank.alive == false){
-
-				GameOver gameOverScreen = new GameOver(numTankKills, level);
+				inGameOverScreen = true;
+				gameOverScreen = new GameOver(numTankKills, level);
 				gameOverScreen.draw(g, imageLibrary);
 				return;
 			}
