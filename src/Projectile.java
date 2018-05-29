@@ -136,7 +136,7 @@ public class Projectile
 		//		}
 		if(active) {
 			numMoveTries++;
-			if(!dectectTanks()) {
+			if(!detectTanks()) {
 				detectWalls();
 				if(numMoveTries%projectileSlowMultiplier == 0) 
 					xLoc+=speed*Math.cos(-angle);//used negative angle to convert from normal math axis to screen axis
@@ -153,7 +153,7 @@ public class Projectile
 
 
 
-	private boolean dectectTanks() {
+	private boolean detectTanks() {
 		ArrayList<Tank> tankList = myArena.getTanks();
 		Direction dir = getDirection();
 		for(Tank t : tankList) {

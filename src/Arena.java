@@ -199,7 +199,7 @@ public class Arena
 			}
 			drawTransition(g, l);
 			System.out.println(timerStartTransition);
-			if(timer - timerStartTransition > 1000){ //check if transition should end
+			if(timer - timerStartTransition > 750){ //check if transition should end
 				System.out.println("timer ran out");
 				advanceLevel = true;//tells arena to start next level
 			}
