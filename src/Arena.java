@@ -961,7 +961,7 @@ public class Arena
 			walls[3][i] = new Wall(3,i,false);
 		}
 		for(int i = 4; i<24; i++) {
-			walls[11][i] = new Wall(12,i,false);
+			walls[12][i] = new Wall(12,i,false);
 		}
 		for(int i = 5; i<7; i++) {
 			walls[i][5] = new Wall(i,5,false);
