@@ -114,8 +114,8 @@ public class TankPanel extends JPanel {
 		// Set the blank cursor to the JFrame.
 		frame.getContentPane().setCursor(blankCursor);
 
-
-
+	
+		
 	}
 	private void setUpKeyMappings() {
 		this.getInputMap().put(KeyStroke.getKeyStroke("P"),"p");
@@ -134,7 +134,7 @@ public class TankPanel extends JPanel {
 					pause = false;
 				}
 				System.out.println("you pressed P");
-
+				
 			}
 		});
 
@@ -270,13 +270,13 @@ public class TankPanel extends JPanel {
 
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					// TODO Auto-generated method stubaa
+					// TODO Auto-generated method stub
 
 					if(inMenu)
 					{
 						if(theMenu.clickedButton1(arg0.getX(), arg0.getY())){
 							inMenu = false;
-							level = 2;
+							level = 1;
 						}
 						if(theMenu.clickedButton2(arg0.getX(), arg0.getY())){
 
@@ -457,10 +457,16 @@ public class TankPanel extends JPanel {
 			}
 
 			Arena currentArena = arenaList.get(level);
-
-			if(currentArena.playerTank.alive == false){
+			
+			if(level == 12){//tests if player won
 				inGameOverScreen = true;
-				gameOverScreen = new GameOver(numTankKills, level);
+				gameOverScreen = new GameOver(numTankKills, level, true);
+				gameOverScreen.draw(g, imageLibrary);
+				return;
+			}
+			if(currentArena.playerTank.alive == false){//tests if player lost by dyign
+				inGameOverScreen = true;
+				gameOverScreen = new GameOver(numTankKills, level, false);
 				gameOverScreen.draw(g, imageLibrary);
 				return;
 			}

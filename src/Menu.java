@@ -14,7 +14,10 @@ public class Menu
 		g.drawImage(l.background, 0, 0, null);
 
 		//TODO draw title
-
+		g.setFont(new Font("TimesRoman", Font.PLAIN, 150)); //Times New Roman font; size 200
+		g.setColor(Color.BLACK); //Black colored text
+		g.drawString("TANK GAME ", 50, 150); //Constructs the text and draws it on panel
+		
 		//TODO draw high scores
 
 
