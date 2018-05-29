@@ -369,19 +369,19 @@ public class Arena
 		blueTank1 =  new AITank(TankType.BLUE, 23, 1, this);
 		tankList.add(blueTank1);
 		
-		redTank1 =  new AITank(TankType.RED, 23, 4, this);
+		redTank1 =  new AITank(TankType.RED, 23, 3, this);
 		tankList.add(redTank1);
 		
-		blackTank1 =  new AITank(TankType.BLACK, 23, 7, this);
+		blackTank1 =  new AITank(TankType.BLACK, 23, 5, this);
 		tankList.add(blackTank1);
 		
-		pinkTank1 =  new AITank(TankType.PINK, 23, 10, this);
-		tankList.add(pinkTank1);
-		
-		whiteTank1 =  new AITank(TankType.WHITE, 23, 13, this);
+		whiteTank1 =  new AITank(TankType.WHITE, 23, 8, this);
 		tankList.add(whiteTank1);
 		
-		yellowTank1 =  new AITank(TankType.YELLOW, 23, 16, this);
+		pinkTank1 =  new AITank(TankType.PINK, 23, 11, this);
+		tankList.add(pinkTank1);
+		
+		yellowTank1 =  new AITank(TankType.YELLOW, 23, 14, this);
 		tankList.add(yellowTank1);
 		
 	
@@ -626,11 +626,17 @@ public class Arena
 	public void level11Setup() {
 
 		//Makes one blue enemy tank and adds to tanklist
-		blueTank1 =  new AITank(TankType.BLUE, 23, 8, this);
+		blueTank1 =  new AITank(TankType.BLUE, 23, 5, this);
 		tankList.add(blueTank1);
 		//make more tanks
 
-
+		invisibleTank1 =  new AITank(TankType.INVISIBLE, 23, 1, this);
+		tankList.add(invisibleTank1);
+		
+		invisibleTank2 =  new AITank(TankType.INVISIBLE, 23, 11, this);
+		tankList.add(invisibleTank2);
+		
+		
 		playerTank.setX(3);
 		playerTank.setY(8);
 
