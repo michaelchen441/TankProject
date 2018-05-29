@@ -14,11 +14,10 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 	Point ai;//ai point
 	Point player1;//player point
 	Point ai1;//ai point
-	//s	ArrayList<Wall> wallsInBetween;
+	//	ArrayList<Wall> wallsInBetween;
 	boolean intersect;
 	boolean commit;
 
-	TankType type1;
 
 	public AITank(TankType inType, int inX, int inY, Arena inArena)
 	{
@@ -40,7 +39,6 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 		tankSlowMultiplier = 4;
 		fireSlowMultiplier = 500;
 		commit = false;
-		type1 = inType;
 		//		for(int r = 0; r<surroundingWalls.length; r++) {
 		//			for(int c = 0; c<surroundingWalls[r].length; c++) {
 		//				if(surroundingWalls[r][c] != null) {
@@ -229,9 +227,5 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 		return false;
 	}
 
-	public String getType() {
-
-		return "aiTank";
-	}
 
 }
