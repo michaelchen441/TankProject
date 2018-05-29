@@ -603,7 +603,7 @@ public class Arena
 		whiteTank2 = new AITank(TankType.WHITE,20, 5, this);
 		tankList.add(whiteTank2);
 		
-		whiteTank1 = new AITank(TankType.WHITE,25, 7, this);
+		whiteTank3 = new AITank(TankType.WHITE,25, 7, this);
 		tankList.add(whiteTank3);
 
 		
