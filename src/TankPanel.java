@@ -276,7 +276,8 @@ public class TankPanel extends JPanel {
 								)
 						{
 							inMenu = false;
-							level = 7;
+							level = 1;
+	
 						}
 					}
 
