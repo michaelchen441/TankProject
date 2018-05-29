@@ -276,7 +276,12 @@ public class TankPanel extends JPanel {
 								)
 						{
 							inMenu = false;
-							level = 5;
+
+							
+
+							level = 1;
+	
+
 						}
 					}
 
