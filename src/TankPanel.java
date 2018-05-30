@@ -281,9 +281,6 @@ public class TankPanel extends JPanel {
 						if(theMenu.clickedButton2(arg0.getX(), arg0.getY())){
 
 						}
-						if(theMenu.clickedButton3(arg0.getX(), arg0.getY())){
-
-						}
 					}
 					if(inGameOverScreen){
 						if(gameOverScreen.clickedButton1(arg0.getX(), arg0.getY())){

@@ -456,9 +456,9 @@ public class Arena
 
 
 		//Makes one red enemy tank and adds to tanklist
-		blackTank1 =  new AITank(TankType.BLACK, 24, 2, this); 
+		blackTank1 =  new AITank(TankType.BLACK, 21, 2, this); 
 		//Makes one red enemy tank and adds to tanklist
-		blackTank2 =  new AITank(TankType.BLACK, 25, 3, this);
+		blackTank2 =  new AITank(TankType.BLACK, 25, 6, this);
 
 
 		tankList.add(blackTank1);
