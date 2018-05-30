@@ -26,6 +26,7 @@ public class TankPanel extends JPanel {
 
 
 	boolean inMenu = true;
+	boolean inSurvivalMode = false;
 
 	int level = -1; // initialize at 1, menu ending changes to 0
 	boolean level1FirstTime = true;
@@ -49,18 +50,7 @@ public class TankPanel extends JPanel {
 	ArrayList<Arena> arenaList = new ArrayList<Arena>();
 	Menu theMenu;
 	GameOver gameOverScreen;
-	Arena level1Arena;
-	Arena level2Arena;
-	Arena level3Arena;
-	Arena level4Arena;
-	Arena level5Arena;
-	Arena level6Arena;
-	Arena level7Arena;
-	Arena level8Arena;
-	Arena level9Arena;
-	Arena level10Arena;
-	Arena level11Arena;
-	Arena level12Arena;
+
 
 
 	int numTankKills = 0;
@@ -279,8 +269,8 @@ public class TankPanel extends JPanel {
 							level = 1;
 						}
 						if(theMenu.clickedButton2(arg0.getX(), arg0.getY())){//survival mode
-//							survivalMode = new SurvivalMode();
-//							inSurvivalMode = true;
+//							survivalMode = new ();
+							inSurvivalMode = true;
 						}
 					}
 					if(inGameOverScreen){
@@ -399,6 +389,7 @@ public class TankPanel extends JPanel {
 		inGameOverScreen = false;
 		numTankKills = 0;
 		level1FirstTime = true;
+		arenaList = new ArrayList<Arena>();
 
 	}
 
@@ -424,20 +415,20 @@ public class TankPanel extends JPanel {
 		{
 			if(level1FirstTime){
 
-				level1Arena = new Arena(1, numWallsAcross, numWallsDown);
-				level2Arena = new Arena(2, numWallsAcross, numWallsDown);
-				level3Arena = new Arena(3, numWallsAcross, numWallsDown);
-				level4Arena = new Arena(4, numWallsAcross, numWallsDown);
-				level5Arena = new Arena(5, numWallsAcross, numWallsDown);
-				level6Arena = new Arena(6, numWallsAcross, numWallsDown);
-				level7Arena = new Arena(7, numWallsAcross, numWallsDown);
-				level8Arena = new Arena(8, numWallsAcross, numWallsDown);
-				level9Arena = new Arena(9, numWallsAcross, numWallsDown);
-				level10Arena = new Arena(10, numWallsAcross, numWallsDown);
-				level11Arena = new Arena(11, numWallsAcross, numWallsDown);
-				level12Arena = new Arena(11, numWallsAcross, numWallsDown);
+				Arena level1Arena = new Arena(1, numWallsAcross, numWallsDown);
+				Arena level2Arena = new Arena(2, numWallsAcross, numWallsDown);
+				Arena level3Arena = new Arena(3, numWallsAcross, numWallsDown);
+				Arena level4Arena = new Arena(4, numWallsAcross, numWallsDown);
+				Arena level5Arena = new Arena(5, numWallsAcross, numWallsDown);
+				Arena level6Arena = new Arena(6, numWallsAcross, numWallsDown);
+				Arena level7Arena = new Arena(7, numWallsAcross, numWallsDown);
+				Arena level8Arena = new Arena(8, numWallsAcross, numWallsDown);
+				Arena level9Arena = new Arena(9, numWallsAcross, numWallsDown);
+				Arena level10Arena = new Arena(10, numWallsAcross, numWallsDown);
+				Arena level11Arena = new Arena(11, numWallsAcross, numWallsDown);
+				Arena level12Arena = new Arena(12, numWallsAcross, numWallsDown);
 
-				arenaList.add(level1Arena);
+				arenaList.add(level1Arena);//dummy arena, never used
 				arenaList.add(level1Arena);
 				arenaList.add(level2Arena);
 				arenaList.add(level3Arena);
@@ -456,7 +447,7 @@ public class TankPanel extends JPanel {
 
 			Arena currentArena = arenaList.get(level);
 			
-			if(level == 12){//tests if player won
+			if(level == 13){//tests if player won
 				inGameOverScreen = true;
 				gameOverScreen = new GameOver(numTankKills, level, true);
 				gameOverScreen.draw(g, imageLibrary);
