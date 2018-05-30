@@ -52,10 +52,10 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 			tankSlowMultiplier = 4;
 			break;
 		case PINK:
-			tankSlowMultiplier = 3;
+			tankSlowMultiplier = 10000;
 			break;
 		case YELLOW:
-			tankSlowMultiplier = 3;
+			tankSlowMultiplier = 10000;
 			break;
 		case INVISIBLE:
 			tankSlowMultiplier = 10000;
@@ -88,8 +88,6 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 		Direction dirX;
 		Direction dirY;
 
-	//	switch(type) {
-	//	case RED: 
 			if(ai1.getX() - player1.getX() > 0) {
 				dirX = Direction.WEST;
 				
@@ -128,46 +126,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 				yLoc += 1;
 				System.out.println("moving south");
 			}
-//			break;
-//		case BLACK: 
-//
-//			if(ai1.getX() - player1.getX() > 0) {
-//				dirX = Direction.WEST;
-//			}
-//			else if(ai1.getX() - player1.getX() < 0) {
-//				dirX = Direction.EAST;
-//			}
-//			else {
-//				dirX = null;
-//			}
-//
-//			if((ai1.getY() - player1.getY() > 0)  ) {
-//				dirY = Direction.NORTH;
-//			}
-//			else if((ai1.getY() - player1.getY() < 0)){
-//				dirY = Direction.SOUTH;
-//			}
-//			else {
-//				dirY = null;
-//			}
-//
-//
-//			if(dirX == Direction.WEST && numMoveTries%tankSlowMultiplier == 0 && canMoveX(dirX,surroundingWalls) && xLoc != player1.getX()) {
-//				xLoc += -1;
-//			}
-//			else if(dirX == Direction.EAST && numMoveTries%tankSlowMultiplier == 0 && canMoveX(dirX,surroundingWalls) && xLoc != player1.getX()) {
-//				xLoc += 1;
-//			}
-//			if(dirY == Direction.NORTH && numMoveTries%tankSlowMultiplier == 0 && canMoveY(Direction.NORTH,surroundingWalls) && yLoc != player1.getY()){
-//				yLoc += -1;
-//				System.out.println("moving north");
-//			}
-//			else if(dirY == Direction.SOUTH && numMoveTries%tankSlowMultiplier == 0 && canMoveY(Direction.SOUTH,surroundingWalls) && yLoc != player1.getY()){
-//				yLoc += 1;
-//				System.out.println("moving south");
-//			}
-//			break;
-//		}
+
 		for(Projectile p : stockPile) {
 			p.move();
 

@@ -27,8 +27,9 @@ public class TankPanel extends JPanel {
 
 	boolean inMenu = true;
 	boolean inSurvivalMode = false;
+	boolean survivalModeFirstTime = true;
 
-	int level = -1; // initialize at 1, menu ending changes to 0
+	int level = -1; 
 	boolean level1FirstTime = true;
 
 	public static int panelWidth = 1400;
@@ -269,8 +270,10 @@ public class TankPanel extends JPanel {
 							level = 1;
 						}
 						if(theMenu.clickedButton2(arg0.getX(), arg0.getY())){//survival mode
-//							survivalMode = new ();
+							inMenu = false;
 							inSurvivalMode = true;
+							survivalModeFirstTime = true;
+							level = 0;
 						}
 					}
 					if(inGameOverScreen){
@@ -411,10 +414,10 @@ public class TankPanel extends JPanel {
 		if (inMenu){
 			theMenu.draw(g, imageLibrary);
 		}
-		else 
-		{
+		else{
 			if(level1FirstTime){
 
+				Arena survivalArena = new Arena(0, numWallsAcross, numWallsDown);
 				Arena level1Arena = new Arena(1, numWallsAcross, numWallsDown);
 				Arena level2Arena = new Arena(2, numWallsAcross, numWallsDown);
 				Arena level3Arena = new Arena(3, numWallsAcross, numWallsDown);
@@ -428,7 +431,7 @@ public class TankPanel extends JPanel {
 				Arena level11Arena = new Arena(11, numWallsAcross, numWallsDown);
 				Arena level12Arena = new Arena(12, numWallsAcross, numWallsDown);
 
-				arenaList.add(level1Arena);//dummy arena, never used
+				arenaList.add(survivalArena);
 				arenaList.add(level1Arena);
 				arenaList.add(level2Arena);
 				arenaList.add(level3Arena);
@@ -444,6 +447,12 @@ public class TankPanel extends JPanel {
 
 				level1FirstTime = false;
 			}
+			if(survivalModeFirstTime){
+				
+				
+				survivalModeFirstTime = false;
+			}
+
 
 			Arena currentArena = arenaList.get(level);
 			

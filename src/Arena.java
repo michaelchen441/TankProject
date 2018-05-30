@@ -17,9 +17,8 @@ public class Arena
 	// Remains null if no wall is created in the cell
 	PlayerTank playerTank; // Tank controlled by player
 
-	
 
-
+	int numTanksKilled;
 
 	//Note about TankList
 	//New Tanklist is created with the creation of a new arena
@@ -97,6 +96,9 @@ public class Arena
 		// Determines which level to draw based on level number passed into constructor
 		// Each setup for a level is coded for in a separate method
 		switch(level){
+		case 0:
+			survivalModeSetup();
+			break;
 		case 1: 
 			level1Setup();
 			break;
@@ -201,23 +203,72 @@ public class Arena
 				tank.draw(g, l);
 			}
 
-			//Determines if all enemy tanks are dead
-			//If condition is met, level is incremented
-			//Doesn't check index 0 because it is a playertank
-			boolean allDead = true;
-			for(int i = 1; i < tankList.size(); i++){
-				if (tankList.get(i).alive == true){
-					allDead = false;
+			if(level == 0){
+				//check each tank for dead
+				int numTanksAlive = 0;
+				for(int i = 1; i < tankList.size(); i++){
+					if (tankList.get(i).alive != true){
+						numTanksKilled++;
+					}
+					else{
+						numTanksAlive++;
+					}
 				}
+				if(numTanksKilled < 10){
+					for(int i = 0; i < 2 - numTanksAlive; i++){
+						survivalAddTank();
+					}
+				}
+				else{
+					for(int i = 0; i < 3 - numTanksAlive; i++){
+						survivalAddTank();
+					}
+				}
+
 			}
-			if(allDead){
-				transition = true;
-				startingTransition = true;
+			else{
+				//Determines if all enemy tanks are dead
+				//If condition is met, level is incremented
+				//Doesn't check index 0 because it is a playertank
+				boolean allDead = true;
+				for(int i = 1; i < tankList.size(); i++){
+					if (tankList.get(i).alive == true){
+						allDead = false;
+					}
+				}
+				if(allDead){
+					transition = true;
+					startingTransition = true;
+				}
 			}
 		}
 
 	}
 
+	private void survivalAddTank()
+	{
+		//use tanklist to find quadrant to add to killed to get random
+		//4 booleans for quadrants used (change to false if occupied), then create in quadrant still true
+		int x;
+		int y;
+		//4 if statements based on quadrant to set x and y
+		y = 1;
+		x = 1;
+
+		//	TankType type = survivalRandomType();
+		TankType type = TankType.RED; //TODO delete
+
+
+
+		tankList.add(new AITank(type, x, y, this));
+
+	}
+	private TankType survivalRandomType()
+	{
+		//do a bunch of ifs to get a random number (the higher the numTanksKilled, the more difficult tanks included)
+		//use switch case to return tanktype based on number
+		return null;
+	}
 	private void drawTransition(Graphics g, ImageLibrary l)
 	{
 		//TODO display level completed in green
@@ -322,6 +373,22 @@ public class Arena
 
 	}
 
+	public void survivalModeSetup(){
+
+		playerTank.setX(14);
+		playerTank.setY(7);
+
+		tankList.add(new AITank(TankType.BLUE, 1, 1, this));
+		//tankList.add(new AITank(TankType.BLUE, 1, 10, this));
+		tankList.add(new AITank(TankType.BLUE, 5, 1, this));
+
+		tankList.add(new AITank(TankType.BLUE, 10, 1, this));
+
+		walls[9][3] = new Wall(9, 3, false);
+		walls[9][4] = new Wall(9, 4, false);
+		walls[9][5] = new Wall(9, 5, false);
+	}
+
 	//Method containing all the information of level 1
 	//When level is equal to 1, an arena with these objects and conditions are drawn
 	public void level1Setup() {
@@ -332,9 +399,9 @@ public class Arena
 		wallSetup1();
 		//		
 		//
-//		blueTank1 =  new AITank(TankType.BLUE, 23, 8, this);
-//		tankList.add(blueTank1);
-		
+		//		blueTank1 =  new AITank(TankType.BLUE, 23, 8, this);
+		//		tankList.add(blueTank1);
+
 
 		tankList.add(new AITank(TankType.BLUE, 23, 1, this));
 		tankList.add(new AITank(TankType.RED, 23, 3, this));
@@ -342,8 +409,8 @@ public class Arena
 		tankList.add(new AITank(TankType.WHITE, 23, 8, this));	
 		tankList.add(new AITank(TankType.PINK, 23, 11, this));
 		tankList.add(new AITank(TankType.YELLOW, 23, 14, this));
-		
-	
+
+
 
 		levelCount = 1;
 	}
@@ -351,7 +418,7 @@ public class Arena
 	//When level is equal to 2, an arena with these objects and conditions are drawn
 	public void level2Setup() {
 		//Makes one blue enemy tank and adds to tanklist
-	
+
 		tankList.add(new AITank(TankType.RED, 24, 3, this));
 
 		playerTank.setX(3);
@@ -366,8 +433,8 @@ public class Arena
 	//Method containing all the information of level 3
 	//When level is equal to 3, an arena with these objects and conditions are drawn
 	public void level3Setup() {
-		
-		
+
+
 		//Makes one blue enemy tank and adds to tanklist
 		//Makes one red enemy tank and adds to tanklist
 		//Makes one red enemy tank and adds to tanklist
@@ -473,7 +540,7 @@ public class Arena
 		//Makes one blue enemy tank and adds to tanklist
 
 		//make more tanks
-		
+
 		tankList.add(new AITank(TankType.BLUE, 13, 10, this));
 		tankList.add(new AITank(TankType.BLACK, 24, 2, this));
 		tankList.add(new AITank(TankType.BLACK, 24, 13, this));
@@ -519,11 +586,11 @@ public class Arena
 		playerTank.setX(2);
 		playerTank.setY(6);
 
-	
+
 		tankList.add(new AITank(TankType.WHITE,20, 10, this));
 		tankList.add(new AITank(TankType.WHITE,20, 5, this));
 		tankList.add(new AITank(TankType.WHITE,25, 7, this));
-		
+
 		tankList.add(new AITank(TankType.BLACK,26, 3, this));
 		tankList.add(new AITank(TankType.BLACK,26, 12, this));
 
@@ -541,11 +608,11 @@ public class Arena
 		//Makes one blue enemy tank and adds to tanklist
 
 		tankList.add(new AITank(TankType.BLUE, 23, 5, this));
-		
+
 		tankList.add(new AITank(TankType.INVISIBLE, 23, 1, this));
 		tankList.add(new AITank(TankType.INVISIBLE, 23, 11, this));
-		
-		
+
+
 		playerTank.setX(3);
 		playerTank.setY(8);
 
@@ -928,7 +995,7 @@ public class Arena
 			}
 		}
 		walls[5][20] = new Wall(5,20,true);
-		
+
 		for(int i = 1; i<12; i++) {
 			if(i != 4){
 				walls[7][i] = new Wall(7,i,false);
@@ -942,7 +1009,7 @@ public class Arena
 			}
 		}
 		walls[9][20] = new Wall(9,20,true);
-		
+
 		for(int i = 1; i<12; i++) {
 			if(i != 4){
 				walls[11][i] = new Wall(11,i,false);
