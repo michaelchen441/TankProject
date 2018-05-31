@@ -393,6 +393,7 @@ public class TankPanel extends JPanel {
 		if(pause == false) {
 			repaint();
 		}
+		
 	}
 
 	public void resetGame(){
@@ -474,17 +475,19 @@ public class TankPanel extends JPanel {
 				gameOverScreen = new GameOver(latestScoreClassic, level, true);
 				gameOverScreen.draw(g, imageLibrary);
 				
-				cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
-				blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
-						cursorImg, new Point(0, 0), "blank cursor");
-				frame.getContentPane().setCursor(blankCursor);
-				g.drawImage(imageLibrary.crosshair, crosshairX-10, crosshairY-10, null);
+//				cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
+//				blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
+//						cursorImg, new Point(0, 0), "blank cursor");
+//				frame.getContentPane().setCursor(blankCursor);
+//				g.drawImage(imageLibrary.crosshair, crosshairX-10, crosshairY-10, null);
 				
 				return;
 			}
 			if(currentArena.playerTank.alive == false){//tests if player lost by dying
 				if(level == 0){
+					
 					latestScoreSurvival = currentArena.numTanksKilled; 
+					
 					gameOverScreen = new GameOver(latestScoreSurvival, level, false);
 					
 					if(latestScoreSurvival > highScoreSurvival){

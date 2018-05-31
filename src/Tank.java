@@ -176,6 +176,17 @@ public abstract class Tank
 	}
 
 	private boolean checkWest(Wall[][] walls) { 
+		//check other tanks
+		for(int i = 1; i<arena.tankList.size(); i++) {
+			if(arena.tankList.get(i).alive) {
+				if(xLoc == arena.tankList.get(i).xLoc+50) {
+					if(yLoc >= arena.tankList.get(i).yLoc-50 && yLoc<= arena.tankList.get(i).yLoc+50) {
+						return false;
+					}
+				}
+			}
+		}
+		//check walls
 		for(int r = 0; r<walls.length; r++) { 
 			for(int c = 0; c<walls[r].length; c++) {
 				if(walls[r][c] != null) {
@@ -192,7 +203,17 @@ public abstract class Tank
 		return true;
 	}
 	private boolean checkEast(Wall[][] walls) {
-
+		//checking for other tanks
+		for(int i = 1; i<arena.tankList.size(); i++) {
+			if(arena.tankList.get(i).alive) {
+				if(xLoc+50 == arena.tankList.get(i).xLoc) {
+					if(yLoc >= arena.tankList.get(i).yLoc-50 && yLoc<= arena.tankList.get(i).yLoc+50) {
+						return false;
+					}
+				}
+			}
+		}
+		//checking for other walls
 		for(int r = 0; r<walls.length; r++) { 
 			for(int c = 0; c<walls[r].length; c++) {
 				if(walls[r][c] != null) {
@@ -209,6 +230,15 @@ public abstract class Tank
 		return true;
 	}
 	private boolean checkNorth(Wall[][] walls) {
+		for(int i = 1; i<arena.tankList.size(); i++) {
+			if(arena.tankList.get(i).alive) {
+				if(yLoc == arena.tankList.get(i).yLoc+50) {
+					if(xLoc >= arena.tankList.get(i).xLoc-50 && xLoc<= arena.tankList.get(i).xLoc+50) {
+						return false;
+					}
+				}
+			}
+		}
 		for(int r = 0; r<walls.length; r++) { 
 			for(int c = 0; c<walls[r].length; c++) {
 				if(walls[r][c] != null) {
@@ -223,9 +253,18 @@ public abstract class Tank
 			}
 		}
 		return true;
-
 	}
 	private boolean checkSouth(Wall[][] walls) {
+		for(int i = 1; i<arena.tankList.size(); i++) {
+			if(arena.tankList.get(i).alive) {
+				if(yLoc+50 == arena.tankList.get(i).yLoc) {
+					if(xLoc >= arena.tankList.get(i).xLoc-50 && xLoc<= arena.tankList.get(i).xLoc+50) {
+						return false;
+					}
+				}
+			}
+		}
+		
 		for(int r = 0; r<walls.length; r++) {
 			for(int c = 0; c<walls[r].length; c++) {
 				if(walls[r][c] != null) {
@@ -240,7 +279,6 @@ public abstract class Tank
 			}
 		}
 		return true;
-
 	}
 
 	//Movement, aiming, firing, and draw are coded and implemented differently between Player and AI Tanks

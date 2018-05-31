@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 
@@ -124,6 +125,7 @@ public class Projectile
 
 				}
 			}
+			checkProjectile();
 
 		}
 		switch(type){
@@ -351,7 +353,25 @@ public class Projectile
 
 	}
 
+	private void checkProjectile() {
+		for(Tank t: myArena.tankList) {
+			for(Projectile p : t.stockPile) {
+				if(p.equals(this)) {
+					
+				}
+				else {
+					if(xLoc - 5 < p.xLoc && xLoc + 5 > p.xLoc) {
+						if(yLoc - 5 < p.yLoc && yLoc + 5 > p.yLoc) {
+							active = false;
+							p.active = false;
+						}
 
+					}
+							
+				}
+			}
+		}
+	}
 
 
 }
