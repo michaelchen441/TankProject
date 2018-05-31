@@ -276,7 +276,7 @@ public class TankPanel extends JPanel {
 					{
 						if(theMenu.clickedButton1(arg0.getX(), arg0.getY())){
 							inMenu = false;
-							level = 1;
+							level = 6;
 						}
 						if(theMenu.clickedButton2(arg0.getX(), arg0.getY())){
 
@@ -434,7 +434,7 @@ public class TankPanel extends JPanel {
 				level9Arena = new Arena(9, numWallsAcross, numWallsDown);
 				level10Arena = new Arena(10, numWallsAcross, numWallsDown);
 				level11Arena = new Arena(11, numWallsAcross, numWallsDown);
-				level12Arena = new Arena(11, numWallsAcross, numWallsDown);
+				level12Arena = new Arena(12, numWallsAcross, numWallsDown);
 
 				arenaList.add(level1Arena);
 				arenaList.add(level1Arena);
@@ -455,7 +455,7 @@ public class TankPanel extends JPanel {
 
 			Arena currentArena = arenaList.get(level);
 			
-			if(level == 12){//tests if player won
+			if(level == 13){//tests if player won
 				inGameOverScreen = true;
 				gameOverScreen = new GameOver(numTankKills, level, true);
 				gameOverScreen.draw(g, imageLibrary);
