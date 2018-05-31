@@ -53,8 +53,10 @@ public class TankPanel extends JPanel {
 	GameOver gameOverScreen;
 
 
-
-	int numTankKills = 0;
+	int latestScoreSurvival = 0;
+	int highScoreSurvival = 0;
+	int latestScoreClassic = 0;
+	int highScoreClassic = 0;
 
 
 	ImageLibrary imageLibrary = new ImageLibrary();
@@ -390,10 +392,11 @@ public class TankPanel extends JPanel {
 		level = -1;
 		inMenu = true;
 		inGameOverScreen = false;
-		numTankKills = 0;
 		level1FirstTime = true;
 		arenaList = new ArrayList<Arena>();
 
+		latestScoreSurvival = 0;
+		latestScoreClassic = 0;
 	}
 
 	public void paintComponent(Graphics g) {
@@ -412,7 +415,7 @@ public class TankPanel extends JPanel {
 		}
 
 		if (inMenu){
-			theMenu.draw(g, imageLibrary);
+			theMenu.draw(g, imageLibrary, highScoreSurvival, highScoreClassic);
 		}
 		else{
 			if(level1FirstTime){
@@ -444,6 +447,7 @@ public class TankPanel extends JPanel {
 				arenaList.add(level10Arena);
 				arenaList.add(level11Arena);
 				arenaList.add(level12Arena);
+				arenaList.add(new Arena(12, numWallsAcross, numWallsDown));
 
 				level1FirstTime = false;
 			}
@@ -457,14 +461,32 @@ public class TankPanel extends JPanel {
 			Arena currentArena = arenaList.get(level);
 			
 			if(level == 13){//tests if player won
+				latestScoreClassic = 13;
+				highScoreClassic = 13;
 				inGameOverScreen = true;
-				gameOverScreen = new GameOver(numTankKills, level, true);
+				gameOverScreen = new GameOver(latestScoreClassic, level, true);
 				gameOverScreen.draw(g, imageLibrary);
 				return;
 			}
 			if(currentArena.playerTank.alive == false){//tests if player lost by dyign
+				if(level == 0){
+					latestScoreSurvival = currentArena.numTanksKilled; 
+					gameOverScreen = new GameOver(latestScoreSurvival, level, false);
+					
+					if(latestScoreSurvival > highScoreSurvival){
+						highScoreSurvival = latestScoreSurvival;
+					}
+				}
+				else{
+					latestScoreClassic = level;
+					gameOverScreen = new GameOver(latestScoreClassic, level, false);
+					
+					if (latestScoreClassic > highScoreClassic){
+						highScoreClassic = latestScoreClassic;
+					}
+				}
+				
 				inGameOverScreen = true;
-				gameOverScreen = new GameOver(numTankKills, level, false);
 				gameOverScreen.draw(g, imageLibrary);
 				return;
 			}

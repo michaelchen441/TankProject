@@ -4,13 +4,13 @@ import java.awt.Graphics;
 
 public class GameOver {
 
-	private int numTankKills;
+	private int score;
 	private int level;
 	private boolean gameWon;
 
-	public GameOver(int inNumTankKills, int inLevel, boolean inGameWon){
+	public GameOver(int inScore, int inLevel, boolean inGameWon){
 
-		numTankKills = inNumTankKills;
+		score = inScore;
 		level = inLevel;
 		gameWon = inGameWon;
 
@@ -36,6 +36,8 @@ public class GameOver {
 			g.setFont(new Font("TimesRoman", Font.PLAIN, 50)); //Times New Roman font; size 200
 			g.setColor(Color.GREEN); //Black colored text
 			g.drawString("Return to Menu", 525, 460); //Constructs the text and draws it on panel
+			
+			//
 		}
 		else{
 			g.setColor(Color.RED); //Black colored text

@@ -8,18 +8,21 @@ public class Menu
 	private int highScore; //Displays your highscore
 
 	//at some point make panels inMenu false
-	void draw(Graphics g, ImageLibrary l)
+	void draw(Graphics g, ImageLibrary l, int inSurvivalHighScore, int inClassicHighScore)
 	{
 		//draw background
 		g.drawImage(l.background, 0, 0, null);
 
 		//TODO draw title
-		g.setFont(new Font("TimesRoman", Font.PLAIN, 150)); //Times New Roman font; size 200
+		g.setFont(new Font("TimesRoman", Font.PLAIN, 175)); //Times New Roman font; size 200
 		g.setColor(Color.BLACK); //Black colored text
-		g.drawString("TANK GAME ", 50, 150); //Constructs the text and draws it on panel
+		g.drawString("TANK GAME", 200, 175); //Constructs the text and draws it on panel
 		
 		//TODO draw high scores
-
+		g.setFont(new Font("TimesRoman", Font.PLAIN, 50)); //Times New Roman font; size 200
+		g.setColor(Color.BLACK); //Black colored text
+		g.drawString("Classic high score = "+inClassicHighScore, 50, 370); //Constructs the text and draws it on panel
+		g.drawString("Survival high score = "+inSurvivalHighScore, 50, 570); //Constructs the text and draws it on panel
 
 		//TODO draw button to start classsic game
 		g.setColor(Color.BLACK); //Red colored rectangle

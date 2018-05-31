@@ -204,8 +204,28 @@ public class Arena
 			}
 
 			if(level == 0){
+				if(numTanksKilled < 10){
+					g.setColor(Color.BLACK); //Red colored rectangle
+					g.fillRect(650, 0, 50, 50); //Makes rectangle for text
+				}
+				else if(numTanksKilled < 100){
+					g.setColor(Color.BLACK); //Red colored rectangle
+					g.fillRect(650, 0, 70, 50); //Makes rectangle for text
+				}
+				else {
+					g.setColor(Color.BLACK); //Red colored rectangle
+					g.fillRect(650, 0, 100, 50); //Makes rectangle for text
+				}
+
+				g.setFont(new Font("TimesRoman", Font.PLAIN, 50)); //Times New Roman font; size 50
+				g.setColor(Color.WHITE); //white colored text
+				g.drawString(""+numTanksKilled, 660, 45); //displays score
+
+				
+
 				//check each tank for dead
 				int numTanksAlive = 0;
+				numTanksKilled = 0;		// always recalc
 				for(int i = 1; i < tankList.size(); i++){
 					if (tankList.get(i).alive != true){
 						numTanksKilled++;
@@ -215,15 +235,19 @@ public class Arena
 					}
 				}
 				if(numTanksKilled < 10){
-					for(int i = 0; i < 2 - numTanksAlive; i++){
+					for(int i = 0; i < 1 - numTanksAlive; i++){
 						survivalAddTank();
 					}
 				}
 				else{
-					for(int i = 0; i < 3 - numTanksAlive; i++){
+					for(int i = 0; i < 2 - numTanksAlive; i++){
 						survivalAddTank();
 					}
 				}
+				
+//				if(numTanksKilled > 23 && numTanksKilled%3 == 0){
+//					deleteWall();
+//				}
 
 			}
 			else{
@@ -245,30 +269,163 @@ public class Arena
 
 	}
 
+//	private void deleteWall()
+//	{
+//		for(int r = 0; r < walls.length; r++){
+//			for(int c = 0; c < walls[r].length; c++){
+//				if(walls[r][c] != null){
+//					walls[r][c] = null;
+//					return;
+//				}
+//			}
+//		}
+//		
+//	}
 	private void survivalAddTank()
 	{
 		//use tanklist to find quadrant to add to killed to get random
-		//4 booleans for quadrants used (change to false if occupied), then create in quadrant still true
-		int x;
-		int y;
-		//4 if statements based on quadrant to set x and y
-		y = 1;
-		x = 1;
+		boolean Q1Free = true;
+		boolean Q2Free = true;
+		boolean Q3Free = true;
+		boolean Q4Free = true;
+		for(Tank t: tankList){
+			if(t.alive){
+				if(t.xLoc < 700 && t.yLoc < 400){
+					Q2Free = false;
+				}
+				if(t.xLoc > 700 && t.yLoc < 400){
+					Q1Free = false;
+				}
+				if(t.xLoc < 700 && t.yLoc > 400){
+					Q3Free = false;
+				}
+				if(t.xLoc > 700 && t.yLoc > 400){
+					Q4Free = false;
+				}
+			}
+		}
+		int x = 0;
+		int y = 0;
+		//multiples if statements based on quadrant to set x and y
+		int quadrant = 0;
+		if(Q1Free && !Q2Free && !Q3Free && !Q4Free){
+			quadrant = 1;
+		}
+		else if(!Q1Free && Q2Free && !Q3Free && !Q4Free){
+			quadrant = 2;
+		}
+		else if(!Q1Free && !Q2Free && Q3Free && !Q4Free){
+			quadrant = 3;
+		}
+		else if(!Q1Free && !Q2Free && !Q3Free && Q4Free){
+			quadrant = 4;
+		}
+		else if(!Q1Free && !Q2Free && !Q3Free && !Q4Free){
+			quadrant = getRandomQuadrant();
+		}
+		else{
+			quadrant = getRandomQuadrant();
+			while(checkQuadrant(quadrant, Q1Free, Q2Free, Q3Free, Q4Free) == false){
+				quadrant = getRandomQuadrant();
+			}
+		}
 
-		//	TankType type = survivalRandomType();
-		TankType type = TankType.RED; //TODO delete
+		switch(quadrant){
+		case 1:
+			y = 2;
+			x = 25;
+			break;
+		case 2:
+			y = 2;
+			x = 2;
+			break;
+		case 3:
+			y = 13;
+			x = 2;
+			break;
+		case 4:
+			y = 13;
+			x = 25;
+			break;
+		}
 
-
+		TankType type = survivalRandomType();
 
 		tankList.add(new AITank(type, x, y, this));
 
 	}
+
+	private boolean checkQuadrant(int quadrant, boolean q1Free, boolean q2Free, boolean q3Free, boolean q4Free)
+	{
+		switch(quadrant){
+		case 1:
+			if (q1Free){
+				return true;
+			}
+			else{
+				return false;
+			}
+		case 2:
+			if (q2Free){
+				return true;
+			}
+			else{
+				return false;
+			}
+		case 3:
+			if (q3Free){
+				return true;
+			}
+			else{
+				return false;
+			}
+		case 4:
+			if (q4Free){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		return false;
+	}
+	private int getRandomQuadrant()
+	{
+		return ((int)(Math.random()*4))+1;
+	}
+
 	private TankType survivalRandomType()
 	{
 		//do a bunch of ifs to get a random number (the higher the numTanksKilled, the more difficult tanks included)
 		//use switch case to return tanktype based on number
+		int numTankType;
+		if(numTanksKilled < 31){
+			numTankType = (int) (Math.random()*((numTanksKilled/5)+1));
+		}
+		else{
+			numTankType = (int) (Math.random()*7);
+		}
+
+		switch(numTankType){
+		case 0:
+			return TankType.BLUE;
+		case 1:
+			return TankType.RED;
+		case 2:
+			return TankType.BLACK;
+		case 3:
+			return TankType.WHITE;
+		case 4:
+			return TankType.PINK;
+		case 5:
+			return TankType.YELLOW;
+		case 6:
+			return TankType.INVISIBLE;
+		}
+
 		return null;
 	}
+
 	private void drawTransition(Graphics g, ImageLibrary l)
 	{
 		//TODO display level completed in green
@@ -375,20 +532,38 @@ public class Arena
 
 	public void survivalModeSetup(){
 
-		playerTank.setX(14);
-		playerTank.setY(7);
+		playerTank.setX(13);
+		playerTank.setY(8);
 
-		tankList.add(new AITank(TankType.BLUE, 1, 1, this));
-		//tankList.add(new AITank(TankType.BLUE, 1, 10, this));
-		tankList.add(new AITank(TankType.BLUE, 5, 1, this));
 
-		tankList.add(new AITank(TankType.BLUE, 10, 1, this));
+		walls[4][4] = new Wall(4, 4, false);
+		walls[4][5] = new Wall(4, 5, false);
+		walls[4][6] = new Wall(4, 6, false);
+		walls[4][7] = new Wall(4, 7, false);
+		walls[5][4] = new Wall(5, 4, false);
+		walls[6][4] = new Wall(6, 4, false);
 
-		walls[9][3] = new Wall(9, 3, false);
+		walls[11][4] = new Wall(11, 4, false);
+		walls[10][4] = new Wall(10, 4, false);
 		walls[9][4] = new Wall(9, 4, false);
-		walls[9][5] = new Wall(9, 5, false);
-	}
+		walls[11][5] = new Wall(11, 5, false);
+		walls[11][6] = new Wall(11, 6, false);
+		walls[11][7] = new Wall(11, 7, false);
 
+		walls[11][23] = new Wall(11, 23, false);
+		walls[11][22] = new Wall(11, 22, false);
+		walls[11][21] = new Wall(11, 21, false);
+		walls[11][20] = new Wall(11, 20, false);
+		walls[10][23] = new Wall(10, 23, false);
+		walls[9][23] = new Wall(9, 23, false);
+
+		walls[4][23] = new Wall(4, 23, false);
+		walls[4][22] = new Wall(4, 22, false);
+		walls[4][21] = new Wall(4, 21, false);
+		walls[4][20] = new Wall(4, 20, false);
+		walls[5][23] = new Wall(5, 23, false);
+		walls[6][23] = new Wall(6, 23, false);
+	}
 	//Method containing all the information of level 1
 	//When level is equal to 1, an arena with these objects and conditions are drawn
 	public void level1Setup() {
@@ -403,12 +578,12 @@ public class Arena
 		//		tankList.add(blueTank1);
 
 
-		tankList.add(new AITank(TankType.BLUE, 23, 1, this));
-		tankList.add(new AITank(TankType.RED, 23, 3, this));
-		tankList.add(new AITank(TankType.BLACK, 23, 5, this));
-		tankList.add(new AITank(TankType.WHITE, 23, 8, this));	
-		tankList.add(new AITank(TankType.PINK, 23, 11, this));
-		tankList.add(new AITank(TankType.YELLOW, 23, 14, this));
+//		tankList.add(new AITank(TankType.BLUE, 23, 1, this));
+//		tankList.add(new AITank(TankType.RED, 23, 3, this));
+//		tankList.add(new AITank(TankType.BLACK, 23, 5, this));
+//		tankList.add(new AITank(TankType.WHITE, 23, 8, this));	
+//		tankList.add(new AITank(TankType.PINK, 23, 11, this));
+//		tankList.add(new AITank(TankType.YELLOW, 23, 14, this));
 
 
 
@@ -599,8 +774,6 @@ public class Arena
 
 	}
 
-
-
 	//Method containing all the information of level 11
 	//When level is equal to 11, an arena with these objects and conditions are drawn
 	public void level11Setup() {
@@ -622,7 +795,6 @@ public class Arena
 
 	}
 
-
 	//Method containing all the information of level 11
 	//When level is equal to 11, an arena with these objects and conditions are drawn
 	public void level12Setup() {
@@ -643,6 +815,7 @@ public class Arena
 	}
 
 	//make multiple wallsetup functions and have level setupfunctions call them
+
 
 	private void wallSetup1(){
 		//use for levels 1 and ...
@@ -682,7 +855,6 @@ public class Arena
 		walls[10][15] = new Wall(10,15, false);
 		walls[11][15] = new Wall(11,15, false);
 	}
-
 
 	private void wallSetup2(){
 		//use for levels 2 and ...
