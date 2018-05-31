@@ -430,13 +430,13 @@ public class Arena
 	{
 		//TODO display level completed in green
 		//TODO  display current number of tanks killed
-		g.drawImage(l.blueTank, 350, 250, null);	
+		g.drawImage(l.blueTank, 350, 230, null);	
 		Graphics2D	g2D = (Graphics2D)g;
 		AffineTransform	backupAT = g2D.getTransform();
 		AffineTransform	theAT = new AffineTransform();
 
 		int xTurretImageLoc = 350 + 15;
-		int yTurretImageLoc = 250 - 15;
+		int yTurretImageLoc = 230 - 15;
 		int	xTurretRotateOffset = 10;
 		int yTurretRotateOffset = 40;
 
@@ -449,13 +449,13 @@ public class Arena
 		g2D.setTransform(backupAT);
 
 
-		g.drawImage(l.redTank, 350, 350, null);	
+		g.drawImage(l.redTank, 350, 300, null);	
 		Graphics2D	g2D2 = (Graphics2D)g;
 		AffineTransform	backupAT2 = g2D2.getTransform();
 		AffineTransform	theAT2 = new AffineTransform();
 
 		int xTurretImageLoc2 = 350 + 15;
-		int yTurretImageLoc2 = 350 - 15;
+		int yTurretImageLoc2 = 300 - 15;
 
 		theAT2.rotate((Math.PI * 0.5),	xTurretImageLoc2 + xTurretRotateOffset,
 				yTurretImageLoc2 + yTurretRotateOffset); //add PI/2 because turret image is upwards so that starts it horizontal
@@ -465,13 +465,13 @@ public class Arena
 
 		g2D2.setTransform(backupAT2);
 
-		g.drawImage(l.blackTank, 350, 450, null);	
+		g.drawImage(l.blackTank, 350, 370, null);	
 		Graphics2D	g2D3 = (Graphics2D)g;
 		AffineTransform	backupAT3 = g2D3.getTransform();
 		AffineTransform	theAT3 = new AffineTransform();
 
 		int xTurretImageLoc3 = 350 + 15;
-		int yTurretImageLoc3 = 450 - 15;
+		int yTurretImageLoc3 = 370 - 15;
 
 		theAT3.rotate((Math.PI * 0.5),	xTurretImageLoc3 + xTurretRotateOffset,
 				yTurretImageLoc3 + yTurretRotateOffset); //add PI/2 because turret image is upwards so that starts it horizontal
@@ -480,49 +480,174 @@ public class Arena
 		g.drawImage(l.blackTurret, xTurretImageLoc3, yTurretImageLoc3, null);
 
 		g2D3.setTransform(backupAT3);
+		
+		g.drawImage(l.whiteTank, 350, 440, null);	
+		Graphics2D	g2D4 = (Graphics2D)g;
+		AffineTransform	backupAT4 = g2D4.getTransform();
+		AffineTransform	theAT4 = new AffineTransform();
+
+		int xTurretImageLoc4 = 350 + 15;
+		int yTurretImageLoc4 = 440 - 15;
+
+		theAT4.rotate((Math.PI * 0.5),	xTurretImageLoc4 + xTurretRotateOffset,
+				yTurretImageLoc4 + yTurretRotateOffset); //add PI/2 because turret image is upwards so that starts it horizontal
+
+		g2D4.transform(theAT4);
+		g.drawImage(l.whiteTurret, xTurretImageLoc4, yTurretImageLoc4, null);
+
+		g2D4.setTransform(backupAT4);
+		
+		
+		
+		g.drawImage(l.pinkTank, 350, 510, null);	
+		Graphics2D	g2D5 = (Graphics2D)g;
+		AffineTransform	backupAT5 = g2D5.getTransform();
+		AffineTransform	theAT5 = new AffineTransform();
+
+		int xTurretImageLoc5 = 350 + 15;
+		int yTurretImageLoc5 = 510 - 15;
+
+		theAT5.rotate((Math.PI * 0.5),	xTurretImageLoc5 + xTurretRotateOffset,
+				yTurretImageLoc5 + yTurretRotateOffset); //add PI/2 because turret image is upwards so that starts it horizontal
+
+		g2D5.transform(theAT5);
+		g.drawImage(l.pinkTurret, xTurretImageLoc5, yTurretImageLoc5, null);
+
+		g2D5.setTransform(backupAT5);
+		
+		
+		
+		
+		g.drawImage(l.yellowTank, 350, 580, null);	
+		Graphics2D	g2D6 = (Graphics2D)g;
+		AffineTransform	backupAT6 = g2D6.getTransform();
+		AffineTransform	theAT6 = new AffineTransform();
+
+		int xTurretImageLoc6 = 350 + 15;
+		int yTurretImageLoc6 = 580 - 15;
+
+		theAT6.rotate((Math.PI * 0.5),	xTurretImageLoc6 + xTurretRotateOffset,
+				yTurretImageLoc6 + yTurretRotateOffset); //add PI/2 because turret image is upwards so that starts it horizontal
+
+		g2D6.transform(theAT6);
+		g.drawImage(l.yellowTurret, xTurretImageLoc6, yTurretImageLoc6, null);
+
+		g2D5.setTransform(backupAT6);
+
 
 		g.setColor(Color.BLACK);
-		g.setFont(new Font("TimesRoman", Font.PLAIN, 65)); 
-		g.drawString("x", 500, 292);
-		g.drawString("x", 500, 392);
-		g.drawString("x", 500, 492);
-
+		g.setFont(new Font("TimesRoman", Font.PLAIN, 45)); 
+		
 		int blueDestroyed = 0;
 		int redDestroyed = 0;
 		int blackDestroyed = 0;
+		int whiteDestroyed = 0;
+		int pinkDestroyed = 0;
+		int yellowDestroyed = 0;
+		int invisibleDestroyed = 0;
 
 		if(levelCount == 1) {
 			blueDestroyed = 1;
 		}
 		else if(levelCount == 2) {
-			blueDestroyed = 1;
+			blueDestroyed = 0;
 			redDestroyed = 1;
 		}
 		else if(levelCount == 3) {
-			blueDestroyed = 2;
-			redDestroyed = 3;
+			blueDestroyed = 1;
+			redDestroyed = 2;
 		}
 		else if(levelCount == 4) {
-			blueDestroyed = 4;
-			redDestroyed = 5;
+			blueDestroyed = 2;
+			redDestroyed = 2;
 		}
+		else if(levelCount == 5) {
+			blueDestroyed = 0;
+			redDestroyed = 0;
+			blackDestroyed = 0;
+		}
+		else if(levelCount == 6) {
+			blueDestroyed = 2;
+			redDestroyed = 0;
+			blackDestroyed = 3;
+		}
+		else if(levelCount == 7) {
+			blueDestroyed = 0;
+			redDestroyed = 2;
+			blackDestroyed = 2;
+		}
+		else if(levelCount == 8) {
+			blueDestroyed = 1;
+			redDestroyed = 1;
+			blackDestroyed = 2;
+		}
+		else if(levelCount == 9) {
+			blueDestroyed = 1;
+			redDestroyed = 0;
+			blackDestroyed = 3;
+		}
+		else if(levelCount == 10) {
+			blueDestroyed = 0;
+			redDestroyed = 0;
+			blackDestroyed = 2;
+			whiteDestroyed = 3; 
+		}
+		else if(levelCount == 11) {
+			blueDestroyed = 1;
+			redDestroyed = 1;
+			blackDestroyed = 0;
+			invisibleDestroyed = 2; 
+			whiteDestroyed = 0;
+		}
+		else if(levelCount == 12) {
+			blueDestroyed = 2;
+			redDestroyed = 2;
+			blackDestroyed = 1;
+			invisibleDestroyed = 2;
+			whiteDestroyed = 2;
+		}
+		
 
-		g.drawString(Integer.toString(blueDestroyed), 650, 292);
-		g.drawString(Integer.toString(redDestroyed), 650, 392);
-		g.drawString(Integer.toString(blackDestroyed), 650, 492);
+		g.drawString(Integer.toString(blueDestroyed), 650, 272);
+		g.drawString(Integer.toString(redDestroyed), 650, 342);
+		g.drawString(Integer.toString(blackDestroyed), 650, 412);
+		g.drawString(Integer.toString(whiteDestroyed), 650, 482);
+		g.drawString(Integer.toString(pinkDestroyed), 650, 552);
+		g.drawString(Integer.toString(yellowDestroyed), 650, 622);
+		g.drawString(Integer.toString(invisibleDestroyed), 650, 692);
 
-		g.drawString("=", 800, 292);
-		g.drawString("=", 800, 392);
-		g.drawString("=", 800, 492);
+		g.drawString("x", 500, 272);
+		g.drawString("x", 500, 342);
+		g.drawString("x", 500, 412);
+		g.drawString("x", 500, 482);
+		g.drawString("x", 500, 552);
+		g.drawString("x", 500, 622);
+		g.drawString("x", 500, 692);
+		
+		g.drawString("=", 800, 272);
+		g.drawString("=", 800, 342);
+		g.drawString("=", 800, 412);
+		g.drawString("=", 800, 482);
+		g.drawString("=", 800, 552);
+		g.drawString("=", 800, 622);
+		g.drawString("=", 800, 692);
 
-		g.drawString(Integer.toString(blueDestroyed * 10), 950, 292);
-		g.drawString(Integer.toString(redDestroyed * 50), 950, 392);
-		g.drawString(Integer.toString(blackDestroyed * 100), 950, 492);
+		g.drawString(Integer.toString(blueDestroyed * 10), 930, 272);
+		g.drawString(Integer.toString(redDestroyed * 50), 930, 342);
+		g.drawString(Integer.toString(blackDestroyed * 125), 930, 412);
+		g.drawString(Integer.toString(whiteDestroyed * 150), 930, 482);
+		g.drawString(Integer.toString(pinkDestroyed * 75), 930, 552);
+		g.drawString(Integer.toString(yellowDestroyed * 100), 930, 622);
+		g.drawString(Integer.toString(invisibleDestroyed * 200), 930, 692);
 
-		g.fillRect(250, 550, 800, 3);
+		
 
 		int totalScore = (blueDestroyed * 10) + (redDestroyed * 50) + (blackDestroyed * 100);
-		g.drawString(Integer.toString(totalScore), 950, 620);
+		
+		g.setFont(new Font("TimesRoman", Font.PLAIN, 60));
+		g.drawString(Integer.toString(totalScore), 1133, 460);
+		g.drawString("Total Score", 1025, 400);
+		g.drawLine(1025, 410, 1305, 410);
 		g.setFont(new Font("TimesRoman", Font.PLAIN, 150)); 
 		String levelCompletion = "Level " + levelCount + " Completed";
 		g.drawString(levelCompletion, 100, 200);
@@ -661,7 +786,7 @@ public class Arena
 		playerTank.setY(12);
 
 		wallSetup5();
-
+		levelCount = 5;
 
 	}
 
@@ -684,7 +809,7 @@ public class Arena
 
 
 		wallSetup6();
-
+		levelCount = 6;
 
 	}
 
@@ -704,7 +829,7 @@ public class Arena
 
 		wallSetup7();
 
-
+		levelCount = 7;
 	}
 
 	//Method containing all the information of level 8
@@ -725,7 +850,7 @@ public class Arena
 
 
 		wallSetup8();
-
+		levelCount = 8;
 
 	}
 
@@ -744,8 +869,7 @@ public class Arena
 
 
 		wallSetup9();
-
-
+		levelCount = 9;
 	}
 
 	//Method containing all the information of level 10
@@ -769,7 +893,7 @@ public class Arena
 		tankList.add(new AITank(TankType.BLACK,26, 12, this));
 
 		wallSetup10();
-
+		levelCount = 10;
 
 	}
 
@@ -793,7 +917,7 @@ public class Arena
 		 
 		
 		wallSetup11();
-
+		levelCount = 11;
 
 	}
 
@@ -831,7 +955,7 @@ public class Arena
 		playerTank.setY(8);
 
 		wallSetup12();
-
+		levelCount = 12;
 
 
 	}
