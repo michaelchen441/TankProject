@@ -20,26 +20,30 @@ public class Menu
 		
 		//TODO draw high scores
 		g.setFont(new Font("TimesRoman", Font.PLAIN, 50)); //Times New Roman font; size 200
-		g.setColor(Color.BLACK); //Black colored text
+
+		Color darkGreen = new Color(0, 102, 0);
+		g.setColor(darkGreen); 
 		g.drawString("Classic high score = "+inClassicHighScore, 50, 370); //Constructs the text and draws it on panel
+		Color darkBlue = new Color(0, 0, 153);
+		g.setColor(darkBlue); //Black colored text
 		g.drawString("Survival high score = "+inSurvivalHighScore, 50, 570); //Constructs the text and draws it on panel
 
 		//TODO draw button to start classsic game
-		g.setColor(Color.BLACK); //Red colored rectangle
+		g.setColor(Color.GRAY); //Red colored rectangle
 		g.fillRect(900, 300, 440, 100); //Makes rectangle containing start button
 
 		g.setFont(new Font("TimesRoman", Font.PLAIN, 50)); //Times New Roman font; size 200
-		g.setColor(Color.GREEN); //Black colored text
+		g.setColor(darkGreen); //Black colored text
 		g.drawString("Play Classic Mode", 935, 370); //Constructs the text and draws it on panel
 
 		
 		
 		//TODO draw button to start game mode 2
-		g.setColor(Color.BLACK); //Red colored rectangle
+		g.setColor(Color.GRAY); //Red colored rectangle
 		g.fillRect(900, 500, 440, 100); //Makes rectangle containing start button
 
 		g.setFont(new Font("TimesRoman", Font.PLAIN, 50)); //Times New Roman font; size 200
-		g.setColor(Color.BLUE); //Black colored text
+		g.setColor(darkBlue); //Black colored text
 		g.drawString("Play Survival Mode", 925, 570); //Constructs the text and draws it on panel
 
 		

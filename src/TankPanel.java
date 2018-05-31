@@ -269,7 +269,7 @@ public class TankPanel extends JPanel {
 					{
 						if(theMenu.clickedButton1(arg0.getX(), arg0.getY())){//classic game
 							inMenu = false;
-							level = 1;
+							level = 11;
 						}
 						if(theMenu.clickedButton2(arg0.getX(), arg0.getY())){//survival mode
 							inMenu = false;
@@ -468,7 +468,7 @@ public class TankPanel extends JPanel {
 				gameOverScreen.draw(g, imageLibrary);
 				return;
 			}
-			if(currentArena.playerTank.alive == false){//tests if player lost by dyign
+			if(currentArena.playerTank.alive == false){//tests if player lost by dying
 				if(level == 0){
 					latestScoreSurvival = currentArena.numTanksKilled; 
 					gameOverScreen = new GameOver(latestScoreSurvival, level, false);
@@ -478,7 +478,7 @@ public class TankPanel extends JPanel {
 					}
 				}
 				else{
-					latestScoreClassic = level;
+					latestScoreClassic = level-1;
 					gameOverScreen = new GameOver(latestScoreClassic, level, false);
 					
 					if (latestScoreClassic > highScoreClassic){
