@@ -560,63 +560,112 @@ public class Arena
 
 		if(levelCount == 1) {
 			blueDestroyed = 1;
+			redDestroyed = 0;
+			blackDestroyed = 0;
+			whiteDestroyed = 0;
+			pinkDestroyed = 0;
+			yellowDestroyed = 0;
+			invisibleDestroyed = 0;
 		}
 		else if(levelCount == 2) {
 			blueDestroyed = 0;
 			redDestroyed = 1;
+			blackDestroyed = 0;
+			whiteDestroyed = 0;
+			pinkDestroyed = 0;
+			yellowDestroyed = 0;
+			invisibleDestroyed = 0;
 		}
 		else if(levelCount == 3) {
 			blueDestroyed = 1;
 			redDestroyed = 2;
+			blackDestroyed = 0;
+			whiteDestroyed = 0;
+			pinkDestroyed = 0;
+			yellowDestroyed = 0;
+			invisibleDestroyed = 0;
+			
 		}
 		else if(levelCount == 4) {
 			blueDestroyed = 2;
 			redDestroyed = 2;
+			blackDestroyed = 0;
+			whiteDestroyed = 0;
+			pinkDestroyed = 0;
+			yellowDestroyed = 0;
+			invisibleDestroyed = 0;
 		}
 		else if(levelCount == 5) {
 			blueDestroyed = 0;
 			redDestroyed = 0;
-			blackDestroyed = 0;
+			blackDestroyed = 2;
+			whiteDestroyed = 0;
+			pinkDestroyed = 0;
+			yellowDestroyed = 0;
+			invisibleDestroyed = 0;
 		}
 		else if(levelCount == 6) {
 			blueDestroyed = 2;
 			redDestroyed = 0;
 			blackDestroyed = 3;
+			whiteDestroyed = 0;
+			pinkDestroyed = 0;
+			yellowDestroyed = 0;
+			invisibleDestroyed = 0;
 		}
 		else if(levelCount == 7) {
-			blueDestroyed = 0;
-			redDestroyed = 2;
-			blackDestroyed = 2;
-		}
-		else if(levelCount == 8) {
-			blueDestroyed = 1;
-			redDestroyed = 1;
-			blackDestroyed = 2;
-		}
-		else if(levelCount == 9) {
-			blueDestroyed = 1;
+			blueDestroyed = 2;
 			redDestroyed = 0;
 			blackDestroyed = 3;
+			whiteDestroyed = 0;
+			pinkDestroyed = 0;
+			yellowDestroyed = 0;
+			invisibleDestroyed = 0;
+		}
+		else if(levelCount == 8) {
+			blueDestroyed = 0;
+			redDestroyed = 0;
+			blackDestroyed = 2;
+			whiteDestroyed = 2;
+			pinkDestroyed = 0;
+			yellowDestroyed = 0;
+			invisibleDestroyed = 0;
+		}
+		else if(levelCount == 9) {
+			blueDestroyed = 0;
+			redDestroyed = 0;
+			blackDestroyed = 2;
+			whiteDestroyed = 2;
+			pinkDestroyed = 0;
+			yellowDestroyed = 0;
+			invisibleDestroyed = 0;
 		}
 		else if(levelCount == 10) {
 			blueDestroyed = 0;
 			redDestroyed = 0;
 			blackDestroyed = 2;
-			whiteDestroyed = 3; 
+			whiteDestroyed = 0;
+			pinkDestroyed = 2;
+			yellowDestroyed = 1;
+			invisibleDestroyed = 0; 
 		}
 		else if(levelCount == 11) {
-			blueDestroyed = 1;
-			redDestroyed = 1;
+			blueDestroyed = 0;
+			redDestroyed = 0;
 			blackDestroyed = 0;
+			whiteDestroyed = 1;
+			pinkDestroyed = 2;
+			yellowDestroyed = 1;
 			invisibleDestroyed = 2; 
-			whiteDestroyed = 0;
 		}
 		else if(levelCount == 12) {
-			blueDestroyed = 2;
-			redDestroyed = 2;
+			blueDestroyed = 0;
+			redDestroyed = 0;
 			blackDestroyed = 1;
-			invisibleDestroyed = 2;
 			whiteDestroyed = 2;
+			pinkDestroyed = 2;
+			yellowDestroyed = 2;
+			invisibleDestroyed = 2; 
 		}
 		
 
