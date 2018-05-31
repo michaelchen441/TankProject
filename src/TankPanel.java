@@ -504,14 +504,14 @@ public class TankPanel extends JPanel {
 					}
 				}
 				
+				
+				inGameOverScreen = true;
+				gameOverScreen.draw(g, imageLibrary);
 				cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
 				blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
 						cursorImg, new Point(0, 0), "blank cursor");
 				frame.getContentPane().setCursor(blankCursor);
 				g.drawImage(imageLibrary.crosshair, crosshairX-10, crosshairY-10, null);
-				
-				inGameOverScreen = true;
-				gameOverScreen.draw(g, imageLibrary);
 				return;
 			}
 
