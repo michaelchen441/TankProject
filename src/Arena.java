@@ -574,8 +574,7 @@ public class Arena
 		wallSetup1();
 		//		
 		//
-		//		blueTank1 =  new AITank(TankType.BLUE, 23, 8, this);
-		//		tankList.add(blueTank1);
+				tankList.add( new AITank(TankType.BLUE, 23, 8, this));
 
 
 //		tankList.add(new AITank(TankType.BLUE, 23, 1, this));
@@ -781,15 +780,18 @@ public class Arena
 		//Makes one blue enemy tank and adds to tanklist
 
 		tankList.add(new AITank(TankType.BLUE, 23, 5, this));
-
+		
 		tankList.add(new AITank(TankType.INVISIBLE, 23, 1, this));
 		tankList.add(new AITank(TankType.INVISIBLE, 23, 11, this));
 
+ 
+		tankList.add(new AITank(TankType.RED, 2, 3, this));
 
-		playerTank.setX(3);
-		playerTank.setY(8);
 
-
+		playerTank.setX(6);
+		playerTank.setY(13);
+		 
+		
 		wallSetup11();
 
 
@@ -800,12 +802,32 @@ public class Arena
 	public void level12Setup() {
 
 		//Makes one blue enemy tank and adds to tanklist
-		tankList.add(new AITank(TankType.BLUE, 23, 8, this));
+		
+		//make more tanks
 
-		tankList.add(new AITank(TankType.WHITE, 23, 1, this));
-		tankList.add(new AITank(TankType.WHITE, 23, 11, this));
+		
 
-		playerTank.setX(3);
+		
+		tankList.add(new AITank(TankType.WHITE, 19, 3, this));
+		
+		tankList.add(new AITank(TankType.WHITE, 23, 10, this));
+		
+		tankList.add(new AITank(TankType.INVISIBLE, 26, 10, this));
+		
+		tankList.add(new AITank(TankType.INVISIBLE, 26, 2, this));
+		
+		tankList.add(new AITank(TankType.BLACK, 15, 8, this));
+		
+		
+		tankList.add(new AITank(TankType.RED, 11, 4, this));
+		
+		tankList.add(new AITank(TankType.BLUE, 7, 13, this));
+		
+		tankList.add(new AITank(TankType.BLUE, 7, 3, this));
+		
+		tankList.add(new AITank(TankType.RED, 11, 9, this));
+
+		playerTank.setX(1);
 		playerTank.setY(8);
 
 		wallSetup12();
@@ -1245,14 +1267,135 @@ public class Arena
 
 	private void wallSetup11(){
 		//use for levels 11 and ...
-
-		walls[9][3] = new Wall(9, 3, false);
+		
+		for(int i = 5; i<11; i++) {
+			if(i%2==1) {
+				walls[i][6] = new Wall(i,6,true);
+			}
+			else {
+				walls[i][6] = new Wall(i,6,false);
+			
+			}
+		}
+		for(int i = 1; i<8; i++) {
+			if(i%2==1) {
+				walls[i][7] = new Wall(i,7,true);
+			}
+			else {
+				walls[i][7] = new Wall(i,7,false);
+			
+			}
+		}
+		for(int i = 6; i<10; i++) {
+			if(i%2==1) {
+				walls[10][i] = new Wall(10,i,true);
+			}
+			else {
+				walls[10][i] = new Wall(10,i,false);
+			}
+		}
+		
+		
+		for(int i = 5; i<11; i++) {
+			if(i%2==1) {
+				walls[i][12] = new Wall(i,12,true);
+			}
+			else {
+				walls[i][12] = new Wall(i,12,false);
+			
+			}
+		}
+		for(int i = 1; i<8; i++) {
+			if(i%2==1) {
+				walls[i][11] = new Wall(i,11,true);
+			}
+			else {
+				walls[i][11] = new Wall(i,11,false);
+			
+			}
+		}
+		for(int i = 12; i<16; i++) {
+			if(i%2==1) {
+				walls[10][i] = new Wall(10,i,true);
+			}
+			else {
+				walls[10][i] = new Wall(10,i,false);
+			}
+		}
+		
+		
+		
+		for(int i = 2; i<14; i++) {
+			if(i%2==1) {
+				walls[i][17] = new Wall(i,17,true);
+			}
+			else {
+				walls[i][17] = new Wall(i,17,false);
+			
+			}
+		
+		}
+	
 	}
 
+	
 	private void wallSetup12(){
-		//use for levels 12 and ...
+		for(int i = 1; i<15; i++) {
+			if(i%2==1) {
+				walls[i][4] = new Wall(i,4,true);
+			}
+			else {
+				walls[i][4] = new Wall(i,4,false);
+			
+			}
+		}
+		for(int i = 1; i<15; i++) {
+			if(i%2==0) {
+				walls[i][8] = new Wall(i,8,true);
+			}
+			else {
+				walls[i][8] = new Wall(i,8,false);
+			
+			}
+		}
+		for(int i = 1; i<15; i++) {
+			if(i%2==1) {
+				walls[i][12] = new Wall(i,12,true);
+			}
+			else {
+				walls[i][12] = new Wall(i,12,false);
+			
+			}
+		}
+		for(int i = 1; i<15; i++) {
+			if(i%2==0) {
+				walls[i][16] = new Wall(i,16,true);
+			}
+			else {
+				walls[i][16] = new Wall(i,16,false);
+			
+			}
+		}
+		for(int i = 1; i<15; i++) {
+			if(i%2==1) {
+				walls[i][20] = new Wall(i,20,true);
+			}
+			else {
+				walls[i][20] = new Wall(i,20,false);
+			
+			}
+		}
+		
+		for(int i = 1; i<15; i++) {
+			
+				walls[i][24] = new Wall(i,24,true);
+			
+			
+			
+		}
 
-		walls[9][3] = new Wall(9, 3, false);
+
+		
 	}
 
 

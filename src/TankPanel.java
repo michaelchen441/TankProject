@@ -447,7 +447,7 @@ public class TankPanel extends JPanel {
 				arenaList.add(level10Arena);
 				arenaList.add(level11Arena);
 				arenaList.add(level12Arena);
-				arenaList.add(new Arena(12, numWallsAcross, numWallsDown));
+				arenaList.add(level12Arena); //not played, used for win condition
 
 				level1FirstTime = false;
 			}
