@@ -40,7 +40,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 		
 		switch(type){
 		case BLUE:
-			tankSlowMultiplier = 1000;
+			tankSlowMultiplier = 10000;
 			break;
 		case RED:
 			tankSlowMultiplier = 4;
@@ -58,7 +58,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 			tankSlowMultiplier = 3;
 			break;
 		case INVISIBLE:
-			tankSlowMultiplier = 1000;
+			tankSlowMultiplier = 10000;
 			break;
 		}
 		
