@@ -794,18 +794,13 @@ public class Arena
 	//When level is equal to 6, an arena with these objects and conditions are drawn
 	public void level6Setup() {
 
-		tankList.add(new AITank(TankType.BLACK, 4, 4, this));
-		tankList.add(new AITank(TankType.BLACK, 24, 4, this));
-		tankList.add(new AITank(TankType.BLACK, 24, 11, this));
+		tankList.add(new AITank(TankType.RED, 22, 3, this));
+		tankList.add(new AITank(TankType.RED, 22, 13, this));
+		tankList.add(new AITank(TankType.BLACK, 25, 5, this));
+		tankList.add(new AITank(TankType.BLACK, 25, 10, this));
 
-		//Makes two blue enemy tank and adds to tanklist
-		tankList.add( new AITank(TankType.BLUE, 12, 7, this));
-		tankList.add( new AITank(TankType.BLUE, 16, 8, this));
-
-
-		playerTank.setX(2);
-		playerTank.setY(14);
-
+		playerTank.setX(3);
+		playerTank.setY(8);
 
 
 		wallSetup6();

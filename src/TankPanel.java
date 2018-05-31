@@ -70,7 +70,12 @@ public class TankPanel extends JPanel {
 	Timer timer = new Timer(1,null);
 
 
-
+	static BufferedImage cursorImg;
+	static Cursor blankCursor;
+			
+	static JFrame frame;
+	
+	
 	public static void main(String[] args) {
 
 
@@ -83,7 +88,7 @@ public class TankPanel extends JPanel {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		JFrame frame = new JFrame("Tank Project");
+		frame = new JFrame("Tank Project");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		TankPanel tp = new TankPanel();
@@ -98,10 +103,10 @@ public class TankPanel extends JPanel {
 
 		//create cursor
 		// Transparent 16 x 16 pixel cursor image.
-		BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
+		cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
 
 		// Create a new blank cursor.
-		Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
+		blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
 				cursorImg, new Point(0, 0), "blank cursor");
 
 		// Set the blank cursor to the JFrame.
@@ -109,6 +114,7 @@ public class TankPanel extends JPanel {
 
 	
 		
+	
 	}
 	private void setUpKeyMappings() {
 		this.getInputMap().put(KeyStroke.getKeyStroke("P"),"p");
@@ -269,7 +275,7 @@ public class TankPanel extends JPanel {
 					{
 						if(theMenu.clickedButton1(arg0.getX(), arg0.getY())){//classic game
 							inMenu = false;
-							level = 1;
+							level = 6;
 							
 						}
 						if(theMenu.clickedButton2(arg0.getX(), arg0.getY())){//survival mode
@@ -467,6 +473,13 @@ public class TankPanel extends JPanel {
 				inGameOverScreen = true;
 				gameOverScreen = new GameOver(latestScoreClassic, level, true);
 				gameOverScreen.draw(g, imageLibrary);
+				
+				cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
+				blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
+						cursorImg, new Point(0, 0), "blank cursor");
+				frame.getContentPane().setCursor(blankCursor);
+				g.drawImage(imageLibrary.crosshair, crosshairX-10, crosshairY-10, null);
+				
 				return;
 			}
 			if(currentArena.playerTank.alive == false){//tests if player lost by dying
@@ -477,6 +490,7 @@ public class TankPanel extends JPanel {
 					if(latestScoreSurvival > highScoreSurvival){
 						highScoreSurvival = latestScoreSurvival;
 					}
+					
 				}
 				else{
 					latestScoreClassic = level-1;
@@ -486,6 +500,12 @@ public class TankPanel extends JPanel {
 						highScoreClassic = latestScoreClassic;
 					}
 				}
+				
+				cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
+				blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(
+						cursorImg, new Point(0, 0), "blank cursor");
+				frame.getContentPane().setCursor(blankCursor);
+				g.drawImage(imageLibrary.crosshair, crosshairX-10, crosshairY-10, null);
 				
 				inGameOverScreen = true;
 				gameOverScreen.draw(g, imageLibrary);

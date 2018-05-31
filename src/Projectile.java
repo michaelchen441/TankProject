@@ -320,7 +320,7 @@ public class Projectile
 			return Direction.WEST;
 		if(degrees> 180 && degrees< 270)
 			return Direction.SOUTHWEST;	
-		if(degrees == 180)
+		if(degrees == 270)
 			return Direction.SOUTH;
 		if(degrees > 270 && degrees< 360)
 			return Direction.SOUTHEAST;
