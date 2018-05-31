@@ -140,83 +140,83 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 	//Need to figure out mechanism by which AI Tank Fires
 	void fire()
 	{
-		for(int i = 0; i < stockPile.size(); i++){
-			if (!stockPile.get(i).active){
-				stockPile.remove(i); //Removes missile from stockpile
-				i--;
-			}
-		}
-		
-		intersect = false;
-
-		player = new Point(arena.playerTankLocX(),  -arena.playerTankLocY());
-		ai = new Point(xLoc, -yLoc);
-		for(int r = 0; r<surroundingWalls.length; r++) {
-			for(int c = 0; c<surroundingWalls[r].length; c++) {
-				if(surroundingWalls[r][c] != null){
-					Wall temp = surroundingWalls[r][c];
-					Point point1 = new Point(temp.getXLoc(), -temp.getYLoc());
-					Point point2 = new Point(temp.getXLoc() + 50, -temp.getYLoc());
-					Point point3 = new Point(temp.getXLoc(), (-temp.getYLoc()-50));
-					Point point4 = new Point(temp.getXLoc() + 50, (-temp.getYLoc()-50));
-					if(intersect(player, ai, point1, point2) == true && surroundingWalls[r][c].destructable == false) {
-						intersect = true;
-					}
-					else if(intersect(player, ai, point3, point4) == true && surroundingWalls[r][c].destructable == false) {
-						intersect = true;
-					}
-					else if(intersect(player, ai, point1, point3) == true && surroundingWalls[r][c].destructable == false) {
-						intersect = true;
-					}
-					else if(intersect(player, ai, point2, point4) == true && surroundingWalls[r][c].destructable == false) {
-						intersect = true;
-					}
-				}
-			}
-		}
-
-		//create projectile with input: type, 
-
-		if(intersect == false){
-
-
-			if(numMoveTries%fireSlowMultiplier == 0 && alive) {
-
-				System.out.println("You fired1");
-				//if it has space, it will make a new projectile
-
-				Projectile p = new Projectile(turretTopX, turretTopY, Math.atan2(-(targetY - turretCenterY), targetX - turretCenterX),type, arena);
-				stockPile.add(p);
-
-				arena.addExplosion(turretTopX, turretTopY, ExplosionType.SMALL);
-			}			
-
-			intersect = false;
-		}
-
-		intersect = false;
-
-	}
-	public int orientation(Point p, Point q, Point r) {
-		double val = (q.getY() - p.getY()) * (r.getX() - q.getX())
-				- (q.getX() - p.getX()) * (r.getY() - q.getY());
-
-		if (val == 0.0)
-			return 0; // colinear
-		return (val > 0) ? 1 : 2; // clock or counterclock wise
-	}
-
-	public boolean intersect(Point p1, Point q1, Point p2, Point q2) {
-
-		int o1 = orientation(p1, q1, p2);
-		int o2 = orientation(p1, q1, q2);
-		int o3 = orientation(p2, q2, p1);
-		int o4 = orientation(p2, q2, q1);
-
-		if (o1 != o2 && o3 != o4)
-			return true;
-
-		return false;
+//		for(int i = 0; i < stockPile.size(); i++){
+//			if (!stockPile.get(i).active){
+//				stockPile.remove(i); //Removes missile from stockpile
+//				i--;
+//			}
+//		}
+//		
+//		intersect = false;
+//
+//		player = new Point(arena.playerTankLocX(),  -arena.playerTankLocY());
+//		ai = new Point(xLoc, -yLoc);
+//		for(int r = 0; r<surroundingWalls.length; r++) {
+//			for(int c = 0; c<surroundingWalls[r].length; c++) {
+//				if(surroundingWalls[r][c] != null){
+//					Wall temp = surroundingWalls[r][c];
+//					Point point1 = new Point(temp.getXLoc(), -temp.getYLoc());
+//					Point point2 = new Point(temp.getXLoc() + 50, -temp.getYLoc());
+//					Point point3 = new Point(temp.getXLoc(), (-temp.getYLoc()-50));
+//					Point point4 = new Point(temp.getXLoc() + 50, (-temp.getYLoc()-50));
+//					if(intersect(player, ai, point1, point2) == true && surroundingWalls[r][c].destructable == false) {
+//						intersect = true;
+//					}
+//					else if(intersect(player, ai, point3, point4) == true && surroundingWalls[r][c].destructable == false) {
+//						intersect = true;
+//					}
+//					else if(intersect(player, ai, point1, point3) == true && surroundingWalls[r][c].destructable == false) {
+//						intersect = true;
+//					}
+//					else if(intersect(player, ai, point2, point4) == true && surroundingWalls[r][c].destructable == false) {
+//						intersect = true;
+//					}
+//				}
+//			}
+//		}
+//
+//		//create projectile with input: type, 
+//
+//		if(intersect == false){
+//
+//
+//			if(numMoveTries%fireSlowMultiplier == 0 && alive) {
+//
+//				System.out.println("You fired1");
+//				//if it has space, it will make a new projectile
+//
+//				Projectile p = new Projectile(turretTopX, turretTopY, Math.atan2(-(targetY - turretCenterY), targetX - turretCenterX),type, arena);
+//				stockPile.add(p);
+//
+//				arena.addExplosion(turretTopX, turretTopY, ExplosionType.SMALL);
+//			}			
+//
+//			intersect = false;
+//		}
+//
+//		intersect = false;
+//
+//	}
+//	public int orientation(Point p, Point q, Point r) {
+//		double val = (q.getY() - p.getY()) * (r.getX() - q.getX())
+//				- (q.getX() - p.getX()) * (r.getY() - q.getY());
+//
+//		if (val == 0.0)
+//			return 0; // colinear
+//		return (val > 0) ? 1 : 2; // clock or counterclock wise
+//	}
+//
+//	public boolean intersect(Point p1, Point q1, Point p2, Point q2) {
+//
+//		int o1 = orientation(p1, q1, p2);
+//		int o2 = orientation(p1, q1, q2);
+//		int o3 = orientation(p2, q2, p1);
+//		int o4 = orientation(p2, q2, q1);
+//
+//		if (o1 != o2 && o3 != o4)
+//			return true;
+//
+//		return false;
 	}
 
 	public String getType() {
