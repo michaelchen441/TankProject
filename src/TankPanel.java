@@ -265,7 +265,7 @@ public class TankPanel extends JPanel {
 					{
 						if(theMenu.clickedButton1(arg0.getX(), arg0.getY())){//classic game
 							inMenu = false;
-							level = 1;
+							level = 13;
 						}
 						if(theMenu.clickedButton2(arg0.getX(), arg0.getY())){//survival mode
 //							survivalMode = new ();
@@ -426,9 +426,9 @@ public class TankPanel extends JPanel {
 				Arena level10Arena = new Arena(10, numWallsAcross, numWallsDown);
 				Arena level11Arena = new Arena(11, numWallsAcross, numWallsDown);
 				Arena level12Arena = new Arena(12, numWallsAcross, numWallsDown);
+				
 
-			//	arenaList.add(level1Arena);//dummy arena, never used
-				arenaList.add(level1Arena);
+				arenaList.add(level1Arena);//dummy arena, never used
 				arenaList.add(level1Arena);
 				arenaList.add(level2Arena);
 				arenaList.add(level3Arena);
@@ -441,7 +441,7 @@ public class TankPanel extends JPanel {
 				arenaList.add(level10Arena);
 				arenaList.add(level11Arena);
 				arenaList.add(level12Arena);
-				arenaList.add(level12Arena);
+				arenaList.add(level12Arena); //not played, used for win condition
 
 				level1FirstTime = false;
 			}
