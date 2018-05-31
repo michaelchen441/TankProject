@@ -269,7 +269,8 @@ public class TankPanel extends JPanel {
 					{
 						if(theMenu.clickedButton1(arg0.getX(), arg0.getY())){//classic game
 							inMenu = false;
-							level = 11;
+							level = 1;
+							
 						}
 						if(theMenu.clickedButton2(arg0.getX(), arg0.getY())){//survival mode
 							inMenu = false;
