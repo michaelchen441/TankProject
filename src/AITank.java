@@ -52,10 +52,20 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 			tankSlowMultiplier = 4;
 			break;
 		case PINK:
-			tankSlowMultiplier = 10000;
+			if(arena.level == 0){
+				tankSlowMultiplier = 8;
+			}
+			else{
+				tankSlowMultiplier = 10000;
+			}
 			break;
 		case YELLOW:
-			tankSlowMultiplier = 10000;
+			if(arena.level == 0){
+				tankSlowMultiplier = 8;
+			}
+			else{
+				tankSlowMultiplier = 10000;
+			}
 			break;
 		case INVISIBLE:
 			tankSlowMultiplier = 10000;
