@@ -24,6 +24,7 @@ public class Arena
 	//New Tanklist is created with the creation of a new arena
 	//This prevents tanks from previous levels from being drawn in later levels
 	ArrayList<Tank> tankList; // List of all tanks to keep track of
+	ArrayList<Explosion> explosionList;
 
 	int[] inputMoveInfo; // Information for how to change x and y locations
 	// Dependent on keypressed
@@ -92,6 +93,8 @@ public class Arena
 		tankList = new ArrayList<Tank>();
 		// Adds player tank to arraylist of tanks to keep track of
 		tankList.add(playerTank);
+		
+		explosionList = new ArrayList<Explosion>();
 
 		// Determines which level to draw based on level number passed into constructor
 		// Each setup for a level is coded for in a separate method
@@ -202,6 +205,10 @@ public class Arena
 			for(Tank tank: tankList){
 				tank.draw(g, l);
 			}
+			//Draws all the explosions in the explosionList
+			for(Explosion explosion: explosionList){
+				explosion.draw(g, l);
+			}
 
 			if(level == 0){
 				if(numTanksKilled < 10){
@@ -266,7 +273,12 @@ public class Arena
 				}
 			}
 		}
+		
 
+	}
+	
+	public void addExplosion(int inX, int inY, ExplosionType inType){
+		explosionList.add(new Explosion(inX, inY, inType));
 	}
 
 //	private void deleteWall()

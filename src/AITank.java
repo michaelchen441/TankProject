@@ -143,6 +143,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 		for(int i = 0; i < stockPile.size(); i++){
 			if (!stockPile.get(i).active){
 				stockPile.remove(i); //Removes missile from stockpile
+				i--;
 			}
 		}
 		
@@ -187,7 +188,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 				Projectile p = new Projectile(turretTopX, turretTopY, Math.atan2(-(targetY - turretCenterY), targetX - turretCenterX),type, arena);
 				stockPile.add(p);
 
-
+				arena.addExplosion(turretTopX, turretTopY, ExplosionType.SMALL);
 			}			
 
 			intersect = false;

@@ -58,8 +58,8 @@ public class Projectile
 			speed = 3;
 			break;
 		}
-		
-	
+
+
 
 		active = true;
 		numWallHits = 0;
@@ -71,76 +71,37 @@ public class Projectile
 
 
 
-		void draw(Graphics g, ImageLibrary l){
+	void draw(Graphics g, ImageLibrary l){
 
 		//draws black box projectile - use to test where image should be 
 		//g.setColor(Color.BLACK);
 		//g.fillRect((int)(xLoc), (int)(yLoc), 15, 15);
-			switch(type){
-			case GREEN: 
-				if(numWallHits > 1) { //once its hit a second wall, it dies //change back to 1
-					active = false;
-				}
-				break;
-			case BLUE:
-				if(numWallHits > 0) { //once its hit a wall, it dies //change back to 1
-					active = false;
-				}				
-				break;
-			case RED:
-				if(numWallHits > 1) { //once its hit a second wall, it dies //change back to 1
-					active = false;
-				}
-				break;
-			case BLACK:
-				if(numWallHits > 0) { //once its hit a wall, it dies //change back to 1
-					active = false;
-				}
-				break;
-			case WHITE:
-				if(numWallHits > 2) { //once its hit a third wall, it dies //change back to 1
-					active = false;
-				}
-				break;
-			case PINK:
-				if(numWallHits > 2) { //once its hit a second wall, it dies //change back to 1
-					active = false;
-				}
-				break;
-			case YELLOW:
-				if(numWallHits > 2) { //once its hit a second wall, it dies //change back to 1
-					active = false;
-				}
-				break;
-			case INVISIBLE:
-				if(numWallHits > 1) { //once its hit a second wall, it dies //change back to 1
-					active = false;
-				}
-				break;
-			}
-			
 
-			if(active){	
-				Graphics2D	g2D = (Graphics2D)g;
-				AffineTransform	backupAT = g2D.getTransform();
-				AffineTransform	theAT = new AffineTransform();
 
-				//projectile image is 20x10
-				int projectileDrawX = (int)xLoc-20;
-				int projectileDrawY = (int)yLoc-5;
-				int	projectileRotateOffsetX = 20;
-				int projectileRotateOffsetY = 5;
 
-				theAT.rotate( -angle,	projectileDrawX + projectileRotateOffsetX,
-						projectileDrawY + projectileRotateOffsetY);//-angle to adjust to y axis pointing down
 
-				g2D.transform(theAT);
-				g.drawImage(l.projectile, projectileDrawX, projectileDrawY, null);
+		if(active){	
+			Graphics2D	g2D = (Graphics2D)g;
+			AffineTransform	backupAT = g2D.getTransform();
+			AffineTransform	theAT = new AffineTransform();
 
-				g2D.setTransform(backupAT);
+			//projectile image is 20x10
+			int projectileDrawX = (int)xLoc-20;
+			int projectileDrawY = (int)yLoc-5;
+			int	projectileRotateOffsetX = 20;
+			int projectileRotateOffsetY = 5;
 
-				//	numDraws++;
-			}
+			theAT.rotate( -angle,	projectileDrawX + projectileRotateOffsetX,
+					projectileDrawY + projectileRotateOffsetY);//-angle to adjust to y axis pointing down
+
+			g2D.transform(theAT);
+			g.drawImage(l.projectile, projectileDrawX, projectileDrawY, null);
+
+			g2D.setTransform(backupAT);
+
+			//	numDraws++;
+		}
+
 
 	}
 
@@ -163,8 +124,56 @@ public class Projectile
 
 				}
 			}
-			
+
 		}
+		switch(type){
+		case GREEN: 
+			if(numWallHits > 1) { //once its hit a second wall, it dies //change back to 1
+				active = false;
+			}
+			break;
+		case BLUE:
+			if(numWallHits > 0) { //once its hit a wall, it dies //change back to 1
+				active = false;
+			}				
+			break;
+		case RED:
+			if(numWallHits > 1) { //once its hit a second wall, it dies //change back to 1
+				active = false;
+			}
+			break;
+		case BLACK:
+			if(numWallHits > 0) { //once its hit a wall, it dies //change back to 1
+				active = false;
+			}
+			break;
+		case WHITE:
+			if(numWallHits > 2) { //once its hit a third wall, it dies //change back to 1
+				active = false;
+			}
+			break;
+		case PINK:
+			if(numWallHits > 2) { //once its hit a second wall, it dies //change back to 1
+				active = false;
+			}
+			break;
+		case YELLOW:
+			if(numWallHits > 2) { //once its hit a second wall, it dies //change back to 1
+				active = false;
+			}
+			break;
+		case INVISIBLE:
+			if(numWallHits > 1) { //once its hit a second wall, it dies //change back to 1
+				active = false;
+			}
+			break;
+		}
+
+		if(!active){
+			myArena.addExplosion((int)xLoc, (int)yLoc, ExplosionType.MEDIUM);	//call arena addExplosion
+		}
+
+
 	}
 
 
@@ -179,7 +188,9 @@ public class Projectile
 					if(xLoc <= t.getX()+speed && xLoc >= t.getX()-speed) {
 						if(yLoc >= t.getY() && yLoc <= t.getY()+50) {
 							active = false;
+							myArena.addExplosion((int)xLoc, (int)yLoc, ExplosionType.MEDIUM);	//call arena addExplosion
 							t.alive = false;
+							myArena.addExplosion(t.getX(), t.getY(), ExplosionType.LARGE);	//call arena addExplosion
 							return true;
 
 						}
@@ -190,7 +201,9 @@ public class Projectile
 					if(yLoc >= t.getY()-speed+50 && yLoc <= t.getY()+speed+50) {
 						if(xLoc >= t.getX()-speed && xLoc <= t.getX()+50+speed) {
 							active = false;
+							myArena.addExplosion((int)xLoc, (int)yLoc, ExplosionType.MEDIUM);	//call arena addExplosion
 							t.alive = false;
+							myArena.addExplosion(t.getX(), t.getY(), ExplosionType.LARGE);	//call arena addExplosion
 							return true;
 						}
 					}
@@ -199,7 +212,9 @@ public class Projectile
 					if(yLoc >= t.getY()-speed && yLoc <= t.getY()+speed) {
 						if(xLoc >= t.xLoc-speed && xLoc <= t.xLoc+50+speed) {
 							active = false;
+							myArena.addExplosion((int)xLoc, (int)yLoc, ExplosionType.MEDIUM);	//call arena addExplosion
 							t.alive = false;
+							myArena.addExplosion(t.getX(), t.getY(), ExplosionType.LARGE);	//call arena addExplosion
 							return true;
 						}
 					}
@@ -209,7 +224,9 @@ public class Projectile
 					if(xLoc <= t.getX()+speed+50 && xLoc >= t.getX()-speed+50) {
 						if(yLoc >= t.yLoc && yLoc <= t.yLoc+50) {
 							active = false;
+							myArena.addExplosion((int)xLoc, (int)yLoc, ExplosionType.MEDIUM);	//call arena addExplosion
 							t.alive = false;
+							myArena.addExplosion(t.getX(), t.getY(), ExplosionType.LARGE);	//call arena addExplosion
 							return true;
 						}
 					}

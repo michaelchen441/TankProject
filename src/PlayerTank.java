@@ -70,6 +70,15 @@ public class PlayerTank extends Tank
 		for(Projectile p : stockPile) {
 			p.move();
 		}
+		//remove any projectiles if they are nonactive to make room for new projectiles
+		for(int i = 0; i < stockPile.size(); i++){
+			if (!stockPile.get(i).active){
+				stockPile.remove(stockPile.get(i)); //Removes missile from stockpile
+				i--;
+				//Use this to control reload time
+				
+			}
+		}
 	}
 
 	//	public void setTurretAngle(double angle) {
@@ -110,14 +119,7 @@ public class PlayerTank extends Tank
 	//Firing method
 	public void fire()
 	{
-		//remove any projectiles if they are nonactive to make room for new projectiles
-		for(int i = 0; i < stockPile.size(); i++){
-			if (!stockPile.get(i).active){
-				stockPile.remove(stockPile.get(i)); //Removes missile from stockpile
-				//Use this to control reload time
-				
-			}
-		}
+
 		
 		//Checks to see if the tank has any ammo left in the stockpile to fire
 		if(stockPile.size() < 5) {
@@ -127,9 +129,10 @@ public class PlayerTank extends Tank
 			//if it has space, it will make a new projectile
 			
 			Projectile p = new Projectile(turretTopX,turretTopY, Math.atan2(-(targetY - turretCenterY), targetX - turretCenterX),type, arena);
-
 			stockPile.add(p);
-
+			
+			arena.addExplosion(turretTopX, turretTopY, ExplosionType.SMALL);
+			
 
 		}
 

@@ -11,6 +11,7 @@ public class ImageLibrary
 	public BufferedImage background;
 	public BufferedImage crosshair;
 	public BufferedImage projectile;
+	public BufferedImage explosion;
 	
 	public BufferedImage indestructableWall;
 	public BufferedImage destructableWall;
@@ -39,6 +40,7 @@ public class ImageLibrary
 			background = ImageIO.read(getClass().getResource("images/Background2.png"));	
 			crosshair = ImageIO.read(getClass().getResource("images/crosshair.png"));		
 			projectile = ImageIO.read(getClass().getResource("images/projectile.png"));	
+			explosion = ImageIO.read(getClass().getResource("images/explosion.png"));
 		
 			indestructableWall = ImageIO.read(getClass().getResource("images/Metal_50x50.jpg"));	
 			destructableWall = ImageIO.read(getClass().getResource("images/Wood_50x50.png"));
