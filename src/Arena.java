@@ -703,11 +703,12 @@ public class Arena
 
 		
 
-		int totalScore = (blueDestroyed * 10) + (redDestroyed * 50) + (blackDestroyed * 100);
+		int totalScore = (blueDestroyed * 10) + (redDestroyed * 50) + (blackDestroyed * 125) + 
+				(whiteDestroyed * 150) + (pinkDestroyed * 75) + (yellowDestroyed * 100) + (invisibleDestroyed * 200);
 		
 		g.setFont(new Font("TimesRoman", Font.PLAIN, 60));
 		g.drawString(Integer.toString(totalScore), 1133, 460);
-		g.drawString("Total Score", 1025, 400);
+		g.drawString("Total Score", 1018, 400);
 		g.drawLine(1025, 410, 1305, 410);
 		g.setFont(new Font("TimesRoman", Font.PLAIN, 150)); 
 		String levelCompletion = "Level " + levelCount + " Completed";
