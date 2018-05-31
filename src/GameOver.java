@@ -70,7 +70,7 @@ public class GameOver {
 	public boolean clickedButton1(int x, int y){
 		if((x >= 500 && x <= 880) 
 				&&
-				(y >= 400 && y <= 500)
+				(y >= 500 && y <= 600)
 				){
 			return true;
 		}
