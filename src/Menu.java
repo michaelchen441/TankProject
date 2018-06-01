@@ -87,7 +87,7 @@ public class Menu
 		
 		g.setColor(darkBlue); 
 		g.drawString("Survival Mode: Try to last as long as you can.", 700, 690);
-		g.drawString("New tanks pop up each time you destroy a tank.", 700, 730);
+		g.drawString("New tanks emerge each time you destroy a tank.", 700, 730);
 	
 	
 	}
