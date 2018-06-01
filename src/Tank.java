@@ -27,6 +27,7 @@ public abstract class Tank
 	int turretTopY;
 	int targetX;
 	int targetY;
+	boolean canFire = true;
 
 	Direction direction;//Direction tank is facing; will use to determine where to move
 	//List of specific movements in x and y directions that need to be added to the tanks location 
@@ -39,7 +40,7 @@ public abstract class Tank
 
 	public Tank(Arena inArena) {
 		arena = inArena;
-		surroundingWalls = inArena.getWalls(); 
+		surroundingWalls = inArena.walls; 
 		height = 28; //Fixed height for all tanks
 		width = 56; //Fixed width for all tanks
 
@@ -49,6 +50,16 @@ public abstract class Tank
 
 	public void setTurretAngleByTarget(int inTargetX, int inTargetY)//being called every millisecond
 	{
+		canFire = true;
+		for(Wall[] r: arena.walls) {
+			for(Wall w : r) {
+				if(w != null) {
+					if(w.getXLoc()<= turretTopX && w.getXLoc()+50>= turretTopX && w.getYLoc()<= turretTopY && w.getYLoc()+50>= turretTopY) {
+						canFire = false;
+					}
+				}
+			}
+		}
 		targetX = inTargetX;
 		targetY = inTargetY;
 		turretCenterX = xLoc + 25;	// should be width / 2
@@ -264,7 +275,7 @@ public abstract class Tank
 				}
 			}
 		}
-		
+
 		for(int r = 0; r<walls.length; r++) {
 			for(int c = 0; c<walls[r].length; c++) {
 				if(walls[r][c] != null) {

@@ -23,7 +23,7 @@ import java.awt.Point;
 // Player tank characteristics and actions prompted by user input (Keypresses, mouse, etc)
 public class PlayerTank extends Tank
 {
-	
+
 	public int[] inputMoveArr;
 	//All the walls the tank needs to account for in the arena
 
@@ -31,7 +31,7 @@ public class PlayerTank extends Tank
 
 	public PlayerTank(int inX, int inY, Arena inArena)
 	{
-		
+
 		super(inArena); //Superclass constructor to receive all the walls
 		alive = true; //Living condition: alive or dead
 		type = TankType.GREEN; //Tank color and appearance - prompts a certain image of tank to be read in draw method
@@ -45,7 +45,7 @@ public class PlayerTank extends Tank
 		direction = Direction.EAST;//Initial direction set to EAST
 		inputMoveArr = new int[2];//Initializes array containing necessary information about moves in x and y locations
 
-	
+
 	}
 
 	// Move function for tank; dependent on direction and inputMoveArr which depend on keys pressed
@@ -59,15 +59,15 @@ public class PlayerTank extends Tank
 		 * Only moves every other or even tick to slow the movement of the tank
 		 * Tank moves everytime it ticks, but even if the move is called, it may not move anywhere because the inputmoveArr may be [0,0]
 		 */
-		
+
 		if(canMoveX(dir,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0) {
 			xLoc += inputMoveArr[0];
 		}
 		if(canMoveY(dir,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0) {
 			yLoc -= inputMoveArr[1];
-			 //Minus equals is used because the way a panel is numbered is top down, not bottom up like a standard set of coordinte axes
+			//Minus equals is used because the way a panel is numbered is top down, not bottom up like a standard set of coordinte axes
 		}
-		
+
 
 		for(Projectile p : stockPile) {
 			p.move();
@@ -78,7 +78,7 @@ public class PlayerTank extends Tank
 				stockPile.remove(stockPile.get(i)); //Removes missile from stockpile
 				i--;
 				//Use this to control reload time
-				
+
 			}
 		}
 	}
@@ -122,22 +122,22 @@ public class PlayerTank extends Tank
 	public void fire()
 	{
 
-		
-		//Checks to see if the tank has any ammo left in the stockpile to fire
-		if(stockPile.size() < 5) {
+		if(canFire) {
+			//Checks to see if the tank has any ammo left in the stockpile to fire
+			if(stockPile.size() < 5) {
 
-			
-//			System.out.println("You fired");
-			//if it has space, it will make a new projectile
-			
-			Projectile p = new Projectile(turretTopX,turretTopY, Math.atan2(-(targetY - turretCenterY), targetX - turretCenterX),type, arena);
-			stockPile.add(p);
-			
-			arena.addExplosion(turretTopX, turretTopY, ExplosionType.SMALL);
-			
 
+				//			System.out.println("You fired");
+				//if it has space, it will make a new projectile
+
+				Projectile p = new Projectile(turretTopX,turretTopY, Math.atan2(-(targetY - turretCenterY), targetX - turretCenterX),type, arena);
+				stockPile.add(p);
+
+				arena.addExplosion(turretTopX, turretTopY, ExplosionType.SMALL);
+
+
+			}
 		}
-
 	}
 
 
@@ -152,7 +152,7 @@ public class PlayerTank extends Tank
 	//Returns x and y locations (getters)
 	public int getY() {return yLoc;}
 	public int getX() {return xLoc;}
-	
+
 	//sets x and y locations (setters)
 	public void setY(int y) {yLoc = y*50;}
 	public void setX(int x) {xLoc = x*50;}
@@ -178,7 +178,7 @@ public class PlayerTank extends Tank
 
 		return false;
 	}
-	
+
 
 
 }
