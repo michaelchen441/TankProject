@@ -29,7 +29,7 @@ public class Projectile
 		xLoc = x;
 		yLoc = y;
 		angle = a;
-		walls = inArena.getWalls();
+		walls = inArena.walls;
 		type = inType;
 		angle = a;
 		myArena = inArena;

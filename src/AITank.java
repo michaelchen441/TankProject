@@ -127,20 +127,16 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 			
 			
 			if(canMoveX(dirX,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirX == Direction.WEST && xLoc != player1.getX()) {
-			
 				xLoc += -1;
-
 			}
 			else if(canMoveX(dirX,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirX == Direction.EAST && xLoc != player1.getX()) {
 				xLoc += 1;
 			}
 			if(canMoveY(Direction.NORTH,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirY == Direction.NORTH && yLoc != player1.getY()){
-
 				yLoc += -1;
 			}
 			else if(canMoveY(Direction.SOUTH,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirY == Direction.SOUTH && yLoc != player1.getY()){
 				yLoc += 1;
-				System.out.println("moving south");
 			}
 
 		for(Projectile p : stockPile) {

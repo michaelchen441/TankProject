@@ -12,7 +12,7 @@ public class Arena
 	int level; // Specifies which level and a specific arena 
 	// is drawn based on which level is passed in
 	int levelCount = 0;
-	private Wall[][] walls; //List of all walls in the arena
+	public Wall[][] walls; //List of all walls in the arena
 	//Every cell in the arena is can be made into a wall
 	// Remains null if no wall is created in the cell
 	PlayerTank playerTank; // Tank controlled by player
@@ -36,7 +36,7 @@ public class Arena
 	private int timerStartTransition;
 	private boolean startingTransition;
 	public boolean advanceLevel;
-	private Wall[][] transitionWalls;
+	public Wall[][] transitionWalls;
 
 	// Arena Constructor
 	public Arena(int inLevel, int inNumWallsAcross, int  inNumWallsDown) {
@@ -144,9 +144,6 @@ public class Arena
 
 	}
 	// Enables access to all walls in a specific arena
-	public Wall[][] getWalls(){
-		return walls;
-	}
 
 
 	public void moveTanks(){
@@ -1553,8 +1550,7 @@ public class Arena
 	//Returns y location of playerTank
 	public int playerTankLocY() {return playerTank.getY();}
 	public ArrayList<Tank> getTanks() { return tankList;}
-
-
+	
 
 
 
