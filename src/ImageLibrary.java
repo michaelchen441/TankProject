@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import com.sun.javafx.tk.Toolkit;
+
 public class ImageLibrary
 {
 	
@@ -37,29 +39,30 @@ public class ImageLibrary
 	{
 		try
 		{
-			background = ImageIO.read(getClass().getResource("images/Background2.png"));	
-			crosshair = ImageIO.read(getClass().getResource("images/crosshair.png"));		
-			projectile = ImageIO.read(getClass().getResource("images/projectile.png"));	
-			explosion = ImageIO.read(getClass().getResource("images/explosion.png"));
+			
+			background = ImageIO.read(getClass().getResource("Background2.png"));	
+			crosshair = ImageIO.read(getClass().getResource("crosshair.png"));		
+			projectile = ImageIO.read(getClass().getResource("projectile.png"));	
+			explosion = ImageIO.read(getClass().getResource("explosion.png"));
 		
-			indestructableWall = ImageIO.read(getClass().getResource("images/Metal_50x50.jpg"));	
-			destructableWall = ImageIO.read(getClass().getResource("images/Wood_50x50.png"));
+			indestructableWall = ImageIO.read(getClass().getResource("Metal_50x50.jpg"));	
+			destructableWall = ImageIO.read(getClass().getResource("Wood_50x50.png"));
 			
-			greenTank = ImageIO.read(getClass().getResource("images/50x50 tanks/greenTank.png"));	
-			redTank = ImageIO.read(getClass().getResource("images/50x50 tanks/redTank.png"));	 
-			blueTank = ImageIO.read(getClass().getResource("images/50x50 tanks/blueTank.png"));	
-			blackTank = ImageIO.read(getClass().getResource("images/50x50 tanks/blackTank.png"));	
-			whiteTank = ImageIO.read(getClass().getResource("images/50x50 tanks/whiteTank.png"));	 
-			pinkTank = ImageIO.read(getClass().getResource("images/50x50 tanks/pinkTank.png"));	
-			yellowTank = ImageIO.read(getClass().getResource("images/50x50 tanks/yellowTank.png"));	
+			greenTank = ImageIO.read(getClass().getResource("50x50tanks/greenTank.png"));	
+			redTank = ImageIO.read(getClass().getResource("50x50tanks/redTank.png"));	 
+			blueTank = ImageIO.read(getClass().getResource("50x50tanks/blueTank.png"));	
+			blackTank = ImageIO.read(getClass().getResource("50x50tanks/blackTank.png"));	
+			whiteTank = ImageIO.read(getClass().getResource("50x50tanks/whiteTank.png"));	 
+			pinkTank = ImageIO.read(getClass().getResource("50x50tanks/pinkTank.png"));	
+			yellowTank = ImageIO.read(getClass().getResource("50x50tanks/yellowTank.png"));	
 			
-			greenTurret = ImageIO.read(getClass().getResource("images/20x50 turrets/greenTurret.png"));
-			redTurret = ImageIO.read(getClass().getResource("images/20x50 turrets/redTurret.png"));
-			blueTurret = ImageIO.read(getClass().getResource("images/20x50 turrets/blueTurret.png"));
-			blackTurret = ImageIO.read(getClass().getResource("images/20x50 turrets/blackTurret.png"));
-			whiteTurret = ImageIO.read(getClass().getResource("images/20x50 turrets/whiteTurret.png"));
-			pinkTurret = ImageIO.read(getClass().getResource("images/20x50 turrets/pinkTurret.png"));
-			yellowTurret = ImageIO.read(getClass().getResource("images/20x50 turrets/yellowTurret.png"));
+			greenTurret = ImageIO.read(getClass().getResource("20x50 turrets/greenTurret.png"));
+			redTurret = ImageIO.read(getClass().getResource("20x50 turrets/redTurret.png"));
+			blueTurret = ImageIO.read(getClass().getResource("20x50 turrets/blueTurret.png"));
+			blackTurret = ImageIO.read(getClass().getResource("20x50 turrets/blackTurret.png"));
+			whiteTurret = ImageIO.read(getClass().getResource("20x50 turrets/whiteTurret.png"));
+			pinkTurret = ImageIO.read(getClass().getResource("20x50 turrets/pinkTurret.png"));
+			yellowTurret = ImageIO.read(getClass().getResource("20x50 turrets/yellowTurret.png"));
 		}
 		catch (IOException e){
 			// TODO Auto-generated catch block
