@@ -78,6 +78,7 @@ public class Menu
 		g.drawString("Left Handed - Arrow Keys to Move", 50, 640);
 		g.drawString("Aim With Mouse", 50, 680);
 		g.drawString("Press Space Bar or Click Mouse to Fire", 50, 720);
+		g.drawString("Press P to Pause", 50, 760);
 		g.setColor(Color.BLACK);
 		g.drawString("Instructions", 700, 550);
 		g.drawLine(695, 552, 877, 552);
