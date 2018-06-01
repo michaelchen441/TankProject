@@ -170,6 +170,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 					}
 				}
 			}
+			
 			if(touchTank == false && canMoveX(dirX,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirX == Direction.WEST && xLoc != player1.getX()) {
 				xLoc += -1;
 
