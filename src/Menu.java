@@ -10,12 +10,12 @@ public class Menu
 	int scoreTextX = 50;
 	int buttonText1X = 935;
 	int buttonText2X = 925;
-	int text1Y = 370;
-	int text2Y = 570;
+	int text1Y = 300;
+	int text2Y = 440;
 	
 	int buttonX = 900;
-	int button1Y = 300;
-	int button2Y = 500;
+	int button1Y = 230;
+	int button2Y = 370;
 	int buttonHeight = 100;
 	int buttonWidth = 440;
 	
