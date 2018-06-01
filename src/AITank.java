@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
@@ -19,7 +20,9 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 	boolean commit;
 
 	TankType type1;
-
+	boolean touchTank;
+	ArrayList<Tank> allTankList;
+	int count = 1;
 	public AITank(TankType inType, int inX, int inY, Arena inArena)
 	{
 		super(inArena); // Calls superclass contructor which takes in all walls in arena
@@ -33,11 +36,10 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 
 		//		wallsInBetween = new ArrayList<Wall>();
 		intersect = false;
-		player = new Point(arena.playerTankLocX(), arena.playerTankLocY());
-		player1 = new Point(arena.playerTankLocX(), arena.playerTankLocY());
-
-		numMoveTries = 0;
 		
+		numMoveTries = 0;
+		allTankList = new ArrayList<Tank>();
+		touchTank = false;
 		switch(type){
 		case BLUE:
 			tankSlowMultiplier = 10000;
@@ -62,7 +64,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 			break;
 		}
 		
-		fireSlowMultiplier = 400;
+		fireSlowMultiplier = 100000;
 		
 		commit = false;
 		type1 = inType;
@@ -87,7 +89,17 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 		ai1 = new Point(xLoc, yLoc);
 		Direction dirX;
 		Direction dirY;
+		
+		Point aiPoint1 = new Point(xLoc,  yLoc);
+		Point aiPoint2 = new Point(xLoc + 50,  yLoc);
+		Point aiPoint3 = new Point(xLoc,  yLoc + 50);
+		Point aiPoint4 = new Point(xLoc + 50,  yLoc + 50);
 
+		for(int i = 0; i< arena.tankList.size(); i++){
+			if(!arena.tankList.get(i).equals(this)) {
+				allTankList.add(arena.tankList.get(i));
+			}
+		}
 			if(ai1.getX() - player1.getX() > 0) {
 				dirX = Direction.WEST;
 				
@@ -110,19 +122,66 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 				dirY = null;
 			}
 
-
-			if(canMoveX(dirX,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirX == Direction.WEST && xLoc != player1.getX()) {
-				xLoc += -1;
-				
+			if(dirX == Direction.WEST) {
+				for(int i = 0; i< allTankList.size(); i++) {
+					Point p1 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY());
+					Point p2 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY());
+					Point p3 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY() + 50);
+					Point p4 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY()+ 50);
+					
+					if(intersect(aiPoint1, aiPoint3, p1, p2) == true || intersect(aiPoint1, aiPoint3, p3, p4) == true) {
+						touchTank = true;
+					}
+				}
 			}
-			else if(canMoveX(dirX,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirX == Direction.EAST && xLoc != player1.getX()) {
+			else if(dirX == Direction.EAST) {
+				for(int i = 0; i< allTankList.size(); i++) {
+					Point p1 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY());
+					Point p2 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY());
+					Point p3 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY() + 50);
+					Point p4 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY()+ 50);
+					
+					if(intersect(aiPoint2, aiPoint4, p1, p2) == true || intersect(aiPoint2, aiPoint4, p3, p4) == true) {
+						touchTank = true;
+					}
+				}
+			}
+			else if(dirY == Direction.NORTH) {
+				for(int i = 0; i< allTankList.size(); i++) {
+					Point p1 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY());
+					Point p2 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY());
+					Point p3 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY() + 50);
+					Point p4 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY()+ 50);
+					
+					if(intersect(aiPoint1, aiPoint2, p1, p3) == true || intersect(aiPoint1, aiPoint2, p2, p4) == true) {
+						touchTank = true;
+					}
+				}
+			}
+			else if(dirY == Direction.SOUTH) {
+				for(int i = 0; i< allTankList.size(); i++) {
+					Point p1 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY());
+					Point p2 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY());
+					Point p3 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY() + 50);
+					Point p4 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY()+ 50);
+					
+					if(intersect(aiPoint3, aiPoint4, p1, p3) == true || intersect(aiPoint3, aiPoint4, p2, p4) == true) {
+						touchTank = true;
+					}
+				}
+			}
+			if(touchTank == false && canMoveX(dirX,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirX == Direction.WEST && xLoc != player1.getX()) {
+				xLoc += -1;
+
+			}
+			else if(touchTank == false &&canMoveX(dirX,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirX == Direction.EAST && xLoc != player1.getX()) {
 				xLoc += 1;
 			}
-			if(canMoveY(Direction.NORTH,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirY == Direction.NORTH && yLoc != player1.getY()){
+			if(touchTank == false && canMoveY(Direction.NORTH,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirY == Direction.NORTH && yLoc != player1.getY()){
 
 				yLoc += -1;
 			}
-			else if(canMoveY(Direction.SOUTH,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirY == Direction.SOUTH && yLoc != player1.getY()){
+			else if(touchTank == false && canMoveY(Direction.SOUTH,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirY == Direction.SOUTH && yLoc != player1.getY()){
 				yLoc += 1;
 				System.out.println("moving south");
 			}
@@ -131,6 +190,8 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 			p.move();
 
 		}
+		allTankList.clear();
+		touchTank = false;
 	}
 	//Need to figure out mechanism by which AI Tank Aims
 	void aim()
@@ -224,4 +285,5 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 		return "aiTank";
 	}
 
+	
 }
