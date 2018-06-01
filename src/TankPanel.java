@@ -472,7 +472,7 @@ public class TankPanel extends JPanel {
 				latestScoreClassic = 13;
 				highScoreClassic = 13;
 				inGameOverScreen = true;
-				gameOverScreen = new GameOver(latestScoreClassic, level, true);
+				gameOverScreen = new GameOver(latestScoreClassic, level, true, false);
 				gameOverScreen.draw(g, imageLibrary);
 				
 //				cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
@@ -488,7 +488,7 @@ public class TankPanel extends JPanel {
 					
 					latestScoreSurvival = currentArena.numTanksKilled; 
 					
-					gameOverScreen = new GameOver(latestScoreSurvival, level, false);
+					gameOverScreen = new GameOver(latestScoreSurvival, level, false, true);
 					
 					if(latestScoreSurvival > highScoreSurvival){
 						highScoreSurvival = latestScoreSurvival;
@@ -497,7 +497,7 @@ public class TankPanel extends JPanel {
 				}
 				else{
 					latestScoreClassic = level-1;
-					gameOverScreen = new GameOver(latestScoreClassic, level, false);
+					gameOverScreen = new GameOver(latestScoreClassic, level, false, false);
 					
 					if (latestScoreClassic > highScoreClassic){
 						highScoreClassic = latestScoreClassic;

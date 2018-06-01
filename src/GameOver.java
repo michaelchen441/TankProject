@@ -7,12 +7,15 @@ public class GameOver {
 	private int score;
 	private int level;
 	private boolean gameWon;
+	private boolean survivalMode;
 
-	public GameOver(int inScore, int inLevel, boolean inGameWon){
+
+	public GameOver(int inScore, int inLevel, boolean inGameWon, boolean inSurvivalMode){
 
 		score = inScore;
 		level = inLevel;
 		gameWon = inGameWon;
+		survivalMode = inSurvivalMode;
 
 	}
 
@@ -30,33 +33,43 @@ public class GameOver {
 		if(gameWon){
 			g.setColor(Color.GREEN); //Black colored text
 			g.drawString("You Won!", 280, 260); //Constructs the text and draws it on panel
-			
+
 			g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
 			g.drawString("You completed all 12 levels" , 470, 365); //Constructs the text and draws it on panel
-			
-			
-			
+
+
+
 			g.setColor(Color.BLACK); //Red colored rectangle
 			g.fillRect(500, 500, 380, 100); //Makes rectangle containing start button
 			g.setFont(new Font("TimesRoman", Font.PLAIN, 50)); //Times New Roman font; size 200
 			g.setColor(Color.GREEN); //Black colored text
 			g.drawString("Return to Menu", 525, 560); //Constructs the text and draws it on panel
-			
-			
+
+
 		}
 		else{
 			g.setColor(Color.RED); //Black colored text
 			g.drawString("Game Over", 230, 260); //Constructs the text and draws it on panel
-			
+
 			g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
-			if (score == 1){
-				g.drawString("You completed " + score + " level" , 480, 365); //Constructs the text and draws it on panel
+			if(survivalMode){
+				if (score == 1){
+					g.drawString("You defeated " + score + " wave" , 480, 365); //Constructs the text and draws it on panel
+				}
+				else{
+					g.drawString("You defeated " + score + " waves" , 480, 365); //Constructs the text and draws it on panel
+				}
 			}
 			else{
-				g.drawString("You completed " + score + " levels" , 480, 365); //Constructs the text and draws it on panel
+				if (score == 1){
+					g.drawString("You completed " + score + " level" , 480, 365); //Constructs the text and draws it on panel
+				}
+				else{
+					g.drawString("You completed " + score + " levels" , 480, 365); //Constructs the text and draws it on panel
+				}
 			}
-			
-			
+
+
 			g.setColor(Color.BLACK); //Red colored rectangle
 			g.fillRect(500, 500, 380, 100); //Makes rectangle containing start button
 			g.setFont(new Font("TimesRoman", Font.PLAIN, 50)); //Times New Roman font; size 200
