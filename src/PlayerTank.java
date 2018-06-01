@@ -26,9 +26,7 @@ public class PlayerTank extends Tank
 	
 	public int[] inputMoveArr;
 	//All the walls the tank needs to account for in the arena
-	ArrayList<Tank> allTankList;
-	boolean touchTank;
-	int count = 1;
+
 
 
 	public PlayerTank(int inX, int inY, Arena inArena)
@@ -47,8 +45,7 @@ public class PlayerTank extends Tank
 		direction = Direction.EAST;//Initial direction set to EAST
 		inputMoveArr = new int[2];//Initializes array containing necessary information about moves in x and y locations
 
-		allTankList = new ArrayList<Tank>();
-		touchTank = false;
+	
 	}
 
 	// Move function for tank; dependent on direction and inputMoveArr which depend on keys pressed
@@ -62,123 +59,16 @@ public class PlayerTank extends Tank
 		 * Only moves every other or even tick to slow the movement of the tank
 		 * Tank moves everytime it ticks, but even if the move is called, it may not move anywhere because the inputmoveArr may be [0,0]
 		 */
-		Point aiPoint1 = new Point(arena.playerTankLocX(),  arena.playerTankLocY());
-		Point aiPoint2 = new Point(arena.playerTankLocX() + 50,  arena.playerTankLocY());
-		Point aiPoint3 = new Point(arena.playerTankLocX(),  arena.playerTankLocY() + 50);
-		Point aiPoint4 = new Point(arena.playerTankLocX() + 50,  arena.playerTankLocY() + 50);
-
-		for(int i = 0; i< arena.tankList.size(); i++){
-			if(!arena.tankList.get(i).equals(this)) {
-				allTankList.add(arena.tankList.get(i));
-			}
-		}
-		if(dir == Direction.WEST) {
-			for(int i = 0; i< allTankList.size(); i++) {
-				Point p1 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY());
-				Point p2 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY());
-				Point p3 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY() + 50);
-				Point p4 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY()+ 50);
-				
-				if(intersect(aiPoint1, aiPoint3, p1, p2) == true || intersect(aiPoint1, aiPoint3, p3, p4) == true) {
-					touchTank = true;
-				}
-			}
-		}
-		else if(dir == Direction.EAST) {
-			for(int i = 0; i< allTankList.size(); i++) {
-				Point p1 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY());
-				Point p2 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY());
-				Point p3 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY() + 50);
-				Point p4 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY()+ 50);
-				
-				if(intersect(aiPoint2, aiPoint4, p1, p2) == true || intersect(aiPoint2, aiPoint4, p3, p4) == true) {
-					touchTank = true;
-				}
-			}
-		}
-		else if(dir == Direction.NORTH) {
-			for(int i = 0; i< allTankList.size(); i++) {
-				Point p1 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY());
-				Point p2 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY());
-				Point p3 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY() + 50);
-				Point p4 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY()+ 50);
-				
-				if(intersect(aiPoint1, aiPoint2, p1, p3) == true || intersect(aiPoint1, aiPoint2, p2, p4) == true) {
-					touchTank = true;
-				}
-			}
-		}
-		else if(dir == Direction.SOUTH) {
-			for(int i = 0; i< allTankList.size(); i++) {
-				Point p1 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY());
-				Point p2 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY());
-				Point p3 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY() + 50);
-				Point p4 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY()+ 50);
-				
-				if(intersect(aiPoint3, aiPoint4, p1, p3) == true || intersect(aiPoint3, aiPoint4, p2, p4) == true) {
-					touchTank = true;
-				}
-			}
-		}
-		else if(dir == Direction.NORTHEAST) {
-			for(int i = 0; i< allTankList.size(); i++) {
-				Point p1 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY());
-				Point p2 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY());
-				Point p3 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY() + 50);
-				Point p4 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY()+ 50);
-				
-				if(intersect(aiPoint1, aiPoint2, p1, p3) == true || intersect(aiPoint1, aiPoint2, p2, p4) == true || intersect(aiPoint2, aiPoint4, p1, p2) == true || intersect(aiPoint2, aiPoint4, p3, p4) == true) {
-					touchTank = true;
-				}
-			}
-		}
-		else if(dir == Direction.NORTHWEST) {
-			for(int i = 0; i< allTankList.size(); i++) {
-				Point p1 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY());
-				Point p2 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY());
-				Point p3 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY() + 50);
-				Point p4 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY()+ 50);
-				
-				if(intersect(aiPoint1, aiPoint2, p1, p3) == true || intersect(aiPoint1, aiPoint2, p2, p4) == true || intersect(aiPoint1, aiPoint3, p1, p2) == true || intersect(aiPoint1, aiPoint3, p3, p4) == true) {
-					touchTank = true;
-				}
-			}
-		}
-		else if(dir == Direction.SOUTHEAST) {
-			for(int i = 0; i< allTankList.size(); i++) {
-				Point p1 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY());
-				Point p2 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY());
-				Point p3 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY() + 50);
-				Point p4 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY()+ 50);
-				
-				if(intersect(aiPoint3, aiPoint4, p1, p3) == true || intersect(aiPoint3, aiPoint4, p2, p4) == true || intersect(aiPoint2, aiPoint4, p1, p2) == true || intersect(aiPoint2, aiPoint4, p3, p4) == true) {
-					touchTank = true;
-				}
-			}
-		}
-		else if(dir == Direction.SOUTHWEST) {
-			for(int i = 0; i< allTankList.size(); i++) {
-				Point p1 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY());
-				Point p2 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY());
-				Point p3 = new Point(allTankList.get(i).getX(), allTankList.get(i).getY() + 50);
-				Point p4 = new Point(allTankList.get(i).getX() + 50, allTankList.get(i).getY()+ 50);
-				
-				if(intersect(aiPoint3, aiPoint4, p1, p3) == true || intersect(aiPoint3, aiPoint4, p2, p4) == true || intersect(aiPoint1, aiPoint3, p1, p2) == true || intersect(aiPoint1, aiPoint3, p3, p4) == true) {
-					touchTank = true;
-				}
-			}
-		}
-		System.out.println(touchTank);
-		if(touchTank == false && canMoveX(dir,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0) {
+		
+		if(canMoveX(dir,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0) {
 			xLoc += inputMoveArr[0];
 		}
-		if(touchTank == false && canMoveY(dir,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0) {
+		if(canMoveY(dir,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0) {
 			yLoc -= inputMoveArr[1];
 			 //Minus equals is used because the way a panel is numbered is top down, not bottom up like a standard set of coordinte axes
 		}
 		
-		touchTank = false;
-		allTankList.clear();
+
 		for(Projectile p : stockPile) {
 			p.move();
 		}
