@@ -83,7 +83,7 @@ public class Menu
 		g.drawLine(695, 552, 877, 552);
 		g.setColor(darkGreen);
 		g.drawString("Campaign Mode: Destroy all tanks to procceed", 700, 590);
-		g.drawString("to next level. Win all 12 levels to win the game.", 700, 630);
+		g.drawString("to next level. Beat all 12 levels to win the game.", 700, 630);
 		
 		g.setColor(darkBlue); 
 		g.drawString("Survival Mode: Try to last as long as you can.", 700, 690);
