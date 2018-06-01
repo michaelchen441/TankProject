@@ -78,12 +78,13 @@ public class Menu
 		g.drawString("Left Handed - Arrow Keys to Move", 50, 640);
 		g.drawString("Aim With Mouse", 50, 680);
 		g.drawString("Press Space Bar or Click Mouse to Fire", 50, 720);
+		g.drawString("Press P to Pause", 50, 760);
 		g.setColor(Color.BLACK);
 		g.drawString("Instructions", 700, 550);
 		g.drawLine(695, 552, 877, 552);
 		g.setColor(darkGreen);
 		g.drawString("Campaign Mode: Destroy all tanks to procceed", 700, 590);
-		g.drawString("to next level. Win all 12 levels to win the game.", 700, 630);
+		g.drawString("to next level. Beat all 12 levels to win the game.", 700, 630);
 		
 		g.setColor(darkBlue); 
 		g.drawString("Survival Mode: Try to last as long as you can.", 700, 690);
