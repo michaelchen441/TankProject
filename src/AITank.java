@@ -37,6 +37,8 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 		intersect = false;
 		
 		numMoveTries = 0;
+
+		
 		switch(type){
 		case BLUE:
 			tankSlowMultiplier = 10000;
@@ -71,7 +73,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 			break;
 		}
 		
-		fireSlowMultiplier = 100000;
+		fireSlowMultiplier = 400;
 		
 		commit = false;
 		type1 = inType;
@@ -99,6 +101,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 		
 		
 		
+
 			if(ai1.getX() - player1.getX() > 0) {
 				dirX = Direction.WEST;
 				
@@ -124,6 +127,7 @@ public class AITank extends Tank //AI Tank is a specific type of Tank
 			
 			
 			if(canMoveX(dirX,surroundingWalls) && numMoveTries%tankSlowMultiplier == 0 && dirX == Direction.WEST && xLoc != player1.getX()) {
+			
 				xLoc += -1;
 
 			}
