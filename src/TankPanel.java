@@ -53,10 +53,9 @@ public class TankPanel extends JPanel {
 	GameOver gameOverScreen;
 
 
+	HighScore highScore = new HighScore();
 	int latestScoreSurvival = 0;
-	int highScoreSurvival = 0;
 	int latestScoreClassic = 0;
-	int highScoreClassic = 0;
 
 
 	ImageLibrary imageLibrary = new ImageLibrary();
@@ -423,7 +422,7 @@ public class TankPanel extends JPanel {
 		}
 
 		if (inMenu){
-			theMenu.draw(g, imageLibrary, highScoreSurvival, highScoreClassic);
+			theMenu.draw(g, imageLibrary, highScore.getHighScoreSurvival(), highScore.getHighScoreClassic());
 		}
 		else{
 			if(level1FirstTime){
@@ -470,7 +469,9 @@ public class TankPanel extends JPanel {
 			
 			if(level == 13){//tests if player won
 				latestScoreClassic = 13;
-				highScoreClassic = 13;
+				highScore.setHighScoreClassic(13);
+				highScore.writeToFile();
+				
 				inGameOverScreen = true;
 				gameOverScreen = new GameOver(latestScoreClassic, level, true, false);
 				gameOverScreen.draw(g, imageLibrary);
@@ -487,21 +488,27 @@ public class TankPanel extends JPanel {
 				if(level == 0){
 					
 					latestScoreSurvival = currentArena.numTanksKilled; 
+				
 					
 					gameOverScreen = new GameOver(latestScoreSurvival, level, false, true);
 					
-					if(latestScoreSurvival > highScoreSurvival){
-						highScoreSurvival = latestScoreSurvival;
+					if(latestScoreSurvival > highScore.getHighScoreSurvival()){
+						highScore.setHighScoreSurvival(latestScoreSurvival);
 					}
+					
+					highScore.writeToFile();
 					
 				}
 				else{
 					latestScoreClassic = level-1;
+			
+					
 					gameOverScreen = new GameOver(latestScoreClassic, level, false, false);
 					
-					if (latestScoreClassic > highScoreClassic){
-						highScoreClassic = latestScoreClassic;
+					if (latestScoreClassic > highScore.getHighScoreClassic()){
+						highScore.setHighScoreClassic(latestScoreClassic);
 					}
+					highScore.writeToFile();
 				}
 				
 				
